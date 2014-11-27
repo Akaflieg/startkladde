@@ -1,0 +1,17 @@
+Adding a new option:
+  - Add a variable to class options and initialize it in options::options (),
+	if necessary.
+  - If the option is availabe via command line:
+    - Add the description in options::display_options
+	- In parse_argument, add the option to long_options. If there is a short
+      option, add it to short_options. If not, add a opt_... constant in the file
+	  preamble.
+	- In parse_argument, add a handler.
+  - Add the option in read_config_file.
+  - If applicable, add a function to the options class for using the options,
+	like address_is_local.
+  - Add the option to the documentation in doc/config
+  - Add an example entry in startkladde.conf.
+
+
+  

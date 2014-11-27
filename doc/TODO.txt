@@ -1,0 +1,126 @@
+On startup, several MutableObjectList instaces are deleted. Why?
+
+Wenn eine Query fehlschlägt, wird eine Exception nach außen geworfen und das
+Programm beendet, selbst wenn ein Statusdialog verwendet wird.
+
+Viel Codeduplikation in den Workern
+Viel Codeduplikation bei Operationen mit Status-Monitor
+
+Siehe auch Trac (startkladde.sf.net) 
+
+
+== Critical (before release) ==
+
+
+== Major (important) ==
+
+Plugin system:
+* Search plugins and data files in current directory, application directory,
+  system directory
+
+* "Protocol" (like for weather plugin) for all plugins
+* Synchronize plugin update with clock
+* Graphical wind display
+* Better plugin termination: delete plugin after the process dies (rewrite
+  ShellPlugin)
+
+Flugbuch (Vorschlag eines Fluglehrers):
+* Ausgabe Anzahl Landungen (Interessant bei Platzrunden mit dem Motorflieger)
+* Zusammenfassung von Fluglehrerstarts wie folgt: Alle Starts eines Tages mit
+  einem Flugzeugkennzeichen ergeben eine Zeile. In der Zeile Begleiter steht
+  eine durch Kommas getrennte Liste aller Begleiter des Tages. Startzeit ist
+  die erste Startzeit des Tages auf dem Kennzeichen. Landezeit ist die letzte
+  Landezeit des Tages auf dem Kennzeichen. Anzahl Langungen = Anzahl in der
+  Zeile zusammengefassten Flüge.
+
+UI:
+* keep landed flights visible for n minutes
+* undo for depart/land
+* Window with long plugin labels
+* signal unhandled exceptions to main window (QApplication::notify)
+* warning message before aborting migration
+
+Models:
+* Plane: can only do self launch (and select automatically, even on repeat)
+* Plane, person, launch method: inactive (not displayed in select)
+
+Config:
+* Allow connection through unix socket
+* Make compression configurable
+* Make configurable if it starts in full screen
+* Make read timeout and keepalive interval configurable
+
+Database:
+* SQLite support
+* Standardize enum handling: store the database value internally and have an
+  "unknown" type (instead of "none"). Also allows preserving unknown values in
+  the database
+* allow backup and restore of database (even if not connected)
+* offer backup before migration on connect
+* find out whether the full string lenth (255 characters) is transfered, even
+  if the string is shorter. If yes, make shorter.
+* local disk caching
+* show upstream/downstream bytes in monitor dialog
+* preserve unknown values for enum types and launch methods
+* Add an ID column to users - it's only present if the database has been newly
+  created, not if it has been migrated from the legacy database; the migration
+  will probably have to remove the old primary key (username) *if* it exists.
+* Create all columns at once in the initial migration and remove the id column
+  from the users table (safe???)
+* When a table already exists on create, create the columns and indexes
+  individually.
+* Check for missing columns/indexes when checking the database version 
+
+Other:
+* Time zone safety
+* Write time to hwclock after change (?)
+* Number of flying flights: also consider towplanes
+* Keepalive should be a feature of DefaultInterface, not ThreadSafeInterface (?)
+
+
+== Minor ==
+
+UI:
+* Find flights (dates) by registration
+* Flight editor: double click error list, jump to widget
+* Show depart/land now/later when editing flight?
+* When there is no self launch, towflights are red (that's correct). When a
+  self launch is added, the flight table has to be refreshed before it
+  gets green
+
+Database:
+* Add foreign key constraints
+* Database checks (compare schema with database)
+* using SQLite database without cache: either inherit from common base class or
+  use a DummyCache
+* consider using a memory SQLite for cache (is that fast enough?)
+* improve models SQL interface
+* Add a ResultConsumer as alternative to passing a result (especially for
+  CopiedResult)
+* move specialized queries generation to model classes (e. g. flight prepared)
+  (but need after-filter)
+* Flight should be an entity
+* Allow a table name prefix
+* show current/latest version in "still not current" messages
+* plane should be called aircraft
+* the column name type is reserved in rails and should not be used (aircraft:
+  model, launch method: category?, flight: flight_type?)
+* currently, when canceling while waiting for a ping to return, the actual
+* operation will not be canceled, so the user has to cancel it again. The
+* problem is described in DefaultInterface.cpp under "On synchronization".
+* "Should the database be initialized?" may be asked twice 
+
+Editors:
+* Use QDataWidgetMapper for edit dialogs?
+
+Implementation:
+* Nested types: move to separate file to reduce dependencies (see dependencies
+  marked "Required for ...")
+
+
+== Tests ==
+
+* Flight: all combinations of mode, started, landed, towflight
+* Flight: also test inactive times (e. g. landing time given but leaving or not
+  landed)
+

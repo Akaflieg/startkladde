@@ -1,0 +1,122 @@
+#!/bin/bash
+# Netztest
+# Martin Herrmann
+# 3/2004, 5/2010
+# Prüft die Verfügbarkeit einiger Rechner/APs im lokalen Netzwerk
+
+### Einstellungen
+# Die zu prüfenden Hosts werden am Ende der Datei definiert
+
+# Link-Status überprüfen? Falls ja, welches Interface?
+check_link=true
+interface="eth0"
+# Farbe zur Anzeige verwenden?
+color=true
+
+
+
+### Funktionalität
+kernlog="/var/log/kern.log"
+
+if $color; then	
+	col_def="\033[0m"
+	col_notok="\033[31m"
+	col_ok="\033[32m"
+	col_err="\033[30;41m"
+	col_host="\033[33m"
+	col_bold="\033[1m"
+fi
+
+echo_with_color()	
+{
+	unset opts
+	if [ "$1" == "-n" ]; then opts="-n"; shift; fi
+	color=$1; shift
+
+	echo -e $opts "${color}$@${col_def}"
+}
+
+echo_item()	
+{
+	echo_with_color -n "$@"
+	echo -n ": "
+}
+
+checkhost()	
+{
+	host=$1
+	name=$2
+	timeout=$3
+
+	echo_item $col_host "$name ($host)"
+
+	# Ping im Hintergrund starten; wird nach der ersten Antwort beendet
+	ping -c 1 ${host} >/dev/null 2>/dev/null &
+	pid=$!
+
+	# Ping-job disownen, damit die "terminated"-Meldung nicht ausgegeben wird.
+	disown $pid
+
+	# Warten
+	sleep $timeout
+
+	# Wenn der Ping-job noch nicht beendet ist, dann ist der Host nicht
+	# erreichbar
+	if ps -p ${pid} >/dev/null; then
+		echo_with_color $col_notok "Nicht erreichbar"
+		kill ${pid} >/dev/null 2>/dev/null
+		return 1
+	else
+		echo_with_color $col_ok "OK"
+		return 0
+	fi
+}
+
+
+echo
+echo_with_color $col_bold "Startkladde - Netzwerkschnelldiagnose"
+echo
+
+cat <<EOF
+Dieses Skript überprüft die Erreichbarkeit einiger Stationen im Netzwerk.
+Es kann verwendet werden, um bei Ausfällen des Netzwerks den Fehlerort
+einzugrenzen.
+EOF
+echo
+
+if $check_link; then
+	echo_item $col_host "Link ($interface)"
+
+	if [ -r "$kernlog" ]; then
+		linktext=`grep "$interface: link" "$kernlog" 2>/dev/null |tail -n 1`
+
+		if [ -z "$linktext" ]; then
+			echo_with_color ${col_err} Lesefehler
+		else
+			if echo "$linktext" |grep "link up" >/dev/null; then
+				echo_with_color -n $col_ok "OK"
+				linkparams=`echo "$linktext" |sed "s/.*link up, //"`
+				echo " (${linkparams})"
+			else
+				if echo "$linktext" |grep "link down" >/dev/null; then
+					echo_with_color $col_notok "Nicht vorhanden"
+				else
+					echo_with_color -n $col_err "Unbekannt"
+					echo " (${linktext})"
+				fi
+			fi
+		fi
+	else
+		echo_with_color ${col_err} "Zugriff auf $kernlog verweigert"
+	fi
+fi
+
+checkhost 127.0.0.1   "localhost"    1
+checkhost 192.168.2.3 "Client"       1
+checkhost 192.168.2.2 "Access Point" 1
+checkhost 192.168.1.2 "Server"       1
+
+echo
+echo "Enter zum Beenden..."
+read
+

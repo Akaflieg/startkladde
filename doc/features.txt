@@ -1,0 +1,3 @@
+Notable features:
+  - still-flying check for planes and people
+  

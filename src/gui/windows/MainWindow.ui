@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindowClass</class>
+ <widget class="QMainWindow" name="MainWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>825</width>
+    <height>531</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true" extracomment="No translatable, set programmatically">Startkladde</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../config/startkladde.qrc">
+    <normaloff>:/graphics/icon.png</normaloff>:/graphics/icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" stretch="0,1,1">
+    <property name="margin">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="topPane" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" stretch="1,0">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="infoFrame">
+         <property name="frameShape">
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="infoPane" native="true">
+            <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
+             <property name="verticalSpacing">
+              <number>4</number>
+             </property>
+             <property name="margin">
+              <number>4</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="SkLabel" name="localTimeCaptionLabel">
+               <property name="text">
+                <string>Local time:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="SkLabel" name="localTimeLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="SkLabel" name="utcTimeCaptionLabel">
+               <property name="text">
+                <string>UTC:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="SkLabel" name="displayDateCaptionLabel">
+               <property name="text">
+                <string>Displayed date:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="SkLabel" name="activeFlightsCaptionLabel">
+               <property name="text">
+                <string>Flights airborne:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="SkLabel" name="totalFlightsCaptionLabel">
+               <property name="text">
+                <string>Flights total:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="SkLabel" name="databaseStateCaptionLabel">
+               <property name="text">
+                <string>Database connection:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="SkLabel" name="flarmStateCaptionLabel">
+               <property name="text">
+                <string>Flarm connection:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="SkLabel" name="powerStateCaptionLabel">
+               <property name="text">
+                <string>Power supply:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="SkLabel" name="utcTimeLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="2" column="1">
+              <widget class="SkLabel" name="displayDateLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="SkLabel" name="activeFlightsLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="SkLabel" name="totalFlightsLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="SkLabel" name="databaseStateLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="SkLabel" name="flarmStateLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="AcpiWidget" name="powerStateLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="pluginPane" native="true">
+            <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0">
+             <property name="verticalSpacing">
+              <number>4</number>
+             </property>
+             <property name="margin">
+              <number>4</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string notr="true" extracomment="Placeholder - will be removed">Caption:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string notr="true" extracomment="Placeholder - will be removed">Value</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="weatherFrame">
+         <property name="minimumSize">
+          <size>
+           <width>4</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="margin">
+           <number>0</number>
+          </property>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="FlightTableView" name="flightTable">
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="notConnectedPane" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Not connected to database</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="connectButton">
+            <property name="text">
+             <string>&amp;Connect</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>825</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuProgram">
+    <property name="title">
+     <string>&amp;Program</string>
+    </property>
+    <addaction name="actionSettings"/>
+    <addaction name="actionSetTime"/>
+    <addaction name="actionSetGPSTime"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+    <addaction name="actionShutdown"/>
+   </widget>
+   <widget class="QMenu" name="menuFlight">
+    <property name="title">
+     <string>&amp;Flight</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionLaunchMethodPreselection"/>
+    <addaction name="separator"/>
+    <addaction name="actionDepart"/>
+    <addaction name="actionLand"/>
+    <addaction name="actionTouchngo"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit"/>
+    <addaction name="actionRepeat"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="identifyPlaneAction"/>
+    <addaction name="updateFlarmIdAction"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplayError"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="menuFlights">
+     <property name="title">
+      <string>&amp;Flights</string>
+     </property>
+     <addaction name="actionHideFinished"/>
+     <addaction name="actionAlwaysShowExternal"/>
+     <addaction name="actionAlwaysShowErroneous"/>
+     <addaction name="separator"/>
+     <addaction name="actionSort"/>
+     <addaction name="actionResizeColumns"/>
+    </widget>
+    <widget class="QMenu" name="menuDate">
+     <property name="title">
+      <string>&amp;Date</string>
+     </property>
+     <addaction name="actionSetDisplayDate"/>
+     <addaction name="actionResetDisplayDateOnNewFlight"/>
+     <addaction name="actionUseCurrentDateForNewFlights"/>
+    </widget>
+    <widget class="QMenu" name="menuFont">
+     <property name="title">
+      <string>F&amp;ont</string>
+     </property>
+     <addaction name="actionSelectFont"/>
+     <addaction name="actionIncrementFontSize"/>
+     <addaction name="actionDecrementFontSize"/>
+    </widget>
+    <addaction name="actionRefreshTable"/>
+    <addaction name="menuFlights"/>
+    <addaction name="menuDate"/>
+    <addaction name="menuFont"/>
+    <addaction name="separator"/>
+    <addaction name="actionJumpToTow"/>
+    <addaction name="actionRestartPlugins"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowVirtualKeyboard"/>
+   </widget>
+   <widget class="QMenu" name="menuStatistics">
+    <property name="title">
+     <string>&amp;Statistics</string>
+    </property>
+    <addaction name="actionPlaneLogs"/>
+    <addaction name="actionPilotLogs"/>
+    <addaction name="actionLaunchMethodStatistics"/>
+   </widget>
+   <widget class="QMenu" name="menuDatabase">
+    <property name="title">
+     <string>&amp;Database</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionEditPlanes"/>
+    <addaction name="actionEditPeople"/>
+    <addaction name="actionEditLaunchMethods"/>
+    <addaction name="actionShowFlights"/>
+    <addaction name="separator"/>
+    <addaction name="actionRefreshAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionSync"/>
+   </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>D&amp;ebug</string>
+    </property>
+    <addaction name="actionSegfault"/>
+    <addaction name="actionPingServer"/>
+    <addaction name="actionTest"/>
+    <addaction name="separator"/>
+    <addaction name="changeLanguageAction"/>
+    <addaction name="timerBasedLanguageChangeAction"/>
+    <addaction name="separator"/>
+    <addaction name="injectFlarmDepartureAction"/>
+    <addaction name="injectFlarmLandingAction"/>
+    <addaction name="injectFlarmTouchAndGoAction"/>
+    <addaction name="separator"/>
+    <addaction name="lookupPlaneAction"/>
+    <addaction name="lookupFlightAction"/>
+    <addaction name="separator"/>
+    <addaction name="showNotificationAction"/>
+    <addaction name="separator"/>
+    <addaction name="decodeFlarmNetFileAction"/>
+    <addaction name="encodeFlarmNetFileAction"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionInfo"/>
+    <addaction name="actionNetworkDiagnostics"/>
+   </widget>
+   <widget class="QMenu" name="menuFlarm">
+    <property name="title">
+     <string>Fla&amp;rm</string>
+    </property>
+    <addaction name="openFlarmAction"/>
+    <addaction name="separator"/>
+    <addaction name="actionFlarmRadar"/>
+    <addaction name="actionFlarmPlaneList"/>
+    <addaction name="separator"/>
+    <addaction name="actionFlarmNetWindow"/>
+    <addaction name="flarmNetImportFileAction"/>
+    <addaction name="flarmNetImportWebAction"/>
+   </widget>
+   <addaction name="menuProgram"/>
+   <addaction name="menuFlight"/>
+   <addaction name="menuView"/>
+   <addaction name="menuStatistics"/>
+   <addaction name="menuDatabase"/>
+   <addaction name="menuFlarm"/>
+   <addaction name="menuDebug"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QDockWidget" name="logDockWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Log</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QTextEdit" name="logWidget">
+       <property name="lineWrapMode">
+        <enum>QTextEdit::NoWrap</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionRepeat"/>
+   <addaction name="actionHideFinished"/>
+   <addaction name="actionShowVirtualKeyboard"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionSetTime">
+   <property name="text">
+    <string>Set &amp;time...</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Exit">Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionShutdown">
+   <property name="text">
+    <string>Shut&amp;down</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>&amp;New flight... (F2)</string>
+   </property>
+   <property name="toolTip">
+    <string>New flight (F2)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="New flight">Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionDepart">
+   <property name="text">
+    <string>&amp;Depart (F5)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Depart">Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionLand">
+   <property name="text">
+    <string>&amp;Land/end (F6)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Land">Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionTouchngo">
+   <property name="text">
+    <string>Touch-and-&amp;go (F7)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Touch-and-go">Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>&amp;Edit... (F4)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Edit">Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionRepeat">
+   <property name="text">
+    <string>&amp;Replicate... (F3)</string>
+   </property>
+   <property name="iconText">
+    <string>Replicate flight (F3)</string>
+   </property>
+   <property name="toolTip">
+    <string>Replicate flight (F3)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Replicate">Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Dele&amp;te... (F8)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Delete">Del</string>
+   </property>
+  </action>
+  <action name="actionRefreshTable">
+   <property name="text">
+    <string>&amp;Refresh table</string>
+   </property>
+  </action>
+  <action name="actionJumpToTow">
+   <property name="text">
+    <string>&amp;Jump to towflight</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Jump to towflight">Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionRestartPlugins">
+   <property name="text">
+    <string>Restart &amp;plugins</string>
+   </property>
+  </action>
+  <action name="actionHideFinished">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Hide finished flights (F11)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Hide finished flights">Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionAlwaysShowExternal">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always show e&amp;xternal flights</string>
+   </property>
+  </action>
+  <action name="actionAlwaysShowErroneous">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always show &amp;erroneous flights</string>
+   </property>
+  </action>
+  <action name="actionSort">
+   <property name="text">
+    <string>Sort by effective &amp;time (F9)</string>
+   </property>
+  </action>
+  <action name="actionSetDisplayDate">
+   <property name="text">
+    <string>Set &amp;displayed date... (F10)</string>
+   </property>
+  </action>
+  <action name="actionResetDisplayDateOnNewFlight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Update displayed date when creating a flight</string>
+   </property>
+  </action>
+  <action name="actionUseCurrentDateForNewFlights">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always use &amp;current date for new flights</string>
+   </property>
+  </action>
+  <action name="actionPlaneLogs">
+   <property name="text">
+    <string>&amp;Plane logbooks</string>
+   </property>
+  </action>
+  <action name="actionPilotLogs">
+   <property name="text">
+    <string>P&amp;ilot logbooks</string>
+   </property>
+  </action>
+  <action name="actionLaunchMethodStatistics">
+   <property name="text">
+    <string>&amp;Launch method overview</string>
+   </property>
+  </action>
+  <action name="actionEditPlanes">
+   <property name="text">
+    <string>Edit &amp;planes</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Edit planes">Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionEditPeople">
+   <property name="text">
+    <string>Edit p&amp;eople</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Edit people">Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionRefreshAll">
+   <property name="text">
+    <string>&amp;Refresh (F12)</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Refresh">Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionSegfault">
+   <property name="text">
+    <string>&amp;Crash</string>
+   </property>
+  </action>
+  <action name="actionPingServer">
+   <property name="text">
+    <string>&amp;Ping Server</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="text">
+    <string>&amp;About Startkladde</string>
+   </property>
+  </action>
+  <action name="actionNetworkDiagnostics">
+   <property name="text">
+    <string>&amp;Network diagnostics</string>
+   </property>
+  </action>
+  <action name="actionSelectFont">
+   <property name="text">
+    <string>&amp;Select font</string>
+   </property>
+  </action>
+  <action name="actionIncrementFontSize">
+   <property name="text">
+    <string>&amp;Increase size</string>
+   </property>
+   <property name="iconText">
+    <string>+</string>
+   </property>
+  </action>
+  <action name="actionDecrementFontSize">
+   <property name="text">
+    <string>&amp;Decrease size</string>
+   </property>
+   <property name="iconText">
+    <string>-</string>
+   </property>
+  </action>
+  <action name="actionShowVirtualKeyboard">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show &amp;virtual keyboard</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="text">
+    <string>&amp;Test</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Disconnect</string>
+   </property>
+  </action>
+  <action name="actionDisplayError">
+   <property name="text">
+    <string>&amp;Show errors</string>
+   </property>
+  </action>
+  <action name="actionResizeColumns">
+   <property name="text">
+    <string>Adjust &amp;column widths</string>
+   </property>
+  </action>
+  <action name="actionEditLaunchMethods">
+   <property name="text">
+    <string>Edit &amp;launch methods</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>&amp;Settings</string>
+   </property>
+   <property name="shortcut">
+    <string extracomment="Settings">Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionLaunchMethodPreselection">
+   <property name="text">
+    <string>Preselect launch &amp;method...</string>
+   </property>
+  </action>
+  <action name="actionShowFlights">
+   <property name="text">
+    <string extracomment="Seems like &amp;f is not displayed correctly, possible because it is replaced with a ligature">Show flight d&amp;atabase</string>
+   </property>
+  </action>
+  <action name="changeLanguageAction">
+   <property name="text">
+    <string>Change lan&amp;guage</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="timerBasedLanguageChangeAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Timer-&amp;based language change</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionSetGPSTime">
+   <property name="text">
+    <string>Set &amp;GPS time...</string>
+   </property>
+   <property name="toolTip">
+    <string>Set GPS time from Flarm data</string>
+   </property>
+  </action>
+  <action name="actionFlarmPlaneList">
+   <property name="text">
+    <string>Plane &amp;list...</string>
+   </property>
+  </action>
+  <action name="actionFlarmRadar">
+   <property name="text">
+    <string>Flarm &amp;radar...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="flarmNetImportFileAction">
+   <property name="text">
+    <string>Import FlarmNet database from &amp;file...</string>
+   </property>
+  </action>
+  <action name="actionFlarmNetWindow">
+   <property name="text">
+    <string>Flarm&amp;Net overview...</string>
+   </property>
+  </action>
+  <action name="connectFlarmAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="injectFlarmDepartureAction">
+   <property name="text">
+    <string>Inject Flarm &amp;departure</string>
+   </property>
+  </action>
+  <action name="injectFlarmLandingAction">
+   <property name="text">
+    <string>Inject Flarm &amp;landing</string>
+   </property>
+  </action>
+  <action name="injectFlarmTouchAndGoAction">
+   <property name="text">
+    <string>Inject Flarm &amp;touch and go</string>
+   </property>
+  </action>
+  <action name="flarmNetImportWebAction">
+   <property name="text">
+    <string>Download FlarmNet database from &amp;web...</string>
+   </property>
+  </action>
+  <action name="lookupPlaneAction">
+   <property name="text">
+    <string>Look up &amp;plane</string>
+   </property>
+  </action>
+  <action name="lookupFlightAction">
+   <property name="text">
+    <string>Look up &amp;flight</string>
+   </property>
+  </action>
+  <action name="identifyPlaneAction">
+   <property name="text">
+    <string>&amp;Identify plane</string>
+   </property>
+   <property name="toolTip">
+    <string>&amp;Identify plane</string>
+   </property>
+  </action>
+  <action name="updateFlarmIdAction">
+   <property name="text">
+    <string>&amp;Update Flarm ID</string>
+   </property>
+  </action>
+  <action name="showNotificationAction">
+   <property name="text">
+    <string>Sho&amp;w notification for current flight</string>
+   </property>
+   <property name="toolTip">
+    <string>Show notification</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="decodeFlarmNetFileAction">
+   <property name="text">
+    <string>Dec&amp;ode FlarmNet file</string>
+   </property>
+  </action>
+  <action name="encodeFlarmNetFileAction">
+   <property name="text">
+    <string>E&amp;ncode FlarmNet file</string>
+   </property>
+  </action>
+  <action name="openFlarmAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Op&amp;en</string>
+   </property>
+  </action>
+  <action name="actionSync">
+   <property name="text">
+    <string>Synchronize with remote database</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SkLabel</class>
+   <extends>QLabel</extends>
+   <header>src/gui/widgets/SkLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>AcpiWidget</class>
+   <extends>QLabel</extends>
+   <header>src/gui/widgets/AcpiWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FlightTableView</class>
+   <extends>QTableView</extends>
+   <header>src/gui/widgets/FlightTableView.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../config/startkladde.qrc"/>
+ </resources>
+ <connections/>
+</ui>

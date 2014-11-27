@@ -1,0 +1,16 @@
+Shell plugins are programs which output to stdout. The processes are run using
+"/bin/sh -c command". Whenever text is output by the process, it is displayed
+if the display label is set.
+A plugin must be started with the start () method.
+When a process dies, two things happen:
+  - if warn_on_death is true, a warning is output
+  - if restart_interval is not negative, the process is restarted after
+	restart_interval seconds. restart_interval should not be set to 0 except if
+	it is sure that it does not die again in significantly less than 1 second.
+Rich text plugins can use what QT calls "rich text". This is some kind of
+subset of HTML. No <qt> and </qt> tags should be output. Automatic line break
+is suppressed, however, a line break can be enforced with <br>. Rich text
+plugins (especially with multiple lines) may have slightly different spacing.
+The plugins will not run exactly simultaneously, so they probably should not do
+output every second.
+

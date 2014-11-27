@@ -1,0 +1,544 @@
+\documentclass[a4paper]{scrartcl}
+% Packages      {{{
+\usepackage{SIunits}
+%\usepackage{geometry}
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{caption}
+\usepackage{icomma}
+\usepackage{graphicx}
+%\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage[hyphens,T1]{url}
+\usepackage{colortbl}
+\usepackage{ae}
+\usepackage[bookmarksopen=true,linkcolor=blue,citecolor=red,colorlinks]{hyperref}
+%}}}
+
+% Settings	{{{
+\setlength{\parindent}{0pt}
+
+\renewcommand{\captionfont}{\normalfont\sffamily\itshape\footnotesize}
+\renewcommand{\captionlabelfont}{\normalfont\sffamily\bfseries\footnotesize}
+
+\makeatletter
+\@addtoreset{table}{section}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\makeatother
+% }}}
+
+% Commands {{{
+% \pic{filename}{label}{caption}{[width=]}
+\newcommand{\pic}[4]{%
+\begin{figure}
+\begin{center}
+\includegraphics#4{#1}
+\caption{#3}
+\label{#2}
+\end{center}
+\end{figure}
+}
+
+%TODO für \menu nehmen
+\newcommand{\verbat}[1]{\texttt{#1}}
+\newcommand{\taste}[1]{,,#1``}					% Taste/Tastenkombination
+%\newcommand{\taste}[1]{\verb{#1}}				% Taste/Tastenkombination
+\newcommand{\menu}[1]{,,#1``}					% Menüeintrag
+\newcommand{\subm}{\ensuremath{\rightarrow}}	% Untermenü
+\newcommand{\beispiel}[1]{,,#1``}				% Beispiel
+\newcommand{\zb}[1]{zum Beispiel \beispiel{#1}}	% Zum Beispiel
+\newcommand{\secref}[1]{Abschnitt \ref{#1}}		% Abschnitt #
+\newcommand{\lbl}[1]{,,#1``}					% Label im Programm
+\newcommand{\wert}[1]{,,#1``}					% Wert eines Felds
+\newcommand{\button}[1]{,,#1``}					% Schaltfläche
+%}}}
+
+\begin{document}
+
+\newcommand{\achtung}{\textbf{Achtung}}
+
+\title{Startkladde\\Benutzerdokumentation Starterfassungsprogramm}%{{{
+\date{Stand: \today}
+\maketitle
+
+\tableofcontents
+
+\clearpage
+%}}}
+
+
+\section{Übersicht}
+
+Dieses Dokument beschreibt die Bedienung des Starterfassungsprogramms ,,Startkladde``.
+
+
+\subsection{Allgemeines zur Bedienung}%{{{
+
+Die meisten Funktionen des Programms sind auch über eine Tastenkürzel
+erreichbar. Bei häufig verwendeten Funktionen ist dies meist schneller als die
+Auswahl mit der Maus.  Das Programm folgt den folgenden Konventionen (die auch
+bei den meisten anderen Programmen üblich sind):
+
+\begin{itemize}
+\item{In den Menüs, Dialogfenstern (zum Beispiel dem Flugeditor) und
+	Schaltflächen sind einzelne Buchstaben unterstrichen. Die einzelnen
+	Menüeinträge, Eingabefelder und Schaltflächen lassen sich mit
+	\taste{Alt+Buchstabe} (Die \taste{Alt}-Taste gedrückt halten und dazu die
+	entsprechende Buchstabentaste drücken) aktivieren.}
+\item{In Dialogfenstern kann durch die \taste{Tabulator}-Taste das jeweils nächste
+	Eingabefeld ausgewählt werden; mit \taste{Shift+Tabulator} wird das jeweils
+	vorherige Feld ausgewählt.}
+\item{Sind mehrere Fenster geöffnet (zum Beispiel das Hauptfenster (Abschnitt
+	\ref{sec.hauptfenster}) und der Flugeditor, kann mit \taste{Alt+Tabulator}
+	zwischen den Fenstern gewechselt werden.}
+\item{Häufig verwendete Menüeinträge sind mit einer Tastenkombination versehen,
+	die hinter dem Menüeintrag steht und in der Regel die Form \taste{Strg+X}
+	hat, wobei \taste{X} für einen beliebigen Buchstaben steht.  Das Benutzen
+	dieser Tastenkombination benutzt hat die gleiche Wirkung wie das Auswählen
+	des ensprechenden Menüpunkts, auch wenn das Menü nicht geöffnet ist.
+	Außerdem sind die am häufigsten verwendeten Funktionen über Funktionstasten
+	(\taste{F1} --- \taste{F12}) erreichbar (siehe Abschitt \ref{sec.fkeys}).}
+\item{In Dialogfenstern gibt es eine Standardschaltfläche, die einen
+	hervorgehobenen Rahmen hat; diese wird durch Druck auf die
+	\taste{Enter}-Taste aktiviert.}
+\item{Dialogfenster werden durch Druck auf \taste{ESC} geschlossen.}
+\item{In Listenfeldern (zum Beispiel \verbat{Startart}) können Einträge durch
+	Eingabe des ersten Buchstabens angesprungen werden.}
+\item{Tabellen können nach einzelnen Spalten sortiert werden, indem der
+	Spaltentitel mit der linken Maustaste angeklickt wird.}
+\item{Listenfelder können, wenn sie aktiv sind, mit \taste{Alt+Cursor ab}
+	geöffnet werden. Durch \taste{Enter} (ausgewählten Eintrag übernehmen)
+	oder \taste{Esc} werden sie geschlossen.}
+\item{In Listenfeldern, in denen kein eigener Text eingegeben werden kann,
+	kann durch Tastendruck der Eintrag ausgewählt werden, der mit diesem
+	Buchstaben anfängt.}
+\end{itemize}
+
+Wird ein Flug mit der rechten Maustaste angeklickt, öffnet sich ein
+Kontextmenü, aus dem die verschiedenen Aktionen (siehe Abschnitt
+\ref{sec.aktionen}) ausgewählt werden können.
+%}}}
+
+\subsection{Das Hauptfenster}\label{sec.hauptfenster}%{{{
+
+Nach dem Start des Programms erscheint das Hauptfenster. Es besteht aus zwei
+Teilen: im oberen Bereich, unter der Menüleiste, befindet sich der Infobereich.
+Hier stehen Dinge wie aktuelle Uhrzeit, Anzahl der Flüge des aktuellen Tages
+etc.
+
+Den Hauptteil des Programmfensters nimmt die Flugtabelle ein. Hier werden die
+Flüge des aktuellen Tages dargestellt.
+
+Ein Beispiel des Hauptfensters ist in Abbildung \ref{pic.hauptfenster} zu sehen.
+\pic{MainWindow}{pic.hauptfenster}{Das Hauptfenster}{[width=14cm]}
+
+Flüge, die bereits gelandet sind oder die nicht an diesem Flugplatz landen,
+also Flüge, die keiner weiteren Behandlung bedürfen, werden normalerweise
+ausgeblendet. Über das Menü (\menu{Ansicht\subm Flüge\subm Erledigte Flüge
+ausblenden}) oder mit der Taste \taste{F11} lassen sich diese Flüge
+einblenden.
+
+Die Flüge in der Flugtabelle sind gemäß ihres Zustandes farblich gekennzeichnet:
+\begin{itemize}
+\item{Flüge, die gestartet, aber noch nicht gelandet sind (fliegende Flüge)
+	werden blau\footnote{Merkhilfe: blau wie der Himmel} dargestellt.}
+\item{Flüge, die gelandet sind, werden grün\footnote{Merkhilfe: grün wie die
+	Wiese} dargestellt, sofern sie nicht ausgeblendet werden.}
+\item{Flüge, die bereits eingetragen, aber noch nicht gestartet sind, werden gelb dargestellt.}
+\item{Flüge, die einen Fehler enthalten (zum Beispiel eine ungültige
+	Startzeit), werden rot dargestellt.}
+\end{itemize}
+
+Schleppflüge sind in einer dunkleren Farbe als Segelflüge dargestellt.
+
+Die Farben sind in Tabelle \ref{tab.flugfarben} dargestellt.
+
+\begin{table}\caption{Farbliche Kennzeichnung von Flügen\label{tab.flugfarben}} %{{{
+\begin{center}
+\newcolumntype{G}{>{\columncolor[rgb]{1,0,0}\color{black}\raggedright}l} % Schleppflug Fehler: rot
+\newcolumntype{F}{>{\columncolor[rgb]{1,0.5,0.5}\color{black}\raggedright}l} % Fehler: hellrot
+\newcolumntype{V}{>{\columncolor[rgb]{1,1,0.5}\color{black}\raggedright}l} % nicht gestartet: hell gelb
+\newcolumntype{L}{>{\columncolor[rgb]{0.75,0.75,1}\color{black}\raggedright}l} % Flug in der Luft: hell blau
+\newcolumntype{B}{>{\columncolor[rgb]{0.75,1,0.75}\color{black}\raggedright}l} % gelandeter Flug: hell grün
+\newcolumntype{M}{>{\columncolor[rgb]{0.5,0.5,1}\color{black}\raggedright}l} % Schleppflug in der Luft: blau
+\newcolumntype{C}{>{\columncolor[rgb]{0,1,0}\color{black}\raggedright}l} % gelandeter Schleppflug: grün
+
+\begin{tabular}{ll}
+\multicolumn{2}{V}{noch nicht gestarteter (vorbereiteter) Flug}\\
+\multicolumn{1}{L}{Flug in der Luft} & \multicolumn{1}{M}{Schleppflug in der Luft}\\
+\multicolumn{1}{B}{gelandeter Flug} & \multicolumn{1}{C}{gelandeter Schleppflug}\\
+\multicolumn{1}{F}{fehlerhafter Flug} & \multicolumn{1}{G}{fehlerhafter Schleppflug}
+\end{tabular}
+\end{center}
+\end{table}
+%}}}
+
+In der Flugtabelle können Flüge mit den Cursortasten ausgewählt werden.  Alle
+Aktionen, die per Tastatur oder Menüeintrag aktiviert werden, betreffen den
+aktuell ausgewählten Flug.
+%}}}
+
+\subsection{Eigenschaften von Flügen}%{{{
+
+Für einen Flug werden mehrere Daten gespeichert. Neben dem Kennzeichen des
+Flugzeugs, den Piloten, Start- und Landezeit etc. gibt es folgende Attribute:
+
+Flugtyp: Hier besteht die Wahl zwischen Normalflug, Schulungsflug und Gastflug.
+Bei Schulungsflügen wird statt des Texts ,,Pilot`` der Text ,,Flugschüler`` und
+statt ,,Begleiter`` Fluglehrer angezeigt. Bei Gastflügen wird kein Begleiter
+eingetragen. Außerdem kann diese Information für die Abrechnung wichtig sein.
+Der Unterschied zwischen ,,Gastflug (Privat)`` und ,,Gastflug (Extern)`` dient
+lediglich der Abrechnung und wird von jedem Verein individuell festgelegt.
+
+Flugmodus: Ein Flug, der an diesem Flugplatz sowohl startet als auch landet,
+hat den Modus ,,lokal``. Ein Flug, der nur an diesem Platz startet und anderswo
+landet, hat den Modus ,,geht``. Umgekehrt hat ein Flug, der an einem anderen
+Platz startet und hier landet, den Modus ,,kommt``.
+
+Unter ,,Bemerkungen`` können beliebige Texte eingetragen werden, zum Beispiel
+,,Seilrissübung`` oder kassierte Landegebühren.
+
+,,Abrechnungshinweis`` ist ebenfalls ein Freitextfeld. Hier können
+Informationen zur Abrechnung vermerkt werden. Soll die Abrechnung automatisiert
+erfolgen, können hier von jedem Verein eigene Konventionen festgelegt werden.
+%}}}
+
+
+\section{Aktionen}\label{sec.aktionen}
+
+\subsection{Flüge anlegen}\label{sec.anlegen}%{{{
+
+Zum Anlegen eines neuen Flugs wählt man aus dem Menü \menu{Flug\subm Neu} (Tasten: 
+\taste{F2}, \taste{Strg+N} oder \taste{Einfügen}). Es öffnet sich eine
+Eingabemaske, in der die Eigenschaften des Flugs eingetragen werden können.
+
+Abbildung \ref{pic.flugeditor} zeigt ein Beispiel eines neu angelegten Fluges.
+\pic{FlightWindow}{pic.flugeditor}{Der Flugeditor}{[width=10cm]}
+
+%TODO neue Bilder
+Normalerweise müssen nur die hell hinterlegten Felder ausgefüllt werden
+(Kennzeichen, Flugtyp, Pilot, Begleiter, Modus, Startart). Das Feld
+,,Flugzeugtyp`` wird automatisch ausgefüllt, wenn das Flugzeug in der Datenbank
+bekannt ist. Anschließend werden die Daten durch die Schaltfläche ,,Später
+starten`` (bei kommenden Flügen: ,,Später landen``) (Taste: \taste{Enter})
+übernommen. Jetzt steht der Flug als ,,nicht gestartet`` (bzw. ,,fliegend`` bei
+kommenden Flügen) in der Tabelle.
+
+Statt ,,Später starten`` kann auch ,,Jetzt starten`` (bzw. ,,Jetzt landen``)
+ausgewählt werden. Dann wird die aktuelle Startzeit (bzw. Landezeit) sofort
+eingetragen. 
+
+Wird als Startart eine F-Schlepp-Startart ausgewählt, erscheint nach dem
+Starten in der Tabelle nicht nur der Segelflug sondern auch eine zusätzliche
+Zeile für den Schleppflug. Der Schleppflug hat immer die gleiche Startzeit wie
+der Segeflug.
+
+In den Feldern \lbl{Kennzeichen}, \lbl{Vorname}, \lbl{Nachname},
+\lbl{Startort}, \lbl{Zielort} und \lbl{Abrechnungshinweis} findet automatische
+Textvervollständigung statt: wird angefangen, einen Wert einzutragen, so wird
+der Rest automatisch ergänzt. Ist die Vervollständigung nicht zutreffend, kann
+einfach weitergetippt werden, die Eingabe ersetzt dann den automatisch
+ausgefüllten Text.
+
+Durch diese Auto-Vervollständigung ist es oft nur nötig, die ersten Buchstaben
+eines Namens einzugeben.
+
+Die Felder \lbl{Vorname} und \lbl{Nachname} sind zudem gekoppelt: wenn ein
+Nachname eingetragen ist, enthält die Liste zum Vornamen nur solche Namen, die
+zu diesem Nachnamen passen, und umgekehrt. Wenn es nur einen solchen Vornamen
+gibt, wird dieser automatisch eingetragen.
+
+Beim Eingeben von Flügen wird kontrolliert, ob alle notwendigen Daten
+eingegeben wurden.
+Ist dies nicht der Fall, oder wurden Inkonsistenzen festgestellt (zum Beispiel:
+Landezeit liegt vor Startzeit), wird der Benutzer gefragt, ob der Flug trotzdem
+akzeptiert werden soll. Das gleiche ist der Fall, wenn das Flugzeug, der Pilot
+oder der Begleiter noch fliegt.
+
+Wenn das Flugzeug nicht bekannt sind, werden weitere Informationen
+(Kennzeichen, Anzahl der Sitze, Vereinszugehörigkeit) abgefragt und das
+Flugzeug in die Datenbank eingetragen. Für Personen gilt entsprechendes.
+%}}}
+
+\subsection{Flüge starten/landen}\label{sec.starten}%{{{
+
+Bei nicht gestarteten Flügen befindet sich in der Tabelle anstelle der
+Startzeit eine Schaltfläche ,,Starten``. Durch anklicken der Schaltfläche (oder
+Auswählen des Flugs und Druck auf \taste{F5} oder \taste{Strg+S}) wird die
+aktuelle Zeit als Startzeit eingetragen und der Flug wird als ,,fliegt``
+dargestellt.
+
+Ein fliegender Flug hat anstelle der Landezeit eine Schaltfläche ,,Landen``
+(Tasten: \taste{F6} oder \taste{Strg+L}), mit der die Landezeit eingetragen
+wird.
+
+Mit dem Menüeintrag \menu{Flug\subm Zwischenlandung} (Taste: \taste{Strg+U}
+oder \taste{F7}) kann der Landungszähler des Flugs um eins erhöht werden. Bei
+der Abschlusslandung wird der Landungszähler automatisch um eins erhöht.
+,,Zwischenlandung`` wird also bei jedem ,,touch-and-go`` ausgewählt. Manche
+Flüge (zum Beispiel Segelflüge) können keine Zwischenlandung machen.
+%}}}
+
+\subsection{Flüge editieren}\label{sec.editieren}%{{{
+
+Um Eigenschaften eines Flugs nachträglich zu ändern, wird der Flug im
+Flugeditor geöffnet. Dazu dient der Menüeintrag \menu{Flug\subm Editieren}
+(Taste: \taste{F4}, \taste{Strg+E} oder \taste{Enter} oder Doppelklick auf den
+Eintrag). Dadurch öffnet sich das Flugeditorfenster. Mit ,,OK`` (\taste{Enter})
+werden die Änderungen akzeptiert, mit ,,Abbrechen`` verworfen.
+
+Wenn ein Flug Fehler enthält (rot dargestellt), werden die Fehler im Flugeditor
+unter ,,Fehler`` aufgeführt. Die fehlerhaften Felder sind rot markiert.
+
+Durch deaktivieren von ,,Automatisch`` bei Start- und Landezeit kann eine
+Zeit direkt eingegeben werden.
+%}}}
+
+\subsection{Flüge wiederholen}\label{sec.wiederholen}%{{{
+
+Beim Wiederholen von Flügen handelt es sich um eine Methode, einen Flug
+schneller anzulegen, ohne alle Daten wieder eingeben zu müssen, wenn ein Flug
+in der gleichen Besetzung nochmals stattfindet. Dazu wird aus dem Menü
+\menu{Flug\subm Wiederholen} (Taste: \taste{Strg+O} oder \taste{F3})
+ausgewählt. Im Flugeditor, der sich öffnet, sind alle Werte bis auf die
+Startart bereits eingetragen.
+%}}}
+
+\subsection{Flug löschen}\label{sec.loeschen}%{{{
+
+Ist ein Flug versehentlich eingetragen worden, so kann er wieder aus der
+Datenbank gelöscht werden. Dies geschieht durch den Menüeintrag \menu{Flug\subm
+löschen} (Tasten: \taste{Strg+H}, \taste{F8} oder \taste{Entfernen}). Der Flug
+wird (nach Nachfrage) unwiderruflich aus der Datenbank gelöscht.
+
+Wenn ein Schleppflug gelöscht wird, dann wird der zugehörige Segelflug
+ebenfalls gelöscht und umgekehrt.
+%}}}
+
+\subsection{Datenbank editieren}\label{sec.datenbank}%{{{
+
+Alle bekannten Flugzeuge und Personen werden in einer Datenbank gespeichert.
+Diese Datenbanken können über das Menü \menu{Datenbank} editiert werden.
+
+Es können Datensätze dazugefügt (\menu{Datenbank\subm Neu} oder
+\taste{Einfügen}-Taste), gelöscht (\menu{Datenbank\subm Löschen} oder
+\taste{Entfernen}-Taste) und editiert (\taste{Enter}-Taste) werden.
+
+In der letzten Spalte der Tabelle ist eingetragen, ob ein Datensatz
+,,editierbar`` ist. Ist ein Datensatz nicht editierbar, dann kann er weder
+geändert noch gelöscht werden.
+Datensätze, die vom Vorstand eines Vereins stammen, sind nicht editierbar.
+Hingegen sind Datensätze, die vom Startschreiber aufgenommen wurden, editierbar.
+
+Über das Menü \menu{Datenbank\subm Liste aktualisieren} kann die Datenbank neu
+vom Server geladen werden. \achtung: bei großen Datenbanken, besonders bei der
+Personendatanbank, kann diese Aktion lange dauern!
+%}}}
+
+
+\section{Ansichtsoptionen}
+
+\subsection{Anzeigedatum}\label{sec.anzeigedatum}%{{{
+
+In der Flugliste werden immer die Flüge eines Datums angezeigt. Dieses Datum
+ist das ,,Anzeigedatum`` und muss nicht unbedingt identisch mit dem aktuellen
+Datum sein. So können auch Flüge vergangener Tage eingesehen werden. Das
+Anzeigedatum kann über \menu{Ansicht\subm Datum\subm Anzeigedatum einstellen}
+eingestellt werden.
+
+Normalerweise wird für neue Flüge das aktuelle Datum voreingetragen. Damit der
+neu angelegte Flug auch in der Tabelle sichtbar ist, wird das Anzeigedatum beim
+Anlegen eines Flugs auf das Datum des Flugs (also üblicherweise das aktuelle
+Datum) eingestellt. Dieses Verhalten kann über \menu{Ansicht\subm Datum\subm
+Anzeigedatum bei neuem Flug anpassen} geändert werden.
+
+Beim Nachtragen von Flügen ist es sinnvoll, dass nicht das aktuelle Datum
+sondern das eingestellte Anzeigedatum für neue Flüge verwendet wird. Dies lässt
+sich über \menu{Ansicht\subm Datum\subm Für neue Flüge immer aktuelles Datum
+verwenden} einstellen.
+%}}}
+
+\subsection{Dargestellte Flüge}\label{sec.ausblenden}%{{{
+
+Normalerweise werdne Flüge ausgeblendet, die bereits gelandet sind, um die
+Tabelle übersichtlich zu halten. Eine Ausnahme davon sind Flüge, die kommen
+oder gehen, weil es sonst vorkommen könnte, dass ein kommender Flug eingetragen
+wird, sofort gelandet wird und so gar nicht erst in der Tabelle erscheint.
+Daher werden kommende und gehende Flüge normalerweise immer eingeblendet.
+
+Dieses Verhalten lässt sich über \menu{Ansicht\subm Flüge\subm
+Erledigte Flüge ausblenden} (Taste: \taste{Strg+A} oder
+\taste{F11}) und \menu{Ansicht\subm Flüge\subm Wegfliegende/kommende Flüge
+immer anzeigen} einstellen.
+
+Unabhängig davon werden fehlerhafte Flüge immer angezeigt, egal, ob sie
+gelandet sind. Dies lässt sich über \menu{Ansicht\subm Flüge\subm Fehlerhafte
+immer anzeigen} ändern.
+%}}}
+
+
+
+\section{Statistik}\label{sec.statistics}
+%{{{
+Über das Menü \menu{Statistik} sind einige Statistiken verfügbar:
+
+\begin{itemize}
+\item{Flugbuch: Alle Flugbücher eines Tages, nach Piloten gruppiert}
+\item{Bordbuch: Alle Bordbücher eines Tages}
+\item{Startartstatistik: die Anzahl der Starts pro Startart eines Tages (insbesondere bei Winden nützlich)}
+\end{itemize}
+
+Die Statistiken werden immer für den Tag des eingestellten Anzeigedatums
+erstellt.
+%}}}
+
+
+\section{Referenz}
+
+Hier sind nochmals alle Tasten und Einstellungen tabellarisch aufgelistet.
+
+\subsection{Tasten}\label{sec.fkeys}%{{{
+Die zur Verfügung stehenden Tasten sind in Tabelle \ref{tab.fkeys}
+aufgelistet. Die meisten Funktionen beziehen sich auf den Flug, der gerade in
+der Tabelle ausgewählt ist.
+
+\begin{table}\caption{Funktionstasten\label{tab.fkeys}}
+\begin{center}
+\begin{tabular}{lll}
+
+Funktionstaste	& Funktion			& Tastenkombination \\\hline\hline
+F2	& Neuen Flug anlegen	& Strg+N\\\hline
+F3	& Flug wiederholen		& Strg+O\\\hline
+F4	& Flug editieren		& Strg+E\\\hline
+F5	& Flug starten			& Strg+S\\\hline
+F6	& Flug landen			& Strg+L\\\hline
+F7	& Flug zwischenlanden	& Strg+U\\\hline
+F8	& Flug löschen			& Strg+H\\\hline
+F9	& Tabelle sortieren	& Strg+T\\\hline
+F11	& Gelandete Flüge ein-/auslenden	& Strg+A\\\hline
+F12	& Tabelle aktualsieren	& Strg+R\\\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+%}}}
+
+\subsection{Menüeinträge}\label{sec.einstellungen}%{{{
+
+\begin{itemize}
+\item{\menu{Programm}
+	\begin{itemize}
+		\item{\menu{Zeit einstellen}: Hier kann die aktuelle Systemzeit
+			eingestellt werden, falls sie falsch eingestellt ist.}
+		\item{\menu{Beenden}: Beendet das Programm}
+		\item{\menu{Herunterfahren}: Fährt den Rechner herunter, sofern die
+			Umgebung entsprechend eingerichtet ist.}
+	\end{itemize}
+	}
+\item{\menu{Flug}
+	\begin{itemize}
+		\item{\menu{Neu}: Neuen Flug anlegen, siehe Abschnitt \ref{sec.anlegen}.}
+		\item{\menu{Starten}: Aktuellen Flug starten, siehe Abschnitt \ref{sec.starten}.}
+		\item{\menu{Landen}: Aktuellen Flug landen, siehe Abschnitt \ref{sec.starten}.}
+		\item{\menu{Zwischenlandung}: Zwischenlandung des aktuellen Flugs, siehe Abschnitt \ref{sec.starten}.}
+		\item{\menu{Editieren}: Aktuellen Flug editieren, siehe Abschnitt \ref{sec.editieren}.}
+		\item{\menu{Wiederholen}: Aktuellen Flug wiederholen, siehe Abschnitt \ref{sec.wiederholen}.}
+		\item{\menu{Löschen}: Aktuellen Flug löschen, siehe Abschnitt \ref{sec.loeschen}.}
+	\end{itemize}
+	}
+\item{\menu{Ansicht}
+	\begin{itemize}
+		\item{\menu{Tabelle aktualisieren}: Aktualisiert die Flugtabelle}
+		\item{\menu{Flüge}
+			\begin{itemize}
+				\item{\menu{Ansicht\subm Flüge\subm Gelandete/Weggeflogene Flüge ausblenden}:
+					Ist diese Einstellung aktiv (Voreinstellung), werden Flüge, die bereits
+					gelandet (bzw. gestartet bei gehenden Flügen) sind, nicht
+					angezeigt. Dadurch wird die Tabelle übersichtlicher, denn
+					normalerweise sind nur fliegende Flüge von Interesse;
+					außerdem wird der Aufbau der Tabelle beschleunigt. Siehe
+					auch Abschnitt \ref{sec.ausblenden}.}
+				\item{\menu{Ansicht\subm Flüge\subm Weggeflogene/Kommende Flüge immer anzeigen}:
+					Ist diese Einstellung aktiv (Voreinstellung), werden Flüge
+					mit dem Modus ,,geht`` und ,,kommt`` immer in der Tabelle
+					angezeigt, auch wenn sie schon gestartet/gelandet sind.
+					\achtung: Ist diese Option nicht aktiv, tauchen Flüge mit
+					dem Modus ,,geht`` oder ,,kommt`` nach dem Anlegen nicht in
+					der Tabelle auf! Siehe auch Abschnitt \ref{sec.ausblenden}.}
+				\item{\menu{Ansicht\subm Flüge\subm Fehlerhafte immer anzeigen}:
+					Ist diese Einstellung aktiv (Voreinstellung), werden Flüge, die einen Fehler
+					enthalten (zum Beispiel keine Startart eingetragen oder Startzeit später als
+					Landezeit) immer angezeigt, unabhängig davon, ob sie gelandet sind oder
+					nicht. Siehe auch Abschnitt \ref{sec.ausblenden}.}
+				\item{\menu{Ansicht\subm Flüge\subm Sortieren}:\\
+					Sortiert die Tabelle nach der aktuell ausgewählten Spalte.
+					Dies entspricht dem Anklicken des Spaltentitels.}
+			\end{itemize}
+		}
+		\item{\menu{Datum}
+			\begin{itemize}
+				\item{\menu{Ansicht\subm Datum\subm Anzeigedatum einstellen}:
+					Stellt das Anzeigedatum ein, siehe Abschnitt \ref{sec.anzeigedatum}.}
+				\item{\menu{Ansicht\subm Datum\subm Anzeigedatum bei neuem Flug anpassen}:
+					Siehe Abschnitt \ref{sec.anzeigedatum}.}
+				\item{\menu{Für neue Flüge immer aktuelles Datum verwenden}:
+					Siehe Abschnitt \ref{sec.anzeigedatum}.}
+			\end{itemize}
+		}
+		\item{\menu{Zu Schleppflug springen}: Zu dem entsprechenden Schleppflug
+			springen, falls gerade ein F-Schlepp ausgewählt ist.}
+		\item{\menu{Zu geschlepptem Flug springen}: Zu dem entsprechenden Segelflug
+			springen, falls gerade ein Schleppflug ausgewählt ist.}
+	\end{itemize}
+	}
+\item{\menu{Statistik}
+	\begin{itemize}
+		\item{\menu{Bordbuch}: Ruft die Bordbuchliste auf, siehe Abschnitt \ref{sec.statistics}.}
+		\item{\menu{Flugbuch}: Ruft die Flugbuchliste auf, siehe Abschnitt \ref{sec.statistics}.}
+		\item{\menu{Startartstatistik}: Ruft die Startartstatistik auf, siehe Abschnitt \ref{sec.statistics}.}
+	\end{itemize}
+	}
+\item{\menu{Datenbank}
+	\begin{itemize}
+		\item{\menu{Flugzeuge editieren}: Ruft den Flugzeugdatenbankeditor auf, siehe Abschnitt \ref{sec.datenbank}.}
+		\item{\menu{Personen editieren}: Ruft den Personendatenbankeditor auf, siehe Abschnitt \ref{sec.datenbank}.}
+		\item{\menu{Alle aktualisieren}: Aktualisiert alle Datenbanken (\achtung: diese Aktion kann lange dauern.)}
+	\end{itemize}
+	}
+%\item{\menu{Debug}: Aktionen zur Fehlersuche; wird im Normalbetrieb nicht benötigt.
+%	\begin{itemize}
+%		\item{\menu{Segfault}: Provoziert einen Absturz des Programms.}
+%		\item{\menu{Ping server}: Prüft die Datenbankverbindung.}
+%		\item{\menu{Log anzeigen}: Zeigt ein Fenster an, das die ausgeführten SQL-Queries enthält.}
+%	\end{itemize}
+%	}
+%\item{\menu{Hilfe}
+%	\begin{itemize}
+%		\item{\menu{Info}: Zeigt Programminformationen (insbesondere die Programmversion) an.}
+%		\item{\menu{Netzwerkdiagnose}: Ruft die Netzwerkdiagnose auf (sofern vorhanden).}
+%	\end{itemize}
+%	}
+\end{itemize}
+
+
+
+%}}}
+
+
+\section{Problembehebung}\label{sec.problembehebung}
+%{{{
+Wenn Probleme mit dem Erfassungsprogramm auftreten, sollten folgende Punkte
+überprüft werden:
+
+\begin{itemize}
+\item{Ist das Anzeigedatum richtig eingestellt?\\
+	Es werden nur die Flüge angezeigt, die zu dem Anzeigedatum stattgefunden
+	haben (siehe \secref{sec.einstellungen}).}
+\item{Ist der Flug schon gelandet?\\
+	Normalerweisen werden Flüge, die bereits gelandet sind, ausgeblendet (siehe
+	\secref{sec.einstellungen}).}
+\end{itemize}
+%}}}
+\end{document}
+

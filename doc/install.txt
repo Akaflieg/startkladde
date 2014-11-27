@@ -1,0 +1,58 @@
+Installationsanleitung für startkladde
+Stand: 14.3.2010
+
+Voraussetzungen
+===============
+
+Benötigte Software:
+  - MySQL (Ab Version 5; ältere Versionen ab 4.1.5 könnten funktionieren)
+  - Für die virtuelle Tastatur (optional): kvkbd und dbus (Paket
+    dbus). Sind diese Programme nicht vorhanden, so wird der
+    betreffende Eintrag in der Toolbar nicht angezeigt.
+
+
+Einrichtung der Datenbank
+=========================
+
+Zur Einrichtung der Datenbank sind zwei Schritte notwendig, die im Regelfall
+beim erstmaligen Aufbauen der Verbindung automatisch stattfinden:
+  1. Anlegen des Benutzers und der Datenbank
+  2. Initialisierung der Datenbankstruktur
+
+Für Schritt 1 ist das Passwort des Datenbankbenutzers (nicht des
+Systembenutzers) root erforderlich. Alternativ können Benutzer und Datenbank
+auch manuell (zum Beispiel mit dem Verwaltungsprogramm MySQL Administrator)
+angelegt werden. Schritt 2 erfolgt in jedem Fall automatisch.
+
+Falls die Datenbank bereits durch eine ältere Version des Programms angelegt
+wurde, kann es sein, dass die Datenbankstruktur aktualisiert werden muss
+("Migration"). Dies wird beim Aufbauen der Verbindung geprüft und
+gegebenenfalls - nach Nachfrage - durchgeführt. Vor der Migration sollte ein
+Backup der Datenbank angelegt werden (zum Beispiel mit MySQL Administrator).  
+
+Gegebenenfalls (zum Beispiel bei Ubuntu) sind Verbindungen zum Datenbankserver
+nur von localhost erlaubt. Soll auf den Server über das Netzwerk zugegriffen
+werden, muss in der Konfigurationsdatei (/etc/my.cnf) die Option "bind-address=
+127.0.0.1" entfernt und der Server neu gestartet werden. Dazu kann auch ein
+Administrationprogramm, zum Beispiel MySQL Administrator verwedet werden.
+
+Außerdem kann es sein, dass die Berechtigungen so voreingestellt sind, dass die
+Anmeldung durch den Datenbankbenutzer "root" nur von localhost aus möglich ist.
+Sollen die Datenbank und der Benutzer automatisch angelegt werden (Schritt 1),
+muss dies entweder von dem gleichen Host aus stattfinden, auf dem der
+Datenbankserver installiert ist, oder die Anmeldung von root von dem
+entsprechenden Host muss ermöglicht werden, indem in der Tabelle "user" der
+Datenbank "mysql" ein Eintrag für den entsprechenden Host (oder "%" für
+beliebige Hosts) hinzugefügt (oder einer der bestehenden Einträge angepasst)
+wird. Schritt 2 kann dann von einem beliebigen Host stattfinden).
+
+
+Systemeinrichtung
+=================
+
+Soll die Einstellung des Systemdatums aus dem Programm heraus verwendet werden,
+muss die entsprechende Berechtigung für den Benutzer freigeschaltet werden.
+Dazu in /etc/sudoers eintragen:
+  benutzername ALL=NOPASSWD:/bin/date
+Dabei ist für "benutzername" der Name des Benutzers (nicht des
+Datenbankbenutzers) einzusetzen, unter dem das Programm läuft.

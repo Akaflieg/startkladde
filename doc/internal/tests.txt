@@ -1,0 +1,46 @@
+== Release Checklist ==
+
+
+
+Testen DBINIT:
+  Fehler                                check_db    init_db     GUI     Bemerkungen
+Datenbank
+- Datenbankserver nicht erreichbar
+  - lokal                               OK          OK          OK
+  - netzwerk/reject                     OK          OK          OK
+  - netzwerk/drop                       OK          OK          OK[1]
+- Falsche Serverversion                 ?           ?           ?
+Benutzer
+- Benutzer existiert nicht              OK          OK          OK
+- Passwort falsch                       OK          OK          OK      [2]
+- Host nicht erlaubt                    OK          OK          OK      [2]
+- "use db" nicht erlaubt                OK          OK          OK
+- Lesen nicht erlaubt                   k. P.       k. P.       k. P.   [3]
+- Schreiben nicht erlaubt               k. P.       k. P.       k. P.   [3]
+- Situation nach DB-Installation        ?           ?           ?
+- Query schl�gt fehl                    ?           ?           ?
+Admin
+- Admin-Passwort falsch                 -           OK          OK
+- Admin hat keine Adminrechte           -           OK          OK
+- Adminbenutzer existiert nicht         -           OK          OK      [2]
+- Host nicht erlaubt                    -           OK          OK      [2]
+- Query schl�gt fehl                    -           OK          OK
+- Allgemeiner Init-Fehler               -           OK          OK
+
+[2] Nicht unterscheidbar von nicht existierendem Benutzer
+[3] Wie Pr�fen?
+
+== "Still flying" checks ==
+
+People (both with normal and training flight types):
+- Pilot flying as pilot
+- Pilot flying as copilot
+- Pilot flying as towpilot
+- Copilot flying as pilot
+- Towpilot flying as pilot
+
+Planes (both with known towplane and "other" towplane):
+- Plane flying as plane
+- Plane flying as towplane
+- Towplane flying as plane
+

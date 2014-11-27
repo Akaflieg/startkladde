@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FlightWindowClass</class>
+ <widget class="QDialog" name="FlightWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>FlightWindow</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>630</width>
+        <height>732</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="inputFieldPane" native="true">
+         <layout class="QGridLayout" name="inputFieldLayout">
+          <property name="verticalSpacing">
+           <number>2</number>
+          </property>
+          <item row="8" column="0">
+           <widget class="SkLabel" name="launchMethodLabel">
+            <property name="text">
+             <string>Launch met&amp;hod:</string>
+            </property>
+            <property name="buddy">
+             <cstring>launchMethodInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1" colspan="2">
+           <widget class="SkComboBox" name="launchMethodInput"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="SkLabel" name="registrationLabel">
+            <property name="text">
+             <string>&amp;Registration:</string>
+            </property>
+            <property name="buddy">
+             <cstring>registrationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="SkLabel" name="planeTypeLabel">
+            <property name="text">
+             <string>Plane model:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="SkLabel" name="planeTypeWidget">
+            <property name="toolTip">
+             <string>&lt;html&gt;The model of the plane, as stored in the database&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="SkLabel" name="flightTypeLabel">
+            <property name="text">
+             <string>Flight t&amp;ype:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flightTypeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="SkLabel" name="pilotLabel">
+            <property name="text">
+             <string>Pilot:</string>
+            </property>
+            <property name="buddy">
+             <cstring>pilotLastNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="SkLabel" name="pilotLastNameLabel">
+            <property name="text">
+             <string comment="Pilot">La&amp;st name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>pilotLastNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="SkComboBox" name="pilotLastNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="SkLabel" name="pilotFirstNameLabel">
+            <property name="text">
+             <string comment="Pilot">&amp;First name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>pilotFirstNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="SkComboBox" name="pilotFirstNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="SkLabel" name="copilotLabel">
+            <property name="text">
+             <string>Copilot:</string>
+            </property>
+            <property name="buddy">
+             <cstring>copilotLastNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="SkLabel" name="copilotLastNameLabel">
+            <property name="text">
+             <string comment="Copilot">La&amp;st name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>copilotLastNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="SkComboBox" name="copilotLastNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="SkLabel" name="copilotFirstNameLabel">
+            <property name="text">
+             <string comment="Copilot">&amp;First name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>copilotFirstNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="SkComboBox" name="copilotFirstNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="SkLabel" name="flightModeLabel">
+            <property name="text">
+             <string>Fli&amp;ght mode:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flightModeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="SkComboBox" name="flightModeInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;Local flights depart and land here. Coming flights depart somewhere else and land here. Leaving flights depart here and land somewhere else.&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="SkLabel" name="towplaneRegistrationLabel">
+            <property name="text">
+             <string>To&amp;wplane:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towplaneRegistrationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1" colspan="2">
+           <widget class="SkComboBox" name="towplaneRegistrationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The registration of the towplane (only if the launch method is an airtow that does not specify a towplane)&lt;/html&gt;</string>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="SkLabel" name="towplaneTypeLabel">
+            <property name="text">
+             <string>Towplane model:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1" colspan="2">
+           <widget class="SkLabel" name="towplaneTypeWidget">
+            <property name="toolTip">
+             <string>&lt;html&gt;The model of the towplane, as stored in the database&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="SkLabel" name="towpilotLabel">
+            <property name="text">
+             <string>Towpilot:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="SkLabel" name="towpilotLastNameLabel">
+            <property name="text">
+             <string comment="Towpilot">La&amp;st name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towpilotLastNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="2">
+           <widget class="SkComboBox" name="towpilotLastNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="SkLabel" name="towpilotFirstNameLabel">
+            <property name="text">
+             <string comment="Towpilot">&amp;First name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towpilotFirstNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="2">
+           <widget class="SkComboBox" name="towpilotFirstNameInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0">
+           <widget class="SkLabel" name="towflightModeLabel">
+            <property name="text">
+             <string>Towfli&amp;ght mode:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towflightModeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="1" colspan="2">
+           <widget class="SkComboBox" name="towflightModeInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;Local towflights depart and land here. Leaving towflights land somewhere else.&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="SkLabel" name="departureTimeLabel">
+            <property name="text">
+             <string>De&amp;parture time:</string>
+            </property>
+            <property name="buddy">
+             <cstring>departureTimeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QCheckBox" name="departureTimeCheckbox">
+            <property name="text">
+             <string comment="Departure time">Au&amp;tomatic</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QWidget" name="departureTimeWidgetX" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QWidget" name="departureTimeWidget" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QTimeEdit" name="departureTimeInput">
+                  <property name="displayFormat">
+                   <string>HH:mm</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>UTC</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>284</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="15" column="0">
+           <widget class="SkLabel" name="landingTimeLabel">
+            <property name="text">
+             <string>Landing ti&amp;me:</string>
+            </property>
+            <property name="buddy">
+             <cstring>landingTimeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QCheckBox" name="landingTimeCheckbox">
+            <property name="text">
+             <string comment="Landing time">&amp;Automatic</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="2">
+           <widget class="QWidget" name="landingTimeWidgetX" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QWidget" name="landingTimeWidget" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QTimeEdit" name="landingTimeInput">
+                  <property name="displayFormat">
+                   <string>HH:mm</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>UTC</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>284</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="16" column="0">
+           <widget class="SkLabel" name="towflightLandingTimeLabel">
+            <property name="text">
+             <string>Landing ti&amp;me towplane:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towflightLandingTimeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="1">
+           <widget class="QCheckBox" name="towflightLandingTimeCheckbox">
+            <property name="text">
+             <string comment="Landing time towplane">A&amp;utomatic</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="2">
+           <widget class="QWidget" name="towflightLandingTimeWidgetX" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QWidget" name="towflightLandingTimeWidget" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_9">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QTimeEdit" name="towflightLandingTimeInput">
+                  <property name="displayFormat">
+                   <string>HH:mm</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="text">
+                   <string>UTC</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>284</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="17" column="0">
+           <widget class="SkLabel" name="departureLocationLabel">
+            <property name="text">
+             <string>Departure locat&amp;ion:</string>
+            </property>
+            <property name="buddy">
+             <cstring>departureLocationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="1" colspan="2">
+           <widget class="SkComboBox" name="departureLocationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The departure location, or the local airfield name for local and leaving flights.&lt;/html&gt;</string>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="0">
+           <widget class="SkLabel" name="landingLocationLabel">
+            <property name="text">
+             <string>Landing locat&amp;ion:</string>
+            </property>
+            <property name="buddy">
+             <cstring>landingLocationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="1" colspan="2">
+           <widget class="SkComboBox" name="landingLocationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The landing location, or the local airfield name for local and coming flights.&lt;/html&gt;</string>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="0">
+           <widget class="SkLabel" name="towflightLandingLocationLabel">
+            <property name="text">
+             <string>Landing locat&amp;ion towplane:</string>
+            </property>
+            <property name="buddy">
+             <cstring>towflightLandingLocationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="1" colspan="2">
+           <widget class="SkComboBox" name="towflightLandingLocationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The departure location, or the local airfield name for local towflights.&lt;/html&gt;</string>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="SkLabel" name="numLandingsLabel">
+            <property name="text">
+             <string>Num&amp;ber of landings:</string>
+            </property>
+            <property name="buddy">
+             <cstring>numLandingsInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="1" colspan="2">
+           <widget class="QWidget" name="widget_4" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QSpinBox" name="numLandingsInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The total number of landings, including any touch-and-gos and the final landing&lt;/html&gt;</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>65535</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>430</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="21" column="0">
+           <widget class="SkLabel" name="commentLabel">
+            <property name="text">
+             <string>Comme&amp;nts:</string>
+            </property>
+            <property name="buddy">
+             <cstring>commentInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="1" colspan="2">
+           <widget class="QLineEdit" name="commentInput"/>
+          </item>
+          <item row="22" column="0">
+           <widget class="SkLabel" name="accountingNoteLabel">
+            <property name="text">
+             <string>Accounti&amp;ng notes:</string>
+            </property>
+            <property name="buddy">
+             <cstring>accountingNoteInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="1" colspan="2">
+           <widget class="SkComboBox" name="accountingNoteInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="23" column="0">
+           <widget class="SkLabel" name="dateLabel">
+            <property name="text">
+             <string>Dat&amp;e:</string>
+            </property>
+            <property name="buddy">
+             <cstring>dateInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="23" column="1" colspan="2">
+           <widget class="QWidget" name="widget_5" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QDateEdit" name="dateInput">
+               <property name="displayFormat">
+                <string>MM/dd/yyyy</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>394</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="24" column="0">
+           <widget class="SkLabel" name="errorLabel">
+            <property name="text">
+             <string>&amp;Errors:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+            <property name="buddy">
+             <cstring>errorList</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="24" column="1" colspan="2">
+           <widget class="QListWidget" name="errorList">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::NoSelection</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="25" column="0">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>166</width>
+              <height>4</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="SkComboBox" name="flightTypeInput"/>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="SkComboBox" name="registrationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The registration of the plane (of the glider for airtows)&lt;/html&gt;</string>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+  <action name="lookupPlaneAction">
+   <property name="text">
+    <string>Look up</string>
+   </property>
+   <property name="toolTip">
+    <string>Try to find a plane matching this flight's Flarm ID</string>
+   </property>
+  </action>
+  <action name="updateFlarmIdAction">
+   <property name="text">
+    <string>Update Flarm ID</string>
+   </property>
+   <property name="toolTip">
+    <string>Update the Flarm ID of the plane</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SkLabel</class>
+   <extends>QLabel</extends>
+   <header>src/gui/widgets/SkLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SkComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/gui/widgets/SkComboBox.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>flightTypeInput</tabstop>
+  <tabstop>pilotLastNameInput</tabstop>
+  <tabstop>pilotFirstNameInput</tabstop>
+  <tabstop>copilotLastNameInput</tabstop>
+  <tabstop>copilotFirstNameInput</tabstop>
+  <tabstop>flightModeInput</tabstop>
+  <tabstop>launchMethodInput</tabstop>
+  <tabstop>towplaneRegistrationInput</tabstop>
+  <tabstop>towpilotLastNameInput</tabstop>
+  <tabstop>towpilotFirstNameInput</tabstop>
+  <tabstop>towflightModeInput</tabstop>
+  <tabstop>departureTimeCheckbox</tabstop>
+  <tabstop>departureTimeInput</tabstop>
+  <tabstop>landingTimeCheckbox</tabstop>
+  <tabstop>landingTimeInput</tabstop>
+  <tabstop>towflightLandingTimeCheckbox</tabstop>
+  <tabstop>towflightLandingTimeInput</tabstop>
+  <tabstop>departureLocationInput</tabstop>
+  <tabstop>landingLocationInput</tabstop>
+  <tabstop>towflightLandingLocationInput</tabstop>
+  <tabstop>numLandingsInput</tabstop>
+  <tabstop>commentInput</tabstop>
+  <tabstop>accountingNoteInput</tabstop>
+  <tabstop>dateInput</tabstop>
+  <tabstop>errorList</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>FlightWindowClass</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>364</x>
+     <y>807</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>307</x>
+     <y>780</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_okButton_clicked()</slot>
+ </slots>
+</ui>

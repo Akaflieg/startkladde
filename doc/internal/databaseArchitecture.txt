@@ -1,0 +1,22 @@
+Architecture of the database layer:
+
+.------------------------------.
+|             GUI              |
+|-------.                      |
+| Cache |     .----------------| 
+|-------------| Migra-| Schema |
+| Greater ORM |  tor  | dumper | Greater ORM: Database class
+|------------------------------|
+|          Interface           | Uses ThreadSafeInterface
+|------------------------------|
+|            QtSql             |
+|------------------------------|
+|          TCP proxy           | Allows canceling during query
+|------------------------------|
+|          DB Server           |
+'------------------------------'
+
+See also database.xmi
+
+MySQLInterface and SQLiteInterface are currently not implemented; the
+functionality (only for MySQL) is in DefaultInterface.

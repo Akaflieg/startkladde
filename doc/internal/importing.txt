@@ -1,0 +1,20 @@
+Notes:
+  - Club IDs and person names are case insensitive
+
+Reasons for using ID/ID_old rather than ID/ID_new:
+  - With ID/ID_new it would be impossible to distinguish between
+    removing an ID and not changing it.
+  - The idea is that the data supplied is the *current* data.
+  - Adding an ID to a person (probably confirming a newly created person) is
+    the same as adding a new person, from the view of the club admin.
+
+Test cases:
+  - Adding a person which is entirely new (with/without club_id)
+  - Adding (confirming) a person which has been entered into the
+    editable table
+  - Comfirming a person which has been imported (persons which haven't
+    changed)
+  - Changing the club_id (change/add/remove)
+  - Changing the name (only possible with club_id)
+  - Removing a person
+

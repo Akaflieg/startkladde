@@ -1,0 +1,408 @@
+#!/usr/bin/env ruby
+
+# TODO:
+#   * better test cases
+#   * parsing: non-line-based, with preprocessing
+#   * allow multi-argument functions
+#     * QT_TRANSLATE_NOOP, QT_TRANSLATE_NOOP3
+#     * qnotrCount
+#     * multi-argument tr
+
+# Finds lines containing strings without tr(), notr() or qnotr().
+# Usage:
+#   find_missing_tr file, file, ... - process files
+#   find_missing_tr -a              - process automatically found files
+#   find_missing_tr -t              - runs integrated unit tests
+
+# Shortcomings:
+#   * does not handle multi-line strings (strings with a literal newline)
+#     correctly, but that's ugly anyway and can be replaced with C string
+#     concatenation
+#   * does not handle /* and */ in strings correctly (but // is handled)
+# None of these shortcomings (should) produce false negatives, so we won't miss
+# any missing tr.
+
+# Also, the following example may be interpreted wrong:
+# a=tr ("aaa");
+#           ^ start of string
+# b=tr ("");
+#       ^^ end of string, start of string (concatenation)
+# c=tr ("ccc", "ddd");
+#       ^ end of string
+# Can this be a problem?
+
+###########
+## Utils ##
+###########
+
+def pad(length, string)
+	string=string.to_s unless string.is_a?(String)
+	string+(" "*(length-string.length))
+end
+
+def maxlen(strings)
+	strings.map { |string| string.length }.max	
+end
+
+def only_newlines(data)
+	if data
+		data.gsub(/[^\r\n]/, '')
+	else
+		""
+	end
+end
+
+def to_whitespace(data)
+	# Remove any whitespace except newlines
+	result=only_newlines(data)
+
+	# Return a single space if it is empty
+	result=" " if result.empty?
+
+	result
+end
+
+
+#######################
+## String processing ##
+#######################
+
+def dump_match(match)
+	return if match.nil?
+	match.to_a.each_with_index { |c, i|
+		puts "    #{i}: #{c.inspect}"
+	}
+end
+
+def preprocess(data)
+	data=data.dup
+
+	# Remove two consecutive backslashes (escaped backslash) to prevent escaped
+	# backslashes escaping anything else
+	data.gsub!(/\\\\/, '')
+
+	# Remove quotes preceded by a backslash, they do not count as quotes
+	data.gsub!(/\\"/, '')
+
+	# Remove C++ style comments (//...), but not in strings
+	#data.gsub!(/ \/\/ .* /x, '') # This fails for // in strings (e. g. URLs)
+	re=/
+		^                       # Beginning of line - the whole line must match
+		(                       # Group 1
+			[^"\r\n]*                   #   Any number of non-quotes (no newlines)
+			(" [^"\r\n]* " [^"\r\n]* )* #   Any number of quoted strings and trailing non-quotes (no newlines)
+		)                       #
+		\/\/ .*                 # The comment delimiter and everything up to the end of the line
+		$
+		/x
+	data.gsub!(re, '\\1')
+
+	# Removes C style comments (/*...*/), replacing them with a single space
+	# (single-line comments) or the number of newlines contained within the
+	# comment (multi-line comments). The latter has the purpose of preserving
+	# the original line numbers.
+	re=/
+		\/\*   # Opening delimiter
+		.*?    # Any character (non-greedy)
+		\*\/   # Closing delimiter
+		/mx    # Multi-line free-spacing
+	data.gsub!(re) { |match| to_whitespace(match) }
+
+	# Replace any horizontal whitespace with a single space to simplify regexps
+	data.gsub!(/ [ \t]+ /x, ' ')
+
+	# Remove empty strings and same-line string concatenation
+	data.gsub!(/"[ \t]*"/, '')
+
+	# Remove any horizontal whitespace around operators and from the beginning
+	# and the end of lines
+	re=/
+		[ \t]*           # Any horizontal whitespace
+		([-+()<>,"]|^|$) # Any of the operators in group 1
+		[ \t]*           # Any horizontal whitespace
+		/x
+	data.gsub!(re, '\\1')
+
+	# Remove multi-line string concatenation
+	# Note that a single gsub will not match multiple times, e.g.
+	# "ababa".gsub(/aba/, 'a') substitutes "ababa" => "aba", not "ababa" =>
+	# "aba" => "a".
+	re=/
+		(" [^"\r\n]* ")        # A quoted string (group 1)
+		(
+			(
+				\s*            # Any whitespace (including newlines) - must be inside of group 2
+				" [^"\r\n]* "  # A quoted string without newlines
+			)+                 # Any number of times
+		)                      # All in group 2
+		/x
+	data.gsub!(re) { $1+only_newlines($2) }
+
+	# Don't consider includes (only at the beginning of the line, optionally
+	# indented). A line with an include statement cannot contain any other
+	# statements, so we can return false right away if we find an include
+	# statement.
+	data.gsub!(/^[ \t]*#include.*$/, '')
+
+	# Remove 'extern "C"'
+	data.gsub!(/extern[ \t]*"C"/x, '')
+
+	# Remove qApp->translate ("context", "string") (valid tr function)
+	data.gsub!(/qApp->translate \( "[^"]*" , "[^"]*" \) /x, '')
+
+	# Remove qApp->translate ("context", "string", "comment") (valid tr function)
+	data.gsub!(/qApp->translate \( "[^"]*" , "[^"]*", "[^"]*" \) /x, '')
+
+	# Remove two-argument form of tr (valid tr function)
+	re=/
+		tr          # tr
+		\(          # Opening parenthesis
+		" [^"]* "   # Quoted string
+		,           # Comma
+		" [^"]* "   # Quoted string
+		\)          # Closign parenthesis
+		/x;         # Free-spacing
+	data.gsub!(re, '')
+
+	# Remove one-argument tr functions
+	re=/
+		(                                  # Group 1
+			[^\w]                          #   Non-word character, so it doesn't match, e. g., fauxtr
+			(tr|notr|qnotr|qnotrUtf8|QDir) #   Any of the tr functions
+			\s*                            #   There may be a newline here
+			\(                             #   Opening parenthesis
+			\s*                            #   There may be a newline here
+			" [^"]* "                      #   Quoted string
+			\s*                            #   There may be a newline here
+			\)                             #   Closing parenthesis
+		)
+		/x
+	data.gsub!(re) { only_newlines($1) }
+
+	data
+end
+
+
+#####################
+## File processing ##
+#####################
+
+# Data must be preprocessed
+def tr_missing(data)
+	if (data=~/"/)
+		true
+	else
+		false
+	end
+end
+
+def process_data(filename, data)
+	# Preprocess
+	original_data=data
+	processed_data=preprocess(data)
+
+	original_lines=original_data.split(/\n\r?/, -1)
+	processed_lines=processed_data.split(/\n\r?/, -1)
+
+	if processed_lines.size!=original_lines.size
+		#p original_lines
+		#p processed_lines
+
+		(0...original_lines.size).each { |i|
+			puts "-------- #{i+1}"
+			puts original_lines[i]
+			puts processed_lines[i]
+		}
+
+		raise "preprocess did not preserve the number of lines for #{filename}"
+	end
+
+	(0...original_lines.size).each { |i|
+		line_number=i+1
+		if (tr_missing(processed_lines[i]))
+			puts "#{filename}:#{line_number} #{original_lines[i]}"
+		end
+	}
+end
+
+def process_files(files)
+	# Perform for each file
+	files.each { |file|
+		# Read the data from the file
+		data=File.read(file)
+		process_data(file, data)
+
+	}
+end
+
+
+###########
+## Tests ##
+###########
+
+def test_preprocess
+	tests=[
+		# Single-line cases
+		["foobar ();"                                  , "foobar();"],
+		["foobar (); /* comment */"                    , "foobar();"], # Comment at end
+		["foobar /* comment */ ();"                    , "foobar();"], # Comment in the middle
+		["before /* first */ between /*second */ after", "before between after"], # Multiple comments
+
+		# Multi-line cases
+		["multi\nline", "multi\nline"], # Multi-line preserved
+		["    multi    \n    line    ", "multi\nline"], # Whitespace at beginning/end of line removed
+		["multi /* first */\nline /* second */", "multi\nline"], # Multiple single-line comments
+		["multi /* first \n still first */ line", "multi\nline"], # Multi-line comment
+
+		# Comments
+		["before /* first * / second */ after", "before after"            ], # Termination charaters with space inbetween
+		["before /* first /* second */ after" , "before after"            ], # Opening characters in comment
+		["\t// comment only"                  , ""                        ],
+		["code // comment"                    , "code"                    ],
+		["some \"string\" // comment"         , "some\"string\""          ],
+		["before \"foo//bar\" after"          , "before\"foo//bar\"after" ],
+
+		# String concatenation
+		['foo="bar";'                            , nil                               ], # No string concatenation
+		['foo="string" "concatenation";'         , 'foo="stringconcatenation";'      ], # Simple concatenation
+		['foo=" string " " concatenation ";'     , 'foo="string  concatenation";'    ], # Simple concatenation whitespace in strings
+		['foo="string""concatenation";'          , 'foo="stringconcatenation";'      ], # Simple concatenation no whitespace
+		['foo="multi" "string" "concatenation";' , 'foo="multistringconcatenation";' ], # Multi concatenation
+
+		# With escaped quotes
+		['foo="st\\"ring" "co\\"ncatenation";'   , 'foo="stringconcatenation";'   ],
+		['foo="st\\"ringco\\"ncatenation";'      , 'foo="stringconcatenation";'   ],
+
+		# Multi-line string concatenation
+		["foo=\"multiline\" \n \"concatenation\";", "foo=\"multiline\"\n;" ], # String continued in the next line
+		["foo=\"multiline\" \n \"concatenation\"; \"after\"", "foo=\"multiline\"\n;\"after\"" ], # String continued in the next line
+
+		# Dummy case
+		["", ""]
+	]
+
+	len=maxlen(tests.map { |test| test[0].inspect })
+
+	tests.each { |test|
+		string=test[0]
+		expected=test[1] || string
+		actual=preprocess(string)
+
+		if (expected==actual)
+			puts "OK      - #{pad(len, string.inspect)} => #{actual.inspect}"
+		else
+			puts "failure - #{pad(len, string.inspect)} => expected #{expected.inspect}, got #{actual.inspect}"
+		end
+	}
+end
+
+
+def test_tr_missing
+	test_lines=[
+		# Simple cases
+		['foo ();'                        , false], # No quoted text
+		['a="moo"'                        , true ], # Quoted text
+
+		# With comments
+		['foo ();  // A "commented" string'     , false], # Quoted text in comment
+		['a="moo"; // A comment'                , true ], # Quoted text and comment
+		['a="moo"; // A "commented" string'     , true ], # Quoted text and quoted text in comment
+		['a="moo", 2/3; // A "commented" string', true ], # Quoted text and quoted text in comment
+
+		# With include
+		['#include "foo.h"'               , false], # Regular include
+		['    #include "foo.h"'           , false], # Indented include
+		['foo (); // #include "foo.h"'    , false], # No quote, include in comment
+		['a="moo"; // #include "foo.h"'   , true ], # Quoted text, #include in comment
+
+		# With tr
+		['foo=tr ("moo");'                , false],
+		['foo=tr("moo");'                 , false],
+		['foo=notr("moo");'               , false],
+		['foo=qnotr("moo");'              , false],
+		['foo=fauxtr ("moo");'            , true ],
+		['foo=fauxtr("moo");'             , true ],
+		['foo=t/*.*/r("moo");'            , true ], # Not tr
+		['foo=faux/*.*/tr("moo");'        , false], # Not fauxtr
+
+		# With two-argument form of tr
+		['foo=tr ("moo", "disambiguation")', false],
+
+		# With escaped quotes
+		['foo=tr ("foo\\"bar")',           false], # Single escaped quote
+		['foo=tr ("foo\\"bar\\"baz")',     false], # Multiple escaped quotes
+		['foo=tr ("foo\\\\"bar\\\\"baz")', true],  # Now they are not escaped and actually end the string
+
+		# With more complex tr
+		['foo=qApp->translate("context","moo")'                        , false], # No whitespace
+		[' foo  =  qApp  ->  translate  (  " context "  ,  " moo "  ) ', false], # Lots of whitespace
+		['foo=qApp->translate("context","moo","comment")'              , false], # 3-argument form
+
+		# extern "C"
+		['extern"C"{}'        ,  false],
+		['extern  "C"  {  }  ',  false],
+
+		# Multi-line strings
+		#["foo=\"moo\nbert\";" , false], # Multi-line string - not supported
+		#['foo=tr(\n"bar");', false], # String on next line
+
+		# Empty strings
+		['a=""'    , false], # Empty string
+		['a=" "'   , false], # Empty string
+		['a="   "' , false], # Empty string
+
+		# String concatenation
+		['foo=tr ("moo" "bert")'        , false], # String concatenation
+		['foo=tr ("moo" "bert"), "bar"' , true], # Missing after string concatenation
+
+		# With multiple strings
+		['foo (tr ("moo"), tr ("bert"));' , false ],
+		['foo (("moo"), tr ("bert"));'    , true  ],
+		['foo (tr ("moo"), ("bert"));'    , true  ],
+		['foo (tr (42), ("bert"));'       , true  ], # This tr may not be associated with that string
+
+		[ "a=tr (\"aaa\"); \n b=tr (\"\"); \n c=tr (\"ccc\", \"ddd\");", false ],
+
+		['', false] # empty line
+	]
+
+	len=maxlen(test_lines.map { |test_line| test_line[0].inspect })
+
+	test_lines.each { |test_line|
+		string=test_line[0]
+		expected=test_line[1]
+		actual=tr_missing(preprocess (string))
+
+		if actual==expected
+			result="OK"
+		elsif expected==true
+			result="false negative!"
+		else
+			result="failure"
+		end
+
+		puts "#{result} - #{pad(len, string.inspect)} - expected #{pad(5,expected)}, actual #{pad(5,actual)}"
+	}
+end
+
+
+##########
+## Main ##
+##########
+
+if ARGV==['-t']
+	test_preprocess
+	test_tr_missing
+elsif ARGV==['-a']
+#	`find . -iname *.cpp`
+	system("find . -iname \\*.cpp -o -iname \\*.h |grep -v moc_ |grep -v migrations/Migration_ |grep -v ./build/ |grep -v '\\./test/' |xargs #{$0}")
+elsif ARGV.empty?
+	puts "Usage:"
+	puts "#{$0} -a (process automatically found files)"
+	puts "#{$0} -t (run integrated unit tests)"
+	puts "#{$0} files..."
+	exit 1
+else
+	process_files ARGV
+end
+

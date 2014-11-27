@@ -1,0 +1,185 @@
+= Accelerators =
+
+Assigning each item a unique shortcut may not be possible because there are too
+many items.
+
+Some items ("unique items") must have a unique shortcut:
+* Anything that triggers an option: push buttons, toggle buttons, checkboxes,
+  radio buttons
+* The first field in the dialog, so we can jump to the beginning
+* Very common items
+
+The Ok and Cancel buttons should have a (unique) shortcut. If there are any
+buttons on the form, or any other items which intercept the Enter key, the Ok
+button must have a (unique) shortcut.
+
+Some letters may appear only in a single item ("unique letters") and can be
+assigned immediately. Doing so may make other letters unique. Some letters do
+not appear in any item ("unused letters") and cannot be be used at all.
+
+After that, start assigning letters to items starting with short items or
+letters that appear in few items.
+
+
+== FlightWindow ==
+
+Buttons are one of:
+* OK/Cancel
+* Depart now/Depart later/Cancel
+* Land now/Land later/Cancel
+=> O can be reused for "now"
+
+
+=== English ===
+
+Total letters: 26
+Unused letters: jkqvxz (6)
+Unique letters: by (2)
+Number of available letters: 18
+
+Unique words: 6/9 (must/should)
+
+Remaining letters: 9/12
+Remaining words: 18
+
+
+Unique letter:
+* flight type  . . . . . . . . . . y
+* number of landings . . . . . . . b
+* advanced . . . . . . . . . . . . v 
+
+Must be unique:
+* automatic/departed . . . . . . . t
+* automatic/landed . . . . . . . . a
+* automatic/landed/finished. . . . u/d/d
+* depart now/land now. . . . . . . o
+* depart later/land later. . . . . l
+
+Should be unique:
+* registration . . . . . . . . . . r - first item
+* departure time . . . . . . . . . p - frequently used for entering flights offline
+* launch method  . . . . . . . . . h - important item
+
+Should avoid:
+* ok . . . . . . . . . . . . . . . o
+* cancel . . . . . . . . . . . . . c
+
+Remaining: efgimns
+* last name  (3x). . . . . . . . . . . . s     s
+* first name (3x). . . . . . . . . . . . f     f
+
+* towplane [registration]. . . . . . . . w
+
+* [flight] mode  . . . . . . . . . . . . g
+* towflight mode . . . . . . . . . . . . g
+
+* landing time . . . . . . . . . . . . . m
+* landing time towplane/release time . . m
+
+* departure location . . . . . . . . . .  i
+* landing location . . . . . . . . . . .  i
+* landing location towplane  . . . . . .  i
+
+* comments . . . . . . . . . . . . . . . n
+* accounting notes . . . . . . . . . . . n
+
+* date . . . . . . . . . . . . . . . . . e
+* errors . . . . . . . . . . . . . . . . e
+
+
+=== German ===
+
+Total letters: 26
+Unused letters: qx (2)
+Unique letters: jwvy (4), secondary: bk (2)
+
+Must be unique:
+* Automatisch/Gestartet. . . . . . . . . . . . . . . . . s!
+* Automatisch/Gelandet . . . . . . . . . . . . . . . . . t!
+* Automatisch/Gelandet/Beendet/Ausgeklinkt . . . . . . . c/e/e/e  [chimu]/[en]
+* Jetzt starten/jetzt landen . . . . . . . . . . . . . . j!
+* Später starten/später landen . . . . . . . . . . . . . p        [enp]
+
+Should be unique
+* Kennzeichen. . . . . . . . . . . . . . . . . . . . . . k!
+* Startzeit. . . . . . . . . . . . . . . . . . . . . . . i        [eiz]
+* Startart . . . . . . . . . . . . . . . . . . . . . . . r!                          (cannot be unique)
+
+Should avoid:
+* Ok . . . . . . . . . . . . . . . . . . . . . . . . . . o!
+* Abbrechen. . . . . . . . . . . . . . . . . . . . . . . a!
+
+Remaining:
+* Flugtyp. . . . . . . . . . . . . . . . . . . . . . . . y!
+
+* Nachname (3x). . . . . . . . . . . . . . . . . . . . . n        [cehmn]
+* Vorname  (3x). . . . . . . . . . . . . . . . . . . . . v!
+
+* Schleppflugzeug. . . . . . . . . . . . . . . . . . . . h        [cefghlpuz]
+
+* Flugmodus. . . . . . . . . . . . . . . . . . . . . . . m        [dfglmu]
+* Modus Schleppflugzeug. . . . . . . . . . . . . . . . . m        [cdefghlmpuz]
+
+* Landezeit. . . . . . . . . . . . . . . . . . . . . . . d        [deilnz]
+* Landezeit Schleppflugzeug/Schleppende/Ausklinkzeit . . l        [eln]
+* Startort . . . . . . . . . . . . . . . . . . . . . . . r!
+* Zielort. . . . . . . . . . . . . . . . . . . . . . . . z        [eilz]
+* Zielort Schleppflugzeug. . . . . . . . . . . . . . . . z        [cefghilpuz]
+* Anzahl Landungen . . . . . . . . . . . . . . . . . . . u        [deghlnuz]
+* Bemerkungen. . . . . . . . . . . . . . . . . . . . . . b!
+* Abrechnungshinweise. . . . . . . . . . . . . . . . . . w!
+* Datum. . . . . . . . . . . . . . . . . . . . . . . . . u        [dmu]
+* Fehler . . . . . . . . . . . . . . . . . . . . . . . . f        [efhl]
+
+Duplicate: mz, r (cannot be unique), nv (3x names)
+
+After "!": c6 d7 e12 f6 g6 h8 i6 l9 m5 n6 p5 u8 z7
+
+
+
+== SettingsWindow ==
+
+=== English ===
+
+Database (unused: cghijkqxz) ..... d
+* Type ............................. y
+* Server ........................... e
+* Port ............................. r
+* Default .......................... f
+* User name ........................ u
+* Password ......................... a
+* Database ......................... t
+
+Settings (unused: jvxz) ............................... s
+* Airfield name ......................................... a
+* Record towpilot ....................................... t
+* Check medicals ........................................ m
+* Require password to change settings ................... r
+* Require password to modify launch methods ............. e
+* Require password to merge people ...................... q
+* Require password to display the flight database ....... u
+* Enable debugging options .............................. b
+* Command for network diagnostics ....................... g
+
+Info plugins ..... i
+
+Weather plugin (unused: fjkqxyz) ..... w
+* Weather plugin enabled ............... e
+* Plugin ............................... l
+* Command .............................. m
+* Browse ............................... b
+* Interval ............................. i
+* Height ............................... h
+* Weather window enabled ............... n
+* Plugin ............................... u
+* Command .............................. a
+* Browser .............................. r
+* Title ................................ t
+* Interval ............................. v
+
+Plugin path ..... p
+
+Ok ......... o
+Cancel ..... c
+
+

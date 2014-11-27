@@ -1,0 +1,23 @@
+#!/bin/bash
+# Startet ein xterm mit dem Diagnoseskript im Hintergrund
+# Das Skript wird im aktuellen Verzeichnis und im Verzeichnis ./script gesucht
+
+script="netztest"
+
+
+
+path=""
+
+if [ -x "./$script" ]; then
+	path="."
+elif [ -x "./script/$script" ]; then
+	path="script"
+fi
+
+if [ -n "$path" ]; then
+	xterm -T "Netzwerkschnelldiagnose" -e bash -c "$path/$script" &
+else
+	echo "Skript \"$script\" nicht gefunden"
+fi
+
+

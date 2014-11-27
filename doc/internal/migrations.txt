@@ -1,0 +1,12 @@
+Possible changes:
+	- add users.id
+	- towflight as separate flight?
+    - change 0 time to null?
+	- foreign key constraints?
+	- remove distinction between 1/2 seated training
+	- remove unique constraint from plane.registration (and add active flag?)
+
+Notes:
+	- don't store date separately because takeoff and landing can be on
+	  different utc dates, storing the local date is bad, and storing the
+	  effective date is complicated and error prone on updates 

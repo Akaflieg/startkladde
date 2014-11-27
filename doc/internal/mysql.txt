@@ -1,0 +1,8 @@
+Mysql:
+  - 4.1.0 geht nicht, wegen delete from flug_temp where id not in (select id
+	from flug) --> denied
+  - 4.1.1 geht nicht, wegen select * from flugzeug_temp where flugzeug_temp.id
+	not in (select id from flugzeug) --> kein Ergebnis
+  - 4.1.5 ist OK
+
+

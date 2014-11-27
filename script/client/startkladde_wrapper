@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#cleanup ()
+#{
+#	exit 0
+#}
+#trap cleanup TERM INTERRUPT HUP 
+
+#export PATH=~:~/bin:$PATH
+
+while true; do
+	startkladde #>/tmp/startkladde.log
+	ret=$?
+	if [ "$ret" == "69" ]; then
+		sudo halt
+	fi
+done
+

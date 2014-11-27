@@ -1,0 +1,1680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsWindowClass</class>
+ <widget class="QDialog" name="SettingsWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>582</width>
+    <height>593</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_4">
+   <item row="2" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="settingsTab">
+      <attribute name="title">
+       <string>&amp;General</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>User interface</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="languageLabel">
+            <property name="text">
+             <string>&amp;Language:</string>
+            </property>
+            <property name="buddy">
+             <cstring>languageInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="LanguageComboBox" name="languageInput">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToContents</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="dataBox">
+         <property name="title">
+          <string>General</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="locationLabel">
+            <property name="text">
+             <string>&amp;Airfield name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>locationInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="locationInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The name of the airfield this program is used at&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkMedicalsCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, a warning will be shown when creating a flight if the medical of the pilot expired.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Check &amp;medicals</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QCheckBox" name="recordTowpilotCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the name of the towpilot can be entered for flights.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Record &amp;towpilot</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="permissionsBox">
+         <property name="title">
+          <string>Permissions</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="protectLaunchMethodsCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to modify launch methods.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>R&amp;equire password to modify launch methods</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="protectSettingsCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to change settings.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>&amp;Require password to change settings</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QWidget" name="widget_3" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <property name="leftMargin">
+              <number>18</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="passwordMessageLabel">
+               <property name="text">
+                <string notr="true">[The password protection can be removed by deleting or editing the configuration file or registry key...]</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="protectMergePeopleCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to merge people.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Re&amp;quire password to merge people</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="protectFlightDatabaseCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to display the flight database.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Req&amp;uire password to display the flight database</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="protectViewMedicalsCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to view medical data.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Require password to &amp;view medical dates</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QCheckBox" name="protectChangeMedicalsCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the database password must be entered to change medical data.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Require password to c&amp;hange medical dates</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="diagnosticsBox">
+         <property name="title">
+          <string>Diagnostics</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="enableDebugCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;Enable some menu entries for error diagnostics&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Enable de&amp;bugging options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="diagCommandInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The command to run when the menu item Help-Network diagnostics is selected (not supported on Windows)&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="diagCommandLabel">
+            <property name="text">
+             <string>Command for network diagnostic&amp;s:</string>
+            </property>
+            <property name="buddy">
+             <cstring>diagCommandInput</cstring>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="dbTab">
+      <attribute name="title">
+       <string>&amp;Database</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QWidget" name="dbTypePane" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="dbTypeLabel">
+            <property name="text">
+             <string>T&amp;ype:</string>
+            </property>
+            <property name="buddy">
+             <cstring>dbTypeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="dbTypeInput"/>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="dbConnectionBox">
+         <property name="title">
+          <string>Connection</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="0">
+           <widget class="QWidget" name="mysqlSettingsPane" native="true">
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="mysqlServerLabel">
+               <property name="text">
+                <string>S&amp;erver:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlServerInput</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlServerInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;IP address or host name of the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="mysqlPortLabel">
+               <property name="text">
+                <string>Po&amp;rt:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlPortInput</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="mysqlPortInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The TCP port of the database server&lt;/html&gt;</string>
+               </property>
+               <property name="maximum">
+                <number>65535</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="mysqlUserLabel">
+               <property name="text">
+                <string>&amp;User name:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlUserInput</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlUserInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The username for the connection to the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="mysqlPasswordLabel">
+               <property name="text">
+                <string>P&amp;assword:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlPasswordInput</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlPasswordInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The password for the connection to the database server&lt;/html&gt;</string>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="mysqlDatabaseLabel">
+               <property name="text">
+                <string>Da&amp;tabase:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlDatabaseInput</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlDatabaseInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The name of the database on the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="mysqlDefaultPortCheckBox">
+               <property name="toolTip">
+                <string>&lt;html&gt;If enabled, the default port is used for the database server.&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>De&amp;fault</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>(default: 3306)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="dbConnectionBox_2">
+         <property name="title">
+          <string>Remote Server</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0">
+           <widget class="QWidget" name="mysqlSettingsPane_2" native="true">
+            <layout class="QGridLayout" name="gridLayout_5">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="mysqlServerLabel_2">
+               <property name="text">
+                <string>S&amp;erver:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlServerInput_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlServerInput_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;IP address or host name of the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="mysqlPortLabel_2">
+               <property name="text">
+                <string>Po&amp;rt:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlPortInput_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="mysqlPortInput_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;The TCP port of the database server&lt;/html&gt;</string>
+               </property>
+               <property name="maximum">
+                <number>65535</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="mysqlUserLabel_2">
+               <property name="text">
+                <string>&amp;User name:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlUserInput_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlUserInput_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;The username for the connection to the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="mysqlPasswordLabel_2">
+               <property name="text">
+                <string>P&amp;assword:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlPasswordInput_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlPasswordInput_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;The password for the connection to the database server&lt;/html&gt;</string>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="mysqlDatabaseLabel_2">
+               <property name="text">
+                <string>Da&amp;tabase:</string>
+               </property>
+               <property name="buddy">
+                <cstring>mysqlDatabaseInput_2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="4">
+              <widget class="QLineEdit" name="mysqlDatabaseInput_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;The name of the database on the database server&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="mysqlDefaultPortCheckBox_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;If enabled, the default port is used for the database server.&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>De&amp;fault</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>(default: 3306)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Database synchronization</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Absolute path for local database &amp;dump:</string>
+            </property>
+            <property name="buddy">
+             <cstring>databaseDumpPath</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="databaseDumpPath"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="flarmTab">
+      <attribute name="title">
+       <string>&amp;Flarm</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QGroupBox" name="flarmGroupBox">
+         <property name="toolTip">
+          <string>&lt;html&gt;If enabled, Flarm related funktionality is availabe&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>Flarm &amp;enabled</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="9" column="1">
+           <widget class="QWidget" name="widget_6" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="flarmMapKmlFileNameInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The name of a KML (Google Earth) file to show in the background of the flarm radar view&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="browseKmlFileButton">
+               <property name="text">
+                <string>&amp;Browse</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QWidget" name="flarmFileNamePane" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="flarmFileNameInput"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="browseFlarmFileButton">
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="7" column="0" colspan="2">
+           <widget class="QCheckBox" name="flarmAutoDeparturesCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, data from the connected flarm device will be used to automatically detect departures, landings and touch-and-gos.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>&amp;Automatic detection of departures, landings and touch-and-gos</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0" colspan="2">
+           <widget class="QCheckBox" name="flarmDataViewableCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;If enabled, the Flarm radar and a list of received planes can be viewed.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Flarm data &amp;viewable</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Flarm radar &amp;KML file:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmMapKmlFileNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Connection t&amp;ype:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmConnectionTypeInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="flarmSerialBaudRateLabel">
+            <property name="text">
+             <string>Ba&amp;ud rate:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmSerialBaudRateInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="flarmTcpHostLabel">
+            <property name="text">
+             <string>&amp;Host:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmTcpHostInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="flarmSerialPortLabel">
+            <property name="text">
+             <string>Po&amp;rt:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmSerialPortInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="flarmTcpPortLabel">
+            <property name="text">
+             <string>Po&amp;rt:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmTcpPortInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="flarmTcpHostInput"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="flarmSerialPortInput">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QWidget" name="widget_7" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="SkComboBox" name="flarmConnectionTypeInput"/>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>58</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QWidget" name="flarmSerialBaudRatePane" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QComboBox" name="flarmSerialBaudRateInput">
+               <property name="editable">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>1200</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>2400</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>4800</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>9600</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>19200</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>38400</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>57600</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>115200</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>58</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QWidget" name="flarmTcpPortPane" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QSpinBox" name="flarmTcpPortInput">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>65535</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>58</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="flarmFileNameLabel">
+            <property name="text">
+             <string>Fil&amp;e name:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmFileNameInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="flarmFileDelayLabel">
+            <property name="text">
+             <string>Dela&amp;y:</string>
+            </property>
+            <property name="buddy">
+             <cstring>flarmFileDelayInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QWidget" name="flarmFileDelayPane" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QSpinBox" name="flarmFileDelayInput">
+               <property name="suffix">
+                <string> ms</string>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="flarmNetEnabledCheckbox">
+         <property name="toolTip">
+          <string>&lt;html&gt;If enabled, the FlarmNet database may be used to automatically identify planes. Note that you will have to download a copy of the FlarmNet database for this to work.&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Flarm&amp;Net enabled</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="infoPluginsTab">
+      <attribute name="title">
+       <string>&amp;Info plugins</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QTreeWidget" name="infoPluginList">
+         <property name="toolTip">
+          <string>&lt;html&gt;The list of info plugins. Info plugins are displayed in the upper part of the main window.&lt;/html&gt;</string>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string comment="Info plugins table list header">Title</string>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;The title of the plugin will be displayed in the main window&lt;/html&gt;</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string comment="Info plugins table list header">Plugin</string>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;The plugin command (with any parameters)&lt;/html&gt;</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string comment="Info plugins table list header">Active</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string comment="Info plugins table list header">Configuration</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="addInfoPluginButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Add info plugin</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="removeInfoPluginButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Removed selected info plugin</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="infoPluginUpButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Move selected info plugin up</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::UpArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="infoPluginDownButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Move selected info plugin down</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::DownArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="infoPluginSettingsButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Change settings for selected info plugin</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="weatherPluginsTab">
+      <attribute name="title">
+       <string>&amp;Weather plugin</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QGroupBox" name="weatherPluginBox">
+         <property name="toolTip">
+          <string>&lt;html&gt;The weather plugin is displayed on the right of the upper part of the main window.&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>Weather plugin &amp;enabled</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="6" column="0" colspan="2">
+           <widget class="QLabel" name="weatherPluginHeightLabel">
+            <property name="text">
+             <string>&amp;Height:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherPluginHeightInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QSpinBox" name="weatherPluginHeightInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The height of the weather plugin in pixels&lt;/html&gt;</string>
+            </property>
+            <property name="suffix">
+             <string extracomment="With leading space"> pixels</string>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>298</width>
+              <height>25</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="weatherPluginIntervalLabel">
+            <property name="text">
+             <string>&amp;Interval:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherPluginIntervalInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="weatherPluginLabel">
+            <property name="text">
+             <string>P&amp;lugin:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherPluginInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QSpinBox" name="weatherPluginIntervalInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The time between updates of the weather plugin&lt;/html&gt;</string>
+            </property>
+            <property name="suffix">
+             <string extracomment="With leading space"> minutes</string>
+            </property>
+            <property name="maximum">
+             <number>86400</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>172</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="2" colspan="2">
+           <widget class="SkComboBox" name="weatherPluginInput"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="weatherPluginCommandLabel">
+            <property name="text">
+             <string>Co&amp;mmand:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherPluginCommandInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="2">
+           <widget class="QWidget" name="widget_4" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="weatherPluginCommandInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The program to execute for external weather plugins. Programs in the plugin path can be specified without path.&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="browseWeatherPluginCommandButton">
+               <property name="text">
+                <string>&amp;Browse</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="weatherWindowBox">
+         <property name="title">
+          <string>Weather wi&amp;ndow enabled</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="1" column="0">
+           <widget class="QLabel" name="weatherWindowPluginLabel">
+            <property name="text">
+             <string>Pl&amp;ugin:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherWindowPluginInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="weatherWindowTitleLabel">
+            <property name="text">
+             <string>&amp;Title:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherWindowTitleInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QLineEdit" name="weatherWindowTitleInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The title of the weather window&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="weatherWindowIntervalLabel">
+            <property name="text">
+             <string>Inter&amp;val:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherWindowIntervalInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="weatherWindowIntervalInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;The time between updates of the picture in the weather window&lt;/html&gt;</string>
+            </property>
+            <property name="suffix">
+             <string extracomment="With leading space"> minutes</string>
+            </property>
+            <property name="maximum">
+             <number>86400</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>328</width>
+              <height>25</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>The weather window can be opened by double-clicking the weather plugin.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="SkComboBox" name="weatherWindowPluginInput"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="weatherWindowCommandLabel">
+            <property name="text">
+             <string>Comm&amp;and:</string>
+            </property>
+            <property name="buddy">
+             <cstring>weatherWindowCommandInput</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QWidget" name="widget_5" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="weatherWindowCommandInput">
+               <property name="toolTip">
+                <string>&lt;html&gt;The program to execute for external weather plugins. Programs in the plugin path can be specified without path.&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="browseWeatherWindowCommandButton">
+               <property name="text">
+                <string>B&amp;rowse</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>47</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pluginPathsTab">
+      <attribute name="title">
+       <string>&amp;Plugin path</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Directories to look for plugins in (in the order given).
+Directoryies can be absolute (e. g. /var/lib/startkladde/plugins or relative to the current directory (e. g. .startkladde/plugins).</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="pluginPathListPane" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QListWidget" name="pluginPathList">
+            <property name="toolTip">
+             <string>&lt;html&gt;Directories to look for plugins in&lt;/html&gt;</string>
+            </property>
+            <property name="dragDropMode">
+             <enum>QAbstractItemView::InternalMove</enum>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="textElideMode">
+             <enum>Qt::ElideMiddle</enum>
+            </property>
+            <property name="uniformItemSizes">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="verticalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QToolButton" name="addPluginPathButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Add plugin path</string>
+               </property>
+               <property name="text">
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="removePluginPathButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Remove selected plugin path</string>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="pluginPathUpButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Move selected plugin path up</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="arrowType">
+                <enum>Qt::UpArrow</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="pluginPathDownButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Move selected plugin path down</string>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="arrowType">
+                <enum>Qt::DownArrow</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SkComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/gui/widgets/SkComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/gui/widgets/LanguageComboBox.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>languageInput</tabstop>
+  <tabstop>locationInput</tabstop>
+  <tabstop>recordTowpilotCheckbox</tabstop>
+  <tabstop>checkMedicalsCheckbox</tabstop>
+  <tabstop>protectSettingsCheckbox</tabstop>
+  <tabstop>protectLaunchMethodsCheckbox</tabstop>
+  <tabstop>protectMergePeopleCheckbox</tabstop>
+  <tabstop>protectFlightDatabaseCheckbox</tabstop>
+  <tabstop>protectViewMedicalsCheckbox</tabstop>
+  <tabstop>protectChangeMedicalsCheckbox</tabstop>
+  <tabstop>enableDebugCheckbox</tabstop>
+  <tabstop>diagCommandInput</tabstop>
+  <tabstop>dbTypeInput</tabstop>
+  <tabstop>mysqlServerInput</tabstop>
+  <tabstop>mysqlDefaultPortCheckBox</tabstop>
+  <tabstop>mysqlPortInput</tabstop>
+  <tabstop>mysqlUserInput</tabstop>
+  <tabstop>mysqlPasswordInput</tabstop>
+  <tabstop>mysqlDatabaseInput</tabstop>
+  <tabstop>flarmGroupBox</tabstop>
+  <tabstop>flarmConnectionTypeInput</tabstop>
+  <tabstop>flarmSerialPortInput</tabstop>
+  <tabstop>flarmSerialBaudRateInput</tabstop>
+  <tabstop>flarmTcpHostInput</tabstop>
+  <tabstop>flarmTcpPortInput</tabstop>
+  <tabstop>flarmFileNameInput</tabstop>
+  <tabstop>browseFlarmFileButton</tabstop>
+  <tabstop>flarmFileDelayInput</tabstop>
+  <tabstop>flarmAutoDeparturesCheckbox</tabstop>
+  <tabstop>flarmDataViewableCheckbox</tabstop>
+  <tabstop>flarmMapKmlFileNameInput</tabstop>
+  <tabstop>browseKmlFileButton</tabstop>
+  <tabstop>flarmNetEnabledCheckbox</tabstop>
+  <tabstop>infoPluginList</tabstop>
+  <tabstop>addInfoPluginButton</tabstop>
+  <tabstop>removeInfoPluginButton</tabstop>
+  <tabstop>infoPluginUpButton</tabstop>
+  <tabstop>infoPluginDownButton</tabstop>
+  <tabstop>infoPluginSettingsButton</tabstop>
+  <tabstop>weatherPluginBox</tabstop>
+  <tabstop>weatherPluginInput</tabstop>
+  <tabstop>weatherPluginCommandInput</tabstop>
+  <tabstop>browseWeatherPluginCommandButton</tabstop>
+  <tabstop>weatherPluginIntervalInput</tabstop>
+  <tabstop>weatherPluginHeightInput</tabstop>
+  <tabstop>weatherWindowBox</tabstop>
+  <tabstop>weatherWindowPluginInput</tabstop>
+  <tabstop>weatherWindowCommandInput</tabstop>
+  <tabstop>browseWeatherWindowCommandButton</tabstop>
+  <tabstop>weatherWindowTitleInput</tabstop>
+  <tabstop>weatherWindowIntervalInput</tabstop>
+  <tabstop>pluginPathList</tabstop>
+  <tabstop>addPluginPathButton</tabstop>
+  <tabstop>removePluginPathButton</tabstop>
+  <tabstop>pluginPathUpButton</tabstop>
+  <tabstop>pluginPathDownButton</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SettingsWindowClass</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>535</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

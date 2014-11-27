@@ -1,0 +1,2 @@
+Test cases:
+  - on initial connect, stop data transmission; disallow new connections; disconnect

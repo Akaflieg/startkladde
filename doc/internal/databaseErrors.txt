@@ -1,0 +1,45 @@
+Database Exception hierarchy:
+
+SqlException
+  ConnectionFailedException
+    AccessDeniedException
+    DatabaseDoesNotExistException
+  QueryFailedException
+
+
+
+
+Database errors, as determined by Martin Herrmann, 2010-03-01:
+
+Condition                         | Num/Type | Message                      | Comments
+----------------------------------+----------+------------------------------+----------------------------------------
+Server drops packages             | 2005/1   | unknown host                 |
+Port closed                       | 2003/1   | can't connect                |
+Server rejects packages           | 2005/1   | unknown host                 |
+No data transfered                | hangs    |                              | With netcat; with ThrottleProxy: 2013/1
+Invalid data                      | 2013/1   | lost connection at initial   |
+                                  |          |                              |
+Connection closed during connect  | 2013/1   | lost connection at (various) |
+                                  |          |                              |
+Invalid hostnmame                 | 2005/1   | unknown host                 |
+Invalid IP                        | 2003/1   | can't connect                |
+No route to host                  | 2003/1   | can't connect                |
+Server not connected              | hangs    |                              |
+                                  |          |                              |
+Connection closed during query    | 2013/2   | lost connection during query | isOpen is still true
+Connection closed between queries | 2006/2   | gone away                    | isOpen is still true
+                                  |          |                              |
+No data transfered after connect  | hangs    |                              |
+Host disconnected after connect   | hangs    |                              |
+                                  |          |                              |
+Wrong username/password           | 1045/1   | access denied                |
+Database does not exist           | 1049/1   | unknown database             |
+No permissions for DB             | 1044/1   | access denied to db          |
+Lacking permissions on select     | 1142/2   | command denied               | mysql/db.select_priv (flush privileges)
+Table does not exist              | 1146/2   | table doesn't exist          |
+Column does not exist             | 1154/2   | unknown column               |
+Error in query                    | 1064/2   | syntax error                 |
+
+
+Reconnect on connect errors: 2003, 2005, 2013
+Retry on query errors: 2006, 2013

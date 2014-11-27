@@ -1,0 +1,75 @@
+(...) indicates user confirmation or data entry. If the user cancels or does
+not confirm, the connection is canceled by throwing ConnectCanceledException.
+
+Opening the database connection:
+===============================
+
+      +---------+ OK
+      | Connect |-----> Success
+      +---------+
+           | Access denied
+           |
+. . . . . .|. . . . . . . . . . . . . . . .
+.          |<------------.                .
+.          v             |                .
+.  (Get root password)   |                .
+.          |             |                .
+.  +-----------------+   | access denied  .
+.  | Connect as root |---'                .
+.  +-----------------+                    .
+.          |                              .
+.          v                              .
+.      +-------+                          .
+.      | GRANT |                          .
+.      +-------+                          .
+.          |                              .
+.          v                              .
+.  +-----------------+                    .
+.  | Disconnect root |                    .
+.  +-----------------+                    .
+. . . . . .|. . . . . . . . . . . . . . . .
+           |              #grantPermissions
+           v
+     +---------+ OK
+     | Connect |-----> Success
+     +---------+
+          |
+          v
+       failure        
+
+
+
+Connect:
+=======
+An error not caught here will be passed to the enclosing procedure.
+                                 . . . . . . . . . . . . . . . . . . . . . . . .
+                                 .                                             .
++----------------+               .   +----------------+        +-----------+   .
+| Open Interface |---(Create DB?)--->| Connect w/o DB |------->| Create DB |   .
++----------------+ database      .   +----------------+        +-----------+   .
+        |          does not      .                                   |         .
+        | OK       exist         .                                   v         .
+        |                        .  +----------------+         +------------+  .
+        |                        .  | Open Interface |<--------| Disconnect |  .
+        |                        .  +----------------+         +------------+  .
+        |                        . . . . . | . . . . . . . . . . . . . . . . . .
+        |                                  |                     #createDatabase
+        |                                  v               
+        |                           +-------------+
+        |     .-----(Create DB?)--->| Load schema |---.
+        v     | empty               +-------------+   |
++---------------+                                     |    +---------------+
+| Check version |                                     |--->| Check version |
++---------------+                                     |    +---------------+
+        |     | not current           +---------+     |         |      |
+current |     '-----(Migrate DB?)---->| Migrate |-----'         |      |
+        |                             +---------+               |      | not
+        v                                               current |      | current
+  +------------+                                                |      v
+  | Fill cache |<-----------------------------------------------'    failed
+  +------------+
+        |
+        v
+   +---------+
+   | Success |
+   +---------+

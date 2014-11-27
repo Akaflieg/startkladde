@@ -1,0 +1,80 @@
+== Overview ==
+
+In some cases, there are several implementations of a common base class, which 
+have to be created at runtime. Examples are:
+* migrations, created as needed for updating the database
+* plugins, specified by the user
+
+Three patterns are used for this purpose:
+* the builder pattern
+* the factory pattern
+* the registration pattern
+
+An overview of the classes involved is given in the following diagram:
+
+  .------------.                 .-----------------------. builders                         .--------------------.
+  | Base class |                 |  Builder              |-------------------------------<#>| Factory            |
+  | (abstract) |                 | (abstract)            | 0..*                             |--------------------|
+  '------.-----'                 |-----------------------|       .--------------.           | list ()            |
+        /_\                      | build ()=0            |-------| Registration |---------->| create (criterion) |
+         |                       | moreInformation ()=0  |       |--------------|  <<adds   '--------------------'
+         |                       '----------.------------'       '--------------'    builder>>
+         |                                 /_\
+         |                                  |
+         |                                  |
+.----------------.  <<creates>>  .-----------------------.
+| Implementation |<--------------| BuilderImplementation |
+'----------------'               |-----------------------|
+                                 | build ()              |
+                                 | moreInformation ()    |
+                                 '-----------------------'
+
+The classes (e. g. Migration_20100214140000_initial) all share a common base
+class (e. g. Migration) which defines the interface. Access to the classes is
+performed through the interface, so the user has no knowledge of the specific
+implementations. 
+
+
+== Builder pattern ==
+
+In order to be able to create instances of the classes without knowing about
+the specific implementations, a builder is used. The builder base class (e. g.
+MigrationBuilder) defines an interface for creating an instance of the class.
+For each implementation of the base class, there is a builder implementation
+which creates, upon request, an instance of the class implementation. The
+builder implementations are typically template classes, taking the class
+implementation as a parameter (e. g. MigrationBuilderImplementation
+<MigrationClass>).
+
+A builder can also return additional information about the class it creates.
+This information is either passed to the builder implementation on construction
+(e. g. the version of a migration) or retrieved from the class implementation
+itself, typically calling a static method (e. g. the name of a plugin).
+
+
+== Factory pattern ==
+
+A factory (e. g. MigrationFactory) is used to create an instance of a specific
+class implementation, selected by a criterion known at runtime. It contains a
+list of builders, of which it selects one based on a criterion specified by the
+user (e. g. the name of a plugin) and the additional information retrieved from
+the builder.
+
+
+== Registration pattern ==
+
+The factory's builder list is created automatically by using the registration
+pattern. For each class implementation, a static instance of the Registration
+class (e. g. MigrationFactory::Registration) is created and passed an instance
+to the builder for that class implementation. The registration adds the builder
+to the factory's builder list.
+
+In order to have access to the factory's builder list, either
+* the factory must have a public method to add a builder, or
+* the registration class must be a friend class of the factory class, or
+* the registration class must be a member type of the factory class.
+
+The instantiation of the registration and the builder, potentially passing
+additional information to the builder class constructor, is typically performed
+by  a macro (e. g. REGISTER_MIGRATION) defined in the header file of the factory
+class.

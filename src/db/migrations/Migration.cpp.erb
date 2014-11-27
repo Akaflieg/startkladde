@@ -1,0 +1,26 @@
+#include "<%= class_name %>.h"
+
+REGISTER_MIGRATION (<%= timestamp %>, <%=name %>)
+
+<%= class_name %>::<%= class_name %> (Interface &interface):
+	Migration (interface)
+{
+}
+
+<%= class_name %>::~<%= class_name %> ()
+{
+}
+
+void <%= class_name %>::up ()
+{
+	// <%= "TO#{}DO" %> implement
+	// createTable  ("name");
+	// addColumn ("table", "name", dataTypeString ());
+}
+
+void <%= class_name %>::down ()
+{
+	// <%= "TO#{}DO" %> implement
+	// dropTable ("name")
+}
+

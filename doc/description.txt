@@ -1,0 +1,10 @@
+Short:
+A software for recording flight movements on small airfields or glider sites and automatically generating statistics and log books.
+
+This program is intended for recording flight movements on small airfields or glider sites.
+Some of the features are:
+  - easy-to-use, "intuitive", GUI to avoid the need for training
+  - data storage in a MySQL database, possibly on a server somewhere else, so no data has to be kept "in the field"
+  - automatic generation of log books and statistics
+Data access is possible via a web interface, using the CSV and PDF formats. Thus, further data processing is possible with most database/spreadsheet applications.
+The program is written mainly in C++ and is developed primarily for use with Linux, although it may be possible to use it with other OSes. It uses the QT library for its user interface and MySQL for data storage.

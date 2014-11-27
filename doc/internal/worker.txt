@@ -1,0 +1,170 @@
+There are some classes that perform operations of a backend object
+asynchronously (non-blocking) on a background thread. These classes are refered
+to as "workers". Examples are MigratorWorker, DbWorker and CacheWorker. This
+describes the common implementation scheme for workers.
+
+ThreadSafeInterface uses a similar implementation, but its methods are
+blocking.
+
+Workers use a QThread. On creation, the QThread is started (which starts its
+event loop) and the worker's thread affinity (see Qt documentation: Thread
+support in Qt) is moved to the thread, which means that signals are delivered
+in the background thread (see the Qt documentation for a more precise
+explanation). The background can either be created by the worker or passed and
+stored as a reference. 
+
+For execution of an operation foo, the method foo of the worker, taking a
+reference to a Returner, a reference to an OperationMonitor and potentially
+more arguments. The methods emits the signal sig_foo with pointers to the
+returner and the monitor and the rest of the parameters and returns.
+
+The signal is delivered to the slot slot_foo in the background thread, which
+performs the actual work by calling the corresponding method of a backend
+object. The result of the operation or the exception, if one happened, is
+returned through the returner by using one of the macros returnOrException or
+returnVoidOrException. The signal is connected to the slot on construction.
+
+In the slot, the OperationMonitorInterface for the monitor is created and
+passed to the backend method. The interface is destroyed when the method
+returns, signaling the monitor the end of the operation (RAII pattern). If the
+backend method does not take a monitor interface, the interface is created and
+stored in a local variable (otherwise, it would be destroyed immediately). See
+also the OperationMonitor class documentation.
+
+The caller of the asynchronous method must not destroy the returner and the
+monitor until the operation has finished. The operation can be canceled (if
+supported by the backend) using the monitor. The end of the operation is
+signaled to the monitor; how to access it depends on the monitor
+implementation. For example, the SignalOperationMonitor emits a signal when the
+operation ends (this can be used with  MonitorDialog).
+
+The result of the operation can be retrieved by calling the returnedValue
+method of the returner. If the operation threw an exception, it is rethrown by
+returnedValue. If the returner is a Returner<void> or the caller is not
+interested in the result, the wait method of the returner must be called (even
+if the end of the operation has already been signaled) to get any exceptions
+that may have been thrown by the caller.
+
+A worker class following this scheme is thread safe, independent from the
+thread safety of the backend object since all it does in public methods is
+emitting signals and the slots are called non-concurrently by the thread's
+event loop. Of course, if the backend object is accessed concurrently by other
+threads, it has to be thread safe.
+
+Workers require Qt 4.4 because QThread is abstract up to Qt 4.3.
+
+Here is an example for a worker (TestWorker) for a backend object of class Test
+with two methods:
+  - void foo (OperationMonitorInterface monitor) 
+  - int  bar (const QString &baz)
+
+	// *** TestWorker.h
+	#include <QObject>
+	#include <QThread>
+
+	class Test;	
+	template<typename T> class Returner;
+	class OperationMonitor;
+	
+	class TestWorker: public QObject
+	{
+		Q_OBJECT
+	
+		public:
+			TestWorker (Test &test);
+			virtual ~TestWorker ();
+	
+			virtual void foo (Returner<void> &returner, OperationMonitor &monitor);
+			virtual void bar (Returner<int > &returner, OperationMonitor &monitor, const QString &baz);
+	
+		signals:
+			void sig_foo (Returner<void> *returner, OperationMonitor *monitor);
+			void sig_bar (Returner<int > *returner, OperationMonitor *monitor, QString baz);
+	
+		protected slots:
+			virtual void slot_foo (Returner<void> *returner, OperationMonitor *monitor);
+			virtual void slot_bar (Returner<int > *returner, OperationMonitor *monitor, QString baz);
+	
+		private:
+			QThread thread;
+			Test &test;
+	};
+	
+	// *** TestWorker.cpp
+	#include "TestWorker.h"
+
+	#include "src/concurrent/monitor/OperationMonitor.h"
+	#include "src/concurrent/monitor/OperationMonitorInterface.h"
+	#include "src/concurrent/Returner.h"
+	#include "src/test/Test.h"
+
+	TestWorker::TestWorker (Test &test):
+		test (test)
+	{
+	#define CONNECT(definition) connect (this, SIGNAL (sig_ ## definition), this, SLOT (slot_ ## definition))
+		CONNECT (foo (Returner<void> *, OperationMonitor *));
+		CONNECT (bar (Returner<int > *, OperationMonitor *, QString));
+	#undef CONNECT
+
+		moveToThread (&thread);
+		thread.start ();
+	}
+
+	TestWorker::~TestWorker ()
+	{
+		thread.quit ();
+
+		std::cout << "Waiting for test worker thread to terminate..." << std::flush;
+		if (thread.wait (1000)) std::cout << "OK"      << std::endl;
+		else                    std::cout << "Timeout" << std::endl;
+	}
+
+
+	// ***********************
+	// ** Front-end methods **
+	// ***********************
+
+	void TestWorker::foo (Returner<void> &returner, OperationMonitor &monitor)
+	{
+		emit sig_foo (&returner, &monitor);
+	}
+
+	void TestWorker::bar (Returner<int> &returner, OperationMonitor &monitor, const QString &baz)
+	{
+		emit sig_bar (&returner, &monitor, baz);
+	}
+
+
+	// ********************
+	// ** Back-end slots **
+	// ********************
+
+	void TestWorker::slot_foo (Returner<void> *returner, OperationMonitor *monitor)
+	{
+		returnVoidOrException (returner, test.foo (date, monitor->interface ()));
+	}
+
+	void TestWorker::slot_bar (Returner<int> *returner, OperationMonitor *monitor, QString baz)
+	{
+		OperationMonitorInterface interface=monitor->interface ();
+		returnOrException (returner, test.bar (baz));
+	}
+
+
+Calling the method with a Monitor dialog can be done like this (this is done in
+several places by DbManager):
+
+	Returner<int> returner;
+	SignalOperationMonitor monitor;
+	testWorker.foo (returner, monitor);
+	MonitorDialog::monitor (monitor, utf8 ("Doing foo"), this);
+	return returner.returnedValue ();
+
+	Returner<void> returner;
+	SignalOperationMonitor monitor;
+	testWorker.bar (returner, monitor, "baz");
+	MonitorDialog::monitor (monitor, utf8 ("Doing bar"), this);
+	returner.wait;
+
+Note: if an uncaught exception is thrown from the worker slot, it propagates to
+the thread's event loop and terminates the program. 
