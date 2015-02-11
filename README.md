@@ -1,4 +1,4 @@
-SK_Client
+startkladde
 =========
 
-Linux Client der Startkladde für den Startlaptop.
+Linux-Client der Startkladde für den Startlaptop.
