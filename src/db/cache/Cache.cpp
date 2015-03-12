@@ -29,6 +29,7 @@
 #include <iostream>
 
 #include <QSet>
+#include <QMap>
 
 #include "src/model/Flight.h"
 #include "src/model/LaunchMethod.h"
@@ -39,6 +40,7 @@
 #include "src/concurrent/synchronized.h"
 #include "src/util/qString.h"
 #include "src/container/SortedSet_impl.h"
+#include "src/db/Query.h"
 
 // ******************
 // ** Construction **
@@ -103,6 +105,14 @@ template<> QHash<dbId, FlarmNetRecord> &Cache::objectsByIdHash<FlarmNetRecord> (
 // ** Generic refreshing **
 // ************************
 
+
+void Cache::refreshStatic(OperationMonitorInterface monitor)
+{
+    monitor.status(tr("Retrieving flights per plane"));
+    synchronized(dataMutex)
+        roughNumberOfFlightsByPlaneIdLastYear = db.flightsPerPlane(QDate::currentDate().addYears(-1), QDate::currentDate());
+}
+
 template<class T> void Cache::refreshObjects (OperationMonitorInterface monitor)
 {
 	monitor.status (tr ("Retrieving %1").arg (T::objectTypeDescriptionPlural ()));
@@ -134,6 +144,20 @@ template<class T> void Cache::refreshObjects (OperationMonitorInterface monitor)
 void Cache::refreshPlanes (OperationMonitorInterface monitor)
 {
 	refreshObjects<Plane> (monitor);
+
+    synchronized(dataMutex)
+    {
+        QMap<int, Plane> sortMap;
+        for (int i = 0; i < planes.size(); i++)
+        {
+            sortMap.insertMulti(
+                (-1)*roughNumberOfFlightsByPlaneIdLastYear.value(planes.at(i).getId(), 0),
+                planes.at(i)
+            );
+        }
+
+        planesSortedByUsage = sortMap.values();
+    }
 }
 
 void Cache::refreshPeople (OperationMonitorInterface monitor)
@@ -234,16 +258,17 @@ void Cache::refreshAll (OperationMonitorInterface monitor)
 	clearHashes<Flight> ();
 
 	// Refresh planes and people before refreshing flights!
-	monitor.progress (0, 8); refreshPlanes          (monitor);
-	monitor.progress (1, 8); refreshPeople          (monitor);
-	monitor.progress (2, 8); refreshLaunchMethods   (monitor);
-	monitor.progress (3, 8); refreshFlightsToday    (monitor);
-	monitor.progress (4, 8); refreshFlightsOther    (monitor);
-	monitor.progress (5, 8); refreshPreparedFlights (monitor);
-	monitor.progress (6, 8); refreshLocations       (monitor);
-	monitor.progress (7, 8); refreshAccountingNotes (monitor);
-	monitor.progress (8, 8); refreshFlarmNetRecords (monitor);
-	monitor.progress (9, 8, tr ("Finished"));
+    monitor.progress (0,  9); refreshStatic          (monitor);
+    monitor.progress (1,  9); refreshPlanes          (monitor);
+    monitor.progress (2,  9); refreshPeople          (monitor);
+    monitor.progress (3,  9); refreshLaunchMethods   (monitor);
+    monitor.progress (4,  9); refreshFlightsToday    (monitor);
+    monitor.progress (5,  9); refreshFlightsOther    (monitor);
+    monitor.progress (6,  9); refreshPreparedFlights (monitor);
+    monitor.progress (7,  9); refreshLocations       (monitor);
+    monitor.progress (8,  9); refreshAccountingNotes (monitor);
+    monitor.progress (9,  9); refreshFlarmNetRecords (monitor);
+    monitor.progress (10, 9, tr ("Finished"));
 }
 
 void Cache::refreshFlights (OperationMonitorInterface monitor)

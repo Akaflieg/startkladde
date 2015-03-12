@@ -39,6 +39,11 @@ EntityList<Plane> Cache::getPlanes ()
 	synchronizedReturn (dataMutex, planes);
 }
 
+QList<Plane> Cache::getPlanesSortedByUsage()
+{
+    synchronizedReturn (dataMutex, planesSortedByUsage);
+}
+
 EntityList<Person> Cache::getPeople ()
 {
 	synchronizedReturn (dataMutex, people);

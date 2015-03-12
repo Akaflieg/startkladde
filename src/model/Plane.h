@@ -60,6 +60,7 @@ class Plane: public Entity
 
 		// *** Formatting
 		virtual QString toString () const;
+        virtual QString toNiceString () const;
 	    static bool clubAwareLessThan (const Plane &p1, const Plane &p2);
 		virtual QString getDisplayName () const;
 

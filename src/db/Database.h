@@ -85,6 +85,9 @@ class Database: public QObject
 		// *** Additional properties
 		template<class T> bool objectUsed (dbId id);
 
+        // *** Flights per plane
+        virtual QHash<dbId, int> flightsPerPlane(QDate from, QDate to);
+
 	public slots:
 		void cancelConnection ();
 

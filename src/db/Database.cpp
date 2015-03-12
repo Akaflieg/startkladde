@@ -329,6 +329,20 @@ template<> bool Database::objectUsed<Flight> (dbId id)
 	return false;
 }
 
+QHash<dbId, int> Database::flightsPerPlane(QDate from, QDate to)
+{
+    Query query ("SELECT plane_id, COUNT(*) FROM flights WHERE landed=1 AND departed=1 AND date(departure_time) >= ? AND date(departure_time) <= ? GROUP BY plane_id");
+    query.bind(from);
+    query.bind(to);
+    QSharedPointer<Result> r = interface.executeQueryResult(query);
+    QHash<dbId, int> map;
+
+    while (r->next())
+        map.insert(r->value(0).toInt(), r->value(1).toInt());
+
+    return map;
+}
+
 
 // **********
 // ** Misc **

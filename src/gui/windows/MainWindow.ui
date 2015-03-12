@@ -19,7 +19,16 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" stretch="0,1,1">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
      <number>4</number>
     </property>
     <item>
@@ -31,7 +40,16 @@
        </size>
       </property>
       <layout class="QHBoxLayout" stretch="1,0">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -46,16 +64,34 @@
           <number>1</number>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
            <widget class="QWidget" name="infoPane" native="true">
             <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-             <property name="verticalSpacing">
+             <property name="leftMargin">
               <number>4</number>
              </property>
-             <property name="margin">
+             <property name="topMargin">
+              <number>4</number>
+             </property>
+             <property name="rightMargin">
+              <number>4</number>
+             </property>
+             <property name="bottomMargin">
+              <number>4</number>
+             </property>
+             <property name="verticalSpacing">
               <number>4</number>
              </property>
              <item row="0" column="0">
@@ -192,10 +228,19 @@
           <item>
            <widget class="QWidget" name="pluginPane" native="true">
             <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0">
-             <property name="verticalSpacing">
+             <property name="leftMargin">
               <number>4</number>
              </property>
-             <property name="margin">
+             <property name="topMargin">
+              <number>4</number>
+             </property>
+             <property name="rightMargin">
+              <number>4</number>
+             </property>
+             <property name="bottomMargin">
+              <number>4</number>
+             </property>
+             <property name="verticalSpacing">
               <number>4</number>
              </property>
              <item row="0" column="0">
@@ -233,7 +278,16 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
          </layout>
@@ -276,7 +330,16 @@
        </sizepolicy>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -308,7 +371,16 @@
           <property name="spacing">
            <number>0</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -371,7 +443,7 @@
      <x>0</x>
      <y>0</y>
      <width>825</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProgram">
@@ -537,7 +609,16 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout">
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
@@ -572,6 +653,7 @@
    <addaction name="actionNew"/>
    <addaction name="actionRepeat"/>
    <addaction name="actionHideFinished"/>
+   <addaction name="actionNewWizard"/>
    <addaction name="actionShowVirtualKeyboard"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -1028,6 +1110,14 @@
   <action name="actionSync">
    <property name="text">
     <string>Synchronize with remote database</string>
+   </property>
+  </action>
+  <action name="actionNewWizard">
+   <property name="text">
+    <string>New flight wizard</string>
+   </property>
+   <property name="toolTip">
+    <string>New flight wizard</string>
    </property>
   </action>
  </widget>

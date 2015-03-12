@@ -56,6 +56,7 @@ class WeatherPlugin;
 class WeatherWidget;
 class WeatherDialog;
 class FlightWindow;
+class FlightWizard;
 class Flarm;
 class DbSync;
 
@@ -160,6 +161,7 @@ class MainWindow: public SkMainWindow<Ui::MainWindowClass>
 
 		// Menu: Flight
 		void on_actionNew_triggered ();
+        void on_actionNewWizard_triggered ();
 		void on_actionLaunchMethodPreselection_triggered ();
 		void on_actionDepart_triggered ();
 		void on_actionLand_triggered ();
@@ -302,6 +304,7 @@ class MainWindow: public SkMainWindow<Ui::MainWindowClass>
 		QDate displayDate;
 		
 		QPointer<FlightWindow> createFlightWindow;
+        QPointer<FlightWizard> createFlightWizard;
 		QPointer<FlightWindow> editFlightWindow;
 
 		QList<InfoPlugin *> infoPlugins;

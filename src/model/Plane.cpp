@@ -93,6 +93,16 @@ QString Plane::toString () const
 		;
 }
 
+QString Plane::toNiceString() const
+{
+    QString result = registration;
+    if (!callsign.isEmpty())
+        result += QString(" (%1)").arg(callsign);
+    if (!type.isEmpty())
+        result += QString(", %1").arg(type);
+    return result;
+}
+
 bool Plane::clubAwareLessThan (const Plane &p1, const Plane &p2)
 {
 	QString club1=simplifyClubName (p1.club);

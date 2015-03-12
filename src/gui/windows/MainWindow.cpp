@@ -28,7 +28,7 @@
 #include <QStatusBar>
 #include <QCloseEvent>
 #include <QScrollBar>
-#include <phonon>
+//#include <phonon>
 #include <QWidget> // remove
 
 // TODO many dependencies - split
@@ -40,6 +40,7 @@
 #include "src/gui/windows/input/DateInputDialog.h"
 #include "src/gui/windows/input/DateTimeInputDialog.h"
 #include "src/gui/windows/FlightWindow.h"
+#include "src/gui/windows/FlightWizard.h"
 #include "src/gui/windows/LaunchMethodSelectionWindow.h"
 #include "src/gui/windows/objectList/ObjectListWindow.h"
 #include "src/gui/windows/objectList/FlightListWindow.h"
@@ -1033,6 +1034,13 @@ void MainWindow::on_actionNew_triggered ()
 	connect (createFlightWindow, SIGNAL (flightLanded   (dbId)), this, SLOT (flightLanded   (dbId)));
 	createFlightWindow->setAttribute (Qt::WA_DeleteOnClose, true);
 
+}
+
+void MainWindow::on_actionNewWizard_triggered ()
+{
+    createFlightWizard = new FlightWizard(this, dbManager);
+    createFlightWizard->setAttribute(Qt::WA_DeleteOnClose, true);
+    createFlightWizard->exec();
 }
 
 void MainWindow::on_actionLaunchMethodPreselection_triggered ()
@@ -2867,16 +2875,16 @@ void MainWindow::on_encodeFlarmNetFileAction_triggered ()
 
 void MainWindow::playDepartedSound ()
 {
-    Phonon::MediaObject *music =
-             Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_takeoff"));
+    //Phonon::MediaObject *music =
+    //         Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_takeoff"));
 
-    music->play();
+    //music->play();
 }
 
 void MainWindow::playLandedSound ()
 {
-    Phonon::MediaObject *music =
-             Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_landing"));
+    //Phonon::MediaObject *music =
+    //         Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_landing"));
 
-    music->play();
+    //music->play();
 }

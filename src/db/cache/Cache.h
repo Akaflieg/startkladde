@@ -82,6 +82,7 @@ class Cache: public QObject
 		template<class T> void refreshObjects (OperationMonitorInterface monitor=OperationMonitorInterface::null);
 
 		// *** Specific refreshing
+        void refreshStatic          (OperationMonitorInterface monitor=OperationMonitorInterface::null);
 		void refreshPlanes          (OperationMonitorInterface monitor=OperationMonitorInterface::null);
 		void refreshPeople          (OperationMonitorInterface monitor=OperationMonitorInterface::null);
 		void refreshLaunchMethods   (OperationMonitorInterface monitor=OperationMonitorInterface::null);
@@ -105,6 +106,7 @@ class Cache: public QObject
 		template<class T> EntityList<T> getObjects () const;
 
 		EntityList<Plane> getPlanes ();
+        QList<Plane> getPlanesSortedByUsage ();
 		EntityList<Person> getPeople ();
 		EntityList<LaunchMethod> getLaunchMethods ();
 		EntityList<FlarmNetRecord> getFlarmNetRecords ();
@@ -201,6 +203,7 @@ class Cache: public QObject
 		// Object lists - could also use AutomaticEntityList (but
 		// updating methods would have to be changed)
 		EntityList<Plane> planes;
+        QList<Plane> planesSortedByUsage;
 		EntityList<Person> people;
 		EntityList<LaunchMethod> launchMethods;
 		EntityList<FlarmNetRecord> flarmNetRecords;
@@ -257,11 +260,17 @@ class Cache: public QObject
 		QMultiHash<QString, dbId> personIdsByFirstName; // key is lower case
 		QMultiHash<QPair<QString, QString>, dbId> personIdsByName; // key is lower case
 		QMultiHash<QString, dbId> flarmNetRecordIdsByFlarmId;
+        // "Rough" means not being updated on flight creation/deletion
+        // but only on application startup
+        QHash<dbId, int> roughNumberOfFlightsByPlaneIdLastYear;
+        //QHash<dbId, int> numberOfFlightsByPlaneIdToday;
+
 
 		// Concurrency
 		// Improvement: use rw mutex and separate locks for flights, people...
 		/** Locks accesses to data of this Cache */
 		mutable QMutex dataMutex;
+
 };
 
 #endif
