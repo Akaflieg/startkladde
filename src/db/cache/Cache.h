@@ -108,6 +108,7 @@ class Cache: public QObject
 		EntityList<Plane> getPlanes ();
         QList<Plane> getPlanesSortedByUsage ();
 		EntityList<Person> getPeople ();
+        QList<Person> getPeopleSortedByFrequency ();
 		EntityList<LaunchMethod> getLaunchMethods ();
 		EntityList<FlarmNetRecord> getFlarmNetRecords ();
 
@@ -137,6 +138,10 @@ class Cache: public QObject
 		QList<dbId> getPersonIdsByLastName (const QString &lastName);
 		dbId getLaunchMethodByType (LaunchMethod::Type type) const;
 		QList<dbId> getFlarmNetRecordIds () const;
+
+        // *** Statistics
+        int getNumberOfTakeoffsByPersonId(dbId) const;
+        int getNumberOfHoursByPersonId(dbId) const;
 
 		// *** String lists
 		QStringList getPlaneRegistrations ();
@@ -205,6 +210,7 @@ class Cache: public QObject
 		EntityList<Plane> planes;
         QList<Plane> planesSortedByUsage;
 		EntityList<Person> people;
+        QList<Person> peopleSortedByFrequency;
 		EntityList<LaunchMethod> launchMethods;
 		EntityList<FlarmNetRecord> flarmNetRecords;
 
@@ -237,7 +243,7 @@ class Cache: public QObject
 		QHash<dbId   , Person      >        peopleById;
 		QHash<dbId   , LaunchMethod> launchMethodsById;
 		QHash<dbId   , Flight      >       flightsById;
-		QHash<dbId   , FlarmNetRecord>     flarmNetRecordsById;
+        QHash<dbId   , FlarmNetRecord>     flarmNetRecordsById;
 
 		// Specific hashes
 		// The keys of these hashes are lower case; names are QPair
@@ -263,8 +269,9 @@ class Cache: public QObject
         // "Rough" means not being updated on flight creation/deletion
         // but only on application startup
         QHash<dbId, int> roughNumberOfFlightsByPlaneIdLastYear;
-        //QHash<dbId, int> numberOfFlightsByPlaneIdToday;
-
+        QHash<dbId, int> roughNumberOfFlightsByPersonIdLastYear;
+        QHash<dbId, int> numberOfHoursByPersonIdLastHalfYear;
+        QHash<dbId, int> numberOfFlightsByPersonIdLastHalfYear;
 
 		// Concurrency
 		// Improvement: use rw mutex and separate locks for flights, people...

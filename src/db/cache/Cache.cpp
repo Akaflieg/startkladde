@@ -110,7 +110,13 @@ void Cache::refreshStatic(OperationMonitorInterface monitor)
 {
     monitor.status(tr("Retrieving flights per plane"));
     synchronized(dataMutex)
+    {
         roughNumberOfFlightsByPlaneIdLastYear = db.flightsPerPlane(QDate::currentDate().addYears(-1), QDate::currentDate());
+        roughNumberOfFlightsByPersonIdLastYear = db.flightsPerPerson(QDate::currentDate().addYears(-1), QDate::currentDate());
+
+        numberOfFlightsByPersonIdLastHalfYear = db.flightsPerPersonAsPic(QDate::currentDate().addDays(-183), QDate::currentDate().addDays(-1));
+        numberOfHoursByPersonIdLastHalfYear = db.hoursPerPersonAsPic(QDate::currentDate().addDays(-183), QDate::currentDate().addDays(-1));
+    }
 }
 
 template<class T> void Cache::refreshObjects (OperationMonitorInterface monitor)
@@ -163,6 +169,20 @@ void Cache::refreshPlanes (OperationMonitorInterface monitor)
 void Cache::refreshPeople (OperationMonitorInterface monitor)
 {
 	refreshObjects<Person> (monitor);
+
+    synchronized(dataMutex)
+    {
+        QMap<int, Person> sortMap;
+        for (int i = 0; i < people.size(); i++)
+        {
+            sortMap.insertMulti(
+                (-1)*roughNumberOfFlightsByPersonIdLastYear.value(people.at(i).getId(), 0),
+                people.at(i)
+            );
+        }
+
+        peopleSortedByFrequency = sortMap.values();
+    }
 }
 
 void Cache::refreshLaunchMethods (OperationMonitorInterface monitor)

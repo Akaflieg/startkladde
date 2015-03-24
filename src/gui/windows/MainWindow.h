@@ -57,6 +57,7 @@ class WeatherWidget;
 class WeatherDialog;
 class FlightWindow;
 class FlightWizard;
+class TrainingsBarometerDialog;
 class Flarm;
 class DbSync;
 

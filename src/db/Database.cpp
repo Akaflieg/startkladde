@@ -343,6 +343,64 @@ QHash<dbId, int> Database::flightsPerPlane(QDate from, QDate to)
     return map;
 }
 
+QHash<dbId, int> Database::flightsPerPerson(QDate from, QDate to)
+{
+    Query query ("SELECT pilot_id, COUNT(*) FROM flights WHERE landed=1 AND departed=1 AND date(departure_time) >= ? AND date(departure_time) <= ? GROUP BY pilot_id");
+    query.bind(from);
+    query.bind(to);
+    QSharedPointer<Result> r = interface.executeQueryResult(query);
+    QHash<dbId, int> map;
+
+    while (r->next())
+        map.insert(r->value(0).toInt(), r->value(1).toInt());
+
+    Query query2 ("SELECT copilot_id, COUNT(*) FROM flights WHERE landed=1 AND departed=1 AND date(departure_time) >= ? AND date(departure_time) <= ? GROUP BY copilot_id");
+    query2.bind(from);
+    query2.bind(to);
+    r = interface.executeQueryResult(query2);
+
+    while (r->next())
+    {
+        dbId id = r->value(0).toInt();
+        int nr = r->value(1).toInt();
+        if (map.contains(id)) {
+            map.insert(id, map.value(id) + nr);
+        } else {
+            map.insert(id, nr);
+        }
+    }
+
+    return map;
+}
+
+QHash<dbId, int> Database::flightsPerPersonAsPic(QDate from, QDate to)
+{
+    Query query ("SELECT pilot_id, COUNT(*) FROM flights WHERE landed=1 AND departed=1 AND date(departure_time) >= ? AND date(departure_time) <= ? GROUP BY pilot_id");
+    query.bind(from);
+    query.bind(to);
+    QSharedPointer<Result> r = interface.executeQueryResult(query);
+    QHash<dbId, int> map;
+
+    while (r->next())
+        map.insert(r->value(0).toInt(), r->value(1).toInt());
+
+    return map;
+}
+
+QHash<dbId, int> Database::hoursPerPersonAsPic(QDate from, QDate to)
+{
+    Query query ("SELECT pilot_id, SUM(TIMESTAMPDIFF(MINUTE, departure_time, landing_time)) FROM flights WHERE landed=1 AND departed=1 AND date(departure_time) >= ? AND date(departure_time) <= ? GROUP BY pilot_id");
+    query.bind(from);
+    query.bind(to);
+    QSharedPointer<Result> r = interface.executeQueryResult(query);
+    QHash<dbId, int> map;
+
+    while (r->next())
+        map.insert(r->value(0).toInt(), r->value(1).toInt() / 60);
+
+    return map;
+}
+
 
 // **********
 // ** Misc **

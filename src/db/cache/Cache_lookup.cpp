@@ -49,6 +49,11 @@ EntityList<Person> Cache::getPeople ()
 	synchronizedReturn (dataMutex, people);
 }
 
+QList<Person> Cache::getPeopleSortedByFrequency()
+{
+    synchronizedReturn (dataMutex, peopleSortedByFrequency);
+}
+
 EntityList<LaunchMethod> Cache::getLaunchMethods ()
 {
 	synchronizedReturn (dataMutex, launchMethods);
@@ -327,6 +332,20 @@ QList<FlarmNetRecord> Cache::getFlarmNetRecords () const {
 	synchronizedReturn (dataMutex,  flarmNetRecords);
 }
 */
+
+// ****************
+// ** Statistics **
+// ****************
+
+int Cache::getNumberOfTakeoffsByPersonId(dbId id) const
+{
+    return numberOfFlightsByPersonIdLastHalfYear.value(id, 0);
+}
+
+int Cache::getNumberOfHoursByPersonId(dbId id) const
+{
+    return numberOfHoursByPersonIdLastHalfYear.value(id, 0);
+}
 
 // ******************
 // ** String lists **

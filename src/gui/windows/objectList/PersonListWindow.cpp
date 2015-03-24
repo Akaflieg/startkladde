@@ -17,11 +17,13 @@
 #include "src/gui/windows/objectEditor/ObjectEditorWindow.h"
 #include "src/gui/windows/objectEditor/PersonEditorPane.h"
 #include "src/gui/PasswordPermission.h"
+#include "src/gui/windows/TrainingsBarometerDialog.h"
 
 PersonListWindow::PersonListWindow (DbManager &manager, QWidget *parent):
 	ObjectListWindow<Person> (manager, parent),
 	mergeAction (new QAction (this)),
 	displayMedicalDataAction (new QAction (this)),
+    showTrainingsbarometerAction( new QAction (this)),
 	mergePermission (databasePasswordCheck),
 	viewMedicalDataPermission (databasePasswordCheck),
 	changeMedicalDataPermission (databasePasswordCheck)
@@ -35,6 +37,7 @@ PersonListWindow::PersonListWindow (DbManager &manager, QWidget *parent):
 
 	connect (mergeAction             , SIGNAL (triggered ()), this, SLOT (mergeAction_triggered              ()));
 	connect (displayMedicalDataAction, SIGNAL (triggered ()), this, SLOT (displayMedicalDataAction_triggered ()));
+    connect (showTrainingsbarometerAction, SIGNAL (triggered ()), this, SLOT (showTrainingsbarometerAction_triggered()));
 
 	displayMedicalDataAction->setCheckable (true);
 	displayMedicalDataAction->setChecked (false);
@@ -56,6 +59,7 @@ PersonListWindow::PersonListWindow (DbManager &manager, QWidget *parent):
 	displayMedicalDataAction->setChecked (displayMedicalData);
 	personModel->setDisplayMedicalData (displayMedicalData);
 
+
 //	if (viewMedicalDataPermission.getPasswordRequired ())
 //		if (personModel)
 //			personModel->setDisplayMedicalData (false);
@@ -69,8 +73,9 @@ PersonListWindow::~PersonListWindow ()
 
 void PersonListWindow::setupText ()
 {
-	mergeAction             ->setText (tr ("&Merge"));
-	displayMedicalDataAction->setText (tr ("Display medi&cal data"));
+    mergeAction                 ->setText (tr ("&Merge"));
+    displayMedicalDataAction    ->setText (tr ("Display medi&cal data"));
+    showTrainingsbarometerAction->setText(tr ("Show training status"));
 }
 
 void PersonListWindow::displayMedicalDataAction_triggered ()
@@ -91,6 +96,23 @@ void PersonListWindow::displayMedicalDataAction_triggered ()
 
 	// FIXME this should be signaled by the model via a signal
 	refreshColumn (personModel->medicalColumn ());
+}
+
+void PersonListWindow::showTrainingsbarometerAction_triggered ()
+{
+    if (activeObjectCount() != 1) return;
+
+    QList<Person> sel = activeObjects();
+
+    Cache& cache = manager.getCache();
+
+    int takeoffs = cache.getNumberOfTakeoffsByPersonId(sel[0].getId());
+    int hours = cache.getNumberOfHoursByPersonId(sel[0].getId());
+
+
+    TrainingsBarometerDialog* dlg = new TrainingsBarometerDialog(this, sel[0].fullName(), hours, takeoffs);
+    dlg->setAttribute(Qt::WA_DeleteOnClose, true);
+    dlg->exec();
 }
 
 void PersonListWindow::mergeAction_triggered ()
@@ -164,6 +186,7 @@ void PersonListWindow::prepareContextMenu (QMenu *contextMenu)
 		contextMenu->addAction (mergeAction);
 
 	contextMenu->addAction (displayMedicalDataAction);
+    contextMenu->addAction (showTrainingsbarometerAction);
 }
 
 void PersonListWindow::languageChanged ()

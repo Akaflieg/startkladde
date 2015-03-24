@@ -23,12 +23,12 @@
    <item>
     <widget class="QStackedWidget" name="stack">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
-     <widget class="QWidget" name="p1">
+     <widget class="QWidget" name="page1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="titleLabel1">
          <property name="font">
           <font>
            <pointsize>20</pointsize>
@@ -43,7 +43,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
+        <spacer name="spacer1">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -60,6 +60,12 @@
        </item>
        <item>
         <widget class="CompletionLineEdit" name="planeEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <family>Monospace</family>
@@ -69,7 +75,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="speedDialLabel1">
          <property name="font">
           <font>
            <pointsize>14</pointsize>
@@ -92,18 +98,222 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="p2">
+     <widget class="QWidget" name="page2">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="titleLabel2">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Flugtyp</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
          <property name="font">
           <font>
            <pointsize>14</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>Flugtyp</string>
+          <string>Direktwahl:</string>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="speedDial2" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page3">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="titleLabel3">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pilot und Copilot</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="pilotLabel">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Pilot:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="CompletionLineEdit" name="pilotEdit">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="copilotLabel">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Copilot:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="CompletionLineEdit" name="copilotEdit">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Startart</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_3" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="SkComboBox" name="launchMethodComboBox">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -247,8 +457,24 @@
    <class>CompletionLineEdit</class>
    <extends>QLineEdit</extends>
    <header>src/gui/CompletionLineEdit.h</header>
+   <slots>
+    <signal>selectionStateChanged()</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>SkComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/gui/widgets/SkComboBox.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>planeEdit</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>prevButton</tabstop>
+  <tabstop>acceptAndTakeoffButton</tabstop>
+  <tabstop>acceptButton</tabstop>
+  <tabstop>nextButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -258,7 +484,7 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>197</x>
+     <x>177</x>
      <y>487</y>
     </hint>
     <hint type="destinationlabel">
@@ -274,7 +500,7 @@
    <slot>prevButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>389</x>
+     <x>349</x>
      <y>487</y>
     </hint>
     <hint type="destinationlabel">
@@ -322,12 +548,76 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>773</x>
-     <y>478</y>
+     <x>764</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
      <x>1024</x>
      <y>458</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>planeEdit</sender>
+   <signal>selectionStateChanged()</signal>
+   <receiver>FlightWizard</receiver>
+   <slot>updateNextButtonState()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>254</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>945</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pilotEdit</sender>
+   <signal>selectionStateChanged()</signal>
+   <receiver>FlightWizard</receiver>
+   <slot>updateNextButtonState()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>725</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>941</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copilotEdit</sender>
+   <signal>selectionStateChanged()</signal>
+   <receiver>FlightWizard</receiver>
+   <slot>updateNextButtonState()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>671</x>
+     <y>166</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>940</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>launchMethodComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>FlightWizard</receiver>
+   <slot>updateNextButtonState()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>520</x>
+     <y>290</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>946</x>
+     <y>355</y>
     </hint>
    </hints>
   </connection>
@@ -336,5 +626,6 @@
   <slot>prevButton_clicked()</slot>
   <slot>nextButton_clicked()</slot>
   <slot>planeCombo_textChanged(QString)</slot>
+  <slot>updateNextButtonState()</slot>
  </slots>
 </ui>

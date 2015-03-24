@@ -1,5 +1,5 @@
 #include "CompletionLineEdit.h"
-#include "PlaneCompleter.h"
+#include "SkCompleter.h"
 #include <QAbstractItemView>
 #include <QKeyEvent>
 #include <QPainter>
@@ -10,6 +10,7 @@ CompletionLineEdit::CompletionLineEdit(QWidget* parent) :
 {
     c = NULL;
     itemSelected = false;
+    this->installEventFilter(this);
 }
 
 CompletionLineEdit::~CompletionLineEdit()
@@ -17,18 +18,25 @@ CompletionLineEdit::~CompletionLineEdit()
 
 }
 
-Plane CompletionLineEdit::getSelectedItem() const
+bool CompletionLineEdit::isItemSelected() const
+{
+    return itemSelected;
+}
+
+QVariant CompletionLineEdit::getSelectedItem() const
 {
     return selectedItem;
 }
 
-void CompletionLineEdit::setSelectedItem(Plane item)
+void CompletionLineEdit::setSelectedItem(QVariant item)
 {
     updateSelection(true, item);
 }
 
-void CompletionLineEdit::setCompleter(PlaneCompleter* completer)
+void CompletionLineEdit::setCompleter(SkCompleter* completer)
 {
+    completer->setParent(this);
+
     if (c != NULL) QObject::disconnect(c, 0, this, 0);
 
     c = completer;
@@ -36,15 +44,15 @@ void CompletionLineEdit::setCompleter(PlaneCompleter* completer)
     if (c == NULL) return;
 
     c->setWidget(this);
-    connect(completer, SIGNAL(selected(Plane)), this, SLOT(insertCompletion(Plane)));
+    connect(completer, SIGNAL(selected(QVariant)), this, SLOT(insertCompletion(QVariant)));
 }
 
-PlaneCompleter* CompletionLineEdit::completer() const
+SkCompleter* CompletionLineEdit::completer() const
 {
     return c;
 }
 
-void CompletionLineEdit::insertCompletion(Plane sel)
+void CompletionLineEdit::insertCompletion(QVariant sel)
 {
     updateSelection(true, sel);
 }
@@ -61,29 +69,33 @@ void CompletionLineEdit::adaptColor()
     setPalette(p);
 }
 
-void CompletionLineEdit::updateSelection(bool s, Plane item)
+void CompletionLineEdit::updateSelection(bool s, QVariant item)
 {
-    if (itemSelected && !s) {
+    if (!s) {
         setText("");
-    }
-    if ((!itemSelected && s) || (s && (item.getId() != selectedItem.getId()))) {
-        setText(item.toNiceString());
+    } else {
+        setText(c->itemToString(item));
     }
     itemSelected = s;
     selectedItem = item;
     adaptColor();
-
+    emit selectionStateChanged();
 }
 
 void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
 {
+    if (e->key() == Qt::Key_Enter) {
+        e->accept();
+        return;
+    }
+
     if (itemSelected &&
          e->key() != Qt::Key_Right &&
          e->key() != Qt::Key_Left) {
-        updateSelection(false, Plane());
+        updateSelection(false, QVariant());
     }
 
-    if (c && c->popup()->isVisible())
+    /*if (c && c->popup()->isVisible())
     {
         // The following keys are forwarded by the completer to the widget
         switch (e->key())
@@ -96,23 +108,23 @@ void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
             e->ignore();
             return; // Let the completer do default behavior
         }
-    }
+    }*/
 
-    bool isShortcut = (e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_E;
-    if (!isShortcut)
-        QLineEdit::keyPressEvent(e); // Don't send the shortcut (CTRL-E) to the text edit.
+    //bool isShortcut = (e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_E;
+    //if (!isShortcut)
+    QLineEdit::keyPressEvent(e); // Don't send the shortcut (CTRL-E) to the text edit.
 
-    if (!c)
-        return;
-
-    bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
-    if (!isShortcut && !ctrlOrShift && e->modifiers() != Qt::NoModifier)
+    if (c != NULL)
     {
-        c->popup()->hide();
-        return;
-    }
+        /*bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
+        if (!isShortcut && !ctrlOrShift && e->modifiers() != Qt::NoModifier)
+        {
+            c->popup()->hide();
+            return;
+        }*/
 
-    c->update(text());
-    c->popup()->setFont(this->font());
-    c->popup()->setCurrentIndex(c->completionModel()->index(0, 0));
+        c->update(text());
+        c->popup()->setFont(this->font());
+        c->popup()->setCurrentIndex(c->completionModel()->index(0, 0));
+    }
 }

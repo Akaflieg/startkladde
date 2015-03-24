@@ -27,6 +27,7 @@ class PersonListWindow: public ObjectListWindow<Person>
 	protected slots:
 		void mergeAction_triggered ();
 		void displayMedicalDataAction_triggered ();
+        void showTrainingsbarometerAction_triggered ();
 
 	private:
 		Person::DefaultObjectModel *personModel;
@@ -35,6 +36,7 @@ class PersonListWindow: public ObjectListWindow<Person>
 
 		QAction *mergeAction;
 		QAction *displayMedicalDataAction; // FIXME to context menu?
+        QAction *showTrainingsbarometerAction;
 
 		PasswordPermission mergePermission;
 		PasswordPermission viewMedicalDataPermission;

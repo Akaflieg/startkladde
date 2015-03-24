@@ -2,9 +2,8 @@
 #define COMPLETIONLINEEDIT_H
 
 #include <QLineEdit>
-#include "src/model/Plane.h"
 
-class PlaneCompleter;
+class SkCompleter;
 
 class CompletionLineEdit : public QLineEdit
 {
@@ -14,24 +13,25 @@ public:
     CompletionLineEdit(QWidget*);
     ~CompletionLineEdit();
 
-    void setCompleter(PlaneCompleter*);
-    PlaneCompleter* completer() const;
+    void setCompleter(SkCompleter*);
+    SkCompleter* completer() const;
 
-    Plane getSelectedItem() const;
-    void setSelectedItem(Plane item);
+    bool isItemSelected() const;
+    QVariant getSelectedItem() const;
+    void setSelectedItem(QVariant item);
 
 protected:
     void keyPressEvent(QKeyEvent *e);
 
 private slots:
-    void insertCompletion(Plane completion);
+    void insertCompletion(QVariant completion);
 
 private:
-    Plane selectedItem;
+    QVariant selectedItem;
     bool itemSelected;
-    PlaneCompleter* c;
+    SkCompleter* c;
 
-    void updateSelection(bool s, Plane item);
+    void updateSelection(bool s, QVariant item);
     void adaptColor();
 
 signals:

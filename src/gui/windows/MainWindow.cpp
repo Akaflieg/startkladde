@@ -46,6 +46,7 @@
 #include "src/gui/windows/objectList/FlightListWindow.h"
 #include "src/gui/windows/StatisticsWindow.h"
 #include "src/gui/windows/WeatherDialog.h"
+#include "src/gui/windows/TrainingsBarometerDialog.h"
 #include "src/gui/windows/SettingsWindow.h"
 #include "src/model/Plane.h"
 #include "src/model/Flight.h"
