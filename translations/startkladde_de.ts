@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialogClass</name>
     <message>
@@ -46,40 +46,45 @@
 <context>
     <name>Cache</name>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="108"/>
-        <location filename="../src/db/cache/Cache.cpp" line="157"/>
+        <location filename="../src/db/cache/Cache.cpp" line="111"/>
+        <source>Retrieving flights per plane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/db/cache/Cache.cpp" line="124"/>
+        <location filename="../src/db/cache/Cache.cpp" line="201"/>
         <source>Retrieving %1</source>
         <translation>%1 abrufen</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="190"/>
+        <location filename="../src/db/cache/Cache.cpp" line="234"/>
         <source>flights of today</source>
         <translation>Flüge von heute</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="197"/>
-        <location filename="../src/db/cache/Cache.cpp" line="204"/>
+        <location filename="../src/db/cache/Cache.cpp" line="241"/>
+        <location filename="../src/db/cache/Cache.cpp" line="248"/>
         <source>flights of %1</source>
         <translation>Flüge von %1</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="210"/>
+        <location filename="../src/db/cache/Cache.cpp" line="254"/>
         <source>prepared flights</source>
         <translation>Prepared flights</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="216"/>
+        <location filename="../src/db/cache/Cache.cpp" line="260"/>
         <source>locations</source>
         <translation>Flugplätze abrufen</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="224"/>
+        <location filename="../src/db/cache/Cache.cpp" line="268"/>
         <source>accounting notes</source>
         <translation>Abrechnungshinweise abrufen</translation>
     </message>
     <message>
-        <location filename="../src/db/cache/Cache.cpp" line="246"/>
-        <location filename="../src/db/cache/Cache.cpp" line="257"/>
+        <location filename="../src/db/cache/Cache.cpp" line="291"/>
+        <location filename="../src/db/cache/Cache.cpp" line="302"/>
         <source>Finished</source>
         <translation>Ferig</translation>
     </message>
@@ -1567,7 +1572,7 @@ Die Datei kann in den Einstellungen geändert werden.</translation>
         <source>%1 W</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../src/flarm/FlarmWindow.cpp" line="329"/>
         <source>%1, %2 (%3° %4)</source>
         <translation type="unfinished"></translation>
@@ -1590,7 +1595,7 @@ Die Datei kann in den Einstellungen geändert werden.</translation>
         <source>&amp;Map orientation:</source>
         <translation>&amp;Kartenausrichtung</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../src/flarm/FlarmWindow.ui" line="51"/>
         <source>°</source>
         <translation>°</translation>
@@ -3088,6 +3093,85 @@ Soll sie in die Datenbank aufgenommen werden?</translation>
     </message>
 </context>
 <context>
+    <name>FlightWizard</name>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="20"/>
+        <source>New flight wizard</source>
+        <translation type="unfinished">Flug anlegen</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="38"/>
+        <source>Plane</source>
+        <translation>Flugzeug</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="85"/>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="142"/>
+        <source>Speed dial:</source>
+        <translation>Direktwahl:</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="111"/>
+        <source>Flight type</source>
+        <translation>Flugtyp</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="168"/>
+        <source>Pilot and copilot</source>
+        <translation>Pilot und Begleiter</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="214"/>
+        <source>Pilot:</source>
+        <translation>Pilot:</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="241"/>
+        <source>Copilot:</source>
+        <translation>Begleiter:</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="281"/>
+        <source>Launch method</source>
+        <translation>Startart</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="340"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="374"/>
+        <source>&lt;&lt; &amp;Back</source>
+        <translation>&lt;&lt; &amp;Zurück</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="395"/>
+        <source>D&amp;epart now</source>
+        <translation>&amp;Jetzt starten</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="416"/>
+        <source>&amp;Depart later</source>
+        <translation>Später &amp;starten</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.ui" line="440"/>
+        <source>&amp;Next &gt;&gt;</source>
+        <translation>&amp;Weiter &gt;&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.cpp" line="149"/>
+        <source>Save error</source>
+        <translation>Fehler beim Speichern</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/FlightWizard.cpp" line="150"/>
+        <source>An error occured while writing the flight to the datbase</source>
+        <translation>Beim Speichern des Flugs in der Datenbank ist ein Fehler aufgetreten</translation>
+    </message>
+</context>
+<context>
     <name>IconLabelClass</name>
     <message>
         <location filename="../src/gui/widgets/IconLabel.ui" line="14"/>
@@ -3504,7 +3588,7 @@ Die Vorauswahl wird beim nächsten Programmstart zurückgesetzt.</translation>
         <source>&lt;html&gt;Degrees&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../src/gui/widgets/LongitudeInput.ui" line="29"/>
         <source>°</source>
         <translation>°</translation>
@@ -3543,172 +3627,172 @@ Die Vorauswahl wird beim nächsten Programmstart zurückgesetzt.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="559"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="562"/>
         <source>Show &amp;log</source>
         <translation>Protoko&amp;ll anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="336"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="339"/>
         <source>%1
 Configuration: %2</source>
         <translation>%1
 Konfiguration: %2</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="413"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="416"/>
         <source>Weather</source>
         <translation>Wetter</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="481"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="487"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="484"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="490"/>
         <source>Really exit?</source>
         <translation>Wirklich beenden?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="481"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="487"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="484"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="490"/>
         <source>Really exit the program?</source>
         <translation>Programm wirklich beenden?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="492"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="495"/>
         <source>Really shut down?</source>
         <translation>Wirklich herunterfahren?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="492"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="495"/>
         <source>Really shut down the computer?</source>
         <translation>Rechner wirklich herunterfahren?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="562"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="565"/>
         <source>Startkladde</source>
         <translation>Startkladde</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="564"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="567"/>
         <source>Flight log %1 - Startkladde</source>
         <translation>Flugliste %1 - Startkladde</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="614"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="617"/>
         <source>Today (%1)</source>
         <translation>Heute (%1)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="619"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="622"/>
         <source>dddd, M/d/yyyy</source>
         <translation>dddd, d.M.yyyy</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="745"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="748"/>
         <source>According to the database, the %1 %2 is still flying. Depart anyway?</source>
         <translation>Laut Datenbank fliegt das %1 %2 noch. Trotzdem starten?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="747"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="750"/>
         <source>Plane still flying</source>
         <translation>Flugzeug fliegt noch</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="759"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="762"/>
         <source>According to the database, the %1 %2 is still flying. Start anyway?</source>
         <translation>Laut Datenbank fliegt der %1 %2 noch. Trotzdem starten?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="761"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="764"/>
         <source>Person still flying</source>
         <translation>Person fliegt noch</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="783"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="786"/>
         <source>plane</source>
         <translation>Flugzeug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="785"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="788"/>
         <source>towplane</source>
         <translation>Schleppflugzeug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1189"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1199"/>
         <source>Delete flight?</source>
         <translation>Flug löschen?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1189"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1199"/>
         <source>Really delete flight?</source>
         <translation>Flug wirklich löschen?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1192"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1202"/>
         <source>Delete glider flight?</source>
         <translation>Segelflug löschen?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1193"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1203"/>
         <source>The selected flight is a towflight. Really delete the corresponding glider flight?</source>
         <translation>Der ausgewählte Flug ist ein Schleppflug. Soll der dazugehörige Segelflug wirklich gelöscht werden?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1273"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1283"/>
         <source>No flight selected</source>
         <translation>Kein Flug ausgewählt</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1407"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1417"/>
         <source>Unable to display virtual keyboard</source>
         <translation>Bildschirmtastatur konnte nicht angezeigt werden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1470"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1480"/>
         <source>An error occured while executing the network diagnostics command.</source>
         <translation>Beim Ausführen der Netzwerkdiagnose ist ein Fehler aufgetreten.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1713"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1723"/>
         <source>Set displayed date</source>
         <translation>Anzeigedatum einstellen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1713"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1723"/>
         <source>Displayed date:</source>
         <translation>Anzeigedatum:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1774"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1791"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1784"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1801"/>
         <source>Viewing Flarm data is disabled. It can be enabled in the configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1862"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1872"/>
         <source>The database password must be entered to display the flight database.</source>
         <translation>Zum Anzeigen der Flugdatenbank muss das Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2022"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2032"/>
         <source>Closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2051"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2061"/>
         <source>reconnect in %1 s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2112"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2122"/>
         <source>The connection encountered an error and will be reopened automatically.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2114"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2124"/>
         <source>The connection encountered an error: %1. The connection will be reopened automatically.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2029"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2039"/>
         <source>Connecting</source>
         <translation type="unfinished">Verbindungsaufbau</translation>
     </message>
@@ -3717,29 +3801,29 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Verbindungsaufbau fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2528"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2538"/>
         <source>Registration from FlarmNet: %1</source>
         <translation>Kennzeichen aus FlarmNet: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2597"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2608"/>
         <source>The flight was departed automatically</source>
         <translation>Start automatisch eingetragen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2619"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2690"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2755"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2634"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2712"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2777"/>
         <source>The flight was created automatically</source>
         <translation>Dieser Flug wurde automatisch erstellt</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2672"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2691"/>
         <source>The flight was landed automatically</source>
         <translation>Landung automatisch eingetragen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2736"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2758"/>
         <source>The flight performed a touch-and-go automatically</source>
         <translation>Touch-and-Go automatisch eingetragen</translation>
     </message>
@@ -3756,8 +3840,8 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Flarm Daten Ok</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2234"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2284"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2244"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2294"/>
         <source>The system time was changed. The setting may only be stored permanently when the system is shut down.</source>
         <translation>Die Systemzeit wurde geändert. Gegebenenfalls wird die Änderung erst beim nächsten Herunterfahren dauerhaft gespeichert.</translation>
     </message>
@@ -3770,22 +3854,22 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Flarm sendet keine Daten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2263"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2273"/>
         <source>Time difference</source>
         <translation>Zeitabweichung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2264"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2274"/>
         <source>&lt;p&gt;System time: %1&lt;/p&gt;&lt;p&gt;GPS time: %2&lt;/p&gt;&lt;p&gt;The system time differs by %3 seconds from the GPS time.&lt;/p&gt;&lt;p&gt;Correction?&lt;/p&gt;</source>
         <translation>&lt;p&gt;Systemzeit: %1&lt;/p&gt;&lt;p&gt;GPS Zeit: %2&lt;/p&gt;&lt;p&gt;Die Systemzeit weicht um %3 Sekunden von der GPS Zeit ab.&lt;/p&gt;&lt;p&gt;Korrigieren?&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2297"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2307"/>
         <source>System time</source>
         <translation>Systemzeit</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2297"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2307"/>
         <source>The system time is correct</source>
         <translation>Die Systemzeit ist korrekt</translation>
     </message>
@@ -3810,68 +3894,68 @@ Konfiguration: %2</translation>
         <translation type="obsolete">&lt;qt&gt;&lt;p&gt;%1 wurde automatisch %2.&lt;/p&gt;&lt;big&gt;&lt;font color=&quot;red&quot;&gt;&lt;p&gt;Eintrag in Flugliste ist unvollständig!&lt;/p&gt;&lt;p&gt;Bitte die fehlenden Daten ergänzen!&lt;/p&gt;&lt;/font&gt;&lt;/big&gt;&lt;/qt&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1323"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1333"/>
         <source>Towflight has errors</source>
         <translation>Schleppflug fehlerhaft</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1323"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1333"/>
         <source>First error of the towflight: %1</source>
         <translation>Erster Fehler des Schleppflugs: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1325"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1335"/>
         <source>Flight has errors</source>
         <translation>Flug hat Fehler</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1325"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1335"/>
         <source>First error of the flight: %1</source>
         <translation>Erster Fehler des Flugs: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1330"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1340"/>
         <source>Towflight has no errors</source>
         <translation>Schleppflug fehlerfrei</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1330"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1340"/>
         <source>The towflight has no errors.</source>
         <translation>Der Schleppflug ist fehlerfrei.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1332"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1342"/>
         <source>Flight has no errors</source>
         <translation>Flug fehlerfrei</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1332"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1342"/>
         <source>The flight has no errors.</source>
         <translation>Der Flug ist fehlerfrei.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1401"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1418"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1411"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1428"/>
         <source>DBus call failed</source>
         <translation>DBus-Aufruf fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1402"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1412"/>
         <source>The call to dbus-send for displaying the virtual keyboard failed.</source>
         <translation>Der Aufruf von dbus-send zum Anzeigen der Bildschirmtastatur ist fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1408"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1418"/>
         <source>The virtual keyboard could not be displayed. Maybe kvkbd is not installed.</source>
         <translation>Die Bildschirmtastatur konnte nicht angezeigt werden. Möglicherweise ist kvkbd nicht installiert.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1419"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1429"/>
         <source>The call to dbus-send for hiding the virtual keyboard failed.</source>
         <translation>Der aufruf von dbus-send zum Ausblenden der Bildschirmtastatur ist fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1273"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1283"/>
         <source>No flight is selected.</source>
         <translation>Es ist kein Flug ausgewählt.</translation>
     </message>
@@ -3884,120 +3968,120 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Kein Schleppflug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1469"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2043"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2239"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2289"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1479"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2053"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2249"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2299"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1883"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1893"/>
         <source>Database: %2 (%1)</source>
         <translation>Datenbank: %2 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1955"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1965"/>
         <source>Not connected</source>
         <translation>Keine Verbindung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1959"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1969"/>
         <source>Connecting...</source>
         <translation>Verbindung wird aufgebaut...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1963"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2035"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1973"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2045"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2019"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2029"/>
         <source>No connection</source>
         <translation type="unfinished">Keine Verbindung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2038"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2048"/>
         <source>No data</source>
         <translation>Keine Daten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2032"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2042"/>
         <source>Connected</source>
         <translation>Verbunden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2069"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2079"/>
         <source>Disabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2116"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2126"/>
         <source>Flarm connection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Flarm-Verbindungsfehler</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2128"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2138"/>
         <source>No reply</source>
         <translation>Keine Antwort</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2198"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2208"/>
         <source>Database settings changed</source>
         <translation>Datenbankeinstellungen geändert</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2200"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2210"/>
         <source>The database settings were changed. The changes will be effective on the next reconnect. Do you want to reconnect now?</source>
         <translation>Die Datenbankeinstellungen wurden geändert. Die Anderungen werden beim nächsten Verbindungsaufbau wirksam. Soll die Verbindung jetzt neu aufgebaut werden?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2222"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2232"/>
         <source>Set system time</source>
         <translation>Systemzeit einstellen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2233"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2283"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2243"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2293"/>
         <source>System time changed</source>
         <translation>Systemzeit geändert</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2240"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2290"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2250"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2300"/>
         <source>Changing the system time failed. Maybe the user has insufficient permissions.</source>
         <translation>Die Änderung der Systemzeit ist fehlgeschlagen. Möglicherweise sind die Benutzerberechtigungen nicht ausreichend.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="803"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="806"/>
         <source>Departing not possible</source>
         <translation>Start nicht möglich</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="830"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="887"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="833"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="890"/>
         <source>Landing not possible</source>
         <translation>Landung nicht möglich</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="860"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1069"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="863"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1079"/>
         <source>Touch-and-go not possible</source>
         <translation>Zwischenlandung nicht möglich</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1070"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1080"/>
         <source>The selected flight is a towflight. Towflights cannot perform a touch-and-go.</source>
         <translation>Der ausgewählte Flug ist ein Schleppflug. Schleppflüge können keine Zwischenlandung machen.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1162"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1172"/>
         <source>Replicating not possible</source>
         <translation>Wiederholen nicht möglich</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1163"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1173"/>
         <source>The selected flight is a towflight. Towflights cannot be replicated.</source>
         <translation>Der ausgewählte Flug ist ein Schleppflug. Schleppflüge können nicht wiederholt werden.</translation>
     </message>
@@ -4005,94 +4089,94 @@ Konfiguration: %2</translation>
 <context>
     <name>MainWindowClass</name>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="64"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="100"/>
         <source>Local time:</source>
         <translation>Lokalzeit:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="827"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="910"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="78"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="114"/>
         <source>UTC:</source>
         <translation>UTC:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="85"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="121"/>
         <source>Displayed date:</source>
         <translation>Anzeigedatum:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="92"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="128"/>
         <source>Flights airborne:</source>
         <translation>Flüge in der Luft:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="99"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="135"/>
         <source>Flights total:</source>
         <translation>Flüge gesamt:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="106"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="142"/>
         <source>Database connection:</source>
         <translation>Datenbankverbindung:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="113"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="149"/>
         <source>Flarm connection:</source>
         <translation>Flarm Verbindung:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="120"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="156"/>
         <source>Power supply:</source>
         <translation>Stromversorgung:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="298"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="361"/>
         <source>Not connected to database</source>
         <translation>Es besteht keine Verbindung zur Datenbank</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="330"/>
-        <location filename="../src/gui/windows/MainWindow.ui" line="848"/>
-        <location filename="../src/gui/windows/MainWindow.ui" line="947"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="402"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="931"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1030"/>
         <source>&amp;Connect</source>
         <translation>&amp;Verbindung aufbauen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="390"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="462"/>
         <source>&amp;Flight</source>
         <translation>&amp;Flug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="410"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="483"/>
         <source>&amp;View</source>
         <translation>&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="414"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="487"/>
         <source>&amp;Flights</source>
         <translation>&amp;Flüge</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="425"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="498"/>
         <source>&amp;Date</source>
         <translation>&amp;Datum</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="433"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="506"/>
         <source>F&amp;ont</source>
         <translation>&amp;Schriftart</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="451"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="524"/>
         <source>&amp;Statistics</source>
         <translation>&amp;Statistik</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="459"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="532"/>
         <source>&amp;Database</source>
         <translation>&amp;Datenbank</translation>
     </message>
@@ -4101,48 +4185,48 @@ Konfiguration: %2</translation>
         <translation type="obsolete">De&amp;bug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="498"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="571"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="505"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="578"/>
         <source>Fla&amp;rm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="533"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="606"/>
         <source>Log</source>
         <translation>Protokoll</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="558"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="640"/>
         <source>Toolbar</source>
         <translation>Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="580"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="663"/>
         <source>Set &amp;time...</source>
         <translation>&amp;Zeit einstellen...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="585"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="668"/>
         <source>&amp;Exit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="588"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="671"/>
         <source>Ctrl+Q</source>
         <extracomment>Exit</extracomment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="717"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="800"/>
         <source>Sort by effective &amp;time (F9)</source>
         <translation>Nach effektiver Zeit sor&amp;tieren (F9)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="884"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="967"/>
         <source>Preselect launch &amp;method...</source>
         <translation>Starta&amp;rt-Vorauswahl...</translation>
     </message>
@@ -4151,7 +4235,7 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Sprache wechse&amp;ln</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="897"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="980"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
@@ -4160,17 +4244,17 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Zei&amp;tgesteuerter Sprachwechsel</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="908"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="991"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="913"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="996"/>
         <source>Set &amp;GPS time...</source>
         <translation>&amp;GPS Zeit einstellen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="916"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="999"/>
         <source>Set GPS time from Flarm data</source>
         <translation>GPS-Zeit aus Flarm-Daten übernehmen</translation>
     </message>
@@ -4179,7 +4263,7 @@ Konfiguration: %2</translation>
         <translation type="obsolete">&amp;Flarm Übersicht</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="929"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1012"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4192,407 +4276,438 @@ Konfiguration: %2</translation>
         <translation type="obsolete">FlarmNet &amp;Übersicht</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="598"/>
         <source>&amp;New flight... (F2)</source>
-        <translation>&amp;Neuer Flug... (F2)</translation>
+        <translation type="vanished">&amp;Neuer Flug... (F2)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="601"/>
         <source>New flight (F2)</source>
-        <translation>Neuer Flug (F2)</translation>
+        <translation type="vanished">Neuer Flug (F2)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="604"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1127"/>
         <source>Ctrl+N</source>
-        <extracomment>New flight</extracomment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="879"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="962"/>
         <source>Ctrl+S</source>
         <extracomment>Settings</extracomment>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="617"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="700"/>
         <source>&amp;Land/end (F6)</source>
         <translation>&amp;Landen/Beenden (F6)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="379"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="451"/>
         <source>&amp;Program</source>
         <translation>&amp;Programm</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="475"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="548"/>
         <source>D&amp;ebug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="593"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="676"/>
         <source>Shut&amp;down</source>
         <translation>&amp;Herunterfahren</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="609"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="681"/>
+        <source>&amp;New flight...</source>
+        <translation>Neuer Flug (&amp;detailliert)...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/MainWindow.ui" line="684"/>
+        <source>New flight</source>
+        <translation>Neuer Flug (detailliert)</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/MainWindow.ui" line="687"/>
+        <source>Ctrl+Shift+N</source>
+        <translation>Ctrl+Shift+N</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/MainWindow.ui" line="692"/>
         <source>&amp;Depart (F5)</source>
         <translation>&amp;Starten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="612"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="695"/>
         <source>Ctrl+D</source>
         <extracomment>Depart</extracomment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="620"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="703"/>
         <source>Ctrl+L</source>
         <extracomment>Land</extracomment>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="633"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="716"/>
         <source>&amp;Edit... (F4)</source>
         <translation>B&amp;earbeiten... (F4)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="636"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="719"/>
         <source>Ctrl+E</source>
         <extracomment>Edit</extracomment>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="641"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="724"/>
         <source>&amp;Replicate... (F3)</source>
         <translation>Wiederh&amp;olen... (F3)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="644"/>
-        <location filename="../src/gui/windows/MainWindow.ui" line="647"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="727"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="730"/>
         <source>Replicate flight (F3)</source>
         <translation>Flug wiederholen (F3)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="650"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="733"/>
         <source>Ctrl+C</source>
         <extracomment>Replicate</extracomment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="655"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="738"/>
         <source>Dele&amp;te... (F8)</source>
         <translation>Lösc&amp;hen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="658"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="741"/>
         <source>Del</source>
         <extracomment>Delete</extracomment>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="663"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="746"/>
         <source>&amp;Refresh table</source>
         <translation>Tabelle aktualisie&amp;ren</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="671"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="754"/>
         <source>Ctrl+J</source>
         <extracomment>Jump to towflight</extracomment>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="676"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="759"/>
         <source>Restart &amp;plugins</source>
         <translation>&amp;Plugins neu starten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="722"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="805"/>
         <source>Set &amp;displayed date... (F10)</source>
         <translation>Anzeigedatum &amp;einstellen... (F10)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="744"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="827"/>
         <source>Always use &amp;current date for new flights</source>
         <translation>Für neue Flüge immer &amp;aktuelles Datum verwenden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="775"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="858"/>
         <source>Ctrl+O</source>
         <extracomment>Edit people</extracomment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="889"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="972"/>
         <source>Show flight d&amp;atabase</source>
         <extracomment>Seems like &amp;f is not displayed correctly, possible because it is replaced with a ligature</extracomment>
         <translation>Flug&amp;datenbank anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="894"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="977"/>
         <source>Change lan&amp;guage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="905"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="988"/>
         <source>Timer-&amp;based language change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="921"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1004"/>
         <source>Plane &amp;list...</source>
         <translation>Flugzeug&amp;liste...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="926"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1009"/>
         <source>Flarm &amp;radar...</source>
         <translation>Flarm&amp;radar...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="934"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1017"/>
         <source>Import FlarmNet database from &amp;file...</source>
         <translation>Importiere FlarmNet Datenbank aus &amp;Datei...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="939"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1022"/>
         <source>Flarm&amp;Net overview...</source>
         <translation>Flarm&amp;Net Übersicht...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="950"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1033"/>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="955"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1038"/>
         <source>Inject Flarm &amp;departure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="960"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1043"/>
         <source>Inject Flarm &amp;landing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="965"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1048"/>
         <source>Inject Flarm &amp;touch and go</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="970"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1053"/>
         <source>Download FlarmNet database from &amp;web...</source>
         <translation type="unfinished">Importiere FlarmNet Datenbank aus dem &amp;Web...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="975"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1058"/>
         <source>Look up &amp;plane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="980"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1063"/>
         <source>Look up &amp;flight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="985"/>
-        <location filename="../src/gui/windows/MainWindow.ui" line="988"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1068"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1071"/>
         <source>&amp;Identify plane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="993"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1076"/>
         <source>&amp;Update Flarm ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="998"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1081"/>
         <source>Sho&amp;w notification for current flight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1009"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1092"/>
         <source>Dec&amp;ode FlarmNet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1014"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1097"/>
         <source>E&amp;ncode FlarmNet file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1025"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1108"/>
         <source>Op&amp;en</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1030"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1113"/>
         <source>Synchronize with remote database</source>
         <translation>Datenbanksynchronisierung starten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1001"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1118"/>
+        <source>New flight &amp;wizard...</source>
+        <translation>&amp;Neuer Flug</translation>
+    </message>
+    <message>
+        <source>New flight wizard...</source>
+        <translation type="vanished">Neuer Flug...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1121"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1124"/>
+        <source>New flight wizard (F2)</source>
+        <translation>Neuer Flug (F2)</translation>
+    </message>
+    <message>
+        <source>New flight wizard</source>
+        <translation type="obsolete">Neuer Flug</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1084"/>
         <source>Show notification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="1004"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="1087"/>
         <source>Ctrl+W</source>
         <translation type="unfinished">Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="668"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="751"/>
         <source>&amp;Jump to towflight</source>
         <translation>Zu Schleppflug spr&amp;ingen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="687"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="770"/>
         <source>&amp;Hide finished flights (F11)</source>
         <translation>Erledigte Flüge ausb&amp;lenden (F11)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="690"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="773"/>
         <source>Ctrl+A</source>
         <extracomment>Hide finished flights</extracomment>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="701"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="784"/>
         <source>Always show e&amp;xternal flights</source>
         <translation>&amp;Externe Flüge immer anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="712"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="795"/>
         <source>Always show &amp;erroneous flights</source>
         <translation>&amp;Fehlerhafte Flüge immer anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="733"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="816"/>
         <source>&amp;Update displayed date when creating a flight</source>
         <translation>Anzeigedatum bei neuem Flug anpa&amp;ssen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="749"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="832"/>
         <source>&amp;Plane logbooks</source>
         <translation>&amp;Bordbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="625"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="708"/>
         <source>Touch-and-&amp;go (F7)</source>
         <translation>Zwischenland&amp;ung (F7)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="754"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="837"/>
         <source>P&amp;ilot logbooks</source>
         <translation>&amp;Flugbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="759"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="842"/>
         <source>&amp;Launch method overview</source>
         <translation>Startartstatisti&amp;k</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="780"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="863"/>
         <source>&amp;Refresh (F12)</source>
         <translation>&amp;Aktualisieren (F12)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="788"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="871"/>
         <source>&amp;Crash</source>
         <translation>Ab&amp;sturz provozieren</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="801"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="884"/>
         <source>&amp;About Startkladde</source>
         <translation>&amp;Über Startkladde</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="764"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="847"/>
         <source>Edit &amp;planes</source>
         <translation>&amp;Flugzeuge bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="772"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="855"/>
         <source>Edit p&amp;eople</source>
         <translation>&amp;Personen bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="767"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="850"/>
         <source>Ctrl+P</source>
         <extracomment>Edit planes</extracomment>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="783"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="866"/>
         <source>Ctrl+R</source>
         <extracomment>Refresh</extracomment>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="793"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="876"/>
         <source>&amp;Ping Server</source>
         <translation>&amp;Ping server</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="806"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="889"/>
         <source>&amp;Network diagnostics</source>
         <translation>&amp;Netzwerkdiagnose</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="811"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="894"/>
         <source>&amp;Select font</source>
         <translation>Schriftart &amp;auswählen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="816"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="899"/>
         <source>&amp;Increase size</source>
         <translation>Schrift ver&amp;größern</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="819"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="902"/>
         <source>+</source>
         <translation>+</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="824"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="907"/>
         <source>&amp;Decrease size</source>
         <translation>Schrift ver&amp;kleinern</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="835"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="918"/>
         <source>Show &amp;virtual keyboard</source>
         <translation>&amp;Bildschirmtastatur anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="840"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="923"/>
         <source>&amp;Test</source>
         <translation>&amp;Test</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="856"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="939"/>
         <source>&amp;Disconnect</source>
         <translation>Verbindung &amp;trennen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="861"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="944"/>
         <source>&amp;Show errors</source>
         <translation>&amp;Fehler anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="866"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="949"/>
         <source>Adjust &amp;column widths</source>
         <translation>&amp;Spaltenbreiten anpassen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="871"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="954"/>
         <source>Edit &amp;launch methods</source>
         <translation>&amp;Startarten bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="876"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="959"/>
         <source>&amp;Settings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.ui" line="628"/>
+        <location filename="../src/gui/windows/MainWindow.ui" line="711"/>
         <source>Ctrl+T</source>
         <extracomment>Touch-and-go</extracomment>
         <translation>Ctrl+U</translation>
@@ -5138,59 +5253,64 @@ aktiviert werden.</translation>
 <context>
     <name>PersonListWindow</name>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="72"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="76"/>
         <source>&amp;Merge</source>
         <translation>&amp;Zusammenfassen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="50"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="53"/>
         <source>The database password must be entered to merge people.</source>
         <translation>Zum Zusammenfassen von Personen muss das Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="51"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="54"/>
         <source>The database password must be entered to view medical data.</source>
         <translation>Zum Anzeigen der Medical-Daten muss das Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="52"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="55"/>
         <source>The medical data was changed. The database password
 must be entered to save the changes.</source>
         <translation>Die Medical-Daten wurden geändern. Zum Speichern muss das
 Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="73"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="77"/>
         <source>Display medi&amp;cal data</source>
         <translation>&amp;Medical-Daten anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="105"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="78"/>
+        <source>Show training status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="127"/>
         <source>Not enough people selected</source>
         <translation>Zu wenige Personen ausgewählt</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="106"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="128"/>
         <source>At least two people must be selected for merging.</source>
         <translation>Zum Zusammenfassen müssen mindestens zwei Personen ausgewählt sein.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="111"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="133"/>
         <source>Select correct entry</source>
         <translation>Korrekten Eintrag auswählen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="115"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="137"/>
         <source>Please select the correct entry. All other entries will be overwritten.</source>
         <translation>Bitte den korrekten Eintrag auswählen. Alle anderen Einträge werden überschrieben.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="117"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="139"/>
         <source>Please select the correct entry. The other entry will be overwritten.</source>
         <translation>Bitte den korrekten Eintrag auswählen. Der andere Eintrag wird überschrieben.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="120"/>
+        <location filename="../src/gui/windows/objectList/PersonListWindow.cpp" line="142"/>
         <source>You will have to confirm the operation before any change to the database is made.</source>
         <translation>Die Operation muss nochmals bestätigt werden, bevor Änderungen an der Datenbank durchgeführt werden.</translation>
     </message>
@@ -5306,47 +5426,47 @@ Datenbankpasswort eingegeben werden.</translation>
         <translation>D-</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.h" line="75"/>
+        <location filename="../src/model/Plane.h" line="76"/>
         <source>plane</source>
         <translation>Flugzeug</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.h" line="76"/>
+        <location filename="../src/model/Plane.h" line="77"/>
         <source>the plane</source>
         <translation>das Flugzeug</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.h" line="77"/>
+        <location filename="../src/model/Plane.h" line="78"/>
         <source>planes</source>
         <translation>Flugzeuge</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="133"/>
+        <location filename="../src/model/Plane.cpp" line="143"/>
         <source>airplane</source>
         <translation>Motorflugzeug</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="134"/>
+        <location filename="../src/model/Plane.cpp" line="144"/>
         <source>glider</source>
         <translation>Segelflugzeug</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="135"/>
+        <location filename="../src/model/Plane.cpp" line="145"/>
         <source>motorglider</source>
         <translation>Motorsegler</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="136"/>
+        <location filename="../src/model/Plane.cpp" line="146"/>
         <source>ultralight</source>
         <translation>Ultraleicht</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="137"/>
+        <location filename="../src/model/Plane.cpp" line="147"/>
         <source>other</source>
         <translation>Sonstige</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="138"/>
+        <location filename="../src/model/Plane.cpp" line="148"/>
         <source>none</source>
         <translation>Keine</translation>
     </message>
@@ -5354,47 +5474,47 @@ Datenbankpasswort eingegeben werden.</translation>
 <context>
     <name>Plane::DefaultObjectModel</name>
     <message>
-        <location filename="../src/model/Plane.cpp" line="212"/>
+        <location filename="../src/model/Plane.cpp" line="222"/>
         <source>Registration</source>
         <translation>Kennzeichen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="213"/>
+        <location filename="../src/model/Plane.cpp" line="223"/>
         <source>Callsign</source>
         <translation>Wettbewerbskennzeichen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="214"/>
+        <location filename="../src/model/Plane.cpp" line="224"/>
         <source>Model</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="215"/>
+        <location filename="../src/model/Plane.cpp" line="225"/>
         <source>Category</source>
         <translation>Gattung</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="216"/>
+        <location filename="../src/model/Plane.cpp" line="226"/>
         <source>Seats</source>
         <translation>Sitze</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="217"/>
+        <location filename="../src/model/Plane.cpp" line="227"/>
         <source>Club</source>
         <translation>Verein</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="218"/>
+        <location filename="../src/model/Plane.cpp" line="228"/>
         <source>Flarm ID</source>
         <translation type="unfinished">Flarm ID</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="219"/>
+        <location filename="../src/model/Plane.cpp" line="229"/>
         <source>Comments</source>
         <translation>Bemerkungen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="221"/>
+        <location filename="../src/model/Plane.cpp" line="231"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
@@ -6606,9 +6726,7 @@ Bereich des Hauptfensters angezeigt.</translation>
         <location filename="../src/gui/windows/SettingsWindow.ui" line="1231"/>
         <location filename="../src/gui/windows/SettingsWindow.ui" line="1342"/>
         <source> minutes</source>
-        <extracomment>With leading space
-----------
-With leading space</extracomment>
+        <extracomment>With leading space</extracomment>
         <translation> Minuten</translation>
     </message>
     <message>
@@ -6678,22 +6796,22 @@ Verzeichnisse können entweder absolut (z. B. /var/lib/startkladde/plugins oder 
 <context>
     <name>StatisticsWindow</name>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1724"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1734"/>
         <source>Plane logbooks</source>
         <translation>Bordbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1725"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1735"/>
         <source>Pilot logbooks</source>
         <translation>Flugbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1726"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1736"/>
         <source>Launch method overview</source>
         <translation>Startartstatistik</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1727"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1737"/>
         <source>Flarm overview</source>
         <translation>Flarm Übersicht</translation>
     </message>
@@ -7098,6 +7216,14 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
     </message>
 </context>
 <context>
+    <name>TrainingsBarometerDialog</name>
+    <message>
+        <location filename="../src/gui/windows/TrainingsBarometerDialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Translation</name>
     <message>
         <location filename="../src/i18n/TranslationManager.cpp" line="271"/>
@@ -7187,27 +7313,27 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
         <translation>Radarbild herunterladen (1)...</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="59"/>
+        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="62"/>
         <source>Error: no radar image found</source>
         <translation>Fehler: kein Radarbild gefunden</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="62"/>
+        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="65"/>
         <source>Download radar image (2)...</source>
         <translation>Radarbild herunterladen (2)...</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="68"/>
+        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="71"/>
         <source>Error: invalid radar image</source>
         <translation>Fehler: ungültiges Radarbild</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="81"/>
+        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="84"/>
         <source>Error: page not found (404)</source>
         <translation>Fehler: Seite nicht gefunden (404)</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="84"/>
+        <location filename="../src/plugins/weather/WetterOnlineImagePlugin.cpp" line="87"/>
         <source>Error: radar image not found (404)</source>
         <translation>Fehler: Radarbild nicht gefunden (404)</translation>
     </message>
@@ -7215,44 +7341,32 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
 <context>
     <name>WetterOnlineImagePlugin2</name>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="24"/>
-        <source>Wetter Online (Image) 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="25"/>
         <source>Displays a weather image from wetteronline.de</source>
-        <translation type="unfinished">Zeigt ein Regenradar-Bild von wetteronline.de an</translation>
+        <translation type="obsolete">Zeigt ein Regenradar-Bild von wetteronline.de an</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="43"/>
         <source>Download radar image (1)...</source>
-        <translation type="unfinished">Radarbild herunterladen (1)...</translation>
+        <translation type="obsolete">Radarbild herunterladen (1)...</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="62"/>
         <source>Error: no radar image found</source>
-        <translation type="unfinished">Fehler: kein Radarbild gefunden</translation>
+        <translation type="obsolete">Fehler: kein Radarbild gefunden</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="65"/>
         <source>Download radar image (2)...</source>
-        <translation type="unfinished">Radarbild herunterladen (2)...</translation>
+        <translation type="obsolete">Radarbild herunterladen (2)...</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="71"/>
         <source>Error: invalid radar image</source>
-        <translation type="unfinished">Fehler: ungültiges Radarbild</translation>
+        <translation type="obsolete">Fehler: ungültiges Radarbild</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="84"/>
         <source>Error: page not found (404)</source>
-        <translation type="unfinished">Fehler: Seite nicht gefunden (404)</translation>
+        <translation type="obsolete">Fehler: Seite nicht gefunden (404)</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/WetterOnlineImagePlugin2.cpp" line="87"/>
         <source>Error: radar image not found (404)</source>
-        <translation type="unfinished">Fehler: Radarbild nicht gefunden (404)</translation>
+        <translation type="obsolete">Fehler: Radarbild nicht gefunden (404)</translation>
     </message>
 </context>
 <context>

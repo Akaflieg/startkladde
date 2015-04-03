@@ -1492,7 +1492,7 @@ void MainWindow::keyPressEvent (QKeyEvent *e)
 	{
 		// The function keys trigger actions
 		// ATTENTION: any changes here should be reflected in the menu entries' text.
-		case Qt::Key_F2:  if (databaseActionsEnabled) ui.actionNew           ->trigger (); break;
+        case Qt::Key_F2:  if (databaseActionsEnabled) ui.actionNewWizard     ->trigger (); break;
 		case Qt::Key_F3:  if (databaseActionsEnabled) ui.actionRepeat        ->trigger (); break;
 		case Qt::Key_F4:  if (databaseActionsEnabled) ui.actionEdit          ->trigger (); break;
 		case Qt::Key_F5:  if (databaseActionsEnabled) ui.actionDepart        ->trigger (); break;

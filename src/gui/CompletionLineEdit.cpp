@@ -84,14 +84,23 @@ void CompletionLineEdit::updateSelection(bool s, QVariant item)
 
 void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
 {
+    qDebug() << "press " << e->key();
+    qDebug() << (int) e->modifiers();
+
     if (e->key() == Qt::Key_Enter) {
         e->accept();
         return;
     }
 
+    if (e->key() == Qt::Key_Alt) {
+        qDebug() << "ALT!";
+    }
+
     if (itemSelected &&
          e->key() != Qt::Key_Right &&
-         e->key() != Qt::Key_Left) {
+         e->key() != Qt::Key_Left &&
+         e->key() != Qt::Key_Alt &&
+         e->key() != Qt::Key_AltGr) {
         updateSelection(false, QVariant());
     }
 
@@ -114,7 +123,7 @@ void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
     //if (!isShortcut)
     QLineEdit::keyPressEvent(e); // Don't send the shortcut (CTRL-E) to the text edit.
 
-    if (c != NULL)
+    if (c != NULL && e->key() != Qt::Key_Alt && e->key() != Qt::Key_AltGr)
     {
         /*bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
         if (!isShortcut && !ctrlOrShift && e->modifiers() != Qt::NoModifier)

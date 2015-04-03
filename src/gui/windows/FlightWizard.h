@@ -39,6 +39,8 @@ public:
     explicit FlightWizard(QWidget *parent, DbManager& dbManager);
     ~FlightWizard();
 
+    virtual void accept();
+
 private:
     Ui::FlightWizard *ui;
     QFont wizardFont;
@@ -47,6 +49,10 @@ private:
     void init_page2();
     void init_page3();
     void adaptButtons();
+    void adaptVisibility();
+
+    Flight determineFlight();
+    bool isCopilotActive() { return Flight::typeCopilotRecorded(selectedType); }
 
     Plane selectedPlane;
     Flight::Type selectedType;
@@ -55,6 +61,8 @@ private:
     static QString planeToString(QVariant &v);
     static bool personMatches(QVariant &v, QString str);
     static QString personToString(QVariant &v);
+
+
 
 private slots:
     void prevButton_clicked();

@@ -461,6 +461,7 @@
     <property name="title">
      <string>&amp;Flight</string>
     </property>
+    <addaction name="actionNewWizard"/>
     <addaction name="actionNew"/>
     <addaction name="actionLaunchMethodPreselection"/>
     <addaction name="separator"/>
@@ -650,10 +651,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNewWizard"/>
    <addaction name="actionNew"/>
    <addaction name="actionRepeat"/>
    <addaction name="actionHideFinished"/>
-   <addaction name="actionNewWizard"/>
    <addaction name="actionShowVirtualKeyboard"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -677,13 +678,13 @@
   </action>
   <action name="actionNew">
    <property name="text">
-    <string>&amp;New flight... (F2)</string>
+    <string>&amp;New flight...</string>
    </property>
    <property name="toolTip">
-    <string>New flight (F2)</string>
+    <string>New flight</string>
    </property>
    <property name="shortcut">
-    <string extracomment="New flight">Ctrl+N</string>
+    <string>Ctrl+Shift+N</string>
    </property>
   </action>
   <action name="actionDepart">
@@ -1114,10 +1115,16 @@
   </action>
   <action name="actionNewWizard">
    <property name="text">
-    <string>New flight wizard</string>
+    <string>New flight &amp;wizard...</string>
+   </property>
+   <property name="iconText">
+    <string>New flight wizard (F2)</string>
    </property>
    <property name="toolTip">
-    <string>New flight wizard</string>
+    <string>New flight wizard (F2)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

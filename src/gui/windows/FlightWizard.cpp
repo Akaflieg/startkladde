@@ -4,6 +4,7 @@
 #include <QCompleter>
 #include <QModelIndex>
 #include <QGridLayout>
+#include <QMessageBox>
 #include "src/gui/SkCompleter.h"
 #include "src/db/DbManager.h"
 #include "src/db/cache/Cache.h"
@@ -132,11 +133,46 @@ void FlightWizard::init_page3()
         ui->launchMethodComboBox->setCurrentItemByItemData(preselectedLaunchMethod);
 }
 
+void FlightWizard::accept()
+{
+
+    Flight flight = determineFlight();
+    if (sender() == ui->acceptAndTakeoffButton) {
+        flight.departNow(true);
+    }
+    bool success = dbManager.createObject(flight, this);
+
+    if (!success)
+    {
+        QMessageBox::critical (
+            this,
+            tr ("Save error"),
+            tr ("An error occured while writing the flight to the datbase")
+            );
+    }
+
+    QDialog::accept();
+}
+
+Flight FlightWizard::determineFlight()
+{
+    Flight flight;
+    flight.setPilotId(ui->pilotEdit->getSelectedItem().value<Person>().getId());
+    flight.setCopilotId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+    flight.setPlaneId(ui->planeEdit->getSelectedItem().value<Plane>().getId());
+    flight.setType(selectedType);
+    flight.setLaunchMethodId(ui->launchMethodComboBox->currentItemData().toInt());
+    flight.setDepartureLocation(Settings::instance().location);
+    flight.setLandingLocation(Settings::instance().location);
+    return flight;
+}
+
 void FlightWizard::nextButton_clicked()
 {
     int idx = ui->stack->currentIndex();
     ui->stack->setCurrentIndex(idx+1);
     adaptButtons();
+    adaptVisibility();
     updateNextButtonState();
 }
 
@@ -145,6 +181,7 @@ void FlightWizard::prevButton_clicked()
     int idx = ui->stack->currentIndex();
     ui->stack->setCurrentIndex(idx-1);
     adaptButtons();
+    adaptVisibility();
     updateNextButtonState();
 }
 
@@ -172,6 +209,12 @@ void FlightWizard::adaptButtons()
     ui->acceptButton->setDefault(ui->stack->currentIndex() == PilotsPage);
 }
 
+void FlightWizard::adaptVisibility()
+{
+    ui->copilotLabel->setVisible(this->isCopilotActive());
+    ui->copilotEdit->setVisible(this->isCopilotActive());
+}
+
 void FlightWizard::updateNextButtonState()
 {
     int index = ui->stack->currentIndex();
@@ -183,7 +226,7 @@ void FlightWizard::updateNextButtonState()
     else if (index == PilotsPage)
     {
         bool e = ui->pilotEdit->isItemSelected() &&
-                ui->copilotEdit->isItemSelected() &&
+                (ui->copilotEdit->isItemSelected() || !isCopilotActive() || selectedType == Flight::typeNormal) &&
                 idValid(ui->launchMethodComboBox->currentItemData().toInt());
         ui->nextButton->setEnabled(e);
         ui->acceptAndTakeoffButton->setEnabled(e);
@@ -194,9 +237,6 @@ void FlightWizard::updateNextButtonState()
         ui->nextButton->setEnabled(selectedType != Flight::typeNone);
     }
 }
-
-
-
 
 bool FlightWizard::planeMatches(QVariant &v, QString str)
 {
