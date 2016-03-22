@@ -24,12 +24,12 @@
 #ifndef ABSTRACTSERIAL_H
 #define ABSTRACTSERIAL_H
 
-#include <QtCore/QIODevice>
-#include <QtCore/QMap>
-#include <QtCore/QDateTime>
+#include <QIODevice>
+#include <QMap>
+#include <QDateTime>
 
 #ifndef QT_NO_DEBUG_STREAM
-#include <QtCore/QDebug>
+#include <QDebug>
 #endif
 
 #include "../qserialdevice_global.h"

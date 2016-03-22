@@ -1444,18 +1444,28 @@ void MainWindow::on_actionRefreshAll_triggered ()
 }
 
 void MainWindow::on_actionSync_triggered() {
-    SyncDialog* syncDialog = new SyncDialog(this);
-    syncDialog->open();
+    LoginDialog* loginDialog = new LoginDialog(this);
+    loginDialog->exec();
 
-    sync = new DbSync(dbManager, syncDialog, this);
-    connect(sync, SIGNAL(completed()), this, SLOT(syncCompleted()));
-    sync->startSynchronisation();
-}
+    if (loginDialog->result() == QDialog::Accepted)
+    {
+        QString user = loginDialog->getUsername();
+        QString pass = loginDialog->getPassword();
+        delete loginDialog;
 
-void MainWindow::syncCompleted()
-{
-    disconnect(sync, SIGNAL(completed()), this, SLOT(syncCompleted()));
-    on_actionRefreshAll_triggered();
+        SyncDialog* syncDialog = new SyncDialog(this);
+        syncDialog->setCancelable(true);
+
+        VereinsfliegerSyncWorker* worker = new VereinsfliegerSyncWorker(&dbManager, user, pass, this);
+        syncDialog->open();
+
+        connect(worker, SIGNAL(finished(bool,QString)), syncDialog, SLOT(completed(bool,QString)));
+        connect(worker, SIGNAL(progress(int,QString)), syncDialog, SLOT(setProgress(int,QString)));
+        connect(syncDialog, SIGNAL(cancelled()), worker, SLOT(cancel()));
+
+        worker->sync();
+        worker->deleteLater();
+    }
 }
 
 // **********

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Database synchronisation</string>
+   <string>Vereinsflieger upload</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -24,14 +24,14 @@
       </font>
      </property>
      <property name="text">
-      <string>Database synchronization in progress...</string>
+      <string>Vereinsflieger upload in progress...</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QProgressBar" name="progressBar">
      <property name="maximum">
-      <number>100</number>
+      <number>1000</number>
      </property>
      <property name="value">
       <number>0</number>
@@ -49,9 +49,18 @@
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>3</number>
       </property>
-      <property name="margin">
+      <property name="leftMargin">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>2</number>
+      </property>
+      <property name="rightMargin">
+       <number>2</number>
+      </property>
+      <property name="bottomMargin">
        <number>2</number>
       </property>
       <item>

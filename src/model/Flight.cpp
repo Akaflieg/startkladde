@@ -986,7 +986,7 @@ QString Flight::selectColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ23
 		",accounting_notes,comments" // 2 Σ25
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
-		",flarm_id" // 1 Σ29
+        ",flarm_id,vfid" // 2 Σ30
 		);
 }
 
@@ -994,6 +994,7 @@ Flight Flight::createFromResult (const Result &result)
 {
 	Flight f (result.value (0).toLongLong ());
 
+    f.setVfId             (result.value(29).toLongLong ());
 	f.setPilotId          (result.value (1).toLongLong ());
 	f.setCopilotId        (result.value (2).toLongLong ());
 	f.setPlaneId          (result.value (3).toLongLong ());
@@ -1087,7 +1088,7 @@ QString Flight::insertColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ22
 		",accounting_notes,comments" // 2 Σ24
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ27
-		",flarm_id" // 1 Σ28
+        ",flarm_id,vfid" // 1 Σ29
 		);
 }
 
@@ -1100,7 +1101,7 @@ QString Flight::insertPlaceholderList ()
 		",?,?,?,?"
 		",?,?"
 		",?,?,?"
-		",?"
+        ",?,?"
 		);
 }
 
@@ -1140,6 +1141,7 @@ void Flight::bindValues (Query &q) const
 	q.bind (getTowpilotFirstName ());
 
 	q.bind (getFlarmId ());
+    q.bind (getVfId ());
 }
 
 QList<Flight> Flight::createListFromResult (Result &result)

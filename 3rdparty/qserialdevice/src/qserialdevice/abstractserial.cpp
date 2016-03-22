@@ -266,16 +266,15 @@
     - e-mail    : scapig2@yandex.ru
 */
 
-#include <QtCore/QStringList>
-#include <QtCore/QAbstractEventDispatcher>
-#include <QtCore/QObject>
-#include <QApplication>
+#include <QStringList>
+#include <QAbstractEventDispatcher>
+#include <QObject>
 
 #include "abstractserial.h"
 #include "abstractserial_p.h"
 
 #if QT_VERSION >= 0x040700
-#include <QtCore/QElapsedTimer>
+#include <QElapsedTimer>
 #endif
 //#include <limits.h>
 #include <errno.h>
@@ -793,9 +792,9 @@ bool AbstractSerial::open(OpenMode mode)
         	QString errorString=qt_error_string (errorCode);
         	// Translate the string. This is a bit of a hack because it seems we
         	// can't translate a QString directly.
-        	QByteArray errorStringLatin1=errorString.toLatin1 ();
-        	const char *errorStringData=errorStringLatin1.constData ();
-        	errorString=qApp->translate ("QIODevice", errorStringData);
+            //QByteArray errorStringLatin1=errorString.toLatin1 ();
+            //const char *errorStringData=errorStringLatin1.constData ();
+            //errorString=qApp->translate ("QIODevice", errorStringData);
         	setErrorString (errorString);
         }
 

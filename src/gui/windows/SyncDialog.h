@@ -20,7 +20,7 @@ signals:
     void cancelled();
 
 public slots:
-    void completed(QString msg, bool errors);
+    void completed(bool errors, QString msg);
     void setProgress(int val, QString msg);
     void cancelButtonClicked();
     void setCancelable(bool cancelable);

@@ -1,7 +1,7 @@
 #ifndef ICONLABEL_H
 #define ICONLABEL_H
 
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QStyle>
 
 #include "src/container/Maybe.h"

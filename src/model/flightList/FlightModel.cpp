@@ -33,7 +33,7 @@ void FlightModel::setColorEnabled (bool colorEnabled)
 
 int FlightModel::columnCount () const
 {
-	return 17;
+    return 18;
 }
 
 void FlightModel::updateTranslations ()
@@ -53,11 +53,12 @@ void FlightModel::updateTranslations ()
 	headerTextNumLandings       =qApp->translate ("FlightModel", "Ldgs.");
 	headerTextDepartureLocation =qApp->translate ("FlightModel", "Departure location");
 	headerTextLandingLocation   =qApp->translate ("FlightModel", "Landing location");
-	headerTextComments          =qApp->translate ("FlightModel", "Comments");
+    headerTextComments          =qApp->translate ("FlightModel", "Comments");
 	headerTextAccountingNotes   =qApp->translate ("FlightModel", "Accounting notes");
 	headerTextDate              =qApp->translate ("FlightModel", "Date");
 	headerTextId                =qApp->translate ("FlightModel", "ID");
 	headerTextFlarmId           =qApp->translate ("FlightModel", "Flarm ID");
+    headerTextVFUploaded        =qApp->translate ("FlightModel", "Uploaded to VF");
 }
 
 QVariant FlightModel::displayHeaderData (int column) const
@@ -79,8 +80,9 @@ QVariant FlightModel::displayHeaderData (int column) const
 		case 12: return headerTextComments;
 		case 13: return headerTextAccountingNotes;
 		case 14: return headerTextDate;
-		case 15: return headerTextId;
-		case 16: return headerTextFlarmId;
+        case 15: return headerTextVFUploaded;
+        case 16: return headerTextId;
+        case 17: return headerTextFlarmId;
 	}
 
 	// Apparently, an unhandled column can happen when the last flight is deleted
@@ -107,8 +109,9 @@ QString FlightModel::columnName (int columnIndex) const
 		case 12: return notr ("comments");
 		case 13: return notr ("accountingNote");
 		case 14: return notr ("date");
-		case 15: return notr ("id");
-		case 16: return notr ("flarmId");
+        case 15: return notr ("vfuploaded");
+        case 16: return notr ("id");
+        case 17: return notr ("flarmId");
 	}
 
 	assert (!notr ("Unhandled column"));
@@ -135,8 +138,9 @@ QString FlightModel::sampleText (int columnIndex) const
 		case 12: return qApp->translate ("FlightModel", "Cable break training");
 		case 13: return qApp->translate ("FlightModel", "Landing fee paid");
 		case 14: return qApp->translate ("FlightModel", "12/34/5678");
-		case 15: return qApp->translate ("FlightModel", "12345");
-		case 16: return notr ("ABCDEF");
+        case 15: return notr("424242");
+        case 16: return qApp->translate ("FlightModel", "12345");
+        case 17: return notr ("ABCDEF");
 	}
 
 	assert (!notr ("Unhandled column"));
@@ -167,8 +171,12 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 			case 12: return flight.getComments ();
 			case 13: return flight.getAccountingNotes ();
 			case 14: return flight.effdatum ();
-			case 15: return (flight.isTowflight ()?qnotr ("(%1)"):qnotr ("%1")).arg (flight.getId ());
-			case 16: return flight.getFlarmId ();
+            case 15: return (flight.getVfId() == 0) ?
+                        qApp->translate ("FlightModel", "No") :
+                        qApp->translate ("FlightModel", "Yes");
+            case 16: return (flight.isTowflight ()?qnotr ("(%1)"):qnotr ("%1")).arg (flight.getId ());
+            case 17: return flight.getFlarmId ();
+
 		}
 
 		assert (false);

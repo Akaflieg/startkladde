@@ -1,4 +1,5 @@
 #include "SkCompleter.h"
+#include <QAbstractItemView>
 #include "src/db/cache/Cache.h"
 #include "src/gui/CompletionLineEdit.h"
 

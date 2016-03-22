@@ -32,8 +32,8 @@ NmeaSentence::NmeaSentence (const QString &line, const QString &expectedType, in
 
 	// The string must begin with a $ and contain a * at the third place from
 	// the end
-	if (_line[0]    .toAscii ()!='$') return;
-	if (_line[len-3].toAscii ()!='*') return;
+    if (_line[0]    .toLatin1 ()!='$') return;
+    if (_line[len-3].toLatin1 ()!='*') return;
 
 	// Extract the data part and the checksum
 	QString data    =_line.mid (1    , len-4);

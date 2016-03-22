@@ -950,8 +950,8 @@ int NativeSerialEnginePrivate::nativeSelect(int timeout,
     tv.tv_usec = (timeout % 1000) * 1000;
 
     //qt_safe_* added in Qt version >= 4.6.0
-    int ret = qt_safe_select(this->descriptor + 1, &fdread, &fdwrite, 0, (timeout < 0) ? 0 : &tv);
-    //int ret = ::select(this->descriptor + 1, &fdread, 0, 0, timeout < 0 ? 0 : &tv);
+    //int ret = qt_safe_select(this->descriptor + 1, &fdread, &fdwrite, 0, (timeout < 0) ? 0 : &tv);
+    int ret = ::select(this->descriptor + 1, &fdread, 0, 0, timeout < 0 ? 0 : &tv);
 
     if (ret <= 0) {
         *selectForRead = *selectForWrite = false;

@@ -294,13 +294,13 @@ void PlotWidget::mousePressEvent (QMouseEvent *event)
 {
 	if (event->button ()==Qt::LeftButton)
 	{
-		_mouseScrollPosition_p=toPlot (event->posF ());
+        _mouseScrollPosition_p=toPlot (event->localPos ());
 		_mouseScrollActive=true;
 		event->accept ();
 	}
 	else if (event->button ()==Qt::MiddleButton)
 	{
-		_mouseZoomStartPosition_w=event->posF ();
+        _mouseZoomStartPosition_w=event->localPos ();
 		_mouseZoomStartPosition_p=toPlot (_mouseZoomStartPosition_w);
 		_mouseZoomOriginalDiameter_p=diameter_p ();
 		_mouseZoomActive=true;
@@ -343,11 +343,11 @@ void PlotWidget::mouseMoveEvent (QMouseEvent *event)
 	bool shiftPressed  =((event->modifiers () & Qt::ShiftModifier  )!=0);
 	bool controlPressed=((event->modifiers () & Qt::ControlModifier)!=0);
 
-	emit mouseMoved_p (toPlot (event->posF ()));
+    emit mouseMoved_p (toPlot (event->localPos ()));
 
 	if (_mouseScrollActive)
 	{
-		scrollTo (_mouseScrollPosition_p, event->posF ());
+        scrollTo (_mouseScrollPosition_p, event->localPos ());
 	}
 
 	if (_mouseZoomActive && !shiftPressed)

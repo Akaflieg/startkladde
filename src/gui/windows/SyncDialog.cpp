@@ -14,19 +14,19 @@ SyncDialog::~SyncDialog()
     delete ui;
 }
 
-void SyncDialog::completed(QString msg, bool errors)
+void SyncDialog::completed(bool errors, QString msg)
 {
     ui->closeButton->setEnabled(true);
     ui->cancelButton->setEnabled(false);
     ui->statusLabel->setText(msg);
     if (!errors)
     {
-        ui->label->setText(tr("Database synchronization successful!"));
+        ui->label->setText(tr("Upload successful."));
         ui->statusLabel->setStyleSheet(notr("color:green; font-weight:bold;"));
         ui->progressBar->setValue(ui->progressBar->maximum());
     } else
     {
-        ui->label->setText(tr("An error occurred during synchronization!"));
+        ui->label->setText(tr("An error occurred during upload."));
         ui->statusLabel->setStyleSheet(notr("color:red; font-weight:bold;"));
         ui->progressBar->setValue(0);
     }
@@ -40,8 +40,8 @@ void SyncDialog::setProgress(int val, QString msg)
 
 void SyncDialog::cancelButtonClicked()
 {
+    ui->cancelButton->setEnabled(false);
     emit cancelled();
-
 }
 
 void SyncDialog::setCancelable(bool cancelable)

@@ -111,7 +111,7 @@ void SettingsWindow::prepareText ()
 
 	foreach (const WeatherPlugin::Descriptor *descriptor, weatherPlugins)
 	{
-		QString id  =descriptor->getId   ();
+        QString id  =descriptor->getId   ().toString();
 		ui.weatherPluginInput      ->addItem ("", id);
 		ui.weatherWindowPluginInput->addItem ("", id);
 	}
@@ -130,7 +130,7 @@ void SettingsWindow::setupText ()
 	foreach (const WeatherPlugin::Descriptor *descriptor, weatherPlugins)
 	{
 		QString name=descriptor->getName ();
-		QString id  =descriptor->getId   ();
+        QString id  =descriptor->getId   ().toString();
 		ui.weatherPluginInput      ->setItemTextByItemData (id, name);
 		ui.weatherWindowPluginInput->setItemTextByItemData (id, name);
 	}
@@ -619,7 +619,7 @@ void SettingsWindow::on_infoPluginList_itemDoubleClicked (QTreeWidgetItem *item,
 
 void SettingsWindow::on_weatherPluginInput_currentIndexChanged ()
 {
-	bool external=(ui.weatherPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ());
+    bool external=(ui.weatherPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherPluginCommandLabel->setEnabled (external);
 	ui.weatherPluginCommandInput->setEnabled (external);
 	ui.browseWeatherPluginCommandButton->setEnabled (external);
@@ -627,7 +627,7 @@ void SettingsWindow::on_weatherPluginInput_currentIndexChanged ()
 
 void SettingsWindow::on_weatherWindowPluginInput_currentIndexChanged ()
 {
-	bool external=(ui.weatherWindowPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ());
+    bool external=(ui.weatherWindowPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherWindowCommandLabel->setEnabled (external);
 	ui.weatherWindowCommandInput->setEnabled (external);
 	ui.browseWeatherWindowCommandButton->setEnabled (external);

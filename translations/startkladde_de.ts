@@ -727,12 +727,12 @@ Soll die Datenbank jetzt aktualisiert werden?</translation>
         <translation>Bereite Rücksynchronisierung vor...</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="368"/>
+        <location filename="../src/db/DbSync.cpp" line="378"/>
         <source>Reverse synchronization...</source>
         <translation>Rücksynchronisierung...</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="373"/>
+        <location filename="../src/db/DbSync.cpp" line="383"/>
         <source>Table %1 is being updated...</source>
         <translation>Tabelle %1 wird aktualisiert...</translation>
     </message>
@@ -741,42 +741,42 @@ Soll die Datenbank jetzt aktualisiert werden?</translation>
         <translation type="obsolete">Tabelle %1 wird aktualisiert...</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="402"/>
+        <location filename="../src/db/DbSync.cpp" line="412"/>
         <source>Remove change records inserted by reverse updates...</source>
         <translation>Entferne Änderungsdatensätze, die durch die Rücksynchronisierung eingefügt wurden...</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="413"/>
+        <location filename="../src/db/DbSync.cpp" line="423"/>
         <source>Synchronization successful!</source>
         <translation>Synchronisierung erfolgreich!</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="419"/>
+        <location filename="../src/db/DbSync.cpp" line="429"/>
         <source>The synchronization has been cancelled by the user!</source>
         <translation>Der Vorgang wurde vom Benutzer abgebrochen!</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="424"/>
+        <location filename="../src/db/DbSync.cpp" line="434"/>
         <source>The remote database could not be connected!</source>
         <translation>Die Verbindung zur Online-Datenbank konnte nicht hergestellt werden!</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="429"/>
+        <location filename="../src/db/DbSync.cpp" line="439"/>
         <source>An error occurred during synchronization!</source>
         <translation>Ein Fehler trat während der Synchronisierung auf!</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="453"/>
+        <location filename="../src/db/DbSync.cpp" line="463"/>
         <source>Operation cancelled by the user!</source>
         <translation>Der Vorgang wurde vom Benutzer abgebrochen!</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="460"/>
+        <location filename="../src/db/DbSync.cpp" line="470"/>
         <source>An error occurred when dumping local database: %1</source>
         <translation>Ein Fehler trat beim Sichern der lokalen Datenbank auf: %1</translation>
     </message>
     <message>
-        <location filename="../src/db/DbSync.cpp" line="462"/>
+        <location filename="../src/db/DbSync.cpp" line="472"/>
         <source>An error occurred when dumping local database!</source>
         <translation>Ein Fehler trat beim Sichern der lokalen Datenbank auf!</translation>
     </message>
@@ -2256,7 +2256,7 @@ Die Datei kann in den Einstellungen geändert werden.</translation>
     </message>
     <message>
         <location filename="../src/model/flightList/FlightModel.cpp" line="49"/>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="127"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="130"/>
         <source>Launch method</source>
         <translation>Startart</translation>
     </message>
@@ -2277,7 +2277,7 @@ Die Datei kann in den Einstellungen geändert werden.</translation>
     </message>
     <message>
         <location filename="../src/model/flightList/FlightModel.cpp" line="53"/>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="132"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="135"/>
         <source>Ldgs.</source>
         <translation>Ldg.</translation>
     </message>
@@ -2317,91 +2317,106 @@ Die Datei kann in den Einstellungen geändert werden.</translation>
         <translation type="unfinished">Flarm ID</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="122"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="61"/>
+        <source>Uploaded to VF</source>
+        <translation>Auf VF?</translation>
+    </message>
+    <message>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="125"/>
         <source>N99999 (WW)</source>
         <translation>D-1234 (WW)</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="296"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="175"/>
+        <source>No</source>
+        <translation type="unfinished">Nein</translation>
+    </message>
+    <message>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="176"/>
+        <source>Yes</source>
+        <translation type="unfinished">Ja</translation>
+    </message>
+    <message>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="304"/>
         <source>SL</source>
         <comment>Self launch</comment>
         <translatorcomment>Eigenstart</translatorcomment>
         <translation>ES</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="123"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="126"/>
         <source>DR-400/180</source>
         <translation>DR-400/180</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="124"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="127"/>
         <source>Passenger (E)</source>
         <translation>Gast (E)</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="125"/>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="126"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="128"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="129"/>
         <source>Xxxxxxxx, Yyyyyy (Twidd</source>
         <translation>Xxxxxxxx, Yyyyyy (FSV Ding</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="129"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="132"/>
         <source>  Depart  </source>
         <translation>  Starten  </translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="130"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="133"/>
         <source>  Land  </source>
         <translation>  Landen  </translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="131"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="134"/>
         <source>00:00</source>
         <translation>00:00</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="133"/>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="134"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="136"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="137"/>
         <source>Twiddlethorpe</source>
         <translation>Dingenskirchen</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="135"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="138"/>
         <source>Cable break training</source>
         <translation>Seilrissübung</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="136"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="139"/>
         <source>Landing fee paid</source>
         <translation>Landegebühr bezahlt</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="137"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="140"/>
         <source>12/34/5678</source>
         <translation>12.34.5678</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="138"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="142"/>
         <source>12345</source>
         <translation>12345</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="197"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="205"/>
         <source>Depart</source>
         <translation>Starten</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="201"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="209"/>
         <source>End</source>
         <translation>Ende</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="203"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="211"/>
         <source>Land</source>
         <translation>Landen</translation>
     </message>
     <message>
-        <location filename="../src/model/flightList/FlightModel.cpp" line="274"/>
+        <location filename="../src/model/flightList/FlightModel.cpp" line="282"/>
         <source>(Passenger)</source>
         <translation>(Gast)</translation>
     </message>
@@ -3561,6 +3576,24 @@ Die Vorauswahl wird beim nächsten Programmstart zurückgesetzt.</translation>
     </message>
 </context>
 <context>
+    <name>LoginDialog</name>
+    <message>
+        <location filename="../src/gui/windows/LoginDialog.ui" line="14"/>
+        <source>Sign in for Vereinsflieger</source>
+        <translation>Vereinsflieger-Login</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/LoginDialog.ui" line="22"/>
+        <source>Username:</source>
+        <translation>Benutzername:</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/LoginDialog.ui" line="29"/>
+        <source>Password:</source>
+        <translation>Passwort:</translation>
+    </message>
+</context>
+<context>
     <name>Longitude</name>
     <message>
         <location filename="../src/Longitude.h" line="45"/>
@@ -3746,53 +3779,53 @@ Konfiguration: %2</translation>
         <translation>Bildschirmtastatur konnte nicht angezeigt werden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1480"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1490"/>
         <source>An error occured while executing the network diagnostics command.</source>
         <translation>Beim Ausführen der Netzwerkdiagnose ist ein Fehler aufgetreten.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1723"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1733"/>
         <source>Set displayed date</source>
         <translation>Anzeigedatum einstellen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1723"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1733"/>
         <source>Displayed date:</source>
         <translation>Anzeigedatum:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1784"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1801"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1794"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1811"/>
         <source>Viewing Flarm data is disabled. It can be enabled in the configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1872"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1882"/>
         <source>The database password must be entered to display the flight database.</source>
         <translation>Zum Anzeigen der Flugdatenbank muss das Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2032"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2042"/>
         <source>Closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2061"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2071"/>
         <source>reconnect in %1 s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2122"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2132"/>
         <source>The connection encountered an error and will be reopened automatically.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2124"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2134"/>
         <source>The connection encountered an error: %1. The connection will be reopened automatically.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2039"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2049"/>
         <source>Connecting</source>
         <translation type="unfinished">Verbindungsaufbau</translation>
     </message>
@@ -3801,29 +3834,29 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Verbindungsaufbau fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2538"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2548"/>
         <source>Registration from FlarmNet: %1</source>
         <translation>Kennzeichen aus FlarmNet: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2608"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2618"/>
         <source>The flight was departed automatically</source>
         <translation>Start automatisch eingetragen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2634"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2712"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2777"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2644"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2722"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2787"/>
         <source>The flight was created automatically</source>
         <translation>Dieser Flug wurde automatisch erstellt</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2691"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2701"/>
         <source>The flight was landed automatically</source>
         <translation>Landung automatisch eingetragen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2758"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2768"/>
         <source>The flight performed a touch-and-go automatically</source>
         <translation>Touch-and-Go automatisch eingetragen</translation>
     </message>
@@ -3840,8 +3873,8 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Flarm Daten Ok</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2244"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2294"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2254"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2304"/>
         <source>The system time was changed. The setting may only be stored permanently when the system is shut down.</source>
         <translation>Die Systemzeit wurde geändert. Gegebenenfalls wird die Änderung erst beim nächsten Herunterfahren dauerhaft gespeichert.</translation>
     </message>
@@ -3854,22 +3887,22 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Flarm sendet keine Daten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2273"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2283"/>
         <source>Time difference</source>
         <translation>Zeitabweichung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2274"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2284"/>
         <source>&lt;p&gt;System time: %1&lt;/p&gt;&lt;p&gt;GPS time: %2&lt;/p&gt;&lt;p&gt;The system time differs by %3 seconds from the GPS time.&lt;/p&gt;&lt;p&gt;Correction?&lt;/p&gt;</source>
         <translation>&lt;p&gt;Systemzeit: %1&lt;/p&gt;&lt;p&gt;GPS Zeit: %2&lt;/p&gt;&lt;p&gt;Die Systemzeit weicht um %3 Sekunden von der GPS Zeit ab.&lt;/p&gt;&lt;p&gt;Korrigieren?&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2307"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2317"/>
         <source>System time</source>
         <translation>Systemzeit</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2307"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2317"/>
         <source>The system time is correct</source>
         <translation>Die Systemzeit ist korrekt</translation>
     </message>
@@ -3968,88 +4001,88 @@ Konfiguration: %2</translation>
         <translation type="obsolete">Kein Schleppflug</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1479"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2053"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2249"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2299"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1489"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2063"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2259"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2309"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1893"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1903"/>
         <source>Database: %2 (%1)</source>
         <translation>Datenbank: %2 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1965"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1975"/>
         <source>Not connected</source>
         <translation>Keine Verbindung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1969"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1979"/>
         <source>Connecting...</source>
         <translation>Verbindung wird aufgebaut...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1973"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2045"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1983"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2055"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2029"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2039"/>
         <source>No connection</source>
         <translation type="unfinished">Keine Verbindung</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2048"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2058"/>
         <source>No data</source>
         <translation>Keine Daten</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2042"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2052"/>
         <source>Connected</source>
         <translation>Verbunden</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2079"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2089"/>
         <source>Disabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2126"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2136"/>
         <source>Flarm connection error</source>
         <translation>Flarm-Verbindungsfehler</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2138"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2148"/>
         <source>No reply</source>
         <translation>Keine Antwort</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2208"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2218"/>
         <source>Database settings changed</source>
         <translation>Datenbankeinstellungen geändert</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2210"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2220"/>
         <source>The database settings were changed. The changes will be effective on the next reconnect. Do you want to reconnect now?</source>
         <translation>Die Datenbankeinstellungen wurden geändert. Die Anderungen werden beim nächsten Verbindungsaufbau wirksam. Soll die Verbindung jetzt neu aufgebaut werden?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2232"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2242"/>
         <source>Set system time</source>
         <translation>Systemzeit einstellen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2243"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2293"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2253"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2303"/>
         <source>System time changed</source>
         <translation>Systemzeit geändert</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2250"/>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="2300"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2260"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="2310"/>
         <source>Changing the system time failed. Maybe the user has insufficient permissions.</source>
         <translation>Die Änderung der Systemzeit ist fehlgeschlagen. Möglicherweise sind die Benutzerberechtigungen nicht ausreichend.</translation>
     </message>
@@ -4521,8 +4554,12 @@ Konfiguration: %2</translation>
     </message>
     <message>
         <location filename="../src/gui/windows/MainWindow.ui" line="1113"/>
+        <source>Upload flight data to Vereinsflieger...</source>
+        <translation>Flüge auf Vereinsflieger hochladen...</translation>
+    </message>
+    <message>
         <source>Synchronize with remote database</source>
-        <translation>Datenbanksynchronisierung starten</translation>
+        <translation type="vanished">Datenbanksynchronisierung starten</translation>
     </message>
     <message>
         <location filename="../src/gui/windows/MainWindow.ui" line="1118"/>
@@ -6796,22 +6833,22 @@ Verzeichnisse können entweder absolut (z. B. /var/lib/startkladde/plugins oder 
 <context>
     <name>StatisticsWindow</name>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1734"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1744"/>
         <source>Plane logbooks</source>
         <translation>Bordbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1735"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1745"/>
         <source>Pilot logbooks</source>
         <translation>Flugbücher</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1736"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1746"/>
         <source>Launch method overview</source>
         <translation>Startartstatistik</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/MainWindow.cpp" line="1737"/>
+        <location filename="../src/gui/windows/MainWindow.cpp" line="1747"/>
         <source>Flarm overview</source>
         <translation>Flarm Übersicht</translation>
     </message>
@@ -7084,14 +7121,22 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
 <context>
     <name>SyncDialog</name>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.ui" line="14"/>
         <source>Database synchronisation</source>
-        <translation>Datenbanksynchronisierung</translation>
+        <translation type="vanished">Datenbanksynchronisierung</translation>
+    </message>
+    <message>
+        <source>Database synchronization in progress...</source>
+        <translation type="vanished">Datenbanksynchronisierung läuft...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.ui" line="14"/>
+        <source>Vereinsflieger upload</source>
+        <translation>Vereinsflieger-Upload</translation>
     </message>
     <message>
         <location filename="../src/gui/windows/SyncDialog.ui" line="27"/>
-        <source>Database synchronization in progress...</source>
-        <translation>Datenbanksynchronisierung läuft...</translation>
+        <source>Vereinsflieger upload in progress...</source>
+        <translation>Vereinsflieger-Upload läuft...</translation>
     </message>
     <message>
         <location filename="../src/gui/windows/SyncDialog.ui" line="44"/>
@@ -7099,24 +7144,32 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
         <translation>Verbindung wird aufgebaut...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.ui" line="76"/>
+        <location filename="../src/gui/windows/SyncDialog.ui" line="85"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.ui" line="86"/>
+        <location filename="../src/gui/windows/SyncDialog.ui" line="95"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.cpp" line="24"/>
         <source>Database synchronization successful!</source>
-        <translation>Datenbanksynchronisierung erfolgreich!</translation>
+        <translation type="vanished">Datenbanksynchronisierung erfolgreich!</translation>
+    </message>
+    <message>
+        <source>An error occurred during synchronization!</source>
+        <translation type="vanished">Ein Fehler trat während der Synchronisierung auf!</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="24"/>
+        <source>Upload successful.</source>
+        <translation>Upload erfolgreich.</translation>
     </message>
     <message>
         <location filename="../src/gui/windows/SyncDialog.cpp" line="29"/>
-        <source>An error occurred during synchronization!</source>
-        <translation>Ein Fehler trat während der Synchronisierung auf!</translation>
+        <source>An error occurred during upload.</source>
+        <translation>Ein Fehler ist beim Upload aufgetreten.</translation>
     </message>
 </context>
 <context>
@@ -7230,6 +7283,59 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
         <source> </source>
         <comment>Replace with the name of the translation language, in that language</comment>
         <translation>Deutsch</translation>
+    </message>
+</context>
+<context>
+    <name>VereinsfliegerSyncWorker</name>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="30"/>
+        <source>Connection to Vereinsflieger could not be initiated.</source>
+        <translation>Verbindung zu Vereinsflieger konnte nicht aufgebaut werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="36"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="49"/>
+        <source>Operation cancelled by user.</source>
+        <translation>Vorgang vom Nutzer abgebrochen.</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="40"/>
+        <source>Signing in...</source>
+        <translation>Einloggen...</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="43"/>
+        <source>Failed to sign in on Vereinsflieger.</source>
+        <translation>Login bei Vereinsflieger fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="53"/>
+        <source>Fetching flights...</source>
+        <translation>Lade Flüge aus Datenbank...</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="61"/>
+        <source>Uploading flight %1 of %2...</source>
+        <translation>Lade Flug %1 von %2 hoch...</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="78"/>
+        <source>Signing out...</source>
+        <translation>Ausloggen...</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="83"/>
+        <source>%1 out of %2 flights could not be uploaded.</source>
+        <translation>%1 von %2 Flügen konnten nicht hochgeladen werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="86"/>
+        <source>Upload completed, %1 flights have been transmitted.</source>
+        <translation>Upload abgeschlossen, es wurden %1 Flüge übertragen.</translation>
+    </message>
+    <message>
+        <source>Upload completed.</source>
+        <translation type="vanished">Upload abgeschlossen.</translation>
     </message>
 </context>
 <context>

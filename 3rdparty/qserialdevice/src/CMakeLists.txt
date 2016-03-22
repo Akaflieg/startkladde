@@ -1,11 +1,8 @@
 project( QSerialDevice )
-cmake_minimum_required( VERSION 2.6.0 )
-find_package( Qt4 REQUIRED )
+cmake_minimum_required( VERSION 2.8.11 )
+find_package( Qt5Core REQUIRED )
 
-include( ${QT_USE_FILE} )
-include_directories( ${CMAKE_CURRENT_BINARY_DIR}
-                     ${QT_INCLUDES} 
-)
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${Qt5Core_INCLUDE_DIRS})
 
 # LIB_INCLUDE_DIRS - pathes to the header files of the library,
 #                    this paths is cached and useful in the future to build the /examples.
@@ -43,13 +40,14 @@ else()
 endif()
 
 # Disable Qt GUI and add definition.
-set( QT_DONT_USE_QTGUI 1 )
+#set( QT_DONT_USE_QTGUI 1 )
 set( QT_DEFINITIONS
     -DUNICODE
     -DQT_NO_DEBUG
     -DQT_THREAD_SUPPORT
 )
-add_definitions( ${QT_DEFINITIONS} )
+#add_definitions( ${QT_DEFINITIONS} )
+add_definitions( ${Qt5Core_DEFINITIONS} )
 
 # Library source files.
 set( QSERIALDEVICE_SRCS
@@ -96,10 +94,10 @@ else()
     message( FATAL_ERROR "This operating system is not supported library QSerialDevice" )
 endif()
 
-qt4_generate_moc( qserialdevice/abstractserial.h ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserial.cpp )
-qt4_generate_moc( qserialdevice/abstractserialengine.h ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserialengine.cpp )
-qt4_generate_moc( qserialdevice/nativeserialengine.h ${CMAKE_CURRENT_BINARY_DIR}/moc_nativeserialengine.cpp )
-qt4_generate_moc( qserialdeviceenumerator/serialdeviceenumerator.h ${CMAKE_CURRENT_BINARY_DIR}/moc_serialdeviceenumerator.cpp )
+qt5_generate_moc( qserialdevice/abstractserial.h ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserial.cpp )
+qt5_generate_moc( qserialdevice/abstractserialengine.h ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserialengine.cpp )
+qt5_generate_moc( qserialdevice/nativeserialengine.h ${CMAKE_CURRENT_BINARY_DIR}/moc_nativeserialengine.cpp )
+qt5_generate_moc( qserialdeviceenumerator/serialdeviceenumerator.h ${CMAKE_CURRENT_BINARY_DIR}/moc_serialdeviceenumerator.cpp )
 
 set_source_files_properties( qserialdevice/abstractserial.cpp OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserial.cpp )
 set_source_files_properties( qserialdevice/abstractserialengine.cpp OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/moc_abstractserialengine.cpp )
@@ -113,4 +111,8 @@ else()
     add_library( ${LIB_TARGET} STATIC ${QSERIALDEVICE_SRCS} ${QSERIALDEVICE_MOCS} )
 endif()
 
-target_link_libraries( ${LIB_TARGET}  ${QT_QTCORE_LIBRARY} ${ADDITIONAL_LIBRARY} )
+target_link_libraries(
+    ${LIB_TARGET}
+    ${Qt5Core_LIBARIES}
+    ${ADDITIONAL_LIBRARY}
+)

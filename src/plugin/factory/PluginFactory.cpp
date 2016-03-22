@@ -74,7 +74,7 @@ template<class T> void PluginFactory::addDescriptor (typename T::Descriptor *des
 	else if (descriptorHash.contains (descriptor->getId ()))
 	{
 		QString message=qnotr ("Error: duplicate UUID %1 for plugins %2 and %3").arg (
-				descriptor->getId (),
+                descriptor->getId ().toString(),
 				descriptor->getName (),
 				descriptorHash.value (descriptor->getId ())->getName ());
 

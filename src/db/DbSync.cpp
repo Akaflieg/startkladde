@@ -56,7 +56,7 @@ void DbSync::dumpLocalDb()
 
     if (!dir.mkpath(dir.absolutePath()))
     {
-        dialog->completed(tr("Database dump path could not be created!"), true);
+        dialog->completed(true, tr("Database dump path could not be created!"));
         logMessage(notr("ABORT. Database dump path could not be created"));
         return;
     }
@@ -66,7 +66,7 @@ void DbSync::dumpLocalDb()
     {
         dumpOut = new QTextStream(dumpFile);
     } else {
-        dialog->completed(tr("Database dump file could not be created!"), true);
+        dialog->completed(true, tr("Database dump file could not be created!"));
         logMessage(notr("ABORT. Database dump file could not be created"));
         return;
     }
@@ -80,7 +80,7 @@ void DbSync::startSynchronisation()
 {
     if (started)
     {
-        dialog->completed(tr("Internal error!"), true);
+        dialog->completed(true, tr("Internal error!"));
         logMessage(notr("ABORT. Sync class has been used twice"));
         return;
     }
@@ -90,7 +90,7 @@ void DbSync::startSynchronisation()
 
     if (!localDbInfo.different(remoteDbInfo) || localDbInfo.server == remoteDbInfo.server)
     {
-        dialog->completed(tr("Local and remote database have the same server address!"), true);
+        dialog->completed(true, tr("Local and remote database have the same server address!"));
         logMessage(notr("ABORT. Local and remote database have the same server address"));
         return;
     }
@@ -112,7 +112,7 @@ void DbSync::proceedAfterDump()
         localDbInterface->close();
     } catch (...)
     {
-        dialog->completed(tr("Changes could not be retrieved from local database!"), true);
+        dialog->completed(true, tr("Changes could not be retrieved from local database!"));
         logMessage(notr("ABORT. Changes could not be retrieved from local database"));
         return;
     }
@@ -140,7 +140,7 @@ void DbSync::proceedAfterDump()
         connect (&(remoteDbManager->getInterface()), SIGNAL (executingQuery (Query)), this, SLOT (databaseExecutingQuery (Query)));
         if (remoteDbManager->getState() == DbManager::stateDisconnected)
         {
-            dialog->completed(tr("Could not connect to remote database!"), true);
+            dialog->completed(true, tr("Could not connect to remote database!"));
             logMessage(notr("Could not connect to remote database!"));
             return;
         }
@@ -157,20 +157,20 @@ void DbSync::proceedAfterDump()
             }
             catch (OperationCanceledException e)
             {
-                dialog->completed(tr("Transmission cancelled! Relaunch for complete synchronization!"), true);
+                dialog->completed(true, tr("Transmission cancelled! Relaunch for complete synchronization!"));
                 logMessage(notr("User cancelled transmission of changes to remote database!"));
                 remoteDbManager->disconnect();
                 return;
             } catch (DbSync::ParsingException e)
             {
-                dialog->completed(tr("Error during transmission of changes to remote database! Check connection and relaunch!"), true);
+                dialog->completed(true, tr("Error during transmission of changes to remote database! Check connection and relaunch!"));
                 logMessage(QString(notr("Error during transmission of changes to remote database; ParseException: %1")).arg(e.message));
                 remoteDbManager->disconnect();
                 return;
 
             } catch (...)
             {
-                dialog->completed(tr("Error during transmission of changes to remote database! Check connection and relaunch!"), true);
+                dialog->completed(true, tr("Error during transmission of changes to remote database! Check connection and relaunch!"));
                 logMessage(notr("Error during transmission of changes to remote database!"));
                 remoteDbManager->disconnect();
                 return;
@@ -263,6 +263,11 @@ void DbSync::replaceInsDelInsChainsByUpdate()
 template<class T> void DbSync::applyChanges(Change change)
 {
     if (change.command == "insert") {
+        if (change.data.isEmpty()) {
+            logMessage(notr("Insert record without data!"));
+            return;
+        }
+
         T entity;
         constructObjectFromData<T>(&entity, change.data);
 
@@ -285,6 +290,11 @@ template<class T> void DbSync::applyChanges(Change change)
     }
 
     if (change.command == "update") {
+        if (change.data.isEmpty()) {
+            logMessage(notr("Update record without data!"));
+            return;
+        }
+
             T entity;
             constructObjectFromData<T>(&entity, change.data);
 
@@ -410,23 +420,23 @@ void DbSync::syncExited(int exitCode, QProcess::ExitStatus exitStatus)
 
     if (!error)
     {
-        dialog->completed(tr("Synchronization successful!"), false);
+        dialog->completed(false, tr("Synchronization successful!"));
         logMessage(notr("Sync finished successful!"));
     } else
     {
         if (userCancel)
         {
-            dialog->completed(tr("The synchronization has been cancelled by the user!"), true);
+            dialog->completed(true, tr("The synchronization has been cancelled by the user!"));
             logMessage(notr("ERROR. Sync finished (pt-table-sync cancelled by the user)"));
         }
         else if (ptConnectFailed)
         {
-            dialog->completed(tr("The remote database could not be connected!"), true);
+            dialog->completed(true, tr("The remote database could not be connected!"));
             logMessage(notr("ERROR. Sync finished (pt-table-sync could not connect remote host)"));
         }
         else
         {
-            dialog->completed(tr("An error occurred during synchronization!"), true);
+            dialog->completed(true, tr("An error occurred during synchronization!"));
             logMessage(notr("ERROR. Sync finished (errors during pt-table-sync)"));
         }
     }
@@ -457,9 +467,9 @@ void DbSync::dumpExited(int exitCode, QProcess::ExitStatus exitStatus)
     {
         logMessage(notr("ABORT. Database dump failed: ") + dumpError.isEmpty()?"unknown error":dumpError);
         if (!dumpError.isEmpty())
-            dialog->completed(QString(tr("An error occurred when dumping local database: %1")).arg(dumpError), true);
+            dialog->completed(true, QString(tr("An error occurred when dumping local database: %1")).arg(dumpError));
         else
-            dialog->completed(tr("An error occurred when dumping local database!"), true);
+            dialog->completed(true, tr("An error occurred when dumping local database!"));
     }
 
     delete dumpOut;

@@ -1110,7 +1110,7 @@
   </action>
   <action name="actionSync">
    <property name="text">
-    <string>Synchronize with remote database</string>
+    <string>Upload flight data to Vereinsflieger...</string>
    </property>
   </action>
   <action name="actionNewWizard">

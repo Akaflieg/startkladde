@@ -43,6 +43,7 @@ class FlightBase
 		virtual dbId getId () const { return id; }
 		virtual void setId (dbId id) { this->id=id; } // TODO can we do without this?
 
+        flight_value_accessor (dbId, VfId, vfId);
 		flight_value_accessor (dbId, PlaneId, planeId);
 		flight_value_accessor (dbId, PilotId, pilotId);
 		flight_value_accessor (dbId, CopilotId, copilotId);
@@ -84,6 +85,7 @@ class FlightBase
 
 		// *** Data
 		dbId id;
+        dbId vfId;
 
 		dbId planeId, pilotId, copilotId;
 		Type type;

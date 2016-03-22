@@ -46,6 +46,8 @@
 #include "src/flarm/algorithms/FlightLookup.h" // For FlightLookup::Result
 #include "src/FlightReference.h"
 #include "src/time/EventTimeTracker.h"
+#include "src/db/vfsync/vereinsfliegersyncworker.h"
+#include "src/gui/windows/LoginDialog.h"
 
 class QWidget;
 template<class T> class QList;
@@ -281,9 +283,6 @@ class MainWindow: public SkMainWindow<Ui::MainWindowClass>
 		void flarmList_touchAndGoDetected (const QString &flarmId);
 		Flight createFlarmFlight (const FlightLookup::Result &lookupResult, const QString &flarmId);
 		QString determineFlarmId (dbId flightId, bool ofTowflight);
-
-        //Sync
-        void syncCompleted();
 
         //Audio
         void playDepartedSound ();
