@@ -994,7 +994,6 @@ Flight Flight::createFromResult (const Result &result)
 {
 	Flight f (result.value (0).toLongLong ());
 
-    f.setVfId             (result.value(29).toLongLong ());
 	f.setPilotId          (result.value (1).toLongLong ());
 	f.setCopilotId        (result.value (2).toLongLong ());
 	f.setPlaneId          (result.value (3).toLongLong ());
@@ -1032,6 +1031,7 @@ Flight Flight::createFromResult (const Result &result)
 	f.setTowpilotFirstName  (result.value (27).toString   ());
 
 	f.setFlarmId (result.value (28).toString ());
+    f.setVfId    (result.value(29).toLongLong ());
 
 	return f;
 }

@@ -34,4 +34,6 @@ void FlightBase::initialize (dbId id)
 	departed        =false;
 	landed          =false;
 	towflightLanded =false;
+
+    vfId =invalidId;
 }

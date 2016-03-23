@@ -131,11 +131,11 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
 
     switch(flight.getType())
     {
-        case Flight::typeTraining1: result.ftid = 8; break;
-        case Flight::typeTraining2: result.ftid = 8; break;
-        case Flight::typeGuestPrivate: result.ftid = 14;
-        case Flight::typeGuestExternal: result.ftid = 13;
-        default: result.ftid = 10;
+        case Flight::typeTraining1:     result.ftid = 8;    result.chargemode = 2; break;
+        case Flight::typeTraining2:     result.ftid = 8;    result.chargemode = 2; break;
+        case Flight::typeGuestPrivate:  result.ftid = 14;   result.chargemode = 2; break;
+        case Flight::typeGuestExternal: result.ftid = 13;   result.chargemode = 4; break;
+        default:                        result.ftid = 10;   result.chargemode = 2;
     }
 
     return result;

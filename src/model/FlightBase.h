@@ -85,7 +85,6 @@ class FlightBase
 
 		// *** Data
 		dbId id;
-        dbId vfId;
 
 		dbId planeId, pilotId, copilotId;
 		Type type;
@@ -114,6 +113,7 @@ class FlightBase
 		QString comments;
 		QString accountingNotes;
 		QString flarmId;
+        dbId vfId;
 };
 
 #undef flight_value_accessor

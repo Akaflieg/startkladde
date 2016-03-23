@@ -55,10 +55,11 @@ int VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     if (!flight.departurelocation.isEmpty())    args.insert("departurelocation", flight.departurelocation);
     if (!flight.arrivallocation.isEmpty())    args.insert("arrivallocation", flight.arrivallocation);
     if (flight.landingcount != 1)    args.insert("landingcount", QString::number(flight.landingcount));
-    if (!flight.ftid.isEmpty())    args.insert("ftid", flight.ftid);
-
     if (flight.departuretime.isValid())    args.insert("departuretime", flight.departuretime.toString("yyyy-MM-dd HH:mm"));
     if (flight.arrivaltime.isValid())    args.insert("arrivaltime", flight.arrivaltime.toString("yyyy-MM-dd HH:mm"));
+
+    args.insert("ftid", flight.ftid <= 0 ? "10" : QString::number(flight.ftid));
+    args.insert("chargemode", flight.chargemode <= 0 ? "2" : QString::number(flight.chargemode));
 
     ReplyData reply = post("flight/add", args);
     qDebug() << reply.replyString;

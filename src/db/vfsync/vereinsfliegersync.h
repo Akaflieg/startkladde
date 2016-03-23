@@ -15,15 +15,16 @@ struct ReplyData
 struct VereinsfliegerFlight {
     qlonglong vfid;
     QString callsign;
-    QString pilotname;
-    QString attendantname;
-    QString starttype; // E,W,F
-    QDateTime departuretime;
+    QString pilotname;          // Nachname, Vorname
+    QString attendantname;      // Nachname, Vorname
+    QString starttype;          // E=Eigenstart, W=Windenstart, F=F-Schlepp
+    QDateTime departuretime;    // yyyy-mm-dd HH:MM
     QString departurelocation;
-    QDateTime arrivaltime;
+    QDateTime arrivaltime;      // yyyy-mm-dd HH:MM
     QString arrivallocation;
     int landingcount;
-    QString ftid; // Flugart als Zahl
+    int chargemode;             // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
+    int ftid;                   // Flugart als Zahl
 };
 
 class VereinsfliegerSync : public QObject
