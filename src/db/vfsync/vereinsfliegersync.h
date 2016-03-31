@@ -25,6 +25,7 @@ struct VereinsfliegerFlight {
     int landingcount;
     int chargemode;             // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
     int ftid;                   // Flugart als Zahl
+    QString comment;
 };
 
 class VereinsfliegerSync : public QObject
@@ -43,7 +44,7 @@ public:
 private:
     QNetworkAccessManager* manager;
 
-    const QString baseUrl = "https://vereinsflieger.de/interface/rest/";
+    QString baseUrl;
     ReplyData post(QString url, QMap<QString,QString>& args);
     ReplyData del(QString url, QMap<QString,QString>& args);
     ReplyData get(QString url);

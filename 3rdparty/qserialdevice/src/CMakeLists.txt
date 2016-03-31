@@ -49,6 +49,10 @@ set( QT_DEFINITIONS
 #add_definitions( ${QT_DEFINITIONS} )
 add_definitions( ${Qt5Core_DEFINITIONS} )
 
+# fPIC is a special flag needed for qt5 (should get obsolete after a time...)
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
+
 # Library source files.
 set( QSERIALDEVICE_SRCS
     qserialdevice/abstractserial.cpp

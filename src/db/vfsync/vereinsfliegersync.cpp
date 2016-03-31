@@ -2,6 +2,8 @@
 
 VereinsfliegerSync::VereinsfliegerSync(QNetworkAccessManager* man, QObject *parent) : QObject(parent)
 {
+    baseUrl = "https://vereinsflieger.de/interface/rest/";
+
     manager = man;
     accesstoken = QString();
     signedIn = QString();
@@ -49,15 +51,15 @@ int VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     QMap<QString, QString> args;
 
     args.insert("callsign", flight.callsign);
-    if (!flight.pilotname.isEmpty())    args.insert("pilotname", flight.pilotname);
+    if (!flight.pilotname.isEmpty())        args.insert("pilotname", flight.pilotname);
     if (!flight.attendantname.isEmpty())    args.insert("attendantname", flight.attendantname);
-    if (!flight.starttype.isEmpty())    args.insert("starttype", flight.starttype);
-    if (!flight.departurelocation.isEmpty())    args.insert("departurelocation", flight.departurelocation);
-    if (!flight.arrivallocation.isEmpty())    args.insert("arrivallocation", flight.arrivallocation);
-    if (flight.landingcount != 1)    args.insert("landingcount", QString::number(flight.landingcount));
-    if (flight.departuretime.isValid())    args.insert("departuretime", flight.departuretime.toString("yyyy-MM-dd HH:mm"));
-    if (flight.arrivaltime.isValid())    args.insert("arrivaltime", flight.arrivaltime.toString("yyyy-MM-dd HH:mm"));
-
+    if (!flight.starttype.isEmpty())        args.insert("starttype", flight.starttype);
+    if (!flight.departurelocation.isEmpty())args.insert("departurelocation", flight.departurelocation);
+    if (!flight.arrivallocation.isEmpty())  args.insert("arrivallocation", flight.arrivallocation);
+    if (flight.landingcount != 1)           args.insert("landingcount", QString::number(flight.landingcount));
+    if (flight.departuretime.isValid())     args.insert("departuretime", flight.departuretime.toString("yyyy-MM-dd HH:mm"));
+    if (flight.arrivaltime.isValid())       args.insert("arrivaltime", flight.arrivaltime.toString("yyyy-MM-dd HH:mm"));
+    if (!flight.comment.isEmpty())          args.insert("comment", flight.comment);
     args.insert("ftid", flight.ftid <= 0 ? "10" : QString::number(flight.ftid));
     args.insert("chargemode", flight.chargemode <= 0 ? "2" : QString::number(flight.chargemode));
 

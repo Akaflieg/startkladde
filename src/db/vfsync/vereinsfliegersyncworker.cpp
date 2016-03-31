@@ -76,7 +76,7 @@ void VereinsfliegerSyncWorker::sync()
     }
 
     emit progress(1000, tr("Signing out..."));
-    vfsync->signout() != 0;
+    vfsync->signout();
 
     if (counter != successCounter)
     {
