@@ -890,8 +890,9 @@ Flight FlightWindow::determineFlightBasic () throw ()
 	Flight flight;
 
 	// Some of the data is taken from the stored data
-	flight.setId (originalFlightId);
+    flight.setId          (originalFlightId);
 	flight.setFlarmId     (originalFlight.getFlarmId());
+    flight.setVfId        (originalFlight.getVfId());
 	flight.setPlaneId     (isRegistrationActive         ()?selectedPlane   :invalidId);
 	flight.setTowplaneId  (isTowplaneRegistrationActive ()?selectedTowplane:invalidId);
 	flight.setPilotId     (isPilotActive                ()?selectedPilot   :invalidId);
