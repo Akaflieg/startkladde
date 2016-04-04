@@ -10,6 +10,7 @@
 #include "src/i18n/notr.h"
 #include "src/nmea/PflaaSentence.h"
 #include "src/numeric/Velocity.h"
+#include "src/config/Settings.h"
 
 const int keepaliveTimerInterval=3000;
 
@@ -224,7 +225,7 @@ void FlarmRecord::keepaliveTimeout ()
 		case FlarmRecord::stateLanding:
 			qDebug () << "landing by timeout1:" << flarmId;
 			setState (FlarmRecord::stateOnGround);
-			emit landingDetected (flarmId);
+            _landingDetected (flarmId);
 			break;
 		case FlarmRecord::stateStarting:
 			qDebug () << "out of range:" << flarmId;
@@ -250,7 +251,7 @@ void FlarmRecord::landingTimeout ()
 	{
 		case FlarmRecord::stateOnGround:
 			qDebug () << "landing by timeout2:" << flarmId;
-			emit landingDetected (flarmId);
+            _landingDetected (flarmId);
 			break;
 		default:
 			qCritical () << "landingTimeout in invalid state: " << getState () << "; flarmid = " << flarmId;
@@ -319,7 +320,7 @@ void FlarmRecord::stateTransition ()
 						setState (FlarmRecord::stateFlying);
 						landingTimer->stop ();
 						if (category == Plane::categoryMotorglider)
-							emit touchAndGoDetected (flarmId);
+                            _touchAndGoDetected (flarmId);
 						else
 							qCritical () << "unexpected touch and go of glider?";
 					}
@@ -327,7 +328,7 @@ void FlarmRecord::stateTransition ()
 					{
 						qCritical () << "unexpected start: " << flarmId;
 						setState (FlarmRecord::stateFlying);
-						emit departureDetected (flarmId);
+                        _departureDetected (flarmId);
 					}
 					break;
 				case FlarmRecord::lowSituation:
@@ -337,7 +338,7 @@ void FlarmRecord::stateTransition ()
 						setState (FlarmRecord::stateStarting);
 						landingTimer->stop ();
 						if (category == Plane::categoryMotorglider)
-							emit touchAndGoDetected (flarmId);
+                            _touchAndGoDetected (flarmId);
 						else
 							qCritical () << "unexpected touchAndGo of glider?";
 					}
@@ -345,7 +346,7 @@ void FlarmRecord::stateTransition ()
 					{
 						setState (FlarmRecord::stateStarting);
 						qDebug () << "flat start:" << flarmId;
-						emit departureDetected (flarmId);
+                        _departureDetected (flarmId);
 					}
 					break;
 				default: break;
@@ -360,13 +361,13 @@ void FlarmRecord::stateTransition ()
 					if (category == Plane::categoryMotorglider)
 						landingTimer->start (30000);
 					else
-						emit landingDetected (flarmId);
+                        _landingDetected (flarmId);
 					break;
 				case FlarmRecord::flyingSituation:
 					qDebug () << "touch and go 3:" << flarmId;
 					setState (FlarmRecord::stateFlying);
 					if (category == Plane::categoryMotorglider)
-						emit touchAndGoDetected (flarmId);
+                        _touchAndGoDetected (flarmId);
 					else
 						qCritical () << "unexpected touch and go of glider?";
 					break;
@@ -382,7 +383,7 @@ void FlarmRecord::stateTransition ()
 					if (category == Plane::categoryMotorglider)
 						landingTimer->start (30000);
 					else
-						emit landingDetected (flarmId);
+                        _landingDetected (flarmId);
 					break;
 				case FlarmRecord::lowSituation: setState (FlarmRecord::stateLanding, "flying low"); break;
 				case flyingSituation: break;
@@ -398,7 +399,7 @@ void FlarmRecord::stateTransition ()
 					if (category == Plane::categoryMotorglider)
 						landingTimer->start (30000);
 					else
-						emit landingDetected (flarmId);
+                        _landingDetected (flarmId);
 					break;
 				case FlarmRecord::lowSituation:
 					qDebug () << "flying low:" << flarmId;
@@ -417,7 +418,7 @@ void FlarmRecord::stateTransition ()
 				case FlarmRecord::groundSituation:
 					qDebug () << "departure aborted:" << flarmId;
 					setState (FlarmRecord::stateOnGround);
-					emit landingDetected (flarmId);
+                    _landingDetected (flarmId);
 					break;
 				case FlarmRecord::flyingSituation:
 					qDebug () << "departure continued:" << flarmId;
@@ -428,7 +429,48 @@ void FlarmRecord::stateTransition ()
 			break;
 		// no default
 	}
+
 }
 
+void FlarmRecord::_departureDetected(const QString &flarmId)
+{
+    if (generalFilterMatch())
+    {
+        emit departureDetected(flarmId);
+    }
+}
+
+void FlarmRecord::_landingDetected(const QString &flarmId)
+{
+    if (generalFilterMatch())
+    {
+        emit landingDetected(flarmId);
+    }
+}
+
+void FlarmRecord::_touchAndGoDetected(const QString &flarmId)
+{
+    if (generalFilterMatch())
+    {
+       emit touchAndGoDetected(flarmId);
+    }
+}
+
+bool FlarmRecord::generalFilterMatch()
+{
+    int range = Settings::instance().flarmRange;
+
+    if (range > 0) {
+        qreal x = relativePosition.x();
+        qreal y = relativePosition.y();
+        qreal dist = sqrt(x*x + y*y);
+
+        if (dist > range) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 

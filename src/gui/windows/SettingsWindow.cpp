@@ -269,6 +269,8 @@ void SettingsWindow::readSettings ()
 	ui.flarmFileNameInput         ->setText     (s.flarmFileName);
 	ui.flarmFileDelayInput        ->setValue    (s.flarmFileDelayMs);
 	ui.flarmAutoDeparturesCheckbox->setChecked  (s.flarmAutoDepartures);
+    ui.flarmActivateRangeCheckbox ->setChecked  (s.flarmRange != 0);
+    ui.flarmRangeInput            ->setValue    (s.flarmRange);
 	ui.flarmDataViewableCheckbox  ->setChecked  (s.flarmDataViewable);
 	ui.flarmMapKmlFileNameInput   ->setText     (s.flarmMapKmlFileName);
 	// FlarmNet
@@ -371,6 +373,7 @@ void SettingsWindow::writeSettings ()
 	s.flarmFileName      =ui.flarmFileNameInput         ->text ();
 	s.flarmFileDelayMs   =ui.flarmFileDelayInput        ->value ();
 	s.flarmAutoDepartures=ui.flarmAutoDeparturesCheckbox->isChecked ();
+    s.flarmRange         =ui.flarmActivateRangeCheckbox->isChecked() ? ui.flarmRangeInput->value() : 0;
 	s.flarmDataViewable  =ui.flarmDataViewableCheckbox  ->isChecked ();
 	s.flarmMapKmlFileName=ui.flarmMapKmlFileNameInput   ->text ();
 	// FlarmNet
@@ -830,6 +833,9 @@ void SettingsWindow::updateWidgets ()
 	ui.flarmFileNameLabel ->setVisible (connectionType==Flarm::fileConnection);
 	ui.flarmFileDelayPane ->setVisible (connectionType==Flarm::fileConnection);
 	ui.flarmFileDelayLabel->setVisible (connectionType==Flarm::fileConnection);
+
+    ui.flarmRangePane->setVisible (ui.flarmActivateRangeCheckbox->isChecked());
+    ui.flarmRangeLabel->setVisible (ui.flarmActivateRangeCheckbox->isChecked());
 }
 
 
@@ -855,4 +861,14 @@ void SettingsWindow::on_flarmSerialPortInput_activated (int index)
 	// set the text to the item data.
 	if (!text.isEmpty ())
 		ui.flarmSerialPortInput->setEditText (text);
+}
+
+void SettingsWindow::on_flarmActivateRangeCheckbox_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui.flarmRangeInput->setValue(1000);
+    }
+
+    updateWidgets();
 }

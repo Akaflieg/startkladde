@@ -253,6 +253,7 @@ void Settings::readSettings ()
 	flarmFileName        =s.value (notr ("flarmFileName"        ), ""         ).toString ();
 	flarmFileDelayMs     =s.value (notr ("flarmFileDelayMs"     ), 0          ).toInt    ();
 	flarmAutoDepartures  =s.value (notr ("flarmAutoDepartures"  ), true       ).toBool   ();
+    flarmRange           =s.value (notr ("flarmRange"           ), 0          ).toInt    ();
 	flarmDataViewable    =s.value (notr ("flarmDataViewable"    ), true       ).toBool   ();
 	flarmMapKmlFileName  =s.value (notr ("flarmMapKmlFileName"  ), ""         ).toString ();
 	// FlarmNet
@@ -345,6 +346,7 @@ void Settings::writeSettings ()
 	s.setValue (notr ("flarmFileName"        ), flarmFileName);
 	s.setValue (notr ("flarmFileDelayMs"     ), flarmFileDelayMs);
 	s.setValue (notr ("flarmAutoDepartures"  ), flarmAutoDepartures);
+    s.setValue (notr ("flarmRange"           ), flarmRange);
 	s.setValue (notr ("flarmDataViewable"    ), flarmDataViewable  );
 	s.setValue (notr ("flarmMapKmlFileName"  ), flarmMapKmlFileName);
 	// FlarmNet

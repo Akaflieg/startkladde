@@ -67,6 +67,7 @@ class Settings: public QObject
 		QString  flarmFileName;
 		int      flarmFileDelayMs;
 		bool flarmAutoDepartures; // Also landings and touch-and-gos
+        int  flarmRange;          // Range for automatic detection in metres
 		bool flarmDataViewable;
 		QString flarmMapKmlFileName;
 		// FlarmNet
