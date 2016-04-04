@@ -128,6 +128,7 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
     result.arrivaltime = flight.getLandingTime();
     result.arrivallocation = flight.getLandingLocation();
     result.landingcount = flight.getNumLandings();
+    result.comment = flight.getComments();
 
     switch(flight.getType())
     {
