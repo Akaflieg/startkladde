@@ -460,12 +460,14 @@ QDateTime Flight::effectiveTime () const
 
 QTime Flight::flightDuration () const
 {
+    QTime result (0,0,0,0);
+
 	if (getDeparted () && getLanded ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (getLandingTime ()));
+        result = result.addSecs (getDepartureTime ().secsTo (getLandingTime ()));
 	else if (getDeparted ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
-	else
-		return QTime ();
+        result = result.addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
+
+    return result;
 }
 
 QTime Flight::towflightDuration () const
