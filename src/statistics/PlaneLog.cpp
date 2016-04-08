@@ -130,6 +130,7 @@ PlaneLog::Entry PlaneLog::Entry::create (const QList<Flight> &flights, Cache &ca
 	if (plane) entry.registration=plane->registration;
 	if (plane) entry.type=plane->type;
 
+    entry.operationTime = QTime(0,0,0,0);
 	entry.date=flights.last ().effdatum ();
 	if (pilot) entry.pilotName=pilot->formalName ();
 	entry.departureLocation=flights.first ().getDepartureLocation ().trimmed ();
@@ -154,7 +155,7 @@ PlaneLog::Entry PlaneLog::Entry::create (const QList<Flight> &flights, Cache &ca
 		entry.numLandings+=flight.getNumLandings ();
 
 		if (flight.hasDuration ())
-			entry.operationTime=entry.operationTime.addSecs (QTime ().secsTo (flight.flightDuration ())); // TODO: check flight mode
+            entry.operationTime=entry.operationTime.addSecs (QTime (0,0,0,0).secsTo (flight.flightDuration ())); // TODO: check flight mode
 
 		if (!isNone (flight.getComments ())) comments << flight.getComments ().trimmed ();
 		if (!flight.finished ()) entry.valid=false;
