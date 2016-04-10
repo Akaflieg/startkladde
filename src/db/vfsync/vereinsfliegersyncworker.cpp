@@ -38,7 +38,19 @@ void VereinsfliegerSyncWorker::sync()
     }
 
     emit progress(0, tr("Signing in..."));
-    if (vfsync->signin(user, pass) != 0)
+    QList<int> cidList;
+    cidList << 370 << 250;
+
+    bool signedIn = false;
+    foreach (int cid, cidList)
+    {
+        if (!signedIn)
+        {
+            signedIn = vfsync->signin(user, pass, cid) == 0;
+        }
+    }
+
+    if (!signedIn)
     {
         emit finished(true, tr("Failed to sign in on Vereinsflieger."));
         return;

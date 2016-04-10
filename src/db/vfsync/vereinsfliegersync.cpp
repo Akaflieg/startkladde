@@ -124,9 +124,7 @@ ReplyData VereinsfliegerSync::get(QString service)
     connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-    qDebug() << "get1";
     loop.exec();
-    qDebug() << "get2";
 
     ReplyData result;
 
