@@ -38,6 +38,8 @@ void VereinsfliegerSyncWorker::sync()
     }
 
     emit progress(0, tr("Signing in..."));
+
+    //TODO: Vereins-CIDS
     QList<int> cidList;
     cidList << 370 << 250;
 
@@ -106,20 +108,20 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
 
     if (flight.getPlaneId() != 0)
     {
-        Plane p = dbManager->getCache().getObject<Plane>(flight.getPlaneId());
-        result.callsign = p.registration;
+        Plane plane = dbManager->getCache().getObject<Plane>(flight.getPlaneId());
+        result.callsign = plane.registration.trimmed();
     }
 
     if (flight.getPilotId() != 0)
     {
-        Person p = dbManager->getCache().getObject<Person>(flight.getPilotId());
-        result.pilotname = p.lastName + ", " + p.firstName;
+        Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
+        result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
     }
 
     if (flight.getCopilotId() != 0)
     {
-        Person p = dbManager->getCache().getObject<Person>(flight.getCopilotId());
-        result.attendantname = p.lastName + ", " + p.firstName;
+        Person copilot = dbManager->getCache().getObject<Person>(flight.getCopilotId());
+        result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
     }
 
     if (flight.getLaunchMethodId() != 0)
@@ -134,7 +136,6 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
         }
     }
 
-
     result.departuretime = flight.getDepartureTime();
     result.departurelocation = flight.getDepartureLocation();
     result.arrivaltime = flight.getLandingTime();
@@ -142,13 +143,29 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
     result.landingcount = flight.getNumLandings();
     result.comment = flight.getComments();
 
-    switch(flight.getType())
+    // Abrechnungsmodus
+    // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
+
+    switch (flight.getType())
     {
         case Flight::typeTraining1:     result.ftid = 8;    result.chargemode = 2; break;
         case Flight::typeTraining2:     result.ftid = 8;    result.chargemode = 2; break;
         case Flight::typeGuestPrivate:  result.ftid = 14;   result.chargemode = 2; break;
         case Flight::typeGuestExternal: result.ftid = 13;   result.chargemode = 4; break;
         default:                        result.ftid = 10;   result.chargemode = 2;
+    }
+
+    // TODO
+    // Wenn Flugzeug CT und Pilot AFV -> Dann nicht abrechnen
+    if (flight.getPlaneId() != 0 && flight.getPilotId() != 0)
+    {
+        Plane plane = dbManager->getCache().getObject<Plane>(flight.getPlaneId());
+        Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
+
+        if (plane.registration.trimmed() == "D-1877" && pilot.club.trimmed() == "AFV")
+        {
+            result.chargemode = 1;
+        }
     }
 
     return result;
