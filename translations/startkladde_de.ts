@@ -5747,72 +5747,72 @@ Datenbankpasswort eingegeben werden.</translation>
         <translation>h:mm</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="166"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="167"/>
         <source>towflight</source>
         <translation>Schleppflug</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="168"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="169"/>
         <source>towflights</source>
         <translation>Schleppflüge</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="357"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="358"/>
         <source>Registration</source>
         <translation>Kennzeichen</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="358"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="359"/>
         <source>Model</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="359"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="360"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="360"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="361"/>
         <source>Pilot</source>
         <translation>Pilot</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="361"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="362"/>
         <source>Passengers</source>
         <translation>Insassen</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="362"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="363"/>
         <source>Departure location</source>
         <translation>Startort</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="363"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="364"/>
         <source>Landing location</source>
         <translation>Zielort</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="364"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="365"/>
         <source>Departure time</source>
         <translation>Startzeit</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="365"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="366"/>
         <source>Landing time</source>
         <translation>Landezeit</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="366"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="367"/>
         <source>Number of landings</source>
         <translation>Anzahl Landungen</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="367"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="368"/>
         <source>Time airborne</source>
         <translation>Betriebsdauer</translation>
     </message>
     <message>
-        <location filename="../src/statistics/PlaneLog.cpp" line="368"/>
+        <location filename="../src/statistics/PlaneLog.cpp" line="369"/>
         <source>Comments</source>
         <translation>Bemerkungen</translation>
     </message>
@@ -7159,12 +7159,12 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
         <translation>Verbindung wird aufgebaut...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.ui" line="85"/>
+        <location filename="../src/gui/windows/SyncDialog.ui" line="125"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.ui" line="95"/>
+        <location filename="../src/gui/windows/SyncDialog.ui" line="135"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -7177,12 +7177,42 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
         <translation type="vanished">Ein Fehler trat während der Synchronisierung auf!</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.cpp" line="24"/>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Pilot</source>
+        <translation>Pilot</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Copilot</source>
+        <translation>Begleiter</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Departure</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Landing</source>
+        <translation>Landung</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="12"/>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="28"/>
         <source>Upload successful.</source>
         <translation>Upload erfolgreich.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/SyncDialog.cpp" line="29"/>
+        <location filename="../src/gui/windows/SyncDialog.cpp" line="33"/>
         <source>An error occurred during upload.</source>
         <translation>Ein Fehler ist beim Upload aufgetreten.</translation>
     </message>
@@ -7303,48 +7333,53 @@ der Datendatei ein Bezugslängengrad angegeben ist.</translation>
 <context>
     <name>VereinsfliegerSyncWorker</name>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="30"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="32"/>
         <source>Connection to Vereinsflieger could not be initiated.</source>
         <translation>Verbindung zu Vereinsflieger konnte nicht aufgebaut werden.</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="36"/>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="49"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="38"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="65"/>
         <source>Operation cancelled by user.</source>
         <translation>Vorgang vom Nutzer abgebrochen.</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="40"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="42"/>
         <source>Signing in...</source>
         <translation>Einloggen...</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="43"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="59"/>
         <source>Failed to sign in on Vereinsflieger.</source>
         <translation>Login bei Vereinsflieger fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="53"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="69"/>
         <source>Fetching flights...</source>
         <translation>Lade Flüge aus Datenbank...</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="61"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="77"/>
         <source>Uploading flight %1 of %2...</source>
         <translation>Lade Flug %1 von %2 hoch...</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="78"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="97"/>
+        <source>Connection cancelled!</source>
+        <translation>Verbindung abgebrochen!</translation>
+    </message>
+    <message>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="112"/>
         <source>Signing out...</source>
         <translation>Ausloggen...</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="83"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="117"/>
         <source>%1 out of %2 flights could not be uploaded.</source>
         <translation>%1 von %2 Flügen konnten nicht hochgeladen werden.</translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="86"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="120"/>
         <source>Upload completed, %1 flights have been transmitted.</source>
         <translation>Upload abgeschlossen, es wurden %1 Flüge übertragen.</translation>
     </message>

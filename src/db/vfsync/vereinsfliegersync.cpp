@@ -46,7 +46,7 @@ int VereinsfliegerSync::signin(QString user, QString pass, int cid)
     }
 }
 
-int VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
+void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
 {
     QMap<QString, QString> args;
 
@@ -67,12 +67,11 @@ int VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     qDebug() << reply.replyString;
 
     if (reply.cancelled) {
-        return 2;
+        throw VfSyncException(true, "", 0);
     } else if (reply.httpStatus == 200) {
         flight.vfid = reply.replyValues.value("flid").toLongLong();
-        return 0;
     } else {
-        return 1;
+        throw VfSyncException(false, reply.replyString, reply.httpStatus);
     }
 }
 

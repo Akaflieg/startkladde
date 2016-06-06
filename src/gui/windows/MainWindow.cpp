@@ -1459,7 +1459,7 @@ void MainWindow::on_actionSync_triggered() {
         VereinsfliegerSyncWorker* worker = new VereinsfliegerSyncWorker(&dbManager, user, pass, this);
         syncDialog->open();
 
-        connect(worker, SIGNAL(finished(bool,QString)), syncDialog, SLOT(completed(bool,QString)));
+        connect(worker, SIGNAL(finished(bool,QString,QList<QTreeWidgetItem*>)), syncDialog, SLOT(completed(bool,QString,QList<QTreeWidgetItem*>)));
         connect(worker, SIGNAL(progress(int,QString)), syncDialog, SLOT(setProgress(int,QString)));
         connect(syncDialog, SIGNAL(cancelled()), worker, SLOT(cancel()));
 

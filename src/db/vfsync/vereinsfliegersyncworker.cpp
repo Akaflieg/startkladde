@@ -25,15 +25,17 @@ void VereinsfliegerSyncWorker::cancel()
 
 void VereinsfliegerSyncWorker::sync()
 {
+    errorItems.clear();
+
     if (vfsync->retrieveAccesstoken() != 0)
     {
-        emit finished(true, tr("Connection to Vereinsflieger could not be initiated."));
+        emit finished(true, tr("Connection to Vereinsflieger could not be initiated."), errorItems);
         return;
     }
 
     if (cancelled)
     {
-        emit finished(true, tr("Operation cancelled by user."));
+        emit finished(true, tr("Operation cancelled by user."), errorItems);
         return;
     }
 
@@ -54,13 +56,13 @@ void VereinsfliegerSyncWorker::sync()
 
     if (!signedIn)
     {
-        emit finished(true, tr("Failed to sign in on Vereinsflieger."));
+        emit finished(true, tr("Failed to sign in on Vereinsflieger."), errorItems);
         return;
     }
 
     if (cancelled)
     {
-        emit finished(true, tr("Operation cancelled by user."));
+        emit finished(true, tr("Operation cancelled by user."), errorItems);
         return;
     }
 
@@ -75,11 +77,29 @@ void VereinsfliegerSyncWorker::sync()
         emit progress(((double) counter / (double) flights.size())*1000, QString(tr("Uploading flight %1 of %2...")).arg(counter).arg(flights.size()));
 
         VereinsfliegerFlight f = convertFlight(flight);
-        if (vfsync->addflight(f) == 0)
-        {
+
+        try {
+            vfsync->addflight(f);
             flight.setVfId(f.vfid);
             dbManager->getDb().updateObject<Flight>(flight);
             successCounter++;
+        } catch (VfSyncException ex) {
+            QTreeWidgetItem* item = new QTreeWidgetItem();
+            item->setText(0, f.pilotname);
+            item->setText(1, f.attendantname);
+            item->setText(2, f.departuretime.toString("dd.MM.yyyy"));
+            item->setText(3, f.departuretime.toString("HH:mm"));
+            item->setText(4, f.arrivaltime.toString("HH:mm"));
+
+            QJsonDocument doc = QJsonDocument::fromJson(ex.replyString.toUtf8());
+
+            if (ex.cancelled) {
+                item->setText(5, tr("Connection cancelled!"));
+            } else {
+                item->setText(5, doc.object()[notr("error")].toString());
+            }
+
+            errorItems.append(item);
         }
 
         if (cancelled)
@@ -94,10 +114,10 @@ void VereinsfliegerSyncWorker::sync()
 
     if (counter != successCounter)
     {
-        emit finished(true, QString(tr("%1 out of %2 flights could not be uploaded.")).arg(counter - successCounter).arg(counter));
+        emit finished(true, QString(tr("%1 out of %2 flights could not be uploaded.")).arg(counter - successCounter).arg(counter), errorItems);
     } else
     {
-        emit finished(false, tr("Upload completed, %1 flights have been transmitted.").arg(counter));
+        emit finished(false, tr("Upload completed, %1 flights have been transmitted.").arg(counter), errorItems);
     }
 
 }

@@ -2,6 +2,7 @@
 #define VEREINSFLIEGERSYNCWORKER_H
 
 #include <QObject>
+#include <QTreeWidgetItem>
 #include "src/db/vfsync/vereinsfliegersync.h"
 #include "src/db/DbManager.h"
 #include "src/net/Network.h"
@@ -23,11 +24,12 @@ private:
     bool cancelled;
     QString user;
     QString pass;
+    QList<QTreeWidgetItem*> errorItems;
 
     VereinsfliegerFlight convertFlight(Flight& flight);
 signals:
     void progress(int progress, QString message);
-    void finished(bool errors, QString message);
+    void finished(bool errors, QString message, QList<QTreeWidgetItem*> errorItems);
 };
 
 #endif // VEREINSFLIEGERSYNCWORKER_H

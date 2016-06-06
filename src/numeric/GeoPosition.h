@@ -24,7 +24,7 @@ class GeoPosition
 	public:
 		// Mean earth radius in meters
 		// http://en.wikipedia.org/wiki/Earth_radius
-		static const double earthRadius = 6371.0*1000;
+        static constexpr double earthRadius = 6371.0*1000;
 
 		GeoPosition ();
 		GeoPosition (const Angle &latitude, const Angle &longitude);

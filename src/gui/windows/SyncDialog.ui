@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>685</width>
-    <height>151</height>
+    <width>805</width>
+    <height>341</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,59 @@
       <string>Connection is being established...</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="errorTreeWidget">
+     <property name="rootIsDecorated">
+      <bool>false</bool>
+     </property>
+     <property name="columnCount">
+      <number>6</number>
+     </property>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string notr="true">2</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string notr="true">3</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string notr="true">4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string notr="true">5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string notr="true">6</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="QWidget" name="widget" native="true">
@@ -110,8 +163,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>673</x>
-     <y>139</y>
+     <x>667</x>
+     <y>322</y>
     </hint>
     <hint type="destinationlabel">
      <x>485</x>
@@ -126,8 +179,8 @@
    <slot>cancelButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>554</x>
-     <y>125</y>
+     <x>584</x>
+     <y>322</y>
     </hint>
     <hint type="destinationlabel">
      <x>597</x>

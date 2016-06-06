@@ -12,7 +12,8 @@ struct ReplyData
     bool cancelled;
 };
 
-struct VereinsfliegerFlight {
+struct VereinsfliegerFlight
+{
     qlonglong vfid;
     QString callsign;
     QString pilotname;          // Nachname, Vorname
@@ -28,6 +29,16 @@ struct VereinsfliegerFlight {
     QString comment;
 };
 
+struct VfSyncException
+{
+    bool cancelled;
+    QString replyString;
+    int httpStatus;
+
+    VfSyncException(bool cancelled, QString replyString, int httpStatus):
+        cancelled(cancelled), replyString(replyString), httpStatus(httpStatus) { }
+};
+
 class VereinsfliegerSync : public QObject
 {
     Q_OBJECT
@@ -39,7 +50,7 @@ public:
     int signout();
 
     int getuser();
-    int addflight(VereinsfliegerFlight& flight);
+    void addflight(VereinsfliegerFlight& flight);
 
 private:
     QNetworkAccessManager* manager;

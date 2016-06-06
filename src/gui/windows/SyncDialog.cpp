@@ -7,6 +7,11 @@ SyncDialog::SyncDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlags((this->windowFlags() | Qt::CustomizeWindowHint) & ~Qt::WindowCloseButtonHint);
+
+    QStringList errorListHeaders;
+    errorListHeaders << tr("Pilot") << tr("Copilot") << tr("Date") << tr("Departure") << tr("Landing") << tr("Error");
+    ui->errorTreeWidget->setHeaderLabels(errorListHeaders);
+    ui->errorTreeWidget->setVisible(false);
 }
 
 SyncDialog::~SyncDialog()
@@ -14,7 +19,7 @@ SyncDialog::~SyncDialog()
     delete ui;
 }
 
-void SyncDialog::completed(bool errors, QString msg)
+void SyncDialog::completed(bool errors, QString msg, QList<QTreeWidgetItem*> errorItems)
 {
     ui->closeButton->setEnabled(true);
     ui->cancelButton->setEnabled(false);
@@ -30,6 +35,19 @@ void SyncDialog::completed(bool errors, QString msg)
         ui->statusLabel->setStyleSheet(notr("color:red; font-weight:bold;"));
         ui->progressBar->setValue(0);
     }
+
+    ui->errorTreeWidget->clear();
+    ui->errorTreeWidget->setVisible(!errorItems.empty());
+    ui->errorTreeWidget->addTopLevelItems(errorItems);
+    for (int i = 0; i < 6; i++)
+    {
+        ui->errorTreeWidget->resizeColumnToContents(i);
+    }
+}
+
+void SyncDialog::completed(bool errors, QString msg)
+{
+    completed(errors, msg, QList<QTreeWidgetItem*>());
 }
 
 void SyncDialog::setProgress(int val, QString msg)
