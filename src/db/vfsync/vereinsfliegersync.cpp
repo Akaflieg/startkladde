@@ -60,6 +60,10 @@ void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     if (flight.departuretime.isValid())     args.insert("departuretime", flight.departuretime.toString("yyyy-MM-dd HH:mm"));
     if (flight.arrivaltime.isValid())       args.insert("arrivaltime", flight.arrivaltime.toString("yyyy-MM-dd HH:mm"));
     if (!flight.comment.isEmpty())          args.insert("comment", flight.comment);
+    if (flight.towtime > 0)                 args.insert("towtime", QString::number(flight.towtime));
+    if (flight.towheight > 0)               args.insert("towheight", QString::number(flight.towheight));
+    if (!flight.towcallsign.isEmpty())      args.insert("towcallsign", flight.towcallsign);
+    if (!flight.towpilotname.isEmpty())     args.insert("towpilotname", flight.towpilotname);
     args.insert("ftid", flight.ftid <= 0 ? "10" : QString::number(flight.ftid));
     args.insert("chargemode", flight.chargemode <= 0 ? "2" : QString::number(flight.chargemode));
 

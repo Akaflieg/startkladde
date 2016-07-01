@@ -27,6 +27,10 @@ struct VereinsfliegerFlight
     int chargemode;             // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
     int ftid;                   // Flugart als Zahl
     QString comment;
+    int towtime;
+    int towheight;
+    QString towcallsign;
+    QString towpilotname;
 };
 
 struct VfSyncException

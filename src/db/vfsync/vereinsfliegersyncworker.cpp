@@ -154,6 +154,33 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
             case LaunchMethod::typeAirtow: result.starttype = notr("F"); break;
             default: result.starttype = notr("W");
         }
+
+        if (lm.type == LaunchMethod::typeAirtow) {
+            if (flight.getTowpilotId() != 0) {
+                Person towpilot = dbManager->getCache().getObject<Person>(flight.getTowpilotId());
+                result.towpilotname = towpilot.lastName.trimmed() + ", " + towpilot.firstName.trimmed();
+            }
+
+            if (flight.getTowplaneId() != 0) {
+                Plane towplane = dbManager->getCache().getObject<Plane>(flight.getTowplaneId());
+                result.towcallsign = towplane.registration;
+            }
+
+            result.towtime = flight.getDepartureTime().msecsTo(flight.getTowflightLandingTime()) / 60000;
+
+            QRegExp rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
+            if (rx.indexIn(flight.getComments().toLower()) != -1) {
+                result.towheight = rx.cap(2).toInt();
+            } else {
+                result.towheight = 0;
+            }
+
+        } else {
+            result.towheight = 0;
+            result.towtime = 0;
+            result.towcallsign = QString();
+            result.towpilotname = QString();
+        }
     }
 
     result.departuretime = flight.getDepartureTime();
