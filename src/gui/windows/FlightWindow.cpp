@@ -800,6 +800,10 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 {
 	originalFlight=flight;
 
+    if (repeat) {
+        originalFlight.setVfId(invalidId);
+    }
+
 	// Note that for repeating, some fields are not set or set differently.
 
 	originalFlightId = flight.getId ();
