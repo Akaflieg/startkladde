@@ -29,6 +29,7 @@ int VereinsfliegerSync::signin(QString user, QString pass, int cid)
     QMap<QString, QString> args;
     args.insert("username", user);
     args.insert("password", md5(pass));
+    args.insert("appkey", "xxx");
     args.insert("cid", QString("%1").arg(cid));
     ReplyData reply = post("auth/signin", args);
     qDebug() << reply.replyString;
