@@ -12,6 +12,7 @@ DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 QT += widgets sql network xml serialport
 CONFIG += lrelease embed_translations #needed?
 
+
 #
 # External Dependencies
 #
@@ -19,6 +20,18 @@ CONFIG += lrelease embed_translations #needed?
 # MySQL
 INCLUDEPATH += /usr/include/mysql
 LIBS += -lmysqlclient_r
+
+
+#
+# Extra build steps
+#
+
+# CurrentSchema.cpp (DB migrations)
+currentschema.commands = erb -T 1 schema_file=$$PWD/src/db/migrations/current_schema.yaml $$PWD/src/db/schema/CurrentSchema.cpp.erb > CurrentSchema.cpp
+GENERATED_SOURCES += CurrentSchema.cpp
+QMAKE_EXTRA_TARGETS += currentschema
+PRE_TARGETDEPS += currentschema
+
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -555,8 +568,7 @@ SOURCES += src/flightColor.cpp \
            src/plugins/info/sunset/SunsetCountdownPlugin.cpp \
            src/plugins/info/sunset/SunsetPluginBase.cpp \
            src/plugins/info/sunset/SunsetPluginSettingsPane.cpp \
-           src/plugins/info/sunset/SunsetTimePlugin.cpp \
-	   src/db/schema/CurrentSchema.cpp
+           src/plugins/info/sunset/SunsetTimePlugin.cpp
 
 RESOURCES += config/startkladde.qrc
 
