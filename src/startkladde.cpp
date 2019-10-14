@@ -24,7 +24,6 @@
 #include "src/flarm/Flarm.h"
 #include "src/i18n/LanguageConfiguration.h"
 #include "src/io/dataStream/DataStream.h"
-#include "src/io/serial/SerialPortList.h"
 
 // For test_database
 //#include "src/model/Plane.h"
@@ -392,8 +391,6 @@ void plugins_test ()
 int main (int argc, char **argv)
 {
 	QApplication application (argc, argv);
-
-	SerialPortList::createInstance ();
 
 	qApp->addLibraryPath (qApp->applicationDirPath () + notr ("/plugins"));
 

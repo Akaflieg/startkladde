@@ -152,11 +152,6 @@ MainWindow::MainWindow (QWidget *parent, DbManager &dbManager, Flarm &flarm):
 
 	setupLabels ();
 
-	// Info frame
-	bool acpiValid = AcpiWidget::valid ();
-	ui.powerStateLabel->setVisible (acpiValid);
-	ui.powerStateCaptionLabel->setVisible (acpiValid);
-
 	// Change the language every second so we can verify even for modal windows
 	// that they are correctly retranslated.
 	QTimer *timeTimer = new QTimer (this);

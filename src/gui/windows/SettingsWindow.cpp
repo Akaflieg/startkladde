@@ -26,6 +26,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QShowEvent>
+#include <QSerialPortInfo>
 
 #include "src/text.h"
 #include "src/config/Settings.h"
@@ -34,7 +35,6 @@
 #include "src/gui/views/ReadOnlyItemDelegate.h"
 #include "src/gui/views/SpinBoxCreator.h"
 #include "src/gui/views/SpecialIntDelegate.h"
-#include "src/io/serial/SerialPortList.h"
 #include "src/i18n/notr.h"
 #include "src/i18n/TranslationManager.h"
 #include "src/plugin/info/InfoPlugin.h"
@@ -82,8 +82,6 @@ SettingsWindow::SettingsWindow (QWidget *parent):
 		ui.flarmConnectionTypeInput->addItem (text, type);
 	}
 
-	SerialPortList *serialPortList=SerialPortList::instance ();
-	connect (serialPortList, SIGNAL (portsChanged (QSet<QString>)), this, SLOT (populateSerialPortList ()));
 	populateSerialPortList ();
 
 	readSettings ();
@@ -171,21 +169,19 @@ void SettingsWindow::populateSerialPortList ()
 
 	ui.flarmSerialPortInput->clear ();
 
-	// Populate the serial ports list
-	SerialPortList *serialPortList=SerialPortList::instance ();
-	QStringList ports (serialPortList->availablePorts ().toList ());
-	qSort (ports.begin (), ports.end (), serialPortLessThan);
-	foreach (const QString &deviceName, ports)
+    QList<QSerialPortInfo> serialPortList = QSerialPortInfo::availablePorts();
+    //qSort (ports.begin (), ports.end (), serialPortLessThan);
+    foreach (const QSerialPortInfo &portInfo, serialPortList)
 	{
-		QString deviceDescription=serialPortList->getDescription (deviceName);
+        QString deviceDescription= portInfo.description();
 
 		QString text;
 		if (isBlank (deviceDescription))
-			text=tr ("%1").arg (deviceName);
+            text=tr ("%1").arg (portInfo.portName());
 		else
-			text=tr ("%1 (%2)").arg (deviceName).arg (deviceDescription);
+            text=tr ("%1 (%2)").arg (portInfo.portName()).arg (deviceDescription);
 
-		ui.flarmSerialPortInput->addItem (text, deviceName);
+        ui.flarmSerialPortInput->addItem (text, portInfo.portName());
 	}
 
 	// Make boolean columns and some other columns read-only

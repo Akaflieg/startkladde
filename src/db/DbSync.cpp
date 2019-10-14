@@ -12,7 +12,6 @@
 #include "src/model/LaunchMethod.h"
 #include "src/model/Plane.h"
 #include "src/db/cache/Cache.h"
-#include "src/db/Query.h"
 #include "src/concurrent/monitor/OperationCanceledException.h"
 
 DbSync::DbSync(DbManager& lclDbManager, SyncDialog* dlg, QObject *parent) :

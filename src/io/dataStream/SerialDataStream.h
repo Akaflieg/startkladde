@@ -3,6 +3,9 @@
 
 #include <QStringList>
 #include <QDateTime>
+#include <QSerialPortInfo>
+#include <QSerialPort>
+#include <QTimer>
 
 #include "src/io/dataStream/DataStream.h"
 
@@ -31,7 +34,7 @@ class SerialDataStream: public DataStream
 		SerialDataStream (QObject *parent);
 		virtual ~SerialDataStream ();
 
-		void setPort (const QString &portName, int baudRate);
+        void setPort (const QString &portName, int baudRate);
 
 	protected:
 		// DataStream methods
@@ -51,13 +54,13 @@ class SerialDataStream: public DataStream
 		int _baudRate;
 
 		// Back-end
-		AbstractSerial *_port;
+        QTimer* _timer;
+        QSerialPort *_port;
 
 	private slots:
-		void portAdded (QString port);
-		void portRemoved (QString port);
+        void timer_timeout ();
     	void port_dataReceived ();
-		void port_status (const QString &status, QDateTime dateTime);
+        void port_errorOccurred (QSerialPort::SerialPortError);
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QProcess>
 #include "src/db/dbId.h"
+#include "src/db/Query.h"
 
 class SkProcess;
 class SyncDialog;

@@ -94,10 +94,31 @@
              <property name="verticalSpacing">
               <number>4</number>
              </property>
-             <item row="0" column="0">
-              <widget class="SkLabel" name="localTimeCaptionLabel">
+             <item row="7" column="1">
+              <widget class="SkLabel" name="flarmStateLabel">
                <property name="text">
-                <string>Local time:</string>
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="SkLabel" name="activeFlightsLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="SkLabel" name="displayDateLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="SkLabel" name="totalFlightsLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
                </property>
               </widget>
              </item>
@@ -107,6 +128,43 @@
                 <string notr="true" extracomment="No translatable, set programmatically">-</string>
                </property>
               </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="SkLabel" name="totalFlightsCaptionLabel">
+               <property name="text">
+                <string>Flights total:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="SkLabel" name="flarmStateCaptionLabel">
+               <property name="text">
+                <string>Flarm connection:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="SkLabel" name="utcTimeLabel">
+               <property name="text">
+                <string notr="true" extracomment="No translatable, set programmatically">-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </spacer>
              </item>
              <item row="1" column="0">
               <widget class="SkLabel" name="utcTimeCaptionLabel">
@@ -129,10 +187,10 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
-              <widget class="SkLabel" name="totalFlightsCaptionLabel">
+             <item row="0" column="0">
+              <widget class="SkLabel" name="localTimeCaptionLabel">
                <property name="text">
-                <string>Flights total:</string>
+                <string>Local time:</string>
                </property>
               </widget>
              </item>
@@ -143,80 +201,8 @@
                </property>
               </widget>
              </item>
-             <item row="7" column="0">
-              <widget class="SkLabel" name="flarmStateCaptionLabel">
-               <property name="text">
-                <string>Flarm connection:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="SkLabel" name="powerStateCaptionLabel">
-               <property name="text">
-                <string>Power supply:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="SkLabel" name="utcTimeLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="0">
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="1">
-              <widget class="SkLabel" name="displayDateLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="SkLabel" name="activeFlightsLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="SkLabel" name="totalFlightsLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
              <item row="6" column="1">
               <widget class="SkLabel" name="databaseStateLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="SkLabel" name="flarmStateLabel">
-               <property name="text">
-                <string notr="true" extracomment="No translatable, set programmatically">-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="AcpiWidget" name="powerStateLabel">
                <property name="text">
                 <string notr="true" extracomment="No translatable, set programmatically">-</string>
                </property>
@@ -443,7 +429,7 @@
      <x>0</x>
      <y>0</y>
      <width>825</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProgram">
@@ -1133,11 +1119,6 @@
    <class>SkLabel</class>
    <extends>QLabel</extends>
    <header>src/gui/widgets/SkLabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>AcpiWidget</class>
-   <extends>QLabel</extends>
-   <header>src/gui/widgets/AcpiWidget.h</header>
   </customwidget>
   <customwidget>
    <class>FlightTableView</class>

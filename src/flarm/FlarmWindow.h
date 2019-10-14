@@ -1,8 +1,9 @@
 #ifndef FLARM_WINDOW_H
 #define FLARM_WINDOW_H
 
-#include "ui_FlarmWindow.h"
+#include <QDateTime>
 
+#include "ui_FlarmWindow.h"
 #include "src/gui/SkDialog.h"
 
 class QCloseEvent;
