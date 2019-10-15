@@ -81,7 +81,6 @@
 #include "src/gui/windows/input/ChoiceDialog.h"
 #include "src/flarm/Flarm.h"
 #include "src/flarm/flarmNet/FlarmNetHandler.h"
-#include "src/db/DbSync.h"
 #include "SyncDialog.h"
 
 template <class T> class MutableObjectList;

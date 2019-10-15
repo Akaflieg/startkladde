@@ -87,7 +87,7 @@ void MetarPlugin::refresh ()
 		outputText (tr ("%1 is not a valid ICAO code").arg (airport));
 	else
 	{
-		QString url=qnotr ("http://weather.noaa.gov/mgetmetar.php?cccc=%1").arg (icao);
+        QString url=qnotr ("https://tgftp.nws.noaa.gov/data/observations/metar/stations/%1.TXT").arg (icao.toUpper());
 		outputText (tr ("Retrieving METAR for %1...").arg (icao));
 		downloader->startDownload (0, url);
 	}
@@ -95,12 +95,7 @@ void MetarPlugin::refresh ()
 
 QString MetarPlugin::extractMetar (QIODevice &reply)
 {
-	// The relevant section of the page:
-	//
-	//<font face="courier" size = "5">
-	//EDDF 311920Z 26009KT 9999 FEW012 SCT019 BKN023 13/11 Q1015 NOSIG
-	//
-	//</font>
+    // In order to remove the time and date line
 	QString re=qnotr ("^%1.*$").arg (airport.trimmed ().toUpper ());
 	return findInIoDevice (reply, QRegExp (re), 0);
 }

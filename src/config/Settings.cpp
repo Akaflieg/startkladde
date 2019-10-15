@@ -215,8 +215,6 @@ void Settings::readSettings ()
 	// *** Database
 	s.beginGroup (notr ("database"));
 	databaseInfo.load (s); // Connection
-    remoteDatabaseInfo.load(s, "remote");
-    databaseDumpPath = s.value(notr("dumpPath"), QString(notr("%1%2startkladde_sql_dumps")).arg(QDir::homePath()).arg(QDir::separator())).toString();
 	s.endGroup ();
 	// If the database name has been overridden, overwrite the value. It won't
 	// be written back.
@@ -320,8 +318,6 @@ void Settings::writeSettings ()
 	{
 		s.beginGroup (notr ("database"));
 		databaseInfo.save (s); // Connection
-        remoteDatabaseInfo.save(s, "remote");
-        s.setValue(notr("dumpPath"), databaseDumpPath);
 		s.endGroup ();
 	}
 

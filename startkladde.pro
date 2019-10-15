@@ -10,7 +10,17 @@ VERSION = 2.2.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 
 QT += widgets sql network xml serialport
-CONFIG += lrelease embed_translations #needed?
+
+#CONFIG += lrelease embed_translations
+#QM_FILES_INSTALL_PATH = binarytranslations
+
+target.path = /usr/bin
+documentation.path = /usr/share/startkladde
+documentation.files = $${OUT_PWD}/translations/*
+plugins.path = /usr/lib/startkladde
+plugins.files = $${PWD}/plugins/*
+INSTALLS += target documentation plugins
+
 
 
 #
@@ -31,6 +41,15 @@ currentschema.commands = erb -T 1 schema_file=$$PWD/src/db/migrations/current_sc
 GENERATED_SOURCES += CurrentSchema.cpp
 QMAKE_EXTRA_TARGETS += currentschema
 PRE_TARGETDEPS += currentschema
+
+# Translations
+QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+updateqm.input = TRANSLATIONS
+updateqm.output = translations/${QMAKE_FILE_BASE}.qm
+updateqm.commands = $$QMAKE_LRELEASE ${QMAKE_FILE_IN} -qm translations/${QMAKE_FILE_BASE}.qm
+updateqm.CONFIG += no_link
+QMAKE_EXTRA_COMPILERS += updateqm
+PRE_TARGETDEPS += compiler_updateqm_make_all
 
 
 # You can make your code fail to compile if you use deprecated APIs.
@@ -67,7 +86,6 @@ HEADERS += src/accessor.h \
            src/db/DatabaseInfo.h \
            src/db/dbId.h \
            src/db/DbManager.h \
-           src/db/DbSync.h \
            src/db/DbWorker.h \
            src/db/Query.h \
            src/flarm/Flarm.h \
@@ -352,7 +370,6 @@ SOURCES += src/flightColor.cpp \
            src/db/DatabaseInfo.cpp \
            src/db/dbId.cpp \
            src/db/DbManager.cpp \
-           src/db/DbSync.cpp \
            src/db/DbWorker.cpp \
            src/db/Query.cpp \
            src/flarm/Flarm.cpp \

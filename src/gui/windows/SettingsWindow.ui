@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>582</width>
-    <height>596</height>
+    <height>616</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -462,176 +462,6 @@
              </item>
             </layout>
            </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="dbConnectionBox_2">
-         <property name="title">
-          <string>Remote Server</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_9">
-          <item row="0" column="0">
-           <widget class="QWidget" name="mysqlSettingsPane_2" native="true">
-            <layout class="QGridLayout" name="gridLayout_5">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="mysqlServerLabel_2">
-               <property name="text">
-                <string>S&amp;erver:</string>
-               </property>
-               <property name="buddy">
-                <cstring>mysqlServerInput_2</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1" colspan="4">
-              <widget class="QLineEdit" name="mysqlServerInput_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;IP address or host name of the database server&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="mysqlPortLabel_2">
-               <property name="text">
-                <string>Po&amp;rt:</string>
-               </property>
-               <property name="buddy">
-                <cstring>mysqlPortInput_2</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="mysqlPortInput_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;The TCP port of the database server&lt;/html&gt;</string>
-               </property>
-               <property name="maximum">
-                <number>65535</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="mysqlUserLabel_2">
-               <property name="text">
-                <string>&amp;User name:</string>
-               </property>
-               <property name="buddy">
-                <cstring>mysqlUserInput_2</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1" colspan="4">
-              <widget class="QLineEdit" name="mysqlUserInput_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;The username for the connection to the database server&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="mysqlPasswordLabel_2">
-               <property name="text">
-                <string>P&amp;assword:</string>
-               </property>
-               <property name="buddy">
-                <cstring>mysqlPasswordInput_2</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1" colspan="4">
-              <widget class="QLineEdit" name="mysqlPasswordInput_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;The password for the connection to the database server&lt;/html&gt;</string>
-               </property>
-               <property name="echoMode">
-                <enum>QLineEdit::Password</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="mysqlDatabaseLabel_2">
-               <property name="text">
-                <string>Da&amp;tabase:</string>
-               </property>
-               <property name="buddy">
-                <cstring>mysqlDatabaseInput_2</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1" colspan="4">
-              <widget class="QLineEdit" name="mysqlDatabaseInput_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;The name of the database on the database server&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4">
-              <spacer name="horizontalSpacer_11">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="mysqlDefaultPortCheckBox_2">
-               <property name="toolTip">
-                <string>&lt;html&gt;If enabled, the default port is used for the database server.&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>De&amp;fault</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>(default: 3306)</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Database synchronization</string>
-         </property>
-         <layout class="QFormLayout" name="formLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Absolute path for local database &amp;dump:</string>
-            </property>
-            <property name="buddy">
-             <cstring>databaseDumpPath</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="databaseDumpPath"/>
           </item>
          </layout>
         </widget>

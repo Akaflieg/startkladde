@@ -227,7 +227,6 @@ void SettingsWindow::readSettings ()
 {
 	Settings &s=Settings::instance ();
 	DatabaseInfo &info=s.databaseInfo;
-    DatabaseInfo &remInfo=s.remoteDatabaseInfo;
 
 	// *** Database
 	ui.mysqlServerInput        ->setText    (info.server);
@@ -236,15 +235,6 @@ void SettingsWindow::readSettings ()
 	ui.mysqlUserInput          ->setText    (info.username);
 	ui.mysqlPasswordInput      ->setText    (info.password);
 	ui.mysqlDatabaseInput      ->setText    (info.database);
-
-    ui.mysqlServerInput_2        ->setText    (remInfo.server);
-    ui.mysqlDefaultPortCheckBox_2->setChecked (remInfo.defaultPort);
-    ui.mysqlPortInput_2          ->setValue   (remInfo.port);
-    ui.mysqlUserInput_2          ->setText    (remInfo.username);
-    ui.mysqlPasswordInput_2      ->setText    (remInfo.password);
-    ui.mysqlDatabaseInput_2      ->setText    (remInfo.database);
-
-    ui.databaseDumpPath->setText(s.databaseDumpPath);
 
 	// *** Settings
 	// UI
@@ -330,7 +320,6 @@ void SettingsWindow::writeSettings ()
 {
 	Settings &s=Settings::instance ();
 	DatabaseInfo &info=s.databaseInfo;
-    DatabaseInfo &remInfo=s.remoteDatabaseInfo;
 
 	DatabaseInfo oldInfo=info;
 
@@ -342,16 +331,7 @@ void SettingsWindow::writeSettings ()
 	info.password   =ui.mysqlPasswordInput      ->text ();
 	info.database   =ui.mysqlDatabaseInput      ->text ();
 
-    remInfo.server     =ui.mysqlServerInput_2        ->text ();
-    remInfo.defaultPort=ui.mysqlDefaultPortCheckBox_2->isChecked ();
-    remInfo.port       =ui.mysqlPortInput_2          ->value ();
-    remInfo.username   =ui.mysqlUserInput_2          ->text ();
-    remInfo.password   =ui.mysqlPasswordInput_2      ->text ();
-    remInfo.database   =ui.mysqlDatabaseInput_2      ->text ();
-
-    s.databaseDumpPath = ui.databaseDumpPath->text();
-
-	// *** Settings
+    // *** Settings
 	// Language
 	s.languageConfiguration=ui.languageInput->getSelectedLanguageConfiguration ();
 	// Data
@@ -809,7 +789,6 @@ void SettingsWindow::updateWidgets ()
 {
 	// MySQL
 	ui.mysqlPortInput->setEnabled (!ui.mysqlDefaultPortCheckBox->isChecked ());
-    ui.mysqlPortInput_2->setEnabled (!ui.mysqlDefaultPortCheckBox_2->isChecked ());
 
 	// Flarm
 	QVariant connectionTypeValue=ui.flarmConnectionTypeInput->currentItemData ();

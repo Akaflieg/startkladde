@@ -45,8 +45,6 @@ class Settings: public QObject
 		// *** Database
 		// Connection
 		DatabaseInfo databaseInfo;
-        DatabaseInfo remoteDatabaseInfo;
-        QString databaseDumpPath;
 
 		// *** Settings
 		// UI
