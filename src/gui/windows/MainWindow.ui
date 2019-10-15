@@ -628,6 +628,12 @@
    <property name="movable">
     <bool>false</bool>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
    <property name="floatable">
     <bool>false</bool>
    </property>
@@ -728,6 +734,10 @@
    </property>
   </action>
   <action name="actionRefreshTable">
+   <property name="icon">
+    <iconset resource="../../../config/startkladde.qrc">
+     <normaloff>:/graphics/refresh.svg</normaloff>:/graphics/refresh.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Refresh table</string>
    </property>

@@ -240,6 +240,12 @@ void Settings::readSettings ()
     {
         preselectedLaunchMethod = invalidId;
     }
+    // Vereinsflieger
+    s.beginGroup (notr ("vereinsflieger"));
+    vfUploadEnabled     =s.value (notr("vfUploadEnabled"),      false).toBool();
+    vfApiKey            =s.value (notr("vfApiKey"),             "").toString();
+    vfClubId            =s.value (notr("vfClubId"),             "").toString();
+    s.endGroup();
 	// Flarm
 	flarmEnabled         =s.value (notr("flarmEnabled"),           true   ).toBool ();
 	QString flarmConnectionTypeString=s.value (notr ("flarmConnectionType"  ), "").toString ();
@@ -332,6 +338,12 @@ void Settings::writeSettings ()
     s.setValue (notr ("checkMedicals")          , checkMedicals );
     s.setValue (notr ("preselectedLaunchMethod"), preselectedLaunchMethod);
     s.setValue (notr ("loadPreselectedLM")      , loadPreselectedLM);
+    // Vereinsflieger
+    s.beginGroup (notr ("vereinsflieger"));
+    s.setValue (notr("vfUploadEnabled"),    vfUploadEnabled);
+    s.setValue (notr("vfApiKey"),           vfApiKey);
+    s.setValue (notr("vfClubId"),           vfClubId);
+    s.endGroup();
 	// Flarm
 	s.setValue (notr ("flarmEnabled"         ), flarmEnabled       );
 	s.setValue (notr ("flarmConnectionType"  ), Flarm::ConnectionType_toString (flarmConnectionType));

@@ -13,14 +13,14 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
-   <item row="2" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -468,6 +468,73 @@
        </item>
        <item>
         <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="vereinsfliegerTab">
+      <attribute name="title">
+       <string>&amp;Vereinsflieger</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="vfUploadEnabled">
+         <property name="text">
+          <string>Upload to Vereinsflieger enabled</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="vfConnectionGroupBox">
+         <property name="title">
+          <string>Connection</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="vfApiKeyLabel">
+            <property name="text">
+             <string>API key:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="vfApiKeyInput">
+            <property name="toolTip">
+             <string>API key issued by the vereinsflieger developers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="vfCIDLabel">
+            <property name="text">
+             <string>Club ID (CID):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="vfCIDInput">
+            <property name="toolTip">
+             <string>Comma separated list of club ids</string>
+            </property>
+            <property name="placeholderText">
+             <string>Comma separated list of club ids</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_7">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -1596,7 +1663,7 @@ Directoryies can be absolute (e. g. /var/lib/startkladde/plugins or relative to 
      </widget>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
@@ -1619,7 +1686,6 @@ Directoryies can be absolute (e. g. /var/lib/startkladde/plugins or relative to 
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>tabWidget</tabstop>
   <tabstop>languageInput</tabstop>
   <tabstop>locationInput</tabstop>
   <tabstop>recordTowpilotCheckbox</tabstop>
@@ -1693,6 +1759,22 @@ Directoryies can be absolute (e. g. /var/lib/startkladde/plugins or relative to 
     <hint type="destinationlabel">
      <x>2</x>
      <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>vfUploadEnabled</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>vfConnectionGroupBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>278</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>

@@ -2,6 +2,7 @@
 #include "src/model/Plane.h"
 #include "src/model/Person.h"
 #include "src/model/LaunchMethod.h"
+#include "src/config/Settings.h"
 
 VereinsfliegerSyncWorker::VereinsfliegerSyncWorker(DbManager* _dbManager, QString _user, QString _pass, QObject* parent) : QObject(parent)
 {
@@ -27,6 +28,33 @@ void VereinsfliegerSyncWorker::sync()
 {
     errorItems.clear();
 
+    Settings& settings = Settings::instance();
+    QList<QString> cidStrList = settings.vfClubId.split(",", QString::SplitBehavior::SkipEmptyParts);
+    QList<int> cidList;
+
+    foreach (QString cidStr, cidStrList)
+    {
+        bool ok = false;
+        int cid = cidStr.toInt(&ok);
+        if (ok)
+            cidList.append(cid);
+    }
+
+    if (!settings.vfUploadEnabled) {
+        emit finished(true, tr("Vereinsflieger upload is not enabled."), errorItems);
+        return;
+    }
+
+    if (settings.vfApiKey.isEmpty()) {
+        emit finished(true, tr("No Vereinsflieger API key specified in the settings."), errorItems);
+        return;
+    }
+
+    if (cidList.isEmpty()) {
+        emit finished(true, tr("No valid club ids specified in the settings."), errorItems);
+        return;
+    }
+
     if (vfsync->retrieveAccesstoken() != 0)
     {
         emit finished(true, tr("Connection to Vereinsflieger could not be initiated."), errorItems);
@@ -41,16 +69,14 @@ void VereinsfliegerSyncWorker::sync()
 
     emit progress(0, tr("Signing in..."));
 
-    //TODO: Vereins-CIDS
-    QList<int> cidList;
-    cidList << 370 << 250;
+
 
     bool signedIn = false;
     foreach (int cid, cidList)
     {
         if (!signedIn)
         {
-            signedIn = vfsync->signin(user, pass, cid) == 0;
+            signedIn = vfsync->signin(user, pass, cid, settings.vfApiKey) == 0;
         }
     }
 

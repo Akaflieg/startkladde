@@ -243,6 +243,10 @@ void SettingsWindow::readSettings ()
 	ui.locationInput         ->setText    (s.location);
 	ui.recordTowpilotCheckbox->setChecked (s.recordTowpilot);
 	ui.checkMedicalsCheckbox ->setChecked (s.checkMedicals);
+    // Vereinsflieger
+    ui.vfUploadEnabled  ->setChecked    (s.vfUploadEnabled);
+    ui.vfApiKeyInput    ->setText       (s.vfApiKey);
+    ui.vfCIDInput       ->setText       (s.vfClubId);
 	// Flarm
 	ui.flarmGroupBox              ->setChecked  (s.flarmEnabled);
 	ui.flarmConnectionTypeInput   ->setCurrentItemByItemData (
@@ -294,7 +298,7 @@ void SettingsWindow::readSettings ()
 	ui.weatherPluginCommandInput ->setText                  (s.weatherPluginCommand );
 	ui.weatherPluginHeightInput  ->setValue                 (s.weatherPluginHeight  );
 	ui.weatherPluginIntervalInput->setValue                 (s.weatherPluginInterval/60);
-	on_weatherPluginInput_currentIndexChanged ();
+    on_weatherPluginInput_currentIndexChanged (ui.weatherPluginInput->currentIndex());
 
 	// Weather dialog
 	ui.weatherWindowBox          ->setChecked               (s.weatherWindowEnabled);
@@ -302,7 +306,7 @@ void SettingsWindow::readSettings ()
 	ui.weatherWindowCommandInput ->setText                  (s.weatherWindowCommand );
 	ui.weatherWindowIntervalInput->setValue                 (s.weatherWindowInterval/60);
 	ui.weatherWindowTitleInput   ->setText                  (s.weatherWindowTitle   );
-	on_weatherWindowPluginInput_currentIndexChanged ();
+    on_weatherWindowPluginInput_currentIndexChanged (ui.weatherPluginInput->currentIndex());
 
 	// *** Plugins - Paths
 	ui.pluginPathList->clear ();
@@ -338,6 +342,10 @@ void SettingsWindow::writeSettings ()
 	s.location      =ui.locationInput         ->text ();
 	s.recordTowpilot=ui.recordTowpilotCheckbox->isChecked ();
 	s.checkMedicals =ui.checkMedicalsCheckbox ->isChecked ();
+    // Vereinsflieger
+    s.vfUploadEnabled   =ui.vfUploadEnabled ->isChecked();
+    s.vfApiKey          =ui.vfApiKeyInput   ->text();
+    s.vfClubId          =ui.vfCIDInput      ->text();
 	// Flarm
 	s.flarmEnabled	     =ui.flarmGroupBox              ->isChecked ();
 	s.flarmConnectionType=(Flarm::ConnectionType)
@@ -596,16 +604,20 @@ void SettingsWindow::on_infoPluginList_itemDoubleClicked (QTreeWidgetItem *item,
 // ** Weather plugins **
 // *********************
 
-void SettingsWindow::on_weatherPluginInput_currentIndexChanged ()
+void SettingsWindow::on_weatherPluginInput_currentIndexChanged (int index)
 {
+    Q_UNUSED(index)
+
     bool external=(ui.weatherPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherPluginCommandLabel->setEnabled (external);
 	ui.weatherPluginCommandInput->setEnabled (external);
 	ui.browseWeatherPluginCommandButton->setEnabled (external);
 }
 
-void SettingsWindow::on_weatherWindowPluginInput_currentIndexChanged ()
+void SettingsWindow::on_weatherWindowPluginInput_currentIndexChanged (int index)
 {
+    Q_UNUSED(index)
+
     bool external=(ui.weatherWindowPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherWindowCommandLabel->setEnabled (external);
 	ui.weatherWindowCommandInput->setEnabled (external);
@@ -789,6 +801,9 @@ void SettingsWindow::updateWidgets ()
 {
 	// MySQL
 	ui.mysqlPortInput->setEnabled (!ui.mysqlDefaultPortCheckBox->isChecked ());
+
+    // Vereinsflieger
+    ui.vfConnectionGroupBox->setEnabled (ui.vfUploadEnabled->isChecked());
 
 	// Flarm
 	QVariant connectionTypeValue=ui.flarmConnectionTypeInput->currentItemData ();

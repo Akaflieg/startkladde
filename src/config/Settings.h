@@ -55,6 +55,10 @@ class Settings: public QObject
 		bool checkMedicals;
         dbId preselectedLaunchMethod;
         bool loadPreselectedLM;
+        // Vereinsflieger
+        bool vfUploadEnabled;
+        QString vfApiKey;
+        QString vfClubId;
 		// Flarm
 		bool flarmEnabled;
 		Flarm::ConnectionType flarmConnectionType;

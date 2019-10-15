@@ -50,7 +50,7 @@ public:
     explicit VereinsfliegerSync(QNetworkAccessManager* man, QObject *parent = 0);
 
     int retrieveAccesstoken();
-    int signin(QString user, QString pass, int cid = 0);
+    int signin(QString user, QString pass, int cid, QString appkey);
     int signout();
 
     int getuser();

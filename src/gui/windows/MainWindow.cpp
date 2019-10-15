@@ -190,8 +190,7 @@ MainWindow::MainWindow (QWidget *parent, DbManager &dbManager, Flarm &flarm):
 #endif
 
 	ui.actionShowVirtualKeyboard->setVisible (virtualKeyboardEnabled);
-//	ui.actionShowVirtualKeyboard->setIcon (QIcon ((const QPixmap&)QPixmap (kvkbd)));
-	ui.actionShowVirtualKeyboard->setIcon (QIcon (notr (":/graphics/kvkbd.png")));
+    ui.actionShowVirtualKeyboard->setIcon (QIcon (notr (":/graphics/keyboard.svg")));
 
 	// Log
 	ui.logWidget->document ()->setMaximumBlockCount (100);
@@ -575,6 +574,9 @@ void MainWindow::settingsChanged ()
 	ui.timerBasedLanguageChangeAction->setEnabled (s.enableDebug);
 
 	ui.actionNetworkDiagnostics     ->setVisible (!isBlank (s.diagCommand));
+
+    // Vereinsflieger
+    ui.actionSync->setVisible(s.vfUploadEnabled);
 	
 	// Flarm
 	// Note that we enable the flarmPlaneList and flarmRadar actions even if
