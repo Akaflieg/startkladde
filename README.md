@@ -1,6 +1,6 @@
 # Startkladde
 
-In diesem Repository wohnt die von der Akaflieg Berlin ([@julianschick](https://github.com/julianschick)) gepflegte Version der Startkladde. Die Startkladde stammt ursprünglich von der Akaflieg Karlsruhe und wurde hier maßgeblich von Martin Herrman ([@deffi](https://github.com/deffi)) entwickelt. Eggert Ehmke ([@eehmke]((https://github.com/eehmke)) vom FTV-Spandau hat die ungemein praktische automatische Starterfassung mit Hilfe eines FLARM-Gerätes beigetragen.
+In diesem Repository wohnt die von der Akaflieg Berlin ([@julianschick](https://github.com/julianschick)) gepflegte Version der Startkladde. Die Startkladde stammt ursprünglich von der Akaflieg Karlsruhe und wurde hier maßgeblich von Martin Herrman ([@deffi](https://github.com/deffi)) entwickelt. Eggert Ehmke ([@eehmke](https://github.com/eehmke)) vom FTV-Spandau hat die ungemein praktische automatische Starterfassung mit Hilfe eines FLARM-Gerätes beigetragen.
 
 Ältere und teilweise veraltete sowie nicht mehr gepflegte Ressourcen zur Startkladde:
 
