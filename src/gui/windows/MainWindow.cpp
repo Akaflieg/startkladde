@@ -28,7 +28,7 @@
 #include <QStatusBar>
 #include <QCloseEvent>
 #include <QScrollBar>
-//#include <phonon>
+#include <QSound>
 #include <QWidget> // remove
 
 // TODO many dependencies - split
@@ -2882,16 +2882,10 @@ void MainWindow::on_encodeFlarmNetFileAction_triggered ()
 
 void MainWindow::playDepartedSound ()
 {
-    //Phonon::MediaObject *music =
-    //         Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_takeoff"));
-
-    //music->play();
+    QSound::play(":/snd_takeoff");
 }
 
 void MainWindow::playLandedSound ()
 {
-    //Phonon::MediaObject *music =
-    //         Phonon::createPlayer(Phonon::MusicCategory,QString(":/snd_landing"));
-
-    //music->play();
+    QSound::play(":/snd_landing");
 }

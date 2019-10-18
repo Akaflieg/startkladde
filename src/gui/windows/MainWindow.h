@@ -349,6 +349,7 @@ class MainWindow: public SkMainWindow<Ui::MainWindowClass>
 
         //Sync
         DbSync* sync;
+
 };
 
 #endif

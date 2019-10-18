@@ -9,7 +9,7 @@ INCLUDEPATH += .
 VERSION = 2.2.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 
-QT += widgets sql network xml serialport
+QT += widgets sql network xml serialport multimedia
 
 #CONFIG += lrelease embed_translations
 #QM_FILES_INSTALL_PATH = binarytranslations
