@@ -61,6 +61,7 @@ PRE_TARGETDEPS += compiler_updateqm_make_all
 
 # Input
 HEADERS += src/accessor.h \
+           src/db/migrations/Migration_20191018135747_add_vfid.h \
            src/flightColor.h \
            src/FlightReference.h \
            src/itemDataRoles.h \
@@ -354,6 +355,7 @@ FORMS += src/flarm/FlarmWindow.ui \
 SOURCES += src/flightColor.cpp \
            src/FlightReference.cpp \
            src/Longitude.cpp \
+           src/db/migrations/Migration_20191018135747_add_vfid.cpp \
            src/startkladde.cpp \
            src/StorableException.cpp \
            src/text.cpp \
