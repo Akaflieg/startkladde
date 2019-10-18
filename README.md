@@ -14,7 +14,7 @@ Diese Version der Startkladde wurde weiter gepflegt, so dass sie auf einem aktue
 * Schnelleingabe-Dialog mit großen Bedienelementen und Schnellwahltasten sowie Auto-Vervollständigung basierend auf häufigen Piloten und Flugzeugen
 * Aktualisierung der Wetterplugins
 
-Siehe auch das [Changelog](Changelog.md).
+Siehe auch das [Changelog](CHANGELOG.md).
 
 ## Build
 
