@@ -1,7 +1,7 @@
 #ifndef LONGITUDEINPUT_H
 #define LONGITUDEINPUT_H
 
-#include <QtGui/QWidget>
+#include <QWidget>
 #include "ui_LongitudeInput.h"
 
 #include "src/Longitude.h"

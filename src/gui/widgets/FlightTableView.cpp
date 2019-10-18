@@ -96,7 +96,7 @@ void FlightTableView::init (DbManager *dbManager)
 	_proxyModel->setSortCaseSensitivity (Qt::CaseInsensitive);
 	_proxyModel->setDynamicSortFilter (true);
 	_proxyModel->setFlarmIdColumn (_flightModel->flarmIdColumn ());
-	_proxyModel->setIdColumn      (_flightModel->idColumn      ());
+    _proxyModel->setIdColumn      (_flightModel->idColumn      ());
 
 	// Connect the signals of the flight sort filter proxy model that
 	// necessitate a notification layout update

@@ -219,7 +219,8 @@ template<class T> void ObjectListModel<T>::listDestroyed ()
 	_list=NULL;
 	// Unfortunately, we were not notified before the change, so we aren't able
 	// to use beginResetModel/endResetModel as a good model should.
-	reset ();
+    beginResetModel();
+    endResetModel();
 }
 
 template<class T> void ObjectListModel<T>::modelDestroyed ()
@@ -227,7 +228,8 @@ template<class T> void ObjectListModel<T>::modelDestroyed ()
 	_model=NULL;
 	// Unfortunately, we were not notified before the change, so we aren't able
 	// to use beginResetModel/endResetModel as a good model should.
-	reset ();
+    beginResetModel();
+    endResetModel();
 }
 
 

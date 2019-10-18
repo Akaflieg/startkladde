@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include <QList>
 #include <QObject>
+#include <QSerialPort>
 
 #include "src/container/Maybe.h"
 #include "src/numeric/GeoPosition.h"
@@ -46,6 +47,7 @@ class Flarm: public QObject
 
 		bool isOpen () const;
 		const ManagedDataStream *getManagedStream () const;
+        QSerialPort* serial;
 
 		State::Type state () const;
 

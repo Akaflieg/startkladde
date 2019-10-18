@@ -182,7 +182,7 @@ QString Longitude::format (const QString &positiveString, const QString &negativ
 	toDms (degrees, minutes, seconds, positive);
 
 	return qnotrUtf8 ("%1° %2' %3\" %4")
-		.arg (abs (degrees))
+        .arg (degrees)
 		.arg (minutes)
 		.arg (seconds)
 		.arg (positive?positiveString:negativeString);

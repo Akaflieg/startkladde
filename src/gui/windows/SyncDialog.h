@@ -2,6 +2,7 @@
 #define SYNCDIALOG_H
 
 #include <QDialog>
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class SyncDialog;
@@ -20,7 +21,8 @@ signals:
     void cancelled();
 
 public slots:
-    void completed(QString msg, bool errors);
+    void completed(bool errors, QString msg, QList<QTreeWidgetItem*> errorItems);
+    void completed(bool errors, QString msg);
     void setProgress(int val, QString msg);
     void cancelButtonClicked();
     void setCancelable(bool cancelable);

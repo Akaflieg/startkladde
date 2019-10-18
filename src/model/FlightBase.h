@@ -43,6 +43,7 @@ class FlightBase
 		virtual dbId getId () const { return id; }
 		virtual void setId (dbId id) { this->id=id; } // TODO can we do without this?
 
+        flight_value_accessor (dbId, VfId, vfId);
 		flight_value_accessor (dbId, PlaneId, planeId);
 		flight_value_accessor (dbId, PilotId, pilotId);
 		flight_value_accessor (dbId, CopilotId, copilotId);
@@ -112,6 +113,7 @@ class FlightBase
 		QString comments;
 		QString accountingNotes;
 		QString flarmId;
+        dbId vfId;
 };
 
 #undef flight_value_accessor

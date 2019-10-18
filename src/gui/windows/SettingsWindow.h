@@ -42,12 +42,12 @@ class SettingsWindow: public SkDialog<Ui::SettingsWindowClass>
 
 	private slots:
 		void on_mysqlDefaultPortCheckBox_toggled () { updateWidgets (); }
-        void on_mysqlDefaultPortCheckBox_2_toggled () { updateWidgets (); }
 
 		void on_languageInput_activated (int index);
 
 		void on_flarmConnectionTypeInput_activated (int index);
 		void on_flarmSerialPortInput_activated (int index);
+        void on_flarmActivateRangeCheckbox_toggled(bool);
 
 		void on_addPluginPathButton_clicked ();
 		void on_removePluginPathButton_clicked ();
@@ -62,8 +62,8 @@ class SettingsWindow: public SkDialog<Ui::SettingsWindowClass>
 
 		void on_infoPluginList_itemDoubleClicked (QTreeWidgetItem *item, int column);
 
-		void on_weatherPluginInput_currentIndexChanged ();
-		void on_weatherWindowPluginInput_currentIndexChanged ();
+        void on_weatherPluginInput_currentIndexChanged (int index);
+        void on_weatherWindowPluginInput_currentIndexChanged (int index);
 
 		void updateWidgets ();
 

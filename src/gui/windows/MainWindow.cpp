@@ -81,7 +81,6 @@
 #include "src/gui/windows/input/ChoiceDialog.h"
 #include "src/flarm/Flarm.h"
 #include "src/flarm/flarmNet/FlarmNetHandler.h"
-#include "src/db/DbSync.h"
 #include "SyncDialog.h"
 
 template <class T> class MutableObjectList;
@@ -152,11 +151,6 @@ MainWindow::MainWindow (QWidget *parent, DbManager &dbManager, Flarm &flarm):
 
 	setupLabels ();
 
-	// Info frame
-	bool acpiValid = AcpiWidget::valid ();
-	ui.powerStateLabel->setVisible (acpiValid);
-	ui.powerStateCaptionLabel->setVisible (acpiValid);
-
 	// Change the language every second so we can verify even for modal windows
 	// that they are correctly retranslated.
 	QTimer *timeTimer = new QTimer (this);
@@ -196,8 +190,7 @@ MainWindow::MainWindow (QWidget *parent, DbManager &dbManager, Flarm &flarm):
 #endif
 
 	ui.actionShowVirtualKeyboard->setVisible (virtualKeyboardEnabled);
-//	ui.actionShowVirtualKeyboard->setIcon (QIcon ((const QPixmap&)QPixmap (kvkbd)));
-	ui.actionShowVirtualKeyboard->setIcon (QIcon (notr (":/graphics/kvkbd.png")));
+    ui.actionShowVirtualKeyboard->setIcon (QIcon (notr (":/graphics/keyboard.svg")));
 
 	// Log
 	ui.logWidget->document ()->setMaximumBlockCount (100);
@@ -581,6 +574,9 @@ void MainWindow::settingsChanged ()
 	ui.timerBasedLanguageChangeAction->setEnabled (s.enableDebug);
 
 	ui.actionNetworkDiagnostics     ->setVisible (!isBlank (s.diagCommand));
+
+    // Vereinsflieger
+    ui.actionSync->setVisible(s.vfUploadEnabled);
 	
 	// Flarm
 	// Note that we enable the flarmPlaneList and flarmRadar actions even if
@@ -1444,18 +1440,28 @@ void MainWindow::on_actionRefreshAll_triggered ()
 }
 
 void MainWindow::on_actionSync_triggered() {
-    SyncDialog* syncDialog = new SyncDialog(this);
-    syncDialog->open();
+    LoginDialog* loginDialog = new LoginDialog(this);
+    loginDialog->exec();
 
-    sync = new DbSync(dbManager, syncDialog, this);
-    connect(sync, SIGNAL(completed()), this, SLOT(syncCompleted()));
-    sync->startSynchronisation();
-}
+    if (loginDialog->result() == QDialog::Accepted)
+    {
+        QString user = loginDialog->getUsername();
+        QString pass = loginDialog->getPassword();
+        delete loginDialog;
 
-void MainWindow::syncCompleted()
-{
-    disconnect(sync, SIGNAL(completed()), this, SLOT(syncCompleted()));
-    on_actionRefreshAll_triggered();
+        SyncDialog* syncDialog = new SyncDialog(this);
+        syncDialog->setCancelable(true);
+
+        VereinsfliegerSyncWorker* worker = new VereinsfliegerSyncWorker(&dbManager, user, pass, this);
+        syncDialog->open();
+
+        connect(worker, SIGNAL(finished(bool,QString,QList<QTreeWidgetItem*>)), syncDialog, SLOT(completed(bool,QString,QList<QTreeWidgetItem*>)));
+        connect(worker, SIGNAL(progress(int,QString)), syncDialog, SLOT(setProgress(int,QString)));
+        connect(syncDialog, SIGNAL(cancelled()), worker, SLOT(cancel()));
+
+        worker->sync();
+        worker->deleteLater();
+    }
 }
 
 // **********

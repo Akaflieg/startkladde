@@ -45,8 +45,6 @@ class Settings: public QObject
 		// *** Database
 		// Connection
 		DatabaseInfo databaseInfo;
-        DatabaseInfo remoteDatabaseInfo;
-        QString databaseDumpPath;
 
 		// *** Settings
 		// UI
@@ -57,6 +55,10 @@ class Settings: public QObject
 		bool checkMedicals;
         dbId preselectedLaunchMethod;
         bool loadPreselectedLM;
+        // Vereinsflieger
+        bool vfUploadEnabled;
+        QString vfApiKey;
+        QString vfClubId;
 		// Flarm
 		bool flarmEnabled;
 		Flarm::ConnectionType flarmConnectionType;
@@ -67,6 +69,7 @@ class Settings: public QObject
 		QString  flarmFileName;
 		int      flarmFileDelayMs;
 		bool flarmAutoDepartures; // Also landings and touch-and-gos
+        int  flarmRange;          // Range for automatic detection in metres
 		bool flarmDataViewable;
 		QString flarmMapKmlFileName;
 		// FlarmNet

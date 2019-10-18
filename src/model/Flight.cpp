@@ -461,21 +461,21 @@ QDateTime Flight::effectiveTime () const
 QTime Flight::flightDuration () const
 {
 	if (getDeparted () && getLanded ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (getLandingTime ()));
+        return QTime(0,0,0,0).addSecs (getDepartureTime ().secsTo (getLandingTime ()));
 	else if (getDeparted ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
-	else
-		return QTime ();
+        return QTime(0,0,0,0).addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
+    else
+        return QTime(0,0,0,0);
 }
 
 QTime Flight::towflightDuration () const
 {
 	if (getDeparted () && getTowflightLanded ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (getTowflightLandingTime ()));
+        return QTime (0,0,0,0).addSecs (getDepartureTime ().secsTo (getTowflightLandingTime ()));
 	else if (getDeparted ())
-		return QTime ().addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
+        return QTime (0,0,0,0).addSecs (getDepartureTime ().secsTo (QDateTime::currentDateTime ().toUTC ()));
 	else
-		return QTime ();
+        return QTime (0,0,0,0);
 }
 
 
@@ -986,7 +986,7 @@ QString Flight::selectColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ23
 		",accounting_notes,comments" // 2 Σ25
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
-		",flarm_id" // 1 Σ29
+        ",flarm_id,vfid" // 2 Σ30
 		);
 }
 
@@ -1031,6 +1031,7 @@ Flight Flight::createFromResult (const Result &result)
 	f.setTowpilotFirstName  (result.value (27).toString   ());
 
 	f.setFlarmId (result.value (28).toString ());
+    f.setVfId    (result.value(29).toLongLong ());
 
 	return f;
 }
@@ -1087,7 +1088,7 @@ QString Flight::insertColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ22
 		",accounting_notes,comments" // 2 Σ24
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ27
-		",flarm_id" // 1 Σ28
+        ",flarm_id,vfid" // 1 Σ29
 		);
 }
 
@@ -1100,7 +1101,7 @@ QString Flight::insertPlaceholderList ()
 		",?,?,?,?"
 		",?,?"
 		",?,?,?"
-		",?"
+        ",?,?"
 		);
 }
 
@@ -1140,6 +1141,7 @@ void Flight::bindValues (Query &q) const
 	q.bind (getTowpilotFirstName ());
 
 	q.bind (getFlarmId ());
+    q.bind (getVfId ());
 }
 
 QList<Flight> Flight::createListFromResult (Result &result)

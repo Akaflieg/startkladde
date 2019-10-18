@@ -4,7 +4,7 @@
 #include "src/plugin/settings/PluginSettingsPane.h"
 #include "ui_TestPluginSettingsPane.h"
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 class TestPlugin;
 

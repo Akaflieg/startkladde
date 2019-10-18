@@ -4,7 +4,7 @@
 #include "src/plugin/settings/PluginSettingsPane.h"
 #include "ui_SunsetPluginSettingsPane.h"
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 class SunsetPluginBase;
 

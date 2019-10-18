@@ -71,7 +71,7 @@ void ExternalWeatherPlugin::lineReceived (const QString &line)
 	{
 		QRegExp rx (notr ("\\[MSG\\]\\s*\\[(.*)\\]") );
 		rx.indexIn (line);
-		if (rx.numCaptures ()>0)
+        if (rx.captureCount ()>0)
 		{
 			QString text=rx.cap (1);
 			// An even number of backslashes, followed by a backslash and an n ==> newline
@@ -85,7 +85,7 @@ void ExternalWeatherPlugin::lineReceived (const QString &line)
 	{
 		QRegExp rx (notr ("\\[IMG\\]\\s*\\[(.*)\\]") );
 		rx.indexIn (line);
-		if (rx.numCaptures ()>0)
+        if (rx.captureCount ()>0)
 		{
 			QString filename=rx.cap (1);
 			QImage image (filename);
@@ -100,7 +100,7 @@ void ExternalWeatherPlugin::lineReceived (const QString &line)
 	{
 		QRegExp rx (notr ("\\[MOV\\]\\s*\\[(.*)\\]") );
 		rx.indexIn (line);
-		if (rx.numCaptures ()>0)
+        if (rx.captureCount ()>0)
 		{
 			QString filename=rx.cap (1);
 			SkMovie movie (filename);

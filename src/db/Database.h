@@ -75,6 +75,7 @@ class Database: public QObject
 		// *** Selection frontends
 		virtual QList<Flight> getPreparedFlights ();
 		virtual QList<Flight> getFlightsDate (QDate date);
+        virtual QList<Flight> getFlightsUnimportedVF();
 
 		// *** Value lists
 		virtual QStringList listLocations ();

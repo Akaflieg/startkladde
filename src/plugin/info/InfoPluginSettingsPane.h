@@ -1,7 +1,7 @@
 #ifndef INFOPLUGINSETTINGSPANE_H
 #define INFOPLUGINSETTINGSPANE_H
 
-#include <QtGui/QWidget>
+#include <QWidget>
 #include "ui_InfoPluginSettingsPane.h"
 
 #include "src/plugin/settings/PluginSettingsPane.h"

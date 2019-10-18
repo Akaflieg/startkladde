@@ -103,6 +103,19 @@ class FlarmRecord: public QObject
 		void setState (flarmState state, const QString &comment=QString ());
 		void stateTransition ();
 
+        // Internal functions for signal emission
+        // Filters are applied here
+        void _departureDetected(const QString &flarmId);
+        void _landingDetected(const QString &flarmId);
+        void _touchAndGoDetected(const QString &flarmId);
+
+        // Filters
+
+        // Implements a general filter
+        // TRUE if detected departure/landing/touchAndGo shall be registered
+        // FALSE otherwise
+        bool generalFilterMatch();
+
 	private slots:
 		void keepaliveTimeout ();
 		void landingTimeout ();

@@ -1,7 +1,7 @@
 #ifndef PLUGINSETTINGSPANE_H_
 #define PLUGINSETTINGSPANE_H_
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 #include "src/accessor.h"
 

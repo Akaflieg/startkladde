@@ -800,6 +800,10 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 {
 	originalFlight=flight;
 
+    if (repeat) {
+        originalFlight.setVfId(invalidId);
+    }
+
 	// Note that for repeating, some fields are not set or set differently.
 
 	originalFlightId = flight.getId ();
@@ -890,8 +894,9 @@ Flight FlightWindow::determineFlightBasic () throw ()
 	Flight flight;
 
 	// Some of the data is taken from the stored data
-	flight.setId (originalFlightId);
+    flight.setId          (originalFlightId);
 	flight.setFlarmId     (originalFlight.getFlarmId());
+    flight.setVfId        (originalFlight.getVfId());
 	flight.setPlaneId     (isRegistrationActive         ()?selectedPlane   :invalidId);
 	flight.setTowplaneId  (isTowplaneRegistrationActive ()?selectedTowplane:invalidId);
 	flight.setPilotId     (isPilotActive                ()?selectedPilot   :invalidId);

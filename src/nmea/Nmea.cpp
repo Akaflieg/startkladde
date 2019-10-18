@@ -41,7 +41,7 @@ uint8_t Nmea::calculateChecksum (const QString &data)
 
 	for (int i=0, n=data.length (); i<n; ++i)
 	{
-		uint8_t character = data[i].toAscii ();
+        uint8_t character = data[i].toLatin1 ();
 		checksum ^= character;
 	}
 

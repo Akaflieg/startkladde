@@ -2,9 +2,10 @@
     <qresource prefix="/">
         <file>../graphics/icon.png</file>
         <file>../graphics/icon.svg</file>
-        <file>../graphics/kvkbd.png</file>
         <file>../graphics/logo.png</file>
         <file alias="snd_takeoff">../sounds/snd_takeoff.wav</file>
         <file alias="snd_landing">../sounds/snd_landing.wav</file>
+        <file>../graphics/keyboard.svg</file>
+        <file>../graphics/refresh.svg</file>
     </qresource>
 </RCC>

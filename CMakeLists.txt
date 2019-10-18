@@ -2,10 +2,14 @@
 ## Settings ##
 ##############
 
+project("startkladde")
+
 set (startkladde_VERSION_MAJOR 2)
 set (startkladde_VERSION_MINOR 1)
-set (startkladde_VERSION_REVISION 0)
+set (startkladde_VERSION_REVISION 1)
+set (full_version ${startkladde_VERSION_MAJOR}.${startkladde_VERSION_MINOR}.${startkladde_VERSION_REVISION})
 
+cmake_minimum_required( VERSION 2.8.11 ) #2.8.11 for Qt5
 
 #################
 ## cmake setup ##
@@ -21,12 +25,8 @@ ELSE()
 	SET(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build, options are: None(CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.")
 ENDIF()
 
-cmake_minimum_required (VERSION 2.8.6) # 2.8.6 required for automoc
-PROJECT (startkladde)
-
 # Include additional cmake scripts (e. g. finding the MySQL library)
 SET (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}")
-
 
 ##############
 ## Packages ##
@@ -46,33 +46,18 @@ SET (RUBY_INCLUDE_DIR        "not_required")
 SET (RUBY_CONFIG_INCLUDE_DIR "not_required")
 
 # Find packages
-FIND_PACKAGE (Qt4          REQUIRED)
+FIND_PACKAGE (Qt5Widgets        REQUIRED)
+FIND_PACKAGE (Qt5Sql            REQUIRED)
+FIND_PACKAGE (Qt5Xml            REQUIRED)
+FIND_PACKAGE (Qt5Network        REQUIRED)
+FIND_PACKAGE (Qt5LinguistTools  REQUIRED)
 FIND_PACKAGE (MySQL 5.0    REQUIRED)
 FIND_PACKAGE (Acpi                 )
 FIND_PACKAGE (Ruby         REQUIRED)
-#FIND_PACKAGE (Qwt6	        REQUIRED)
-
-# Setup the Qt library
-SET(QT_USE_QTSQL     TRUE)
-SET(QT_USE_QTXML     TRUE)
-SET(QT_USE_QTNETWORK TRUE)
-SET(QT_USE_PHONON	TRUE)
 
 set(CMAKE_AUTOMOC TRUE)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#string(REPLACE "qwt.dll" "qwtd.dll" Qwt6_Qt4_DEBUG_LIBRARY ${Qwt6_Qt4_LIBRARY})
-#if(NOT Qwt6_FOUND)
-#    message(STATUS "Qwt6 not found! Disabling plotting support!")
-#else()
-#    message(STATUS "Qwt6 available at: ${Qwt6_INCLUDE_DIR} ${Qwt6_Qt4_LIBRARY}")
-#    include_directories(${Qwt6_INCLUDE_DIR})
-#    
-#    IF(CMAKE_BUILD_TYPE MATCHES "Debug")
-#		link_libraries(${Qwt6_Qt4_DEBUG_LIBRARY})
-#	ELSE ()
-#    	link_libraries(${Qwt6_Qt4_LIBRARY})
-#	ENDIF()
-#endif()
 
 # For gcc and release mode, enable some options that make the binary smaller
 if (CMAKE_COMPILER_IS_GNUCXX)
@@ -81,14 +66,14 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif ()
 
 
-
 ######################
 ## Compile settings ##
 ######################
 
 # TODO: only for the GNU compiler, CMAKE_COMPILER_IS_GNUCXX (and test on MinGW
 # and Linux)
-SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+# Qt5Widgets_EXECUTABLE_COMPILE_FLAGS contains a special flag needed for qt5 (should get obsolete after a time...)
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 # Dump variables
 #get_cmake_property(_variableNames VARIABLES)
@@ -140,15 +125,25 @@ ADD_CUSTOM_COMMAND (
 )
 
 # Handle Qt sources
-QT4_WRAP_CPP      (startkladde_HEADERS_MOC   ${startkladde_MOC}      )
-QT4_WRAP_UI       (startkladde_FORMS_HEADERS ${startkladde_FORMS}    )
-QT4_ADD_RESOURCES (startkladde_RESOURCES_RCC ${startkladde_RESOURCES})
+QT5_WRAP_CPP      (startkladde_HEADERS_MOC   ${startkladde_MOC}      )
+QT5_WRAP_UI       (startkladde_FORMS_HEADERS ${startkladde_FORMS}    )
+QT5_ADD_RESOURCES (startkladde_RESOURCES_RCC ${startkladde_RESOURCES})
 
+add_definitions(${Qt5Widgets_DEFINITIONS})
+add_definitions(${Qt5Sql_DEFINITIONS})
+add_definitions(${Qt5Xml_DEFINITIONS})
+add_definitions(${Qt5Network_DEFINITIONS})
 
-INCLUDE(${QT_USE_FILE})
-ADD_DEFINITIONS(${QT_DEFINITIONS})
+include_directories (
+    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_BINARY_DIR}
+    ${MYSQL_INCLUDE_DIR}
+    ${Qt5Widgets_INCLUDE_DIRS}
+    ${Qt5Network_INCLUDE_DIRS}
+    ${Qt5Sql_INCLUDE_DIRS}
+    ${Qt5Xml_INCLUDE_DIRS}
+)
 
-INCLUDE_DIRECTORIES ("${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}" "${MYSQL_INCLUDE_DIR}")
 
 # This must be implemented as a macro, otherwise INSTALL_LIBS will be local
 macro (copy_library source_directory library_name)
@@ -210,14 +205,14 @@ file (GLOB translation_sources translations/*.ts)
 file (MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/translations)
 
 # Set the OUTPUT_LOCATION of the translation source files to the translations/
-# directory in the build directory. QT4_ADD_TRANSLATION will place the compiled
+# directory in the build directory. QT5_ADD_TRANSLATION will place the compiled
 # translations there.
 SET_SOURCE_FILES_PROPERTIES (${translation_sources} PROPERTIES OUTPUT_LOCATION ${PROJECT_BINARY_DIR}/translations)
 
 # Add rules for compiling the translation files
-# Note that QT4_CREATE_TRANSLATION will delete the translation sources (*.ts)
+# Note that QT5_CREATE_TRANSLATION will delete the translation sources (*.ts)
 # on "make clean".
-QT4_ADD_TRANSLATION(translation_files ${translation_sources})
+QT5_ADD_TRANSLATION(translation_files ${translation_sources})
 
 ADD_CUSTOM_TARGET (lupdate
 	COMMAND ${QT_LUPDATE_EXECUTABLE} src -ts ${translation_sources}
@@ -250,7 +245,14 @@ target_link_libraries(startkladde qserialdevice)
 # threads didn't exit" in specific situations (e. g. exception on open).
 # Is this still required?
 
-TARGET_LINK_LIBRARIES (startkladde ${QT_LIBRARIES} ${libs})
+TARGET_LINK_LIBRARIES (
+    startkladde
+    ${Qt5Widgets_LIBRARIES}
+    ${Qt5Network_LIBRARIES}
+    ${Qt5Xml_LIBRARIES}
+    ${Qt5Sql_LIBRARIES}
+    ${libs}
+)
 
 
 #########

@@ -175,7 +175,7 @@ void SkTableView::rowsInserted (const QModelIndex &parent, int start, int end)
 		resizeColumnsToContents ();
 }
 
-void SkTableView::dataChanged (const QModelIndex &topLeft, const QModelIndex &bottomRight)
+void SkTableView::dataChanged (const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
 {
 	assert (isGuiThread ());
 

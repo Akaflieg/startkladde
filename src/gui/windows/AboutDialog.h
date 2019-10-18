@@ -1,7 +1,7 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include "ui_AboutDialog.h"
 
 class AboutDialog: public QDialog

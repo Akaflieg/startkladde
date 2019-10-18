@@ -215,8 +215,6 @@ void Settings::readSettings ()
 	// *** Database
 	s.beginGroup (notr ("database"));
 	databaseInfo.load (s); // Connection
-    remoteDatabaseInfo.load(s, "remote");
-    databaseDumpPath = s.value(notr("dumpPath"), QString(notr("%1%2startkladde_sql_dumps")).arg(QDir::homePath()).arg(QDir::separator())).toString();
 	s.endGroup ();
 	// If the database name has been overridden, overwrite the value. It won't
 	// be written back.
@@ -242,6 +240,12 @@ void Settings::readSettings ()
     {
         preselectedLaunchMethod = invalidId;
     }
+    // Vereinsflieger
+    s.beginGroup (notr ("vereinsflieger"));
+    vfUploadEnabled     =s.value (notr("vfUploadEnabled"),      false).toBool();
+    vfApiKey            =s.value (notr("vfApiKey"),             "").toString();
+    vfClubId            =s.value (notr("vfClubId"),             "").toString();
+    s.endGroup();
 	// Flarm
 	flarmEnabled         =s.value (notr("flarmEnabled"),           true   ).toBool ();
 	QString flarmConnectionTypeString=s.value (notr ("flarmConnectionType"  ), "").toString ();
@@ -253,6 +257,7 @@ void Settings::readSettings ()
 	flarmFileName        =s.value (notr ("flarmFileName"        ), ""         ).toString ();
 	flarmFileDelayMs     =s.value (notr ("flarmFileDelayMs"     ), 0          ).toInt    ();
 	flarmAutoDepartures  =s.value (notr ("flarmAutoDepartures"  ), true       ).toBool   ();
+    flarmRange           =s.value (notr ("flarmRange"           ), 0          ).toInt    ();
 	flarmDataViewable    =s.value (notr ("flarmDataViewable"    ), true       ).toBool   ();
 	flarmMapKmlFileName  =s.value (notr ("flarmMapKmlFileName"  ), ""         ).toString ();
 	// FlarmNet
@@ -319,8 +324,6 @@ void Settings::writeSettings ()
 	{
 		s.beginGroup (notr ("database"));
 		databaseInfo.save (s); // Connection
-        remoteDatabaseInfo.save(s, "remote");
-        s.setValue(notr("dumpPath"), databaseDumpPath);
 		s.endGroup ();
 	}
 
@@ -335,6 +338,12 @@ void Settings::writeSettings ()
     s.setValue (notr ("checkMedicals")          , checkMedicals );
     s.setValue (notr ("preselectedLaunchMethod"), preselectedLaunchMethod);
     s.setValue (notr ("loadPreselectedLM")      , loadPreselectedLM);
+    // Vereinsflieger
+    s.beginGroup (notr ("vereinsflieger"));
+    s.setValue (notr("vfUploadEnabled"),    vfUploadEnabled);
+    s.setValue (notr("vfApiKey"),           vfApiKey);
+    s.setValue (notr("vfClubId"),           vfClubId);
+    s.endGroup();
 	// Flarm
 	s.setValue (notr ("flarmEnabled"         ), flarmEnabled       );
 	s.setValue (notr ("flarmConnectionType"  ), Flarm::ConnectionType_toString (flarmConnectionType));
@@ -345,6 +354,7 @@ void Settings::writeSettings ()
 	s.setValue (notr ("flarmFileName"        ), flarmFileName);
 	s.setValue (notr ("flarmFileDelayMs"     ), flarmFileDelayMs);
 	s.setValue (notr ("flarmAutoDepartures"  ), flarmAutoDepartures);
+    s.setValue (notr ("flarmRange"           ), flarmRange);
 	s.setValue (notr ("flarmDataViewable"    ), flarmDataViewable  );
 	s.setValue (notr ("flarmMapKmlFileName"  ), flarmMapKmlFileName);
 	// FlarmNet

@@ -26,6 +26,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QShowEvent>
+#include <QSerialPortInfo>
 
 #include "src/text.h"
 #include "src/config/Settings.h"
@@ -34,7 +35,6 @@
 #include "src/gui/views/ReadOnlyItemDelegate.h"
 #include "src/gui/views/SpinBoxCreator.h"
 #include "src/gui/views/SpecialIntDelegate.h"
-#include "src/io/serial/SerialPortList.h"
 #include "src/i18n/notr.h"
 #include "src/i18n/TranslationManager.h"
 #include "src/plugin/info/InfoPlugin.h"
@@ -82,8 +82,6 @@ SettingsWindow::SettingsWindow (QWidget *parent):
 		ui.flarmConnectionTypeInput->addItem (text, type);
 	}
 
-	SerialPortList *serialPortList=SerialPortList::instance ();
-	connect (serialPortList, SIGNAL (portsChanged (QSet<QString>)), this, SLOT (populateSerialPortList ()));
 	populateSerialPortList ();
 
 	readSettings ();
@@ -111,7 +109,7 @@ void SettingsWindow::prepareText ()
 
 	foreach (const WeatherPlugin::Descriptor *descriptor, weatherPlugins)
 	{
-		QString id  =descriptor->getId   ();
+        QString id  =descriptor->getId   ().toString();
 		ui.weatherPluginInput      ->addItem ("", id);
 		ui.weatherWindowPluginInput->addItem ("", id);
 	}
@@ -130,7 +128,7 @@ void SettingsWindow::setupText ()
 	foreach (const WeatherPlugin::Descriptor *descriptor, weatherPlugins)
 	{
 		QString name=descriptor->getName ();
-		QString id  =descriptor->getId   ();
+        QString id  =descriptor->getId   ().toString();
 		ui.weatherPluginInput      ->setItemTextByItemData (id, name);
 		ui.weatherWindowPluginInput->setItemTextByItemData (id, name);
 	}
@@ -171,21 +169,19 @@ void SettingsWindow::populateSerialPortList ()
 
 	ui.flarmSerialPortInput->clear ();
 
-	// Populate the serial ports list
-	SerialPortList *serialPortList=SerialPortList::instance ();
-	QStringList ports (serialPortList->availablePorts ().toList ());
-	qSort (ports.begin (), ports.end (), serialPortLessThan);
-	foreach (const QString &deviceName, ports)
+    QList<QSerialPortInfo> serialPortList = QSerialPortInfo::availablePorts();
+    //qSort (ports.begin (), ports.end (), serialPortLessThan);
+    foreach (const QSerialPortInfo &portInfo, serialPortList)
 	{
-		QString deviceDescription=serialPortList->getDescription (deviceName);
+        QString deviceDescription= portInfo.description();
 
 		QString text;
 		if (isBlank (deviceDescription))
-			text=tr ("%1").arg (deviceName);
+            text=tr ("%1").arg (portInfo.portName());
 		else
-			text=tr ("%1 (%2)").arg (deviceName).arg (deviceDescription);
+            text=tr ("%1 (%2)").arg (portInfo.portName()).arg (deviceDescription);
 
-		ui.flarmSerialPortInput->addItem (text, deviceName);
+        ui.flarmSerialPortInput->addItem (text, portInfo.portName());
 	}
 
 	// Make boolean columns and some other columns read-only
@@ -231,7 +227,6 @@ void SettingsWindow::readSettings ()
 {
 	Settings &s=Settings::instance ();
 	DatabaseInfo &info=s.databaseInfo;
-    DatabaseInfo &remInfo=s.remoteDatabaseInfo;
 
 	// *** Database
 	ui.mysqlServerInput        ->setText    (info.server);
@@ -241,15 +236,6 @@ void SettingsWindow::readSettings ()
 	ui.mysqlPasswordInput      ->setText    (info.password);
 	ui.mysqlDatabaseInput      ->setText    (info.database);
 
-    ui.mysqlServerInput_2        ->setText    (remInfo.server);
-    ui.mysqlDefaultPortCheckBox_2->setChecked (remInfo.defaultPort);
-    ui.mysqlPortInput_2          ->setValue   (remInfo.port);
-    ui.mysqlUserInput_2          ->setText    (remInfo.username);
-    ui.mysqlPasswordInput_2      ->setText    (remInfo.password);
-    ui.mysqlDatabaseInput_2      ->setText    (remInfo.database);
-
-    ui.databaseDumpPath->setText(s.databaseDumpPath);
-
 	// *** Settings
 	// UI
 	ui.languageInput->setCurrentItem (s.languageConfiguration);
@@ -257,6 +243,10 @@ void SettingsWindow::readSettings ()
 	ui.locationInput         ->setText    (s.location);
 	ui.recordTowpilotCheckbox->setChecked (s.recordTowpilot);
 	ui.checkMedicalsCheckbox ->setChecked (s.checkMedicals);
+    // Vereinsflieger
+    ui.vfUploadEnabled  ->setChecked    (s.vfUploadEnabled);
+    ui.vfApiKeyInput    ->setText       (s.vfApiKey);
+    ui.vfCIDInput       ->setText       (s.vfClubId);
 	// Flarm
 	ui.flarmGroupBox              ->setChecked  (s.flarmEnabled);
 	ui.flarmConnectionTypeInput   ->setCurrentItemByItemData (
@@ -269,6 +259,8 @@ void SettingsWindow::readSettings ()
 	ui.flarmFileNameInput         ->setText     (s.flarmFileName);
 	ui.flarmFileDelayInput        ->setValue    (s.flarmFileDelayMs);
 	ui.flarmAutoDeparturesCheckbox->setChecked  (s.flarmAutoDepartures);
+    ui.flarmActivateRangeCheckbox ->setChecked  (s.flarmRange != 0);
+    ui.flarmRangeInput            ->setValue    (s.flarmRange);
 	ui.flarmDataViewableCheckbox  ->setChecked  (s.flarmDataViewable);
 	ui.flarmMapKmlFileNameInput   ->setText     (s.flarmMapKmlFileName);
 	// FlarmNet
@@ -306,7 +298,7 @@ void SettingsWindow::readSettings ()
 	ui.weatherPluginCommandInput ->setText                  (s.weatherPluginCommand );
 	ui.weatherPluginHeightInput  ->setValue                 (s.weatherPluginHeight  );
 	ui.weatherPluginIntervalInput->setValue                 (s.weatherPluginInterval/60);
-	on_weatherPluginInput_currentIndexChanged ();
+    on_weatherPluginInput_currentIndexChanged (ui.weatherPluginInput->currentIndex());
 
 	// Weather dialog
 	ui.weatherWindowBox          ->setChecked               (s.weatherWindowEnabled);
@@ -314,7 +306,7 @@ void SettingsWindow::readSettings ()
 	ui.weatherWindowCommandInput ->setText                  (s.weatherWindowCommand );
 	ui.weatherWindowIntervalInput->setValue                 (s.weatherWindowInterval/60);
 	ui.weatherWindowTitleInput   ->setText                  (s.weatherWindowTitle   );
-	on_weatherWindowPluginInput_currentIndexChanged ();
+    on_weatherWindowPluginInput_currentIndexChanged (ui.weatherPluginInput->currentIndex());
 
 	// *** Plugins - Paths
 	ui.pluginPathList->clear ();
@@ -332,7 +324,6 @@ void SettingsWindow::writeSettings ()
 {
 	Settings &s=Settings::instance ();
 	DatabaseInfo &info=s.databaseInfo;
-    DatabaseInfo &remInfo=s.remoteDatabaseInfo;
 
 	DatabaseInfo oldInfo=info;
 
@@ -344,22 +335,17 @@ void SettingsWindow::writeSettings ()
 	info.password   =ui.mysqlPasswordInput      ->text ();
 	info.database   =ui.mysqlDatabaseInput      ->text ();
 
-    remInfo.server     =ui.mysqlServerInput_2        ->text ();
-    remInfo.defaultPort=ui.mysqlDefaultPortCheckBox_2->isChecked ();
-    remInfo.port       =ui.mysqlPortInput_2          ->value ();
-    remInfo.username   =ui.mysqlUserInput_2          ->text ();
-    remInfo.password   =ui.mysqlPasswordInput_2      ->text ();
-    remInfo.database   =ui.mysqlDatabaseInput_2      ->text ();
-
-    s.databaseDumpPath = ui.databaseDumpPath->text();
-
-	// *** Settings
+    // *** Settings
 	// Language
 	s.languageConfiguration=ui.languageInput->getSelectedLanguageConfiguration ();
 	// Data
 	s.location      =ui.locationInput         ->text ();
 	s.recordTowpilot=ui.recordTowpilotCheckbox->isChecked ();
 	s.checkMedicals =ui.checkMedicalsCheckbox ->isChecked ();
+    // Vereinsflieger
+    s.vfUploadEnabled   =ui.vfUploadEnabled ->isChecked();
+    s.vfApiKey          =ui.vfApiKeyInput   ->text();
+    s.vfClubId          =ui.vfCIDInput      ->text();
 	// Flarm
 	s.flarmEnabled	     =ui.flarmGroupBox              ->isChecked ();
 	s.flarmConnectionType=(Flarm::ConnectionType)
@@ -371,6 +357,7 @@ void SettingsWindow::writeSettings ()
 	s.flarmFileName      =ui.flarmFileNameInput         ->text ();
 	s.flarmFileDelayMs   =ui.flarmFileDelayInput        ->value ();
 	s.flarmAutoDepartures=ui.flarmAutoDeparturesCheckbox->isChecked ();
+    s.flarmRange         =ui.flarmActivateRangeCheckbox->isChecked() ? ui.flarmRangeInput->value() : 0;
 	s.flarmDataViewable  =ui.flarmDataViewableCheckbox  ->isChecked ();
 	s.flarmMapKmlFileName=ui.flarmMapKmlFileNameInput   ->text ();
 	// FlarmNet
@@ -617,17 +604,21 @@ void SettingsWindow::on_infoPluginList_itemDoubleClicked (QTreeWidgetItem *item,
 // ** Weather plugins **
 // *********************
 
-void SettingsWindow::on_weatherPluginInput_currentIndexChanged ()
+void SettingsWindow::on_weatherPluginInput_currentIndexChanged (int index)
 {
-	bool external=(ui.weatherPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ());
+    Q_UNUSED(index)
+
+    bool external=(ui.weatherPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherPluginCommandLabel->setEnabled (external);
 	ui.weatherPluginCommandInput->setEnabled (external);
 	ui.browseWeatherPluginCommandButton->setEnabled (external);
 }
 
-void SettingsWindow::on_weatherWindowPluginInput_currentIndexChanged ()
+void SettingsWindow::on_weatherWindowPluginInput_currentIndexChanged (int index)
 {
-	bool external=(ui.weatherWindowPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ());
+    Q_UNUSED(index)
+
+    bool external=(ui.weatherWindowPluginInput->currentItemData ().toString ()==ExternalWeatherPlugin::_getId ().toString());
 	ui.weatherWindowCommandLabel->setEnabled (external);
 	ui.weatherWindowCommandInput->setEnabled (external);
 	ui.browseWeatherWindowCommandButton->setEnabled (external);
@@ -810,7 +801,9 @@ void SettingsWindow::updateWidgets ()
 {
 	// MySQL
 	ui.mysqlPortInput->setEnabled (!ui.mysqlDefaultPortCheckBox->isChecked ());
-    ui.mysqlPortInput_2->setEnabled (!ui.mysqlDefaultPortCheckBox_2->isChecked ());
+
+    // Vereinsflieger
+    ui.vfConnectionGroupBox->setEnabled (ui.vfUploadEnabled->isChecked());
 
 	// Flarm
 	QVariant connectionTypeValue=ui.flarmConnectionTypeInput->currentItemData ();
@@ -830,6 +823,9 @@ void SettingsWindow::updateWidgets ()
 	ui.flarmFileNameLabel ->setVisible (connectionType==Flarm::fileConnection);
 	ui.flarmFileDelayPane ->setVisible (connectionType==Flarm::fileConnection);
 	ui.flarmFileDelayLabel->setVisible (connectionType==Flarm::fileConnection);
+
+    ui.flarmRangePane->setVisible (ui.flarmActivateRangeCheckbox->isChecked());
+    ui.flarmRangeLabel->setVisible (ui.flarmActivateRangeCheckbox->isChecked());
 }
 
 
@@ -855,4 +851,14 @@ void SettingsWindow::on_flarmSerialPortInput_activated (int index)
 	// set the text to the item data.
 	if (!text.isEmpty ())
 		ui.flarmSerialPortInput->setEditText (text);
+}
+
+void SettingsWindow::on_flarmActivateRangeCheckbox_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui.flarmRangeInput->setValue(1000);
+    }
+
+    updateWidgets();
 }

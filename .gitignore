@@ -1,2 +1,5 @@
 .svn/
 CMakeLists.txt.user*
+startkladde.pro.user
+build*/
+.qmake.stash

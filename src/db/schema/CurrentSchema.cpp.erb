@@ -1,10 +1,13 @@
 <%#
-	This file should be processed with erb -T 1 from the startkladde root 
-	directory. Usually, this is done by make.
+	This file should be processed with 
+	
+		erb -T 1 schema_file=<PATH TO current_schema.yaml>
+		
+	Usually, this is done by make.
 %>
 <%
 	require 'yaml'
-	filename='src/db/migrations/current_schema.yaml'
+	filename=schema_file
 	schema=YAML.load_file(filename)
 
 	tables=schema['tables']

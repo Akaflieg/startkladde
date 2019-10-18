@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include <QtGui/QWidget>
+#include <QWidget>
 
 #include "src/db/dbId.h"
 #include "src/gui/windows/objectEditor/ObjectEditorWindowBase.h" // Required for ObjectEditorWindowBase::Mode

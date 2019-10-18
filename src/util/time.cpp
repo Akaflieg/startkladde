@@ -13,7 +13,7 @@ QTime nullSeconds (const QTime &time)
 	if (!time.isValid ())
 		return QTime ();
 
-	return QTime (time.hour (), time.minute (), 0);
+    return QTime (time.hour (), time.minute (), 0, 0);
 }
 
 /**

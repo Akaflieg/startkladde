@@ -1,7 +1,7 @@
 #ifndef OBJECTLISTWINDOW_H
 #define OBJECTLISTWINDOW_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 
 #include "ObjectListWindowBase.h"
 
