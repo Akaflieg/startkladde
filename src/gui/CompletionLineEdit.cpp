@@ -84,17 +84,17 @@ void CompletionLineEdit::updateSelection(bool s, QVariant item)
 
 void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
 {
-    qDebug() << "press " << e->key();
-    qDebug() << (int) e->modifiers();
+    // qDebug() << "press " << e->key();
+    // qDebug() << (int) e->modifiers();
 
     if (e->key() == Qt::Key_Enter) {
         e->accept();
         return;
     }
 
-    if (e->key() == Qt::Key_Alt) {
+    /*if (e->key() == Qt::Key_Alt) {
         qDebug() << "ALT!";
-    }
+    }*/
 
     if (itemSelected &&
          e->key() != Qt::Key_Right &&
