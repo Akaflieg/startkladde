@@ -71,6 +71,11 @@ template<> void Cache::updateHashesObjectAdded<Plane> (const Plane &plane)
 		planeIdsByRegistration.insert (plane.registration.toLower (), plane.getId ());
 		planeIdsByFlarmId.insert (plane.flarmId, plane.getId ());
 		if (!isBlank (plane.club)) clubs.insert (plane.club);
+
+        // The exact position is not too important (just defines the sort order in flight wizard),
+        // so just add at the end. However it is important that the plane is added, because
+        // otherwise a newly added plane will not appear before restart or full refresh in flight wizard.
+        planesSortedByUsage.prepend(plane);
 	}
 }
 
@@ -90,6 +95,14 @@ template<> void Cache::updateHashesObjectDeleted<Plane> (dbId id, const Plane *o
 				planeRegistrations.remove (registration);
 
 			planeIdsByFlarmId.remove (flarmId, id);
+
+            for (int i = 0; i < planesSortedByUsage.size(); ) {
+                if (planesSortedByUsage.at(i).getId() == oldPlane->getId()) {
+                    planesSortedByUsage.removeAt(i);
+                } else {
+                    i++;
+                }
+            }
 		}
 		// Leave clubs
 	}
@@ -145,6 +158,11 @@ template<> void Cache::updateHashesObjectAdded<Person> (const Person &person)
 		personIdsByFirstName.insert (firstLower, id);
 		personIdsByName.insert (QPair<QString, QString> (lastLower, firstLower), id);
 		if (!isBlank (person.club)) clubs.insert (person.club);
+
+        // The exact position is not too important (just defines the sort order in flight wizard),
+        // so just add at the last positions. However it is important that the person is added, because
+        // otherwise a newly added person will not appear before restart or full refresh in flight wizard.
+        peopleSortedByFrequency.prepend(person);
 	}
 }
 
@@ -164,6 +182,14 @@ template<> void Cache::updateHashesObjectDeleted<Person> (dbId id, const Person 
 			if (oldPerson) personIdsByLastName.remove (lastLower, id);
 			if (oldPerson) personIdsByFirstName.remove (firstLower, id);
 			if (oldPerson) personIdsByName.remove (QPair<QString, QString> (lastLower, firstLower), id);
+
+            for (int i = 0; i < peopleSortedByFrequency.size(); ) {
+                if (peopleSortedByFrequency.at(i).getId() == oldPerson->getId()) {
+                    peopleSortedByFrequency.removeAt(i);
+                } else {
+                    i++;
+                }
+            }
 		}
 		// Leave clubs
 	}

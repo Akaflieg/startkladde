@@ -23,15 +23,10 @@ SkCompleter::~SkCompleter()
 
 bool SkCompleter::event(QEvent *e)
 {
-    qDebug() << "event";
     if (e->type() == QEvent::KeyPress) {
-
         QKeyEvent *ke = static_cast<QKeyEvent *>(e);
-        //qDebug() << ke->key();
 
         if (ke->key() == Qt::Key_Return) {
-            //qDebug() << "RETURN!";
-            // special tab handling here
             return false;
         }
     }
@@ -43,13 +38,10 @@ bool SkCompleter::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        //qDebug() << keyEvent->key() << " " << Qt::Key_Return;
+
         if (edit->isItemSelected() && keyEvent->key() == Qt::Key_Return)
         {
-            //return false;
             qDebug("Ate key press %d", keyEvent->key());
-            //return true;
-            //return true;
         } else
         {
             return QCompleter::eventFilter(obj, event);
