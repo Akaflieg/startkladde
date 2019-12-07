@@ -9,6 +9,8 @@ INCLUDEPATH += .
 VERSION = 2.2.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 
+CONFIG(release):DEFINES += QT_NO_DEBUG_OUTPUT
+
 QT += widgets sql network xml serialport multimedia
 
 #CONFIG += lrelease embed_translations
@@ -29,8 +31,8 @@ INSTALLS += target documentation plugins
 
 # MySQL
 INCLUDEPATH += /usr/include/mysql
-LIBS += -lmysqlclient_r
-
+INCLUDEPATH += /usr/include/mariadb
+LIBS += -lmariadb
 
 #
 # Extra build steps
@@ -67,6 +69,7 @@ HEADERS += src/accessor.h \
            src/itemDataRoles.h \
            src/Longitude.h \
            src/StorableException.h \
+           src/plugins/weather/DWDFrontenPlugin.h \
            src/text.h \
            src/version.h \
            test/TestRunnerClient.h \
@@ -356,6 +359,7 @@ SOURCES += src/flightColor.cpp \
            src/FlightReference.cpp \
            src/Longitude.cpp \
            src/db/migrations/Migration_20191018135747_add_vfid.cpp \
+           src/plugins/weather/DWDFrontenPlugin.cpp \
            src/startkladde.cpp \
            src/StorableException.cpp \
            src/text.cpp \

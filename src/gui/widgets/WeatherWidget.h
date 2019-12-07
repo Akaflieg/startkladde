@@ -30,7 +30,9 @@ class WeatherWidget:public SkLabel
 
 	protected:
 		virtual void mouseDoubleClickEvent (QMouseEvent *e);
-		virtual void resizeEvent (QResizeEvent *);
+        virtual void resizeEvent (QResizeEvent *);
+        int heightForWidth(int width) const;
+        QSize sizeHint();
 
 	private:
 		SkMovie newMovie;

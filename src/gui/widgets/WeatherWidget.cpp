@@ -34,10 +34,23 @@ void WeatherWidget::setImage (const QImage &image)
 {
 	setWordWrap (false);
 	QPixmap pixmap=QPixmap::fromImage (image);
-	setPixmap (pixmap);
+    setPixmap (pixmap);
+    QSizePolicy policy = QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
+    policy.setHeightForWidth(true);
+    setSizePolicy(policy);
 
+    setMinimumWidth(0);
+    setMinimumHeight(0);
 //	int height=Settings::instance ().weatherPluginHeight;
 //	setFixedSize (height*pixmap.width()/pixmap.height(), height);
+}
+
+int WeatherWidget::heightForWidth(int width) const {
+    return width;
+}
+
+QSize WeatherWidget::sizeHint() {
+    return QSize(200,200);
 }
 
 void WeatherWidget::setText (const QString &text)
