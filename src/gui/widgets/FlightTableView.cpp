@@ -97,6 +97,7 @@ void FlightTableView::init (DbManager *dbManager)
 	_proxyModel->setDynamicSortFilter (true);
 	_proxyModel->setFlarmIdColumn (_flightModel->flarmIdColumn ());
     _proxyModel->setIdColumn      (_flightModel->idColumn      ());
+    _proxyModel->setVfIdColumn    (_flightModel->vfIdColumn    ());
 
 	// Connect the signals of the flight sort filter proxy model that
 	// necessitate a notification layout update

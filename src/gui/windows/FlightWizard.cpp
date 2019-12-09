@@ -157,10 +157,18 @@ void FlightWizard::accept()
 Flight FlightWizard::determineFlight()
 {
     Flight flight;
-    flight.setPilotId(ui->pilotEdit->getSelectedItem().value<Person>().getId());
-    flight.setCopilotId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+    if (!Settings::instance().anonymousMode) {
+        flight.setPilotId(ui->pilotEdit->getSelectedItem().value<Person>().getId());
+        flight.setCopilotId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+        flight.setNumCrew(1);
+        flight.setNumPax(0);
+        flight.setType(selectedType);
+    } else {
+        flight.setNumCrew(ui->numCrewInput->value());
+        flight.setNumPax(ui->numPaxInput->value());
+        flight.setType(Flight::Type::typeNormal);
+    }
     flight.setPlaneId(ui->planeEdit->getSelectedItem().value<Plane>().getId());
-    flight.setType(selectedType);
     flight.setLaunchMethodId(ui->launchMethodComboBox->currentItemData().toInt());
     flight.setDepartureLocation(Settings::instance().location);
     flight.setLandingLocation(Settings::instance().location);
@@ -170,8 +178,13 @@ Flight FlightWizard::determineFlight()
 void FlightWizard::nextButton_clicked()
 {
     int idx = ui->stack->currentIndex();
-    ui->stack->setCurrentIndex(idx+1);
+    if (idx == PlanePage) {
+        ui->stack->setCurrentIndex(Settings::instance().anonymousMode ? AnonymousPage : TypePage);
+    } else {
+        ui->stack->setCurrentIndex(idx+1);
+    }
     adaptButtons();
+    adaptFocus();
     adaptVisibility();
     updateNextButtonState();
 }
@@ -179,8 +192,13 @@ void FlightWizard::nextButton_clicked()
 void FlightWizard::prevButton_clicked()
 {
     int idx = ui->stack->currentIndex();
-    ui->stack->setCurrentIndex(idx-1);
+    if (idx == AnonymousPage) {
+        ui->stack->setCurrentIndex(PlanePage);
+    } else {
+        ui->stack->setCurrentIndex(idx-1);
+    }
     adaptButtons();
+    adaptFocus();
     adaptVisibility();
     updateNextButtonState();
 }
@@ -199,14 +217,21 @@ void FlightWizard::typeButton_clicked()
     nextButton_clicked();
 }
 
+void FlightWizard::adaptFocus() {
+    if (ui->stack->currentIndex() == AnonymousPage) {
+        ui->numCrewInput->selectAll();
+    }
+}
+
 void FlightWizard::adaptButtons()
 {
+    bool lastPage = ui->stack->currentIndex() == PilotsPage || ui->stack->currentIndex() == AnonymousPage;
     ui->prevButton->setVisible(ui->stack->currentIndex() != PlanePage);
-    ui->nextButton->setVisible(ui->stack->currentIndex() != PilotsPage);
-    ui->acceptButton->setVisible(ui->stack->currentIndex() == PilotsPage);
-    ui->acceptAndTakeoffButton->setVisible(ui->stack->currentIndex() == PilotsPage);
-    ui->nextButton->setDefault(ui->stack->currentIndex() != PilotsPage);
-    ui->acceptButton->setDefault(ui->stack->currentIndex() == PilotsPage);
+    ui->nextButton->setVisible(!lastPage);
+    ui->acceptButton->setVisible(lastPage);
+    ui->acceptAndTakeoffButton->setVisible(lastPage);
+    ui->nextButton->setDefault(!lastPage);
+    ui->acceptButton->setDefault(lastPage);
 }
 
 void FlightWizard::adaptVisibility()

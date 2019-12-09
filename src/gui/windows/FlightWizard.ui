@@ -23,7 +23,7 @@
    <item>
     <widget class="QStackedWidget" name="stack">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="page1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -318,6 +318,86 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="page_anonymous">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Number of persons</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_4" native="true">
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Number of crew members:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Number of passengers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="numCrewInput">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="numPaxInput">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -454,17 +534,17 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>SkComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/gui/widgets/SkComboBox.h</header>
+  </customwidget>
+  <customwidget>
    <class>CompletionLineEdit</class>
    <extends>QLineEdit</extends>
    <header>src/gui/CompletionLineEdit.h</header>
    <slots>
     <signal>selectionStateChanged()</signal>
    </slots>
-  </customwidget>
-  <customwidget>
-   <class>SkComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/gui/widgets/SkComboBox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -532,8 +612,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>436</x>
-     <y>457</y>
+     <x>598</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
      <x>6</x>

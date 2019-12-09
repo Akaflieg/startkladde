@@ -18,6 +18,7 @@
 #include "src/gui/windows/input/DateInputDialog.h"
 #include "src/model/objectList/MutableObjectList.h"
 #include "src/model/flightList/FlightModel.h"
+#include "src/model/flightList/FlightSortFilterProxyModel.h"
 #include "src/model/objectList/ObjectListModel.h"
 #include "src/i18n/notr.h"
 
@@ -50,8 +51,13 @@ FlightListWindow::FlightListWindow (DbManager &manager, QWidget *parent):
 	flightListModel->setModel (flightModel, true);
 
 	// Set up the sorting proxy model
-	proxyModel=new QSortFilterProxyModel (this);
+    proxyModel=new FlightSortFilterProxyModel (manager.getCache(), this);
 	proxyModel->setSourceModel (flightListModel);
+    proxyModel->setSortCaseSensitivity (Qt::CaseInsensitive);
+    proxyModel->setDynamicSortFilter (true);
+    proxyModel->setFlarmIdColumn (flightModel->flarmIdColumn ());
+    proxyModel->setIdColumn      (flightModel->idColumn      ());
+    proxyModel->setVfIdColumn    (flightModel->vfIdColumn    ());
 
 	ui.table->setModel (proxyModel);
 	ui.table->setAutoResizeRows (true);
@@ -215,7 +221,7 @@ void FlightListWindow::on_actionExport_triggered ()
 		// Opening succeeded
 
 		// Create a CSV table from the flight list model
-		Csv csv (*flightListModel, separator);
+        Csv csv (*proxyModel, separator);
 
 		// Convert and write the CSV
 		file.write (codec->fromUnicode (csv.toString ()));

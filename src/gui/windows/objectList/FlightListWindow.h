@@ -8,7 +8,7 @@
 #include "src/db/DbManager.h" // Required for DbManager::State
 #include "src/gui/SkMainWindow.h"
 
-class QSortFilterProxyModel;
+class FlightSortFilterProxyModel;
 
 class FlightModel;
 template<class T> class MutableObjectList;
@@ -64,7 +64,7 @@ class FlightListWindow: public SkMainWindow<Ui::FlightListWindowClass>
 		FlightModel *flightModel;
 		ObjectListModel<Flight> *flightListModel;
 
-		QSortFilterProxyModel *proxyModel;
+        FlightSortFilterProxyModel *proxyModel;
 };
 
 #endif

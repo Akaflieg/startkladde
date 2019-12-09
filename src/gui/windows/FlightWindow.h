@@ -189,6 +189,9 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
 		QString    getCurrentPilotFirstName               () { return ui.pilotFirstNameInput->currentText (); }
 		QString    getCurrentCopilotLastName              () { return ui.copilotLastNameInput->currentText (); }
 		QString    getCurrentCopilotFirstName             () { return ui.copilotFirstNameInput->currentText (); }
+        //
+        int        getCurrentNumCrew                      () { return ui.numCrewInput->value(); }
+        int        getCurrentNumPax                       () { return ui.numPaxInput->value(); }
 		//
 		Flight::Mode getCurrentFlightMode                 () { return (Flight::Mode)ui.flightModeInput->currentItemData ().toInt(); }
 		dbId      getCurrentLaunchMethodId                () { return ui.launchMethodInput->currentItemData ().toInt(); }

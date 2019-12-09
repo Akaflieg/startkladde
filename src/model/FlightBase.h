@@ -47,6 +47,8 @@ class FlightBase
 		flight_value_accessor (dbId, PlaneId, planeId);
 		flight_value_accessor (dbId, PilotId, pilotId);
 		flight_value_accessor (dbId, CopilotId, copilotId);
+        flight_value_accessor (int, NumCrew, numCrew)
+        flight_value_accessor (int, NumPax, numPax)
 		flight_value_accessor (Type, Type, type);
 		flight_value_accessor (Mode, Mode, mode);
 
@@ -87,6 +89,7 @@ class FlightBase
 		dbId id;
 
 		dbId planeId, pilotId, copilotId;
+        int numCrew, numPax;
 		Type type;
 		Mode mode;
 

@@ -233,6 +233,7 @@ void Settings::readSettings ()
     recordTowpilot          =s.value (notr ("recordTowpilot"),          true                ).toBool ();
     checkMedicals           =s.value (notr ("checkMedicals"),           true                ).toBool ();
     loadPreselectedLM       =s.value (notr ("loadPreselectedLM"),       false               ).toBool ();
+    anonymousMode           =s.value (notr ("anonymousMode"),           false               ).toBool ();
     if (loadPreselectedLM)
     {
         preselectedLaunchMethod = s.value (notr("preselectedLaunchMethod"), invalidId).toInt();
@@ -338,6 +339,7 @@ void Settings::writeSettings ()
     s.setValue (notr ("checkMedicals")          , checkMedicals );
     s.setValue (notr ("preselectedLaunchMethod"), preselectedLaunchMethod);
     s.setValue (notr ("loadPreselectedLM")      , loadPreselectedLM);
+    s.setValue (notr ("anonymousMode")          , anonymousMode);
     // Vereinsflieger
     s.beginGroup (notr ("vereinsflieger"));
     s.setValue (notr("vfUploadEnabled"),    vfUploadEnabled);

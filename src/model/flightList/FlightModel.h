@@ -52,8 +52,10 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
 		virtual int departButtonColumn () const { return  6; }
 		virtual int landButtonColumn   () const { return  7; }
 		virtual int durationColumn     () const { return  8; }
+        virtual int vfIdColumn         () const { return 15; }
         virtual int idColumn           () const { return 16; }
         virtual int flarmIdColumn      () const { return 17; }
+
 
 		// ColumnInfo methods
 		virtual QString columnName (int columnIndex) const;
@@ -80,6 +82,8 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
 		QString headerTextType;
 		QString headerTextPilot;
 		QString headerTextCopilot;
+        QString headerTextNumCrew;
+        QString headerTextNumPax;
 		QString headerTextLaunchMethod;
 		QString headerTextDeparture;
 		QString headerTextLanding;

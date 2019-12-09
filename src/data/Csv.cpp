@@ -1,11 +1,12 @@
 #include "Csv.h"
 
 #include <QAbstractTableModel>
+#include <QAbstractItemModel>
 #include <QStringList>
 
 #include "src/i18n/notr.h"
 
-Csv::Csv (const QAbstractTableModel &model, const QString &separator):
+Csv::Csv (const QAbstractItemModel &model, const QString &separator):
 	model (model), separator (separator)
 {
 }

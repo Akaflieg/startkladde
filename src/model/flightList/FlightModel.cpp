@@ -14,6 +14,7 @@
 #include "src/db/cache/Cache.h"
 #include "src/util/qString.h"
 #include "src/i18n/notr.h"
+#include "src/config/Settings.h"
 
 FlightModel::FlightModel (Cache &cache):
 	cache (cache),
@@ -46,7 +47,9 @@ void FlightModel::updateTranslations ()
 	headerTextType              =qApp->translate ("FlightModel", "Type");
 	headerTextPilot             =qApp->translate ("FlightModel", "Pilot/Student");
 	headerTextCopilot           =qApp->translate ("FlightModel", "Copilot/FI");
-	headerTextLaunchMethod      =qApp->translate ("FlightModel", "Launch method");
+    headerTextNumCrew           =qApp->translate ("FlightModel", "Number of Crew Members");
+    headerTextNumPax            =qApp->translate ("FlightModel", "Number of Passengers");
+    headerTextLaunchMethod      =qApp->translate ("FlightModel", "Launch method");
 	headerTextDeparture         =qApp->translate ("FlightModel", "Departure");
 	headerTextLanding           =qApp->translate ("FlightModel", "Landing");
 	headerTextDuration          =qApp->translate ("FlightModel", "Duration");
@@ -63,13 +66,15 @@ void FlightModel::updateTranslations ()
 
 QVariant FlightModel::displayHeaderData (int column) const
 {
+    Settings& s = Settings::instance();
+
 	switch (column)
 	{
 		case 0: return headerTextRegistration;
 		case 1: return headerTextModel;
 		case 2: return headerTextType;
-		case 3: return headerTextPilot;
-		case 4: return headerTextCopilot;
+        case 3: return s.anonymousMode ? headerTextNumCrew : headerTextPilot;
+        case 4: return s.anonymousMode ? headerTextNumPax : headerTextCopilot;
 		case 5: return headerTextLaunchMethod;
 		case 6: return headerTextDeparture;
 		case 7: return headerTextLanding;
@@ -92,13 +97,15 @@ QVariant FlightModel::displayHeaderData (int column) const
 
 QString FlightModel::columnName (int columnIndex) const
 {
+    Settings& s = Settings::instance();
+
 	switch (columnIndex)
 	{
 		case 0: return notr ("registration");
 		case 1: return notr ("aircraftType");
 		case 2: return notr ("flightType");
-		case 3: return notr ("pilot");
-		case 4: return notr ("copilot");
+        case 3: return s.anonymousMode ? notr("numCrew") : notr ("pilot");
+        case 4: return s.anonymousMode ? notr("numPax"): notr ("copilot");
 		case 5: return notr ("launchMethod");
 		case 6: return notr ("departureTime");
 		case 7: return notr ("landingTime");
@@ -149,6 +156,7 @@ QString FlightModel::sampleText (int columnIndex) const
 
 QVariant FlightModel::data (const Flight &flight, int column, int role) const
 {
+    Settings& s = Settings::instance();
 	// TODO more caching - this is called very often
 	// TODO isButtonRole and buttonTextRole should be in xxxData ()
 
@@ -159,8 +167,8 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 			case 0: return registrationData (flight, role);
 			case 1: return planeTypeData (flight, role);
 			case 2: return Flight::shortTypeText (flight.getType ());
-			case 3: return pilotData (flight, role);
-			case 4: return copilotData (flight, role);
+            case 3: return s.anonymousMode ? flight.getNumCrew() : pilotData (flight, role);
+            case 4: return s.anonymousMode ? flight.getNumPax() : copilotData (flight, role);
 			case 5: return launchMethodData (flight, role);
 			case 6: return departureTimeData (flight, role);
 			case 7: return landingTimeData (flight, role);
@@ -172,8 +180,8 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 			case 13: return flight.getAccountingNotes ();
 			case 14: return flight.effdatum ();
             case 15: return (flight.getVfId() == 0) ?
-                        qApp->translate ("FlightModel", "No") :
-                        qApp->translate ("FlightModel", "Yes");
+                            qApp->translate ("FlightModel", "No") :
+                            qApp->translate ("FlightModel", "Yes");
             case 16: return (flight.isTowflight ()?qnotr ("(%1)"):qnotr ("%1")).arg (flight.getId ());
             case 17: return flight.getFlarmId ();
 

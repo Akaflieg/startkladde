@@ -13,7 +13,7 @@ CsvExportDialog::CsvExportDialog (QWidget *parent):
 	ui.setupUi (this);
 
 	// Add some of the most commonly-used codecs at the top of the list
-	addCodecEntry (0); // System
+    //addCodecEntry (0); // System
 	addCodecEntry (106); // UTF-8
 	addCodecEntry (1015); // UTF-16
 	// ISO Latin1 (ISO-8859-1, MIB=4) is not added because it is close to the

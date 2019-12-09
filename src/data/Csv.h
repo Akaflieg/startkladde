@@ -4,11 +4,12 @@
 #include <QString>
 
 class QAbstractTableModel;
+class QAbstractItemModel;
 
 class Csv
 {
 	public:
-		Csv (const QAbstractTableModel &model, const QString &separator);
+        Csv (const QAbstractItemModel &model, const QString &separator);
 		virtual ~Csv ();
 
 		QString toString ();
@@ -17,7 +18,7 @@ class Csv
 		QString escape (const QString &text) const;
 
 	private:
-		const QAbstractTableModel &model;
+        const QAbstractItemModel &model;
 
 		const QString separator;
 };
