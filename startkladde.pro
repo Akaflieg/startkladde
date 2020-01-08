@@ -9,7 +9,7 @@ INCLUDEPATH += .
 VERSION = 2.2.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 
-QT += widgets sql network xml serialport multimedia
+QT += widgets sql network xml serialport multimedia printsupport
 
 #CONFIG += lrelease embed_translations
 #QM_FILES_INSTALL_PATH = binarytranslations
@@ -65,9 +65,11 @@ PRE_TARGETDEPS += compiler_updateqm_make_all
 
 # Input
 HEADERS += src/accessor.h \
+           src/data/TabularTextDocument.h \
            src/db/migrations/Migration_20191018135747_add_vfid.h \
            src/flightColor.h \
            src/FlightReference.h \
+           src/gui/views/DateDelegate.h \
            src/itemDataRoles.h \
            src/Longitude.h \
            src/StorableException.h \
@@ -359,6 +361,7 @@ FORMS += src/flarm/FlarmWindow.ui \
 SOURCES += src/flightColor.cpp \
            src/FlightReference.cpp \
            src/Longitude.cpp \
+           src/data/TabularTextDocument.cpp \
            src/db/migrations/Migration_20191018135747_add_vfid.cpp \
            src/startkladde.cpp \
            src/StorableException.cpp \

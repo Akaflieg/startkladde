@@ -13,6 +13,7 @@
 #include "src/model/Plane.h"
 #include "src/db/cache/Cache.h"
 #include "src/util/qString.h"
+#include "src/util/qDate.h"
 #include "src/i18n/notr.h"
 #include "src/config/Settings.h"
 
@@ -47,8 +48,8 @@ void FlightModel::updateTranslations ()
 	headerTextType              =qApp->translate ("FlightModel", "Type");
 	headerTextPilot             =qApp->translate ("FlightModel", "Pilot/Student");
 	headerTextCopilot           =qApp->translate ("FlightModel", "Copilot/FI");
-    headerTextNumCrew           =qApp->translate ("FlightModel", "Number of Crew Members");
-    headerTextNumPax            =qApp->translate ("FlightModel", "Number of Passengers");
+    headerTextNumCrew           =qApp->translate ("FlightModel", "Crew members");
+    headerTextNumPax            =qApp->translate ("FlightModel", "Passengers");
     headerTextLaunchMethod      =qApp->translate ("FlightModel", "Launch method");
 	headerTextDeparture         =qApp->translate ("FlightModel", "Departure");
 	headerTextLanding           =qApp->translate ("FlightModel", "Landing");
@@ -64,31 +65,35 @@ void FlightModel::updateTranslations ()
     headerTextVFUploaded        =qApp->translate ("FlightModel", "Uploaded to VF");
 }
 
-QVariant FlightModel::displayHeaderData (int column) const
+QVariant FlightModel::headerData (int column, int role) const
 {
     Settings& s = Settings::instance();
 
-	switch (column)
-	{
-		case 0: return headerTextRegistration;
-		case 1: return headerTextModel;
-		case 2: return headerTextType;
-        case 3: return s.anonymousMode ? headerTextNumCrew : headerTextPilot;
-        case 4: return s.anonymousMode ? headerTextNumPax : headerTextCopilot;
-		case 5: return headerTextLaunchMethod;
-		case 6: return headerTextDeparture;
-		case 7: return headerTextLanding;
-		case 8: return headerTextDuration;
-		case 9: return headerTextNumLandings;
-		case 10: return headerTextDepartureLocation;
-		case 11: return headerTextLandingLocation;
-		case 12: return headerTextComments;
-		case 13: return headerTextAccountingNotes;
-		case 14: return headerTextDate;
-        case 15: return headerTextVFUploaded;
-        case 16: return headerTextId;
-        case 17: return headerTextFlarmId;
-	}
+    if (role == Qt::DisplayRole) {
+
+        switch (column)
+        {
+            case 0: return headerTextRegistration;
+            case 1: return headerTextModel;
+            case 2: return headerTextType;
+            case 3: return s.anonymousMode ? headerTextNumCrew : headerTextPilot;
+            case 4: return s.anonymousMode ? headerTextNumPax : headerTextCopilot;
+            case 5: return headerTextLaunchMethod;
+            case 6: return headerTextDeparture;
+            case 7: return headerTextLanding;
+            case 8: return headerTextDuration;
+            case 9: return headerTextNumLandings;
+            case 10: return headerTextDepartureLocation;
+            case 11: return headerTextLandingLocation;
+            case 12: return headerTextComments;
+            case 13: return headerTextAccountingNotes;
+            case 14: return headerTextDate;
+            case 15: return headerTextVFUploaded;
+            case 16: return headerTextId;
+            case 17: return headerTextFlarmId;
+        }
+
+    }
 
 	// Apparently, an unhandled column can happen when the last flight is deleted
 	return QVariant ();
@@ -160,7 +165,7 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 	// TODO more caching - this is called very often
 	// TODO isButtonRole and buttonTextRole should be in xxxData ()
 
-	if (role==Qt::DisplayRole)
+    if (role==Qt::DisplayRole || role==csvExportRole)
 	{
 		switch (column)
 		{
@@ -178,7 +183,7 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 			case 11: return flight.getLandingLocation ();
 			case 12: return flight.getComments ();
 			case 13: return flight.getAccountingNotes ();
-			case 14: return flight.effdatum ();
+            case 14: return flight.effdatum();
             case 15: return (flight.getVfId() == 0) ?
                             qApp->translate ("FlightModel", "No") :
                             qApp->translate ("FlightModel", "Yes");
@@ -334,7 +339,11 @@ QVariant FlightModel::departureTimeData (const Flight &flight, int role) const
 	else
 		// Don't use the default (locale) formatting, it may add seconds or
 		// time zone information
-		return flight.getDepartureTime ().toUTC ().time ().toString (notr ("hh:mm"))+notr ("Z");
+        if (role == csvExportRole) {
+            return flight.getDepartureTime() .toUTC ().time ().toString (notr ("hh:mm"));
+        } else {
+            return flight.getDepartureTime() .toUTC ().time ().toString (notr ("hh:mm"))+notr ("Z");
+        }
 }
 
 QVariant FlightModel::landingTimeData (const Flight &flight, int role) const
@@ -348,7 +357,11 @@ QVariant FlightModel::landingTimeData (const Flight &flight, int role) const
 	else
 		// Don't use the default (locale) formatting, it may add seconds or
 		// time zone information
-		return flight.getLandingTime ().toUTC ().time ().toString (notr ("hh:mm"))+notr ("Z");
+        if (role == csvExportRole) {
+            return flight.getLandingTime ().toUTC ().time ().toString (notr ("hh:mm"));
+        } else {
+            return flight.getLandingTime ().toUTC ().time ().toString (notr ("hh:mm"))+notr ("Z");
+        }
 }
 
 QVariant FlightModel::durationData (const Flight &flight, int role) const

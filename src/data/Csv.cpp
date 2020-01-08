@@ -1,6 +1,5 @@
 #include "Csv.h"
 
-#include <QAbstractTableModel>
 #include <QAbstractItemModel>
 #include <QStringList>
 
@@ -67,7 +66,7 @@ QString Csv::toString ()
 	{
 		for (int column=0; column<columns; ++column)
 		{
-			QVariant value=model.data (model.index (row, column));
+            QVariant value=model.data (model.index (row, column), csvExportRole);
 			items.append (escape (value.toString ()));
 		}
 		lines.append (items.join (separator));

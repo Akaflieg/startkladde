@@ -2,8 +2,8 @@
 #define CSV_H_
 
 #include <QString>
+#include "src/itemDataRoles.h"
 
-class QAbstractTableModel;
 class QAbstractItemModel;
 
 class Csv

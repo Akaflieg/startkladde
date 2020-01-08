@@ -12,28 +12,20 @@ CsvExportDialog::CsvExportDialog (QWidget *parent):
 {
 	ui.setupUi (this);
 
-	// Add some of the most commonly-used codecs at the top of the list
-    //addCodecEntry (0); // System
-	addCodecEntry (106); // UTF-8
-	addCodecEntry (1015); // UTF-16
-	// ISO Latin1 (ISO-8859-1, MIB=4) is not added because it is close to the
-	// top of the list
+    // Only show the two commonly used codecs
+    addCodecEntry(4);       // ISO Latin1 (ISO-8859-1
+    addCodecEntry (106);    // UTF-8
 
-	// Add all codecs, in order of ascending MIB. MIB 0 (System) is not
-	// included again; all other codecs with positive MIB are included, even if
-	// they were already added at the top.
-	QList<int> mibs=QTextCodec::availableMibs ();
-	qSort (mibs);
-	foreach (int mib, mibs)
-		if (mib>0) // Don't include 0 again
-			addCodecEntry (mib);
+    // Setup the separator inputs
+    ui.separatorInput->addItem (notr (";"));
+    ui.separatorInput->addItem (notr (","));
+    ui.separatorInput->addItem (notr ("|"));
 
-	// Select UTF-8
-	ui.charsetList->setCurrentItemByItemData (106);
+    // Select UTF-8
+    ui.charsetList->setCurrentItemByItemData (106);
 
-	// Setup the separator inputs
-	ui.separatorInput->addItem (notr (","));
-	ui.separatorInput->addItem (notr (";"));
+    // Select ";"
+    ui.separatorInput->setCurrentIndex(0);
 }
 
 CsvExportDialog::~CsvExportDialog ()
@@ -45,8 +37,6 @@ void CsvExportDialog::addCodecEntry (int mib)
 {
 	QTextCodec *codec=QTextCodec::codecForMib (mib);
 	QString codecName=QString::fromUtf8 (codec->name ());
-
-	//std::cout << mib << notr (" - ") << codecName << std::endl;
 
 	ui.charsetList->addItem (codecName, mib);
 }
@@ -69,5 +59,5 @@ QTextCodec *CsvExportDialog::getSelectedCodec ()
 
 QString CsvExportDialog::getSeparator ()
 {
-	return ui.separatorInput->currentText ();
+    return ui.separatorInput->currentText();
 }

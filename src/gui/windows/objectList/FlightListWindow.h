@@ -14,6 +14,10 @@ class FlightModel;
 template<class T> class MutableObjectList;
 template<class T> class ObjectListModel;
 
+enum ExportFormat {
+    CSV, PDF
+};
+
 /**
  * A window for showing and exporting a flight list
  *
@@ -65,6 +69,9 @@ class FlightListWindow: public SkMainWindow<Ui::FlightListWindowClass>
 		ObjectListModel<Flight> *flightListModel;
 
         FlightSortFilterProxyModel *proxyModel;
+
+        void exportToPDF(QString fileName);
+        void exportToCSV(QString fileName);
 };
 
 #endif
