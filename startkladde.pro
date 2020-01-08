@@ -67,6 +67,7 @@ PRE_TARGETDEPS += compiler_updateqm_make_all
 HEADERS += src/accessor.h \
            src/data/TabularTextDocument.h \
            src/db/migrations/Migration_20191018135747_add_vfid.h \
+           src/db/migrations/Migration_20200108164302_anonymous_columns.h \
            src/flightColor.h \
            src/FlightReference.h \
            src/gui/views/DateDelegate.h \
@@ -363,6 +364,7 @@ SOURCES += src/flightColor.cpp \
            src/Longitude.cpp \
            src/data/TabularTextDocument.cpp \
            src/db/migrations/Migration_20191018135747_add_vfid.cpp \
+           src/db/migrations/Migration_20200108164302_anonymous_columns.cpp \
            src/startkladde.cpp \
            src/StorableException.cpp \
            src/text.cpp \
