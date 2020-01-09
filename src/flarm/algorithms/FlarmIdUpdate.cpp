@@ -39,7 +39,7 @@ void FlarmIdUpdate::notCreatedAutomaticallyMessage ()
 	QMessageBox::information (parent,
 		qApp->translate ("FlarmIdUpdate", "Update Flarm ID"),
 		qApp->translate ("FlarmIdUpdate", "The Flarm ID cannot be "
-			"update because this flight was not created automatically."));
+            "updated because this flight was not created automatically."));
 }
 
 /**
@@ -51,7 +51,7 @@ void FlarmIdUpdate::notCurrentMessage ()
 	QMessageBox::information (parent,
 		qApp->translate ("FlarmIdUpdate", "Update Flarm ID"),
 		qApp->translate ("FlarmIdUpdate", "The Flarm ID cannot be "
-			"update because this flight did not take place today."));
+            "updated because this flight did not take place today."));
 }
 
 /**
