@@ -18,7 +18,7 @@ Ist ohnehin schon ein MariaDB-Server installiert, sind diese im Programmverzeich
 Andernfalls kann man auch den MariaDB C/C++ Connector für 64-Bit-Systeme installieren.
 Anschließend muss in der `startkladde.pro` der Pfad `WIN32_MARIADB_INSTALLDIR` so gesetzt werden,
 dass er auf das Installationsverzeichnis von MariaDB bzw. dem Connector zeigt. Die Ordner `lib` und `include`
-müssen Unterverzeichnisse des betreffenden Ordners sein.
+müssen Unterverzeichnisse des betreffenden Ordners sein. Ein typischer Pfad ist `C:\Program Files\MariaDB 10.4`.
 
 ## Qt-MySQL-Plugin
 
