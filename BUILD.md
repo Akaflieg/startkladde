@@ -22,6 +22,9 @@ müssen Unterverzeichnisse des betreffenden Ordners sein. Ein typischer Pfad ist
 
 ## Qt-MySQL-Plugin
 
+Leider muss das MySQL-Treiberplugin der Qt-Bibliothek manuell übersetzt werden. Dazu benötigt man den Quellcode von Qt, der aber bequem über den Online-Installer heruntergeladen werden kann. Im Startmenü findet man einen Link zu einer für die Qt-Entwicklung vorkonfigurierten Eingabeaufforderung. In dieser springt man in das Verzeichnis `${QT_SRCDIR}\qtbase\src\plugins\sqldrivers\mysql`. Aus irgendeinem Grund muss man zunächst in der Datei `mysql.pro` die Zeile `QMAKE_USE += mysql` auskommentieren. Anschließend `qmake` aufrufen und dann `mingw32-make`.
+
+
 ## Ruby
 
 Der Buildprozess benötigt das Konsolenprogramm `erb`. 
