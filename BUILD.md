@@ -22,10 +22,14 @@ müssen Unterverzeichnisse des betreffenden Ordners sein. Ein typischer Pfad ist
 
 ## Qt-MySQL-Plugin
 
-Leider muss das MySQL-Treiberplugin der Qt-Bibliothek manuell übersetzt werden. Dazu benötigt man den Quellcode von Qt, der aber bequem über den Online-Installer heruntergeladen werden kann. Im Startmenü findet man einen Link zu einer für die Qt-Entwicklung vorkonfigurierten Eingabeaufforderung. In dieser springt man in das Verzeichnis `${QT_SRCDIR}\qtbase\src\plugins\sqldrivers\mysql`. Aus irgendeinem Grund muss man zunächst in der Datei `mysql.pro` die Zeile `QMAKE_USE += mysql` auskommentieren. Dann braucht man noch die Pfade zur MariaDB-Library, dazu ist es am einfachsten, den kompletten Block, der die MariaDB-Pfade setzt aus der `startkladde.pro` in die `mysql.pro` zu kopieren. Anschließend `qmake` aufrufen und dann `mingw32-make` zum compilieren. Anschließend noch `mingw32-make install`.
+Leider muss das MySQL-Treiberplugin der Qt-Bibliothek manuell übersetzt werden. Dazu benötigt man den Quellcode von Qt, der aber bequem über den Online-Installer heruntergeladen werden kann. Im Startmenü findet man einen Link zu einer für die Qt-Entwicklung vorkonfigurierten Eingabeaufforderung. In dieser springt man in das Verzeichnis `${QT_SRCDIR}\qtbase\src\plugins\sqldrivers\mysql`. Aus irgendeinem Grund muss man zunächst in der Datei `mysql.pro` die Zeile `QMAKE_USE += mysql` auskommentieren. Dann braucht man noch die Pfade zur MariaDB-Library, dazu ist es am einfachsten, den kompletten Block, der die MariaDB-Pfade setzt aus der `startkladde.pro` in die `mysql.pro` zu kopieren. Anschließend `qmake` aufrufen und dann `mingw32-make` zum compilieren. Anschließend noch `mingw32-make install`. Zu guter letzt muss man meist noch die Datei `libmariadb.dll` aus dem Ordner der MariaDB-Library in das Verzeichnis `${QT_DIR}/bin` kopieren.
 
 
 ## Ruby
 
 Der Buildprozess benötigt das Konsolenprogramm `erb`. 
 Indem Ruby installiert wird, sollte dieses auf der Konsole verfügbar werden.
+
+## Warum ist das alles so kompliziert?
+
+Windows ist kein Betriebssystem sondern ein Krampf. Deshalb.
