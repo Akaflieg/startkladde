@@ -177,7 +177,13 @@
           <item row="3" column="0">
            <widget class="QLabel" name="numCrewLabel">
             <property name="text">
-             <string>Number of Crew Members:</string>
+             <string>&amp;Crew:</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="buddy">
+             <cstring>numCrewInput</cstring>
             </property>
            </widget>
           </item>
@@ -866,7 +872,10 @@
           <item row="4" column="0">
            <widget class="QLabel" name="numPaxLabel">
             <property name="text">
-             <string>Number of Passengers:</string>
+             <string>&amp;Passengers:</string>
+            </property>
+            <property name="buddy">
+             <cstring>numPaxInput</cstring>
             </property>
            </widget>
           </item>
@@ -921,14 +930,14 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>SkLabel</class>
-   <extends>QLabel</extends>
-   <header>src/gui/widgets/SkLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>SkComboBox</class>
    <extends>QComboBox</extends>
    <header>src/gui/widgets/SkComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SkLabel</class>
+   <extends>QLabel</extends>
+   <header>src/gui/widgets/SkLabel.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

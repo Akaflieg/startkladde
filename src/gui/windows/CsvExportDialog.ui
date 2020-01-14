@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>390</width>
-    <height>157</height>
+    <height>137</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
        <item>
         <widget class="QComboBox" name="separatorInput">
          <property name="toolTip">
-          <string>&lt;/html&gt;The column separator character. This is usually a comma, but other values, like semicolons, are also in use.&lt;/html&gt;</string>
+          <string>The column separator character. This is usually a comma, but other values, like semicolons, are also in use.</string>
          </property>
          <property name="editable">
           <bool>true</bool>
@@ -55,23 +55,13 @@
        <item>
         <widget class="SkComboBox" name="charsetList">
          <property name="toolTip">
-          <string>&lt;html&gt;The encoding (character set) for the saved file&lt;/html&gt;</string>
+          <string>The encoding (character set) for the saved file.</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Choose the semicolon as separator if you want to import the data into Excel.</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer">
