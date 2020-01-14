@@ -35,3 +35,5 @@ Dateiname | Quelle
 `libssl-1?1-x64.dll` | `${OPENSSL_DIR}/libssl-1?1-x64.dll`
 
 Wobei `${QT_DIR}` das Wurzelverzeichnis von Qt ist, das ausgehend vom Installationsverzeichnis bei einer automatischen Installation unter `<Version>/<Compiler-Version>` zu finden ist. `${RELEASE_BUILD}` ist das Ausgabeverzeichnis des Release-Builds. `${OPENSSL_DIR}` ist das Installationsverzeichnis von OpenSSL und `${MINGW_DIR}` das Installationsverzeichnis des MinGW-Compilers (wenn er automatisch mit Qt mitinstalliert wurde unter `tools/mingw<version>`.
+
+Den Großteil dieser Dateien kann man sich auch mit dem Tool `windeployqt` zusammensuchen lassen. Dazu kopiert man die Datei `startkladde.exe` in ein leeres Verzeichnis, springt mit der Eingabeaufforderung in dasselbe und ruft dann `windeployqt startkladde.exe` auf.
