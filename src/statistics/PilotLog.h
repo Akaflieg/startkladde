@@ -19,14 +19,14 @@ class PilotLog: public QAbstractTableModel
 		Q_OBJECT
 
 	protected:
-		PilotLog (QObject *parent=NULL);
+        PilotLog (QObject *parent=nullptr);
 		~PilotLog ();
 
 		class Entry
 		{
 			public:
 				Entry ();
-				virtual ~Entry ();
+                virtual ~Entry ();
 
 				static Entry create (const Flight &flight, Cache &cache);
 

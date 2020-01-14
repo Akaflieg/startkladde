@@ -195,7 +195,7 @@ FlightWindow::FlightWindow (QWidget *parent, FlightWindow::Mode mode, DbManager 
 		label->setErrorColor (errorColor);
 
 	// Setup the required field label colors
-	const QColor requiredFieldColor=interpol (0.75, palette ().background ().color (), Qt::white);
+    const QColor requiredFieldColor=interpol (0.75, palette().window().color(), Qt::white);
 	ui.registrationLabel         ->setDefaultBackgroundColor (requiredFieldColor);
 	ui.pilotLabel                ->setDefaultBackgroundColor (requiredFieldColor);
 	ui.copilotLabel              ->setDefaultBackgroundColor (requiredFieldColor);
@@ -413,8 +413,8 @@ void FlightWindow::showEvent (QShowEvent *event)
 	// exclude the task bar on Windows, so the window should be entirely
 	// visible. However, this does not seem to work and the buttons may still
 	// be partly occluded by the task bar (but at least they are partially
-	// visible).
-	int availableHeight=qApp->desktop ()->availableGeometry ().height ();
+    // visible).
+    int availableHeight=qApp->desktop ()->availableGeometry (this).height ();
 	if (height ()>availableHeight-y ())
 		resize (width (), availableHeight-y ());
 
@@ -733,7 +733,7 @@ QWidget *FlightWindow::getErrorWidget (Flight::Error error)
 		// No default to allow compiler warnings
 	}
 
-	return NULL;
+    return nullptr;
 }
 
 
@@ -889,7 +889,7 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 #undef PERSON
 }
 
-Flight FlightWindow::determineFlightBasic () throw ()
+Flight FlightWindow::determineFlightBasic ()
 {
 	Flight flight;
 
@@ -1166,8 +1166,7 @@ void FlightWindow::checkFlightPhase3 (const Flight &flight, bool departNow, cons
 	}
 }
 
-void FlightWindow::determineFlightPlanes (Flight &flight)
-	throw (FlightWindow::AbortedException)
+void FlightWindow::determineFlightPlanes (Flight &flight) noexcept(false)
 {
 	// Determine the plane
 	if (isRegistrationActive ())
@@ -1260,8 +1259,7 @@ void FlightWindow::determineFlightPeople (Flight &flight, const LaunchMethod *la
  *         been confirmed by the user
  * @throw AbortedException if the user aborts on data input or warning
  */
-Flight FlightWindow::determineFlight (bool departNow)
-	throw (FlightWindow::AbortedException)
+Flight FlightWindow::determineFlight (bool departNow) noexcept(false)
 {
 	/*
 	 * Notes:

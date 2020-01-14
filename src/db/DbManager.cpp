@@ -411,7 +411,7 @@ bool DbManager::connect (QWidget *parent)
 			setState (stateConnected);
 			return true;
 		}
-		catch (AccessDeniedException)
+        catch (AccessDeniedException& e)
 		{
 			grantPermissions (parent);
 			connectImpl (parent);
@@ -444,8 +444,7 @@ bool DbManager::connect (QWidget *parent)
 
 		QString text=tr (
 			"Beim Verbindungsaufbau ist ein Fehler aufgetreten: %1"
-			" (Fehlercode %2, Typ %3)"
-			).arg (error.databaseText ()).arg (error.number ()).arg (error.type ());
+        ).arg (error.text());
 		showWarning (tr ("Error while connecting"), text, parent);
 	}
 

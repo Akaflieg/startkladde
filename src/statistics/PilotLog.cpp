@@ -140,7 +140,7 @@ PilotLog *PilotLog::createNew (dbId personId, const QList<Flight> &flights, Cach
 		}
 	}
 
-	qSort (interestingFlights);
+    std::sort (interestingFlights.begin(), interestingFlights.end());
 
 	// Iterate over all interesting flights, generating logbook entries.
 	PilotLog *result=new PilotLog;
@@ -171,7 +171,7 @@ PilotLog *PilotLog::createNew (const QList<Flight> &flights, Cache &cache, Fligh
 		}
 	}
 
-	QList<dbId> personIds=personIdSet.toList ();
+    QList<dbId> personIds=personIdSet.values ();
 	personIds.removeAll (0);
 
 	// Make a list of the people and sort it
@@ -187,7 +187,7 @@ PilotLog *PilotLog::createNew (const QList<Flight> &flights, Cache &cache, Fligh
 			// TODO log error
 		}
 	}
-	qSort (people);
+    std::sort(people.begin(), people.end());
 
 	PilotLog *result=new PilotLog;
 	foreach (const Person &person, people)
@@ -258,18 +258,18 @@ QVariant PilotLog::headerData (int section, Qt::Orientation orientation, int rol
 		{
 			switch (section)
 			{
-				case 0: return tr ("Date"); break;
-				case 1: return tr ("Model"); break;
-				case 2: return tr ("Registration"); break;
-				case 3: return tr ("Pilot"); break;
-				case 4: return tr ("Copilot"); break;
-				case 5: return tr ("Launch method"); break;
-				case 6: return tr ("Departure location"); break;
-				case 7: return tr ("Landing location"); break;
-				case 8: return tr ("Departure time"); break;
-				case 9: return tr ("Landing time"); break;
-				case 10: return tr ("Flight duration"); break;
-				case 11: return tr ("Comments"); break;
+                case 0: return tr ("Date");
+                case 1: return tr ("Model");
+                case 2: return tr ("Registration");
+                case 3: return tr ("Pilot");
+                case 4: return tr ("Copilot");
+                case 5: return tr ("Launch method");
+                case 6: return tr ("Departure location");
+                case 7: return tr ("Landing location");
+                case 8: return tr ("Departure time");
+                case 9: return tr ("Landing time");
+                case 10: return tr ("Flight duration");
+                case 11: return tr ("Comments");
 			}
 		}
 		else

@@ -98,9 +98,9 @@ MainWindow::MainWindow (QWidget *parent, DbManager &dbManager, Flarm &flarm):
 	cache (dbManager.getCache ()),
 	flarm (flarm),
 	oldLogVisible (false),
-	createFlightWindow (NULL), editFlightWindow (NULL),
-	weatherWidget (NULL), weatherPlugin (NULL),
-	weatherDialog (NULL),
+    createFlightWindow (nullptr), editFlightWindow (nullptr),
+    weatherWidget (nullptr), weatherPlugin (nullptr),
+    weatherDialog (nullptr),
 	flightList (new EntityList<Flight> (this)),
 	contextMenu (new QMenu (this)),
 	databaseActionsEnabled (false),
@@ -371,7 +371,7 @@ void MainWindow::setupPlugins ()
 	// though pluginLayout->count will return the correct value.
 	delete ui.pluginPane->layout ();
 	QGridLayout *pluginLayout=new QGridLayout (ui.pluginPane);
-	pluginLayout->setMargin (4);
+    pluginLayout->setContentsMargins(4, 4, 4, 4);
 	pluginLayout->setVerticalSpacing (4);
 
 	deleteList (infoPlugins);
@@ -2274,7 +2274,7 @@ void MainWindow::on_actionSetGPSTime_triggered ()
         QDateTime currentGPSdateTime (flarm.getGpsTime ());
         qDebug () << "slot_setGPSdateTime: " << currentGPSdateTime.toString (notr("hh:mm:ss dd.MM.yyyy"));
         qDebug () << "currentTime: " << current.toString (notr("hh:mm:ss dd.MM.yyyy"));
-        int diff = currentGPSdateTime.secsTo(current);
+        qint64 diff = currentGPSdateTime.secsTo(current);
         if (abs (diff) > 0) {
                 if (QMessageBox::question(this, tr("Time difference"), 
                         tr("<p>System time: %1</p>"

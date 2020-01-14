@@ -149,7 +149,7 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
 
 
 		// *** Construction
-		FlightWindow (QWidget *parent, FlightWindow::Mode mode, DbManager &manager, Qt::WindowFlags flags=0);
+                FlightWindow (QWidget *parent, FlightWindow::Mode mode, DbManager &manager, Qt::WindowFlags flags=0);
 		~FlightWindow ();
 
 		// *** Setup
@@ -287,9 +287,9 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
 		void planeToFields (dbId id, SkComboBox *registrationInput, SkLabel *typeLabel);
 		void flightToFields (const Flight &flight, bool repeat, dbId preselectedLaunchMethod=invalidId);
 
-		Flight determineFlight (bool departNow) throw (AbortedException);
-		Flight determineFlightBasic () throw ();
-		void determineFlightPlanes (Flight &flight) throw (AbortedException);
+                Flight determineFlight (bool departNow) noexcept(false);
+                Flight determineFlightBasic ();
+                void determineFlightPlanes (Flight &flight) noexcept(false);
 		void determineFlightPeople (Flight &flight, const LaunchMethod *launchMethod) throw (AbortedException);
 		dbId determinePlane (QString registration, QString description, QWidget *widget) throw (AbortedException);
 		dbId determineAndEnterPlane (QString registration, QString description, SkComboBox *registrationInput, SkLabel *typeLabel) throw (AbortedException);

@@ -326,7 +326,7 @@ void FlarmWindow::on_flarmMap_mouseMoved_p (QPointF position_p)
 	else
 		eastText=tr ("%1 W").arg (Distance::format (-east, 2));
 
-	mousePositionLabel->setText (trUtf8 ("%1, %2 (%3° %4)")
+    mousePositionLabel->setText (tr("%1, %2 (%3° %4)")
 		.arg (northText)
 		.arg (eastText)
 		.arg (round (direction.toDegrees ()))

@@ -54,7 +54,7 @@ LaunchMethodStatistics *LaunchMethodStatistics::createNew (const QList<Flight> &
 
 	// Get and sort the launch methods
 	QList<LaunchMethod> launchMethods=cache.getObjects<LaunchMethod> (map.keys (), true);
-	qSort (launchMethods.begin (), launchMethods.end (), LaunchMethod::nameLessThan);
+    std::sort (launchMethods.begin (), launchMethods.end (), LaunchMethod::nameLessThan);
 
 	// Create the entries for the launch methods
 	LaunchMethodStatistics *result=new LaunchMethodStatistics ();
@@ -126,8 +126,8 @@ QVariant LaunchMethodStatistics::headerData (int section, Qt::Orientation orient
 		{
 			switch (section)
 			{
-				case 0: return tr ("Launch method"); break;
-				case 1: return tr ("Number of launches"); break;
+                case 0: return tr ("Launch method");
+                case 1: return tr ("Number of launches");
 			}
 		}
 		else
