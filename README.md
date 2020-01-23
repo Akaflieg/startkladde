@@ -23,6 +23,9 @@ sollte eine Portierung jedoch nicht allzu schwierig sein.
 
 ### Build-Umgebung
 
+* [Build unter Windows](BUILD_WIN.md)
+* Build unter Linux (siehe unten)
+
 Es sollte eine aktuelle Version des **GCC-Compilers** (`g++`) installiert sein und die aktuellste Version von **Qt 5**. Außerdem wird die Bibliothek `libmysqlclient` benötigt, mit Hilfe
 derer auf die **MySQL- oder MariaDB-Datenbank** zugegriffen wird.
 
@@ -39,6 +42,11 @@ $ cd ../build
 $ qmake ..
 $ make
 ```
+
+### Deployment
+
+* [Deployment unter Windows](DEPLOYMENT_WIN.md)
+* Deployment unter Linux (siehe unten)
 
 Die Installation ist auch nicht kompliziert:
 
