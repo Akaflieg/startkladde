@@ -1,4 +1,4 @@
-# Windows
+# Build unter Windows
 
 Für den Build wird die Installation des QT Creator mit einem aktuellen 64-Bit MinGW-Compiler empfohlen. 
 Auf der [Open-Source-Seite](https://www.qt.io/download-open-source) von Qt
