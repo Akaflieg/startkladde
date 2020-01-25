@@ -55,6 +55,7 @@ class Settings: public QObject
 		bool checkMedicals;
         dbId preselectedLaunchMethod;
         bool loadPreselectedLM;
+        bool anonymousMode;
         // Vereinsflieger
         bool vfUploadEnabled;
         QString vfApiKey;

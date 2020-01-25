@@ -20,7 +20,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -91,10 +91,13 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="locationInput">
+          <item row="1" column="0" colspan="2">
+           <widget class="QCheckBox" name="recordTowpilotCheckbox">
             <property name="toolTip">
-             <string>&lt;html&gt;The name of the airfield this program is used at&lt;/html&gt;</string>
+             <string>&lt;html&gt;If enabled, the name of the towpilot can be entered for flights.&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Record &amp;towpilot</string>
             </property>
            </widget>
           </item>
@@ -108,13 +111,20 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="recordTowpilotCheckbox">
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="locationInput">
             <property name="toolTip">
-             <string>&lt;html&gt;If enabled, the name of the towpilot can be entered for flights.&lt;/html&gt;</string>
+             <string>&lt;html&gt;The name of the airfield this program is used at&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="anonymousCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, only the number of crew members and passengers onboard will be stored.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>Record &amp;towpilot</string>
+             <string>Anonymous mode</string>
             </property>
            </widget>
           </item>

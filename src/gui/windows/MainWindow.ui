@@ -1101,7 +1101,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Op&amp;en</string>
+    <string>Connection &amp;active</string>
    </property>
   </action>
   <action name="actionSync">

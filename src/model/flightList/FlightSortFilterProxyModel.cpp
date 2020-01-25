@@ -12,10 +12,12 @@ FlightSortFilterProxyModel::FlightSortFilterProxyModel (Cache &cache, QObject *p
 	cache (cache),
 	showPreparedFlights (true),
 	hideFinishedFlights (false), alwaysShowExternalFlights (true), alwaysShowErroneousFlights (true),
-	flarmIdColumn (-1), idColumn (-1),
+    flarmIdColumn (-1), idColumn (-1), vfIdColumn(-1),
 	customSorting (true)
 {
-	acceptDebugColumns=Settings::instance ().enableDebug;
+    Settings& s = Settings::instance ();
+    acceptDebugColumns= s.enableDebug;
+    acceptVfColumns = s.vfUploadEnabled;
 
 	connect (&Settings::instance (), SIGNAL (changed ()), this, SLOT (settingsChanged ()));
 }
@@ -91,8 +93,10 @@ bool FlightSortFilterProxyModel::filterAcceptsColumn (int sourceColumn, const QM
 {
 	(void)sourceParent;
 
-	if (sourceColumn==flarmIdColumn || sourceColumn==idColumn)
+    if (sourceColumn==flarmIdColumn || sourceColumn==idColumn)
 		return acceptDebugColumns;
+    else if (sourceColumn ==vfIdColumn)
+        return acceptVfColumns;
 	else
 		return true;
 }
@@ -147,9 +151,16 @@ void FlightSortFilterProxyModel::setIdColumn (int column)
 	idColumn=column;
 }
 
+void FlightSortFilterProxyModel::setVfIdColumn (int column)
+{
+    vfIdColumn=column;
+}
+
 void FlightSortFilterProxyModel::settingsChanged ()
 {
 	beginResetModel ();
-	acceptDebugColumns=Settings::instance ().enableDebug;
+    Settings& s = Settings::instance ();
+    acceptDebugColumns= s.enableDebug;
+    acceptVfColumns = s.vfUploadEnabled;
 	endResetModel ();
 }
