@@ -253,8 +253,8 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
 		bool isPlaneTypeActive                    () { return true; }
 		bool isFlightTypeActive                   () { return true; }
 		//
-		bool isPilotActive                        () { return true; }
-		bool isCopilotActive                      () { return Flight::typeCopilotRecorded (getCurrentFlightType ()); } // Does not depend on plane, see comments above
+        bool isPilotActive                        () { return !Settings::instance().anonymousMode; }
+        bool isCopilotActive                      () { return !Settings::instance().anonymousMode && Flight::typeCopilotRecorded (getCurrentFlightType ()); } // Does not depend on plane, see comments above
 		//
 		bool isFlightModeActive                   () { return true; }
 		bool isLaunchMethodActive                 () { return currentDepartsHere (); }
