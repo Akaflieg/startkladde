@@ -5544,11 +5544,16 @@ Datenbankpasswort eingegeben werden.</translation>
     </message>
     <message>
         <location filename="../src/model/Plane.cpp" line="147"/>
+        <source>helicopter</source>
+        <translation>hubschrauber</translation>
+    </message>
+    <message>
+        <location filename="../src/model/Plane.cpp" line="148"/>
         <source>other</source>
         <translation>Sonstige</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="148"/>
+        <location filename="../src/model/Plane.cpp" line="149"/>
         <source>none</source>
         <translation>Keine</translation>
     </message>
@@ -5556,47 +5561,47 @@ Datenbankpasswort eingegeben werden.</translation>
 <context>
     <name>Plane::DefaultObjectModel</name>
     <message>
-        <location filename="../src/model/Plane.cpp" line="222"/>
+        <location filename="../src/model/Plane.cpp" line="226"/>
         <source>Registration</source>
         <translation>Kennzeichen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="223"/>
+        <location filename="../src/model/Plane.cpp" line="227"/>
         <source>Callsign</source>
         <translation>Wettbewerbskennzeichen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="224"/>
+        <location filename="../src/model/Plane.cpp" line="228"/>
         <source>Model</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="225"/>
+        <location filename="../src/model/Plane.cpp" line="229"/>
         <source>Category</source>
         <translation>Gattung</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="226"/>
+        <location filename="../src/model/Plane.cpp" line="230"/>
         <source>Seats</source>
         <translation>Sitze</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="227"/>
+        <location filename="../src/model/Plane.cpp" line="231"/>
         <source>Club</source>
         <translation>Verein</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="228"/>
+        <location filename="../src/model/Plane.cpp" line="232"/>
         <source>Flarm ID</source>
         <translation>Flarm-ID</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="229"/>
+        <location filename="../src/model/Plane.cpp" line="233"/>
         <source>Comments</source>
         <translation>Bemerkungen</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="231"/>
+        <location filename="../src/model/Plane.cpp" line="235"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
