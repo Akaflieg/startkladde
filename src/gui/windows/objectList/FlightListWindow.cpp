@@ -50,6 +50,7 @@ FlightListWindow::FlightListWindow (DbManager &manager, QWidget *parent):
 	flightList=new MutableObjectList<Flight> ();
 	flightModel=new FlightModel (manager.getCache ());
 	flightModel->setColorEnabled (false);
+    flightModel->setButtonsEnabled(false);
 	flightListModel=new ObjectListModel<Flight> (this);
 	flightListModel->setList  (flightList , true);
 	flightListModel->setModel (flightModel, true);

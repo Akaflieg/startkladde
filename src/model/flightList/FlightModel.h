@@ -43,6 +43,7 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
 		virtual ~FlightModel ();
 
 		void setColorEnabled (bool colorEnabled);
+        void setButtonsEnabled (bool buttonsEnabled);
 
 		virtual int columnCount () const;
         virtual QVariant headerData (int column, int role=Qt::DisplayRole) const;
@@ -99,6 +100,7 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
         QString headerTextVFUploaded;
 
 		bool colorEnabled;
+        bool buttonsEnabled;
 
 		bool flarmIdVisible;
 };
