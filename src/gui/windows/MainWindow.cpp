@@ -2073,7 +2073,7 @@ void MainWindow::updateFlarmStateEnabled (ManagedDataStream::State::Type state)
 				// time. This will continue until the state is no longer
 				// ManagedDataStream::State::error, or until the reconnect time
 				// reported by the managed data stream is invalid.
-				QTimer::singleShot (200, this, SLOT (updateFlarmStreamState ()));
+                QTimer::singleShot (200, this, SLOT (updateFlarmState ()));
 			}
 			flarmConnectionError=flarm.getManagedStream ()->getErrorMessage ();
 		} break;
