@@ -54,6 +54,7 @@ UNIX_MARIADB_PREFIX=/usr
 win32:INCLUDEPATH += $${WIN32_MARIADB_INSTALLDIR}\include\mysql
 win32:LIBS += $${WIN32_MARIADB_INSTALLDIR}\lib\libmariadb.lib
 unix:INCLUDEPATH += $${UNIX_MARIADB_PREFIX}/include/mysql
+unix:INCLUDEPATH += $${UNIX_MARIADB_PREFIX}/include/mariadb
 unix:LIBS += -lmariadb
 
 #
