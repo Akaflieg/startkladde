@@ -5251,11 +5251,16 @@ moost be-a intered tu sefe-a zee chunges.</translation>
     </message>
     <message>
         <location filename="../src/model/Plane.cpp" line="147"/>
+        <source>helicopter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/model/Plane.cpp" line="148"/>
         <source>other</source>
         <translation type="unfinished">oozeer</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="148"/>
+        <location filename="../src/model/Plane.cpp" line="149"/>
         <source>none</source>
         <translation type="unfinished">nune-a</translation>
     </message>
@@ -5284,47 +5289,47 @@ moost be-a intered tu sefe-a zee chunges.</translation>
 <context>
     <name>Plane::DefaultObjectModel</name>
     <message>
-        <location filename="../src/model/Plane.cpp" line="222"/>
+        <location filename="../src/model/Plane.cpp" line="226"/>
         <source>Registration</source>
         <translation type="unfinished">Regeestreshun</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="223"/>
+        <location filename="../src/model/Plane.cpp" line="227"/>
         <source>Callsign</source>
         <translation type="unfinished">Cellseegn</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="224"/>
+        <location filename="../src/model/Plane.cpp" line="228"/>
         <source>Model</source>
         <translation type="unfinished">Mudel</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="225"/>
+        <location filename="../src/model/Plane.cpp" line="229"/>
         <source>Category</source>
         <translation type="unfinished">Cetegury</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="226"/>
+        <location filename="../src/model/Plane.cpp" line="230"/>
         <source>Seats</source>
         <translation type="unfinished">Seets</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="227"/>
+        <location filename="../src/model/Plane.cpp" line="231"/>
         <source>Club</source>
         <translation type="unfinished">Cloob</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="228"/>
+        <location filename="../src/model/Plane.cpp" line="232"/>
         <source>Flarm ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="229"/>
+        <location filename="../src/model/Plane.cpp" line="233"/>
         <source>Comments</source>
         <translation type="unfinished">Cumments</translation>
     </message>
     <message>
-        <location filename="../src/model/Plane.cpp" line="231"/>
+        <location filename="../src/model/Plane.cpp" line="235"/>
         <source>ID</source>
         <translation type="unfinished">ID</translation>
     </message>

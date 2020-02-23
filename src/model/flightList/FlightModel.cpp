@@ -19,7 +19,8 @@
 
 FlightModel::FlightModel (Cache &cache):
 	cache (cache),
-	colorEnabled (true)
+    colorEnabled (true),
+    buttonsEnabled (true)
 {
 	updateTranslations ();
 }
@@ -31,6 +32,11 @@ FlightModel::~FlightModel ()
 void FlightModel::setColorEnabled (bool colorEnabled)
 {
 	this->colorEnabled=colorEnabled;
+}
+
+void FlightModel::setButtonsEnabled (bool buttonsEnabled)
+{
+    this->buttonsEnabled = buttonsEnabled;
 }
 
 int FlightModel::columnCount () const
@@ -204,6 +210,9 @@ QVariant FlightModel::data (const Flight &flight, int column, int role) const
 	}
 	else if (role==isButtonRole)
 	{
+        if (!buttonsEnabled)
+            return false;
+
 		// Only show buttons for prepared flights and today's flights
 		if (!flight.isPrepared() && flight.getDepartureTime ().toLocalTime ().date ()!=QDate::currentDate ())
 			return false;

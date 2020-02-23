@@ -195,7 +195,11 @@ void SerialDataStream::port_dataReceived ()
  */
 void SerialDataStream::port_errorOccurred(QSerialPort::SerialPortError error)
 {
-    Q_UNUSED (error);
+    // strangely, this handler gets called with argument NoError,
+    // in this case we evidently don't want to handle the "error"
+    if (error == QSerialPort::NoError) {
+        return;
+    }
 
     // The open port has raised an error, close it therefore and report
     // that the port is no longer available.

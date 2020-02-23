@@ -1,9 +1,11 @@
 #include "src/io/dataStream/BackgroundDataStream.h"
 
+#include <iostream>
 #include <QDebug>
 #include <QThread>
 
 #include "src/util/signal.h"
+#include "src/i18n/notr.h"
 
 /**
  * Creates a BackgroundDataStream for the specified stream with the specified Qt
@@ -70,11 +72,12 @@ BackgroundDataStream::~BackgroundDataStream ()
 		_stream->deleteLater ();
 	}
 
-	_thread->exit (0);
-	QThread::yieldCurrentThread ();
-	// FIXME can we get rid of this delay?
-	_thread->wait (100);
-	_thread->terminate ();
+    _thread->quit();
+
+    std::cout << notr ("Waiting for FLARM worker thread to terminate...") << std::flush;
+    if (_thread->wait (1000))   std::cout << notr ("OK")      << std::endl;
+    else                        std::cout << notr ("Timeout") << std::endl;
+
 }
 
 
