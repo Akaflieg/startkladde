@@ -18,13 +18,13 @@ Siehe auch das [Changelog](CHANGELOG.md).
 
 ## Build
 
-Als Ziel- und Buildplattform wird von diesem Fork aus Gründen der Einfachheit zur Zeit nur Linux unterstützt. Da der Build mit `qmake` durchgeführt wird,
-sollte eine Portierung jedoch nicht allzu schwierig sein.
+Als präferierte Ziel- und Buildplattform ist aus Gründen der Einfachheit zur Zeit für diesen Fork Linux vorgesehen.
+Dennoch kann mit `qmake` oder dem QtCreator auch ein Build unter Windows durchgeführt werden.
 
 ### Build-Umgebung
 
-* [Build unter Windows](BUILD_WIN.md)
 * [Build unter Linux](BUILD_LINUX.md)
+* [Build unter Windows](BUILD_WIN.md)
 
 ### Deployment
 
