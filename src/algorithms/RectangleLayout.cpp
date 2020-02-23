@@ -213,7 +213,7 @@ void RectangleLayout::forceNoOverlaps ()
 void RectangleLayout::doLayout (int maxIterations)
 {
 	// Sort the list by target y
-	qSort (_items);
+    std::sort(_items.begin(), _items.end());
 
 	// Perform at most maxIterations of optimization
 	int iteration;

@@ -304,13 +304,14 @@ void Settings::readSettings ()
 	{
 		pluginPaths
 			<< notr ("./.startkladde/plugins")
+            << notr ("./.startkladde/plugins/info")
+            << notr ("./.startkladde/plugins/weather")
 			<< notr ("./plugins")
 			<< notr ("./plugins/info")
 			<< notr ("./plugins/weather")
-			<< notr ("/usr/lib/startkladde/plugins")
-			<< notr ("/usr/lib/startkladde/plugins/info")
-			<< notr ("/usr/lib/startkladde/plugins/weather")
-			;
+            << notr ("/usr/share/startkladde/plugins")
+            << notr ("/usr/share/startkladde/plugins/info")
+            << notr ("/usr/share/startkladde/plugins/weather");
 	}
 }
 
