@@ -20,12 +20,10 @@ Siehe auch das [Changelog](CHANGELOG.md).
 Als präferierte Ziel- und Buildplattform ist aus Gründen der Einfachheit zur Zeit für diesen Fork Linux vorgesehen.
 Dennoch kann mit `qmake` oder dem QtCreator auch ein Build unter Windows durchgeführt werden.
 
-### Build-Umgebung
-
 * [Build unter Linux](BUILD_LINUX.md)
 * [Build unter Windows](BUILD_WIN.md)
 
-### Deployment
+## Deployment
 
 * [Deployment unter Linux](DEPLOYMENT_LINUX.md)
 * [Deployment unter Windows](DEPLOYMENT_WIN.md)
