@@ -105,7 +105,7 @@ int test_database ()
 //			QSqlError error=interface.lastError ();
 //			std::cout << "Database could not be opened" << std::endl;
 //			std::cout << qnotr ("Type: %1, number: %2")
-//				.arg (error.type ()).arg (error.number ()) << std::endl;
+//				.arg (error.type ()).arg (error.nativeErrorCode ()) << std::endl;
 //			std::cout << qnotr ("Database text: %1").arg (error.databaseText ()) << std::endl;
 //			std::cout << qnotr ("Driver text: %1").arg (error.driverText ()) << std::endl;
 //

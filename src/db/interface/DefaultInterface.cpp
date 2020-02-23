@@ -86,7 +86,6 @@ DefaultInterface::DefaultInterface (const DatabaseInfo &dbInfo, int readTimeout)
 	connect (proxy, SIGNAL (readResumed ()), this, SIGNAL (readResumed ()), Qt::DirectConnection);
 
 	QString name=qnotr ("startkladde_defaultInterface_%1").arg (getFreeNumber ());
-	//std::cout << "Create db " << name << std::endl;
 
 	db=QSqlDatabase::addDatabase (notr ("QMYSQL"), name);
 	threadId=QThread::currentThreadId ();
@@ -101,8 +100,6 @@ DefaultInterface::~DefaultInterface ()
 
 	// Make sure the QSqlDatabase instance is destroyed before removing it
 	db=QSqlDatabase ();
-
-	//std::cout << "remove db " << name << std::endl;
 	QSqlDatabase::removeDatabase (name);
 
 	delete proxy;
@@ -177,9 +174,12 @@ void DefaultInterface::openImpl ()
 				// Failed due to error
 				QSqlError error=db.lastError ();
 				std::cout << error.databaseText () << std::endl;
-				emit databaseError (error.number (), error.databaseText ());
 
-				switch (error.number ())
+                int number = extractNativeErrorNumber(error);
+
+                emit databaseError (number, error.databaseText ());
+
+                switch (number)
 				{
 					case CR_CONN_HOST_ERROR: break; // Retry
 					case CR_UNKNOWN_HOST: break; // Retry
@@ -301,9 +301,10 @@ bool DefaultInterface::doTransactionStatement (TransactionStatement statement)
 		// Failed due to error
 		QSqlError error=db.lastError ();
 		if (displayQueries) std::cout << error.databaseText () << std::endl;
-		emit databaseError (error.number (), error.databaseText ());
+        int number = extractNativeErrorNumber(error);
+        emit databaseError (number, error.databaseText ());
 
-		if (!retryOnQueryError (error.number ()))
+        if (!retryOnQueryError (number))
 			throw TransactionFailedException (error, statement);
 
 		return false;
@@ -377,9 +378,10 @@ QSqlQuery DefaultInterface::executeQueryImpl (const Query &query, bool forwardOn
 		}
 		catch (QueryFailedException &ex)
 		{
-			if (!retryOnQueryError (ex.error.number ()))
+            int number = extractNativeErrorNumber(ex.error);
+            if (!retryOnQueryError (number))
 			{
-				switch (ex.error.number ())
+                switch (number)
 				{
 					case ER_ACCESS_DENIED_ERROR: throw AccessDeniedException (ex.error);
 					case ER_DBACCESS_DENIED_ERROR: throw AccessDeniedException (ex.error);
@@ -441,9 +443,10 @@ QSqlQuery DefaultInterface::doExecuteQuery (const Query &query, bool forwardOnly
 		else
 		{
 			QSqlError error=sqlQuery.lastError ();
+            int number = extractNativeErrorNumber(error);
 			if (displayQueries)
 				std::cout << error.databaseText () << std::endl;
-			emit databaseError (error.number (), error.databaseText ());
+            emit databaseError (number, error.databaseText ());
 
 			throw QueryFailedException::prepare (error, query);
 		}
@@ -465,9 +468,10 @@ QSqlQuery DefaultInterface::doExecuteQuery (const Query &query, bool forwardOnly
 		else
 		{
 			QSqlError error=sqlQuery.lastError ();
+            int number = extractNativeErrorNumber(error);
 			if (displayQueries)
 				std::cout << error.databaseText () << std::endl;
-			emit databaseError (error.number (), error.databaseText ());
+            emit databaseError (number, error.databaseText ());
 
 			throw QueryFailedException::execute (error, query);
 		}
@@ -530,10 +534,11 @@ void DefaultInterface::ping ()
 		{
 			// Failed due to error
 			QSqlError error=sqlQuery.lastError ();
+            int number = extractNativeErrorNumber(error);
 			if (display) std::cout << error.databaseText () << std::endl;
-			emit databaseError (error.number (), error.databaseText ());
+            emit databaseError (number, error.databaseText ());
 
-			if (!retryOnQueryError (error.number ()))
+            if (!retryOnQueryError (number))
 				throw PingFailedException (error);
 		}
 

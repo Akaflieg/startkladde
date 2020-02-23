@@ -89,6 +89,7 @@ class Interface: public AbstractInterface
 
 		// *** Misc
 		QString mysqlPasswordHash (const QString &password);
+        static int extractNativeErrorNumber(QSqlError& error);
 };
 
 #endif

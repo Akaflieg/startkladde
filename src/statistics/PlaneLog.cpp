@@ -216,7 +216,7 @@ PlaneLog *PlaneLog::createNew (dbId planeId, const QList<Flight> &flights, Cache
 			if (flight.getPlaneId ()==planeId)
 				interestingFlights.append (flight);
 
-	qSort (interestingFlights);
+    std::sort (interestingFlights.begin(), interestingFlights.end());
 
 	// Iterate over all interesting flights, generating logbook entries.
 	// Sometimes, we can generate one entry from several flights. These
@@ -283,7 +283,7 @@ PlaneLog *PlaneLog::createNew (const QList<Flight> &flights, Cache &cache)
 			// TODO log error
 		}
 	}
-	qSort (planes.begin (), planes.end (), Plane::clubAwareLessThan);
+    std::sort (planes.begin (), planes.end (), Plane::clubAwareLessThan);
 
 	PlaneLog *result=new PlaneLog ();
 	foreach (const Plane &plane, planes)

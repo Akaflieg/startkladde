@@ -826,7 +826,7 @@ void FlarmMapWidget::paintLatLonGrid (QPainter &painter)
 
 		QString text=longitude.formatDmSuffix ("E", "W");
 		QPointF intersection;
-		if (line.intersect (intersectionLine, &intersection)==QLineF::BoundedIntersection)
+        if (line.intersects (intersectionLine, &intersection)==QLineF::BoundedIntersection)
 			drawText (painter, intersection, textAlignment, text);
 	}
 
@@ -852,8 +852,8 @@ void FlarmMapWidget::paintLatLonGrid (QPainter &painter)
 
 		QString text=latitude.formatDmSuffix ("N", "S");
 		QPointF intersection;
-		if (line.intersect (intersectionLine, &intersection)==QLineF::BoundedIntersection)
-			drawText (painter, intersection, textAlignment, text);
+        if (line.intersects (intersectionLine, &intersection)==QLineF::BoundedIntersection)
+            drawText (painter, intersection, textAlignment, text);
 	}
 }
 

@@ -20,7 +20,7 @@ QString SqlException::makeString (const QString &message) const
 		"    Database error: %4\n"
 		"    Driver error  : %5")
 		.arg (message)
-		.arg (error.number ()).arg (error.type ())
+        .arg (error.nativeErrorCode ()).arg (error.type ())
 		.arg (error.databaseText ())
 		.arg (error.driverText ());
 }
@@ -36,7 +36,7 @@ QString SqlException::makeColorizedString (const QString &message) const
 		"    Driver error  : %7")
 		.arg (c.red ()).arg (c.reset ())
 		.arg (message)
-		.arg (error.number ()).arg (error.type ())
+        .arg (error.nativeErrorCode ()).arg (error.type ())
 		.arg (error.databaseText ())
 		.arg (error.driverText ());
 }

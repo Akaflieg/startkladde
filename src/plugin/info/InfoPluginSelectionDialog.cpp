@@ -60,7 +60,7 @@ const InfoPlugin::Descriptor *InfoPluginSelectionDialog::getCurrentPluginDescrip
 const InfoPlugin::Descriptor *InfoPluginSelectionDialog::select (const QList<const InfoPlugin::Descriptor *> &plugins, QWidget *parent)
 {
 	QList<const InfoPlugin::Descriptor *> sortedPlugins (plugins);
-	qSort (sortedPlugins.begin (), sortedPlugins.end (), InfoPlugin::Descriptor::nameLessThanP);
+    std::sort (sortedPlugins.begin (), sortedPlugins.end (), InfoPlugin::Descriptor::nameLessThanP);
 	InfoPluginSelectionDialog *dialog=new InfoPluginSelectionDialog (sortedPlugins, parent);
 	dialog->setModal (true);
 

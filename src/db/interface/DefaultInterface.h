@@ -62,7 +62,7 @@ class DefaultInterface: public QObject, public Interface
 
 	signals:
 		void executingQuery (Query query);
-		void databaseError (int number, QString message);
+        void databaseError (int number, QString message);
 
 		void readTimeout ();
 		void readResumed ();

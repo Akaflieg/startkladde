@@ -24,7 +24,7 @@ void SkItemDelegate::paint (QPainter *painter, const QStyleOptionViewItem &optio
 {
 	if (coloredSelectionEnabled && (option.state & QStyle::State_Selected))
 	{
-		QStyleOptionViewItemV4 o (option);
+        QStyleOptionViewItem o (option);
 
 		o.palette.setBrush (QPalette::HighlightedText, index.data (Qt::BackgroundRole).value<QBrush> ());
 		o.palette.setColor (QPalette::Highlight, QColor (63, 63, 63));

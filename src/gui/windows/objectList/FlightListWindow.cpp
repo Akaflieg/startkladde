@@ -115,7 +115,7 @@ bool FlightListWindow::fetchFlights (const QDate &first, const QDate &last)
 	// Sort the flights (by effective date)
 	// TODO: hide the sort indicator. The functionality is already in
 	// MainWindow, should probably be in SkTableView.
-	qSort (flights);
+    std::sort (flights.begin(), flights.end());
 
 	// Store the date range
 	currentFirst=first;

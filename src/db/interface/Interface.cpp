@@ -326,7 +326,8 @@ void Interface::createIndex (const IndexSpec &index, bool skipIfExists)
 		// TODO: better check if the index exists before creating, don't
 		// execute the query at all in this case (also, this currently emits
 		// an error message)
-		if (skipIfExists && ex.error.number ()==ER_DUP_KEYNAME)
+        int number = extractNativeErrorNumber(ex.error);
+        if (skipIfExists && number == ER_DUP_KEYNAME)
 			std::cout << qnotr ("Skipping existing index %1.%2").arg (index.getTable (), index.getName ()) << std::endl;
 		else
 			throw;
@@ -346,7 +347,8 @@ void Interface::dropIndex (const QString &table, const QString &name, bool skipI
 	}
 	catch (QueryFailedException &ex)
 	{
-		if (skipIfNotExists && ex.error.number ()==ER_CANT_DROP_FIELD_OR_KEY)
+        int number = extractNativeErrorNumber(ex.error);
+        if (skipIfNotExists && number == ER_CANT_DROP_FIELD_OR_KEY)
 			std::cout << qnotr ("Skipping non-existing index %1.%2").arg (table, name) << std::endl;
 		else
 			throw;
@@ -404,4 +406,13 @@ QString Interface::mysqlPasswordHash (const QString &password)
 	data=QCryptographicHash::hash (data, QCryptographicHash::Sha1);
 
 	return qnotr ("*%1").arg (QString (data.toHex ()).toUpper ());
+}
+
+int Interface::extractNativeErrorNumber(QSqlError& error) {
+    bool ok = false;
+    int number = error.nativeErrorCode().toInt(&ok);
+    if (!ok) {
+        number = -1;
+    }
+    return number;
 }

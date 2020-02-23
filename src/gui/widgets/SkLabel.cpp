@@ -121,15 +121,15 @@ void SkLabel::updateColors ()
 		// Concealed => foreground and background like parent background
 		setAutoFillBackground (true);
 
-		p.setColor (QPalette::WindowText, parentWidget ()->palette ().background ().color ());
-		p.setColor (QPalette::Window    , parentWidget ()->palette ().background ().color ());
+        p.setColor (QPalette::WindowText, parentWidget ()->palette ().window ().color ());
+        p.setColor (QPalette::Window    , parentWidget ()->palette ().window ().color ());
 	}
 	else if (error)
 	{
 		// Error => given error background, same foreground as parent
 		setAutoFillBackground (true);
 
-		p.setColor (QPalette::WindowText, parentWidget ()->palette ().foreground ().color ());
+        p.setColor (QPalette::WindowText, parentWidget ()->palette ().windowText ().color ());
 		p.setColor (QPalette::Window    , errorColor);
 	}
 	else
@@ -137,12 +137,12 @@ void SkLabel::updateColors ()
 		if (defaultForegroundColor.isValid ())
 			p.setColor (QPalette::WindowText, defaultForegroundColor);
 		else
-			p.setColor (QPalette::WindowText, parentWidget ()->palette ().foreground ().color ());
+            p.setColor (QPalette::WindowText, parentWidget ()->palette ().windowText ().color ());
 
 		if (useDefaultBackgroundColor)
 			p.setColor (QPalette::Window    , defaultBackgroundColor);
 		else
-			p.setColor (QPalette::Window    , parentWidget ()->palette ().background ().color ());
+            p.setColor (QPalette::Window    , parentWidget ()->palette ().window ().color ());
 
 		setAutoFillBackground (useDefaultBackgroundColor);
 	}

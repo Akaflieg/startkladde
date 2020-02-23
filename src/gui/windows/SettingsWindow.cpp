@@ -101,7 +101,7 @@ SettingsWindow::~SettingsWindow()
 void SettingsWindow::prepareText ()
 {
 	weatherPlugins=PluginFactory::getInstance ().getDescriptors<WeatherPlugin> ();
-	qSort (weatherPlugins.begin (), weatherPlugins.end (), WeatherPlugin::Descriptor::nameLessThanP);
+    std::sort (weatherPlugins.begin (), weatherPlugins.end (), WeatherPlugin::Descriptor::nameLessThanP);
 
 	// Weather plugin lists
 	ui.weatherPluginInput      ->addItem (notr ("-"), QString ());
@@ -146,13 +146,13 @@ void SettingsWindow::setupText ()
  *   - ttyUSB1 < ttyUSB10 (entries containing "USB": use stringNumericLessThan)
  *   - ttyS1 < ttyS10 (entries not containing "USB": use stringNumericLessThan)
  */
-bool serialPortLessThan (const QString &s1, const QString &s2)
+bool serialPortLessThan (const QSerialPortInfo &s1, const QSerialPortInfo &s2)
 {
-	bool usb1=s1.contains ("USB", Qt::CaseInsensitive);
-	bool usb2=s2.contains ("USB", Qt::CaseInsensitive);
+    bool usb1=s1.portName().contains ("USB", Qt::CaseInsensitive);
+    bool usb2=s2.portName().contains ("USB", Qt::CaseInsensitive);
 
 	if (usb1 == usb2)
-		return stringNumericLessThan (s1, s2);
+        return stringNumericLessThan (s1.portName(), s2.portName());
 	else
 		return usb1;
 }
@@ -170,7 +170,8 @@ void SettingsWindow::populateSerialPortList ()
 	ui.flarmSerialPortInput->clear ();
 
     QList<QSerialPortInfo> serialPortList = QSerialPortInfo::availablePorts();
-    //qSort (ports.begin (), ports.end (), serialPortLessThan);
+    std::sort (serialPortList.begin (), serialPortList.end (), serialPortLessThan);
+
     foreach (const QSerialPortInfo &portInfo, serialPortList)
 	{
         QString deviceDescription= portInfo.description();
