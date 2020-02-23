@@ -33,7 +33,7 @@ class FlightWizard : public QDialog
 
 public:
     enum Page {
-        PlanePage = 0, TypePage = 1, PilotsPage = 2
+        PlanePage = 0, TypePage = 1, PilotsPage = 2, AnonymousPage = 3
     };
 
     explicit FlightWizard(QWidget *parent, DbManager& dbManager);
@@ -50,6 +50,7 @@ private:
     void init_page3();
     void adaptButtons();
     void adaptVisibility();
+    void adaptFocus();
 
     Flight determineFlight();
     bool isCopilotActive() { return Flight::typeCopilotRecorded(selectedType); }

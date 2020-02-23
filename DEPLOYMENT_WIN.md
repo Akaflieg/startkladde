@@ -1,4 +1,4 @@
-# Windows
+# Deployment unter Windows
 
 Um die Startkladde für Windows auszuliefern, müssen einige Dateien gesammelt werden
 und einem Installationsverzeichnis gebündelt werden.

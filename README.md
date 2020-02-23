@@ -8,45 +8,22 @@ In diesem Repository wohnt die von der Akaflieg Berlin ([@julianschick](https://
 * [Github-Fork](https://github.com/startkladde/startkladde)
 * [Noch ein Github-Fork](https://github.com/fb/startkladde)
 
-Diese Version der Startkladde wurde weiter gepflegt, so dass sie auf einem aktuellen Linux-System mit einer aktuellen Version von GCC compiliert und gegen Qt 5 gelinkt werden kann. Zudem wurden einige weitere Funktionalitäten hinzugefügt:
+Diese Version der Startkladde wurde weiter gepflegt, so dass sie auf einem aktuellen Linux-System mit einer aktuellen Version von GCC compiliert und gegen Qt5 gelinkt werden kann. Zudem wurden einige weitere Funktionalitäten hinzugefügt, u.a.:
 
 * Flugdaten-Upload zu [Vereinsflieger](https://vereinsflieger.de)
 * Schnelleingabe-Dialog mit großen Bedienelementen und Schnellwahltasten sowie Auto-Vervollständigung basierend auf häufigen Piloten und Flugzeugen
-* Aktualisierung der Wetterplugins
 
 Siehe auch das [Changelog](CHANGELOG.md).
 
 ## Build
 
-Als Ziel- und Buildplattform wird von diesem Fork aus Gründen der Einfachheit zur Zeit nur Linux unterstützt. Da der Build mit `qmake` durchgeführt wird,
-sollte eine Portierung jedoch nicht allzu schwierig sein.
+Als präferierte Ziel- und Buildplattform ist aus Gründen der Einfachheit zur Zeit für diesen Fork Linux vorgesehen.
+Dennoch kann mit `qmake` oder dem QtCreator auch ein Build unter Windows durchgeführt werden.
 
-### Build-Umgebung
+* [Build unter Linux](BUILD_LINUX.md)
+* [Build unter Windows](BUILD_WIN.md)
 
-Es sollte eine aktuelle Version des **GCC-Compilers** (`g++`) installiert sein und die aktuellste Version von **Qt 5**. Außerdem wird die Bibliothek `libmysqlclient` benötigt, mit Hilfe
-derer auf die **MySQL- oder MariaDB-Datenbank** zugegriffen wird.
+## Deployment
 
-Darüber hinaus muss die **Ruby-Laufzeitumgebung** installiert sein, insbesondere wird die Templating-Engine __eRuby__ benötigt. Der Build wird nur dann klappen, wenn das Programm `erb` auf dem Terminal verfügbar ist.
-
-### Kommandos
-
-Die Startkladde kann mit Hilfe des `qmake`-Buildsystems von Qt gebaut werden:
-
-```bash
-$ cd <repository>
-$ mkdir build
-$ cd ../build
-$ qmake ..
-$ make
-```
-
-Die Installation ist auch nicht kompliziert:
-
-```bash
-$ make install
-```
-
-Ebenso wie die Deinstallation:
-```bash
-$ make uninstall
-```
+* [Deployment unter Linux](DEPLOYMENT_LINUX.md)
+* [Deployment unter Windows](DEPLOYMENT_WIN.md)

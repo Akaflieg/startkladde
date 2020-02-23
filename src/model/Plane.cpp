@@ -128,7 +128,7 @@ QString Plane::getDisplayName () const
 QList<Plane::Category> Plane::listCategories (bool includeInvalid)
 {
 	QList<Category> result;
-	result << categoryAirplane << categoryGlider << categoryMotorglider << categoryUltralight << categoryOther;
+    result << categoryAirplane << categoryGlider << categoryMotorglider << categoryUltralight << categoryHelicopter << categoryOther;
 
 	if (includeInvalid)
 		result << categoryNone;
@@ -144,6 +144,7 @@ QString Plane::categoryText (Plane::Category category)
 		case categoryGlider:      return qApp->translate ("Plane", "glider");
 		case categoryMotorglider: return qApp->translate ("Plane", "motorglider");
 		case categoryUltralight:  return qApp->translate ("Plane", "ultralight");
+        case categoryHelicopter:  return qApp->translate ("Plane", "helicopter");
 		case categoryOther:       return qApp->translate ("Plane", "other");
 		case categoryNone:        return qApp->translate ("Plane", "none");
 		// no default
@@ -181,6 +182,8 @@ Plane::Category Plane::categoryFromRegistration (QString registration)
 		return categoryUltralight;
 	else if (kbu == 'k')
 		return categoryMotorglider;
+    else if (kbu == 'h')
+        return categoryHelicopter;
 	else
 		return categoryOther;
 }
@@ -198,6 +201,7 @@ int Plane::categoryMaxSeats (Plane::Category category)
 		case categoryGlider: return 2;
 		case categoryMotorglider: return 2;
 		case categoryUltralight: return 2;
+        case categoryHelicopter: return -1;
 		case categoryOther: return -1;
 	}
 
@@ -345,6 +349,7 @@ QString Plane::categoryToDb (Category category)
 		case categoryGlider       : return notr ("glider")     ;
 		case categoryMotorglider  : return notr ("motorglider");
 		case categoryUltralight   : return notr ("ultralight") ;
+        case categoryHelicopter   : return notr ("helicopter") ;
 		case categoryOther        : return notr ("other")      ;
 		// no default
 	}
@@ -359,6 +364,7 @@ Plane::Category Plane::categoryFromDb (QString category)
 	else if (category==notr ("glider")     ) return categoryGlider;
 	else if (category==notr ("motorglider")) return categoryMotorglider;
 	else if (category==notr ("ultralight") ) return categoryUltralight;
+    else if (category==notr ("helicopter") ) return categoryHelicopter;
 	else if (category==notr ("other")      ) return categoryOther;
 	else                              return categoryNone;
 }

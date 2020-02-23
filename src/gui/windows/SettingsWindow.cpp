@@ -243,6 +243,7 @@ void SettingsWindow::readSettings ()
 	ui.locationInput         ->setText    (s.location);
 	ui.recordTowpilotCheckbox->setChecked (s.recordTowpilot);
 	ui.checkMedicalsCheckbox ->setChecked (s.checkMedicals);
+    ui.anonymousCheckbox     ->setChecked (s.anonymousMode);
     // Vereinsflieger
     ui.vfUploadEnabled  ->setChecked    (s.vfUploadEnabled);
     ui.vfApiKeyInput    ->setText       (s.vfApiKey);
@@ -342,6 +343,7 @@ void SettingsWindow::writeSettings ()
 	s.location      =ui.locationInput         ->text ();
 	s.recordTowpilot=ui.recordTowpilotCheckbox->isChecked ();
 	s.checkMedicals =ui.checkMedicalsCheckbox ->isChecked ();
+    s.anonymousMode =ui.anonymousCheckbox     ->isChecked ();
     // Vereinsflieger
     s.vfUploadEnabled   =ui.vfUploadEnabled ->isChecked();
     s.vfApiKey          =ui.vfApiKeyInput   ->text();

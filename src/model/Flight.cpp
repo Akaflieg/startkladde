@@ -613,8 +613,12 @@ void Flight::checkPerson (QList<Flight::Error> &errors, dbId id,
 	Flight::Error firstNameOnlyError,
 	Flight::Error notIdentifiedError) const
 {
+    // Pilot is not required in anonymous mode
+    if (Settings::instance().anonymousMode) return;
+
 	// Person specified - no error
 	if (idValid (id)) return;
+
 
 	bool  lastNameSpecified=!isBlank ( lastName);
 	bool firstNameSpecified=!isBlank (firstName);
@@ -987,6 +991,7 @@ QString Flight::selectColumnList ()
 		",accounting_notes,comments" // 2 Σ25
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
         ",flarm_id,vfid" // 2 Σ30
+        ",num_crew, num_pax" // 2 Σ32
 		);
 }
 
@@ -1033,6 +1038,9 @@ Flight Flight::createFromResult (const Result &result)
 	f.setFlarmId (result.value (28).toString ());
     f.setVfId    (result.value(29).toLongLong ());
 
+    f.setNumCrew(result.value(30).toInt());
+    f.setNumPax(result.value(31).toInt());
+
 	return f;
 }
 
@@ -1076,6 +1084,9 @@ Flight Flight::createFromDataMap(const QMap<QString,QString> map)
 
     f.setFlarmId(map["flarm_id"]);
 
+    f.setNumCrew(map["num_crew"].toInt());
+    f.setNumPax(map["num_pax"].toInt());
+
     return f;
 }
 
@@ -1088,7 +1099,8 @@ QString Flight::insertColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ22
 		",accounting_notes,comments" // 2 Σ24
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ27
-        ",flarm_id,vfid" // 1 Σ29
+        ",flarm_id,vfid" // 2 Σ29
+        ",num_crew,num_pax" // 2 Σ31
 		);
 }
 
@@ -1101,6 +1113,7 @@ QString Flight::insertPlaceholderList ()
 		",?,?,?,?"
 		",?,?"
 		",?,?,?"
+        ",?,?"
         ",?,?"
 		);
 }
@@ -1142,6 +1155,9 @@ void Flight::bindValues (Query &q) const
 
 	q.bind (getFlarmId ());
     q.bind (getVfId ());
+
+    q.bind(getNumCrew());
+    q.bind(getNumPax());
 }
 
 QList<Flight> Flight::createListFromResult (Result &result)

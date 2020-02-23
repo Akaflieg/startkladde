@@ -8,11 +8,15 @@
 #include "src/db/DbManager.h" // Required for DbManager::State
 #include "src/gui/SkMainWindow.h"
 
-class QSortFilterProxyModel;
+class FlightSortFilterProxyModel;
 
 class FlightModel;
 template<class T> class MutableObjectList;
 template<class T> class ObjectListModel;
+
+enum ExportFormat {
+    CSV, PDF
+};
 
 /**
  * A window for showing and exporting a flight list
@@ -64,7 +68,10 @@ class FlightListWindow: public SkMainWindow<Ui::FlightListWindowClass>
 		FlightModel *flightModel;
 		ObjectListModel<Flight> *flightListModel;
 
-		QSortFilterProxyModel *proxyModel;
+        FlightSortFilterProxyModel *proxyModel;
+
+        void exportToPDF(QString fileName);
+        void exportToCSV(QString fileName);
 };
 
 #endif

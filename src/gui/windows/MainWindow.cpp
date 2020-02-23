@@ -584,8 +584,11 @@ void MainWindow::settingsChanged ()
 	// why it's disabled.
 	ui.actionFlarmPlaneList  ->setEnabled (s.flarmEnabled);
 	ui.actionFlarmRadar	     ->setEnabled (s.flarmEnabled);
-	ui.flarmStateCaptionLabel->setEnabled (s.flarmEnabled);
-	ui.flarmStateLabel       ->setEnabled (s.flarmEnabled);
+    ui.openFlarmAction       ->setEnabled(s.flarmEnabled);
+    ui.identifyPlaneAction   ->setEnabled(s.flarmEnabled);
+    ui.updateFlarmIdAction   ->setEnabled(s.flarmEnabled);
+    ui.flarmStateCaptionLabel->setVisible (s.flarmEnabled);
+    ui.flarmStateLabel       ->setVisible (s.flarmEnabled);
 	// Also disabled the FlarmNet menu entries to indicate to the user that
 	// FlarmNet is not used.
 	ui.actionFlarmNetWindow    ->setEnabled (s.flarmNetEnabled);
@@ -2070,7 +2073,7 @@ void MainWindow::updateFlarmStateEnabled (ManagedDataStream::State::Type state)
 				// time. This will continue until the state is no longer
 				// ManagedDataStream::State::error, or until the reconnect time
 				// reported by the managed data stream is invalid.
-				QTimer::singleShot (200, this, SLOT (updateFlarmStreamState ()));
+                QTimer::singleShot (200, this, SLOT (updateFlarmState ()));
 			}
 			flarmConnectionError=flarm.getManagedStream ()->getErrorMessage ();
 		} break;

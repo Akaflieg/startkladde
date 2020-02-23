@@ -34,6 +34,7 @@ class FlightSortFilterProxyModel: public QSortFilterProxyModel
 		virtual void sortCustom ();
 		virtual void setFlarmIdColumn (int column);
 		virtual void setIdColumn (int column);
+        virtual void setVfIdColumn (int column);
 
 		virtual void setForceVisible (const FlightReference &flight, bool forceVisible);
 
@@ -58,7 +59,9 @@ class FlightSortFilterProxyModel: public QSortFilterProxyModel
 		// Column filter options
 		int flarmIdColumn;
 		int idColumn;
+        int vfIdColumn;
 		bool acceptDebugColumns;
+        bool acceptVfColumns;
 
 		// Sort options
 		bool customSorting;

@@ -818,6 +818,8 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 
 	// space
 
+    ui.numCrewInput->setValue(flight.getNumCrew());
+    ui.numPaxInput->setValue(flight.getNumPax());
 	personToFields (flight.getPilotId   (), ui.pilotLastNameInput  , ui.pilotFirstNameInput  , flight.getPilotLastName ()  , flight.getPilotFirstName   ());
 	personToFields (flight.getCopilotId (), ui.copilotLastNameInput, ui.copilotFirstNameInput, flight.getCopilotLastName (), flight.getCopilotFirstName ());
 
@@ -903,13 +905,20 @@ Flight FlightWindow::determineFlightBasic ()
 	flight.setCopilotId   (isCopilotActive              ()?selectedCopilot :invalidId);
 	flight.setTowpilotId  (isTowpilotActive             ()?selectedTowpilot:invalidId);
 
-
 	// Some of the data can just be copied to the flight.
 	// Registration: may have to query user
 	if (isFlightTypeActive                   ()) flight.setType            (getCurrentFlightType ());
 	//
 	// Pilot: may have to query user
 	// Copilot: may have to query user
+    //
+    if (Settings::instance().anonymousMode) {
+        flight.setNumCrew(getCurrentNumCrew());
+        flight.setNumPax(getCurrentNumPax());
+    } else {
+        flight.setNumCrew(1);
+        flight.setNumPax(0);
+    }
 	//
 	if (isFlightModeActive                   ()) flight.setMode              (getCurrentFlightMode ());
 	if (isLaunchMethodActive                 ()) flight.setLaunchMethodId    (getCurrentLaunchMethodId ());
@@ -933,7 +942,6 @@ Flight FlightWindow::determineFlightBasic ()
 	if (isCommentActive                      ()) flight.setComments        (getCurrentComment ().simplified ());
 	if (isAccountingNodeActive               ()) flight.setAccountingNotes (getCurrentAccountingNote ().simplified ());
 	// getCurrentDate
-
 
 	// Setting the times requires combining the date and time fields
 	QDate date= (isDateActive()) ? (getCurrentDate ()) : QDate::currentDate ();
@@ -1916,12 +1924,28 @@ void FlightWindow::disableWidgets (QWidget *widget0, QWidget *widget2, bool disa
 
 void FlightWindow::updateSetupVisibility ()
 {
+    Settings& s = Settings::instance();
 	//registrationInput - always visible
 	//ui.planeTypeWidget - always visible
 	//flightTypeInput - always visible
 	//
-	//pilotLastNameInput, pilotFirstNameInput - always visible
+    //pilotLastNameInput, pilotFirstNameInput
 	enableWidgets (ui.copilotLastNameInput, ui.copilotFirstNameInput   , isCopilotActive                      ());
+    ui.pilotLabel->setVisible(!s.anonymousMode);
+    ui.pilotFirstNameLabel->setVisible(!s.anonymousMode);
+    ui.pilotLastNameLabel->setVisible(!s.anonymousMode);
+    ui.pilotFirstNameInput->setVisible(!s.anonymousMode);
+    ui.pilotLastNameInput->setVisible(!s.anonymousMode);
+    ui.copilotLabel->setVisible(!s.anonymousMode);
+    ui.copilotFirstNameLabel->setVisible(!s.anonymousMode);
+    ui.copilotLastNameLabel->setVisible(!s.anonymousMode);
+    ui.copilotLastNameInput->setVisible(!s.anonymousMode);
+    ui.copilotFirstNameInput->setVisible(!s.anonymousMode);
+    // numCrewInput, numPaxInput
+    ui.numPaxLabel->setVisible(s.anonymousMode);
+    ui.numPaxInput->setVisible(s.anonymousMode);
+    ui.numCrewLabel->setVisible(s.anonymousMode);
+    ui.numCrewInput->setVisible(s.anonymousMode);
 	//
 	//flightModeInput - always visible
 	enableWidget  (ui.launchMethodInput                                , isLaunchMethodActive                 ());

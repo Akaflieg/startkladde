@@ -43,17 +43,20 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
 		virtual ~FlightModel ();
 
 		void setColorEnabled (bool colorEnabled);
+        void setButtonsEnabled (bool buttonsEnabled);
 
 		virtual int columnCount () const;
-		virtual QVariant displayHeaderData (int column) const;
+        virtual QVariant headerData (int column, int role=Qt::DisplayRole) const;
 		virtual QVariant data (const Flight &flight, int column, int role=Qt::DisplayRole) const;
 
 		virtual int pilotColumn        () const { return  3; }
 		virtual int departButtonColumn () const { return  6; }
 		virtual int landButtonColumn   () const { return  7; }
 		virtual int durationColumn     () const { return  8; }
+        virtual int vfIdColumn         () const { return 15; }
         virtual int idColumn           () const { return 16; }
         virtual int flarmIdColumn      () const { return 17; }
+
 
 		// ColumnInfo methods
 		virtual QString columnName (int columnIndex) const;
@@ -80,6 +83,8 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
 		QString headerTextType;
 		QString headerTextPilot;
 		QString headerTextCopilot;
+        QString headerTextNumCrew;
+        QString headerTextNumPax;
 		QString headerTextLaunchMethod;
 		QString headerTextDeparture;
 		QString headerTextLanding;
@@ -95,6 +100,7 @@ class FlightModel: public ObjectModel<Flight>, public ColumnInfo
         QString headerTextVFUploaded;
 
 		bool colorEnabled;
+        bool buttonsEnabled;
 
 		bool flarmIdVisible;
 };
