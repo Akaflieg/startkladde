@@ -454,8 +454,10 @@ QSqlQuery DefaultInterface::doExecuteQuery (const Query &query, bool forwardOnly
 
 	query.bindTo (sqlQuery);
 
-	if (displayQueries)
-		std::cout << notr ("..."); std::cout.flush ();
+    if (displayQueries) {
+        std::cout << notr ("...");
+        std::cout.flush ();
+    }
 
 	if (!query.exec (sqlQuery))
 	{

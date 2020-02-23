@@ -290,14 +290,14 @@ void FlightWindow::updateLists ()
 	// Flight types
 	for (int i=0, n=ui.flightTypeInput->count (); i<n; ++i)
 	{
-		Flight::Type flightType=(Flight::Type)(ui.flightTypeInput->itemData (i).toInt ());
+        Flight::Type flightType = static_cast<Flight::Type>(ui.flightTypeInput->itemData(i).toInt());
 		ui.flightTypeInput->setItemText (i, Flight::typeText (flightType, true));
 	}
 
 	// Flight flightModes
 	for (int i=0, n=ui.flightModeInput->count (); i<n; ++i)
 	{
-		Flight::Mode flightMode=(Flight::Mode)(ui.flightModeInput->itemData (i).toInt ());
+        Flight::Mode flightMode= static_cast<Flight::Mode>(ui.flightModeInput->itemData(i).toInt());
 		ui.flightModeInput   ->setItemText (i, firstToUpper (Flight::modeText (flightMode)));
 		ui.towflightModeInput->setItemText (i, firstToUpper (Flight::modeText (flightMode)));
 	}
@@ -652,7 +652,7 @@ void FlightWindow::updateErrors (bool setFocus)
 			// Seems like the item background color is not affected by the
 			// list widget palette
 			QListWidgetItem *item=new QListWidgetItem (flight.errorDescription (error), ui.errorList);
-			item->setBackgroundColor (errorColor);
+            item->setBackground (errorColor);
 
 			QWidget *errorWidget=getErrorWidget (error);
 			if (errorWidget)
@@ -758,7 +758,7 @@ void FlightWindow::personToFields (dbId id, SkComboBox *lastNameInput, SkComboBo
 			firstNameInput->setEditText (person.firstName );
 			ok=true;
 		}
-		catch (Cache::NotFoundException &ex) {}
+        catch (Cache::NotFoundException &e) { (void) e; }
 	}
 
 	if (!ok)
@@ -841,8 +841,9 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 			if (cache.getObject<LaunchMethod> (flight.getLaunchMethodId ()).type==LaunchMethod::typeSelf)
 				copyLaunchMethod=true;
 	}
-	catch (Cache::NotFoundException &ex)
+    catch (Cache::NotFoundException &e)
 	{
+        (void) e;
 		log_error (notr ("Launch method not found in FlightWindow::flightToFields"));
 	}
 
@@ -1805,8 +1806,9 @@ bool FlightWindow::currentIsAirtow ()
 	{
 		return getCurrentLaunchMethod ().isAirtow ();
 	}
-	catch (Cache::NotFoundException &ex)
+    catch (Cache::NotFoundException &e)
 	{
+        (void) e;
 		return false;
 	}
 }
@@ -1820,8 +1822,9 @@ bool FlightWindow::isTowplaneRegistrationActive ()
 	{
 		return !getCurrentLaunchMethod ().towplaneKnown ();
 	}
-	catch (Cache::NotFoundException &ex)
+    catch (Cache::NotFoundException &e)
 	{
+        (void) e;
 		return false;
 	}
 }
@@ -2076,8 +2079,9 @@ void FlightWindow::registrationChanged (const QString &text)
 			if (plane.selfLaunchOnly () && idInvalid (getCurrentLaunchMethodId ()))
 				ui.launchMethodInput->setCurrentItemByItemData (cache.getLaunchMethodByType (LaunchMethod::typeSelf));
 		}
-		catch (Cache::NotFoundException &ex)
+        catch (Cache::NotFoundException &e)
 		{
+            (void) e;
 			ui.planeTypeWidget->setText (notr ("?"));
 		}
 	}
@@ -2090,7 +2094,7 @@ void FlightWindow::registrationChanged (const QString &text)
 
 void FlightWindow::flightModeChanged (int index)
 {
-	Flight::Mode flightMode=(Flight::Mode)ui.flightModeInput->itemData (index).toInt ();
+    Flight::Mode flightMode = static_cast<Flight::Mode>(ui.flightModeInput->itemData(index).toInt());
 
 	if (mode==modeCreate)
 	{
@@ -2120,7 +2124,7 @@ void FlightWindow::flightModeChanged (int index)
 
 void FlightWindow::launchMethodChanged (int index)
 {
-	dbId launchMethodId=(dbId)ui.launchMethodInput->itemData (index).toLongLong ();;
+    dbId launchMethodId = static_cast<dbId>(ui.launchMethodInput->itemData(index).toLongLong());
 
 	if (idValid (launchMethodId))
 	{
@@ -2137,8 +2141,9 @@ void FlightWindow::launchMethodChanged (int index)
 					Plane towplane=cache.getObject<Plane> (towplaneId);
 					ui.towplaneTypeWidget->setText (towplane.type);
 				}
-				catch (Cache::NotFoundException &ex)
+                catch (Cache::NotFoundException &e)
 				{
+                    (void) e;
 					ui.towplaneTypeWidget->setText (notr ("?"));
 				}
 			}
@@ -2165,9 +2170,10 @@ void FlightWindow::towplaneRegistrationChanged (const QString &text)
 			// Set the plane type widget
 			ui.towplaneTypeWidget->setText (towplane.type);
 		}
-		catch (Cache::NotFoundException &ex)
-		{
-			ui.towplaneTypeWidget->setText (notr ("?"));
+        catch (Cache::NotFoundException &e)
+        {
+            (void) e;
+            ui.towplaneTypeWidget->setText (notr ("?"));
 		}
 	}
 	else
@@ -2238,8 +2244,9 @@ void FlightWindow::okButton_clicked()
 			accept (); // Close the dialog
 		}
 	}
-	catch (AbortedException &e)
+    catch (AbortedException &e)
 	{
+        (void) e;
 		// User aborted, do nothing
 	}
 }
@@ -2268,6 +2275,7 @@ void FlightWindow::nowButton_clicked ()
 	}
 	catch (AbortedException &e)
 	{
+        (void) e;
 		// User aborted, do nothing
 	}
 }

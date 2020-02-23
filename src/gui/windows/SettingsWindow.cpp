@@ -356,7 +356,7 @@ void SettingsWindow::writeSettings ()
 	s.flarmSerialPort    =ui.flarmSerialPortInput       ->currentText ();
 	s.flarmSerialBaudRate=ui.flarmSerialBaudRateInput   ->currentText ().toInt ();
 	s.flarmTcpHost       =ui.flarmTcpHostInput          ->text ();
-	s.flarmTcpPort       =ui.flarmTcpPortInput          ->value ();
+    s.flarmTcpPort       = (uint16_t) ui.flarmTcpPortInput          ->value ();
 	s.flarmFileName      =ui.flarmFileNameInput         ->text ();
 	s.flarmFileDelayMs   =ui.flarmFileDelayInput        ->value ();
 	s.flarmAutoDepartures=ui.flarmAutoDeparturesCheckbox->isChecked ();
