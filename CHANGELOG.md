@@ -1,6 +1,6 @@
 # Changelog
 
-## [Version 2.2.0](https://github.com/Akaflieg/startkladde/releases/tag/v2.2.0)
+## [Version 2.2.0](https://github.com/Akaflieg/startkladde/releases/tag/v2.2.0) (Feb. 2020)
 
 * Breaking Change: Unter Linux werden mit `make install` nun alle zusätzlichen Dateien unter `/usr/share/startkladde` abgelegt.
 * Feature: Flugupload zur Vereinsverwaltungplattform 'Vereinsflieger'
