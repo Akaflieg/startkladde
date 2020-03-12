@@ -1,18 +1,18 @@
 # Changelog
 
-## Version 2.2.0
+## [Version 2.2.0](https://github.com/Akaflieg/startkladde/releases/tag/v2.2.0)
 
-* [BREAKING CHANGE] Unter Linux werden mit `make install` nun alle zusätzlichen Dateien unter `/usr/share/startkladde` abgelegt.
-* [FEATURE] Flugupload zur Vereinsverwaltungplattform 'Vereinsflieger'
-* [FEATURE] Schnelleingabe-Dialog mit großen Bedienelementen und Schnellwahltasten sowie Auto-Vervollständigung basierend auf häufigen Piloten und Flugzeugen.
-* [FEATURE] Vom FLARM automatisch erkannte Starts und Landungen werden durch einen Ton signalisiert
-* [FEATURE] Als Datenbank ist nun MariaDB vorgesehen.
-* [FEATURE] Von Qt4 nach Qt5 portiert, für den Zugriff auf die serielle Schnittstelle wird die in Qt5 integrierte Bibliothek verwendet.
-* [FEATURE] Ein anonymer Modus wurde hinzugefügt. Bei Flügen in diesem Modus werden die Namen der Insassen nicht festgehalten, stattdessen nur die Anzahl Besatzungsmitglieder und Fluggäste.
-* [FEATURE] Hubschrauber wurden als Luftfahrzeugtyp hinzugefügt.
-* [BUGFIX] METAR-Plugin mit einer korrekten URL versehen.
-* [BUGFIX] Fehlende Übersetzungstext ergänzt.
-* [SIMPLIFICATION] Batteriestandsanzeige entfernt, da die Bibliothek *libacpi* kein Linux-Standardpaket ist und schwer einzubinden. Kosten und Nutzen stehen deshalb in keinem Verhältnis, zumal der Batteriestand auch anderweitig im System eingesehen werden kann.
+* Breaking Change: Unter Linux werden mit `make install` nun alle zusätzlichen Dateien unter `/usr/share/startkladde` abgelegt.
+* Feature: Flugupload zur Vereinsverwaltungplattform 'Vereinsflieger'
+* Feature: Schnelleingabe-Dialog mit großen Bedienelementen und Schnellwahltasten sowie Auto-Vervollständigung basierend auf häufigen Piloten und Flugzeugen.
+* Feature: Vom FLARM automatisch erkannte Starts und Landungen werden durch einen Ton signalisiert
+* Feature: Als Datenbank ist nun MariaDB vorgesehen.
+* Feature: Von Qt4 nach Qt5 portiert, für den Zugriff auf die serielle Schnittstelle wird die in Qt5 integrierte Bibliothek verwendet.
+* Feature: Ein anonymer Modus wurde hinzugefügt. Bei Flügen in diesem Modus werden die Namen der Insassen nicht festgehalten, stattdessen nur die Anzahl Besatzungsmitglieder und Fluggäste.
+* Feature: Hubschrauber wurden als Luftfahrzeugtyp hinzugefügt.
+* Feature: METAR-Plugin mit einer korrekten URL versehen.
+* Bugfix: Fehlende Übersetzungstext ergänzt.
+* Regression: Batteriestandsanzeige entfernt, da die Bibliothek *libacpi* kein Linux-Standardpaket ist und schwer einzubinden. Kosten und Nutzen stehen deshalb in keinem Verhältnis, zumal der Batteriestand auch anderweitig im System eingesehen werden kann.
 
 ## 2.1.x (2012-06-16)
 
