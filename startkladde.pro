@@ -10,7 +10,7 @@
 
 VERSION = 2.2.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
-
+# DEFINES +=QT_COMPAT
 
 #
 # Basic settings
