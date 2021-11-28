@@ -476,7 +476,7 @@ void FlightWindow::showEvent (QShowEvent *event)
 
 FlightWindow *FlightWindow::createFlight (QWidget *parent, DbManager &manager, QDate date, dbId preselectedLaunchMethod)
 {
-	FlightWindow *w=new FlightWindow (parent, modeCreate, manager, NULL);
+    FlightWindow *w=new FlightWindow (parent, modeCreate, manager, {});
 
 	w->ui.dateInput->setDate (date);
 	w->updateSetup ();
@@ -958,7 +958,6 @@ Flight FlightWindow::determineFlightBasic ()
 }
 
 void FlightWindow::errorCheck (const QString &problem, QWidget *widget)
-	throw (FlightWindow::AbortedException)
 {
 	if (!confirmProblem (this, tr ("Error"), problem))
 	{
@@ -968,7 +967,6 @@ void FlightWindow::errorCheck (const QString &problem, QWidget *widget)
 }
 
 void FlightWindow::checkFlightPhase1 (const Flight &flight, bool departNow)
-	throw (FlightWindow::AbortedException)
 {
 	// Phase 1: plane determined, towplane and people not determined
 
@@ -1017,7 +1015,6 @@ void FlightWindow::checkFlightPhase1 (const Flight &flight, bool departNow)
 }
 
 void FlightWindow::checkFlightPhase2 (const Flight &flight, bool departNow, const Plane *plane, const Plane *towplane, const LaunchMethod *launchMethod)
-	throw (FlightWindow::AbortedException)
 {
 	// Phase 2: plane and towplane determined, people not determined
 
@@ -1119,7 +1116,6 @@ void FlightWindow::checkMedical (const Person *person, const QString &ofThePerso
 }
 
 void FlightWindow::checkFlightPhase3 (const Flight &flight, bool departNow, const Plane *plane, const Person *pilot, const Person *copilot, const Person *towpilot)
-	throw (FlightWindow::AbortedException)
 {
 	// Phase 3: plane, towplane and people determined
 
@@ -1196,7 +1192,6 @@ void FlightWindow::determineFlightPlanes (Flight &flight) noexcept(false)
 }
 
 void FlightWindow::determineFlightPeople (Flight &flight, const LaunchMethod *launchMethod)
-	throw (FlightWindow::AbortedException)
 {
 	bool pilotRequired=true;
 	if (!flight.departsHere ()) pilotRequired=false;
@@ -1351,7 +1346,6 @@ Flight FlightWindow::determineFlight (bool departNow) noexcept(false)
  * @throw AbortedException if the user aborted the selection
  */
 dbId FlightWindow::determinePlane (QString registration, QString description, QWidget *widget)
-	throw (FlightWindow::AbortedException)
 {
 	dbId id=invalidId;
 
@@ -1425,7 +1419,6 @@ dbId FlightWindow::determinePlane (QString registration, QString description, QW
 }
 
 dbId FlightWindow::determineAndEnterPlane (QString registration, QString description, SkComboBox *registrationInput, SkLabel *typeLabel)
-	throw (FlightWindow::AbortedException)
 {
 	dbId result=determinePlane (registration, description, registrationInput);
 
@@ -1445,7 +1438,6 @@ dbId FlightWindow::determineAndEnterPlane (QString registration, QString descrip
 }
 
 dbId FlightWindow::createNewPerson (QString lastName, QString firstName)
-	throw (FlightWindow::AbortedException)
 {
 	Person nameObject;
 	nameObject.lastName=lastName;
@@ -1488,7 +1480,6 @@ dbId FlightWindow::createNewPerson (QString lastName, QString firstName)
  * @throw AbortedException if the user aborted the selection
  */
 dbId FlightWindow::determinePerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, QWidget *widget)
-	throw (FlightWindow::AbortedException)
 {
 	if (!active) return invalidId;
 
@@ -1631,7 +1622,7 @@ dbId FlightWindow::determinePerson (bool active, QString lastName, QString first
 	return 0;
 }
 
-dbId FlightWindow::determineAndEnterPerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, SkComboBox *lastNameWidget, SkComboBox *firstNameWidget) throw (FlightWindow::AbortedException)
+dbId FlightWindow::determineAndEnterPerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, SkComboBox *lastNameWidget, SkComboBox *firstNameWidget)
 {
 	dbId result=determinePerson (active, lastName, firstName, description, required, incompleteLastName, incompleteFirstName, originalId, lastNameWidget);
 

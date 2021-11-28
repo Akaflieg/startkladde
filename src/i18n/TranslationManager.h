@@ -6,6 +6,7 @@
 #include <QStringList>
 #include <QList>
 #include <QDir>
+#include <QLocale>
 
 #include "src/i18n/LanguageConfiguration.h"
 
@@ -45,6 +46,8 @@ class TranslationManager
 		bool load (const LanguageConfiguration &configuration, bool force=false);
 		void toggleLanguage ();
 
+        QLocale locale() { return QLocale(currentLocale); }
+
 	protected:
 		// Translation files
 		QString filenameForLocaleName (const QString &localeName);
@@ -67,7 +70,6 @@ class TranslationManager
 
 		// Settings
 		QList<QDir> translationPath;
-
 
 		// Current translation
 		QString currentLocale;

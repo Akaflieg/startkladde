@@ -31,7 +31,7 @@ private:
     bool itemSelected;
     SkCompleter* c;
 
-    void updateSelection(bool s, QVariant item);
+    void updateSelection(bool dropSelection, QVariant item);
     void adaptColor();
 
 signals:

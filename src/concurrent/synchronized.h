@@ -45,7 +45,8 @@
 class Synchronizer: QMutexLocker
 {
 	public:
-		Synchronizer (QMutex *mutex);
+        Synchronizer (QMutex *mutex);
+        Synchronizer (QRecursiveMutex *mutex);
 		virtual ~Synchronizer ();
 
 		bool done;

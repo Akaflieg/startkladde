@@ -438,7 +438,7 @@ void SettingsWindow::on_browseFlarmFileButton_clicked ()
 		existingParentDirectory (currentFileName, QDir ()).absolutePath (),
 		notr ("*.txt;;*"),
 		NULL,
-		0
+        {}
 		);
 
 	if (!fileName.isEmpty ())
@@ -654,7 +654,7 @@ void SettingsWindow::on_browseKmlFileButton_clicked ()
 		existingParentDirectory (currentFileName, QDir ()).absolutePath (),
 		notr ("*.kml"),
 		NULL,
-		0
+        {}
 		);
 
 	if (!fileName.isEmpty ())

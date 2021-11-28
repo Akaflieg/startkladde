@@ -29,7 +29,7 @@ void VereinsfliegerSyncWorker::sync()
     errorItems.clear();
 
     Settings& settings = Settings::instance();
-    QList<QString> cidStrList = settings.vfClubId.split(",", QString::SplitBehavior::SkipEmptyParts);
+    QList<QString> cidStrList = settings.vfClubId.split(",", Qt::SkipEmptyParts);
     QList<int> cidList;
 
     foreach (QString cidStr, cidStrList)

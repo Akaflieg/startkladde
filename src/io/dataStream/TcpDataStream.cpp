@@ -13,8 +13,8 @@
 // ******************
 
 TcpDataStream::TcpDataStream (QObject *parent): DataStream (parent),
-	_parameterMutex (new QMutex (QMutex::NonRecursive)),
-	_backEndMutex   (new QMutex (QMutex::NonRecursive)),
+    _parameterMutex (new QMutex ()),
+    _backEndMutex   (new QMutex ()),
 	_port (0)
 {
 	// Create the socket and connect the required signals. _socket will be

@@ -23,7 +23,7 @@ class ConfirmOverwritePersonDialog: public SkDialog<Ui::ConfirmOverwritePersonDi
 		Q_OBJECT
 
 	public:
-		ConfirmOverwritePersonDialog (QWidget *parent=NULL, Qt::WindowFlags f=NULL);
+        ConfirmOverwritePersonDialog (QWidget *parent=NULL, Qt::WindowFlags f={});
 		~ConfirmOverwritePersonDialog ();
 
 		static bool confirmOverwrite (const Person &correctPerson, const QList<Person> &wrongPeople, QWidget *parent=NULL);

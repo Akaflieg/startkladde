@@ -8,9 +8,10 @@
 #-----------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-VERSION = 2.2.0
+VERSION = 2.3.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 # DEFINES +=QT_COMPAT
+CONFIG += c++14
 
 #
 # Basic settings
@@ -92,6 +93,7 @@ HEADERS += src/accessor.h \
            src/Longitude.h \
            src/StorableException.h \
            src/text.h \
+           src/util/WithSortkey.h \
            src/version.h \
            test/TestRunnerClient.h \
            test/textTest.h \

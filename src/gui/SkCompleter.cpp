@@ -21,41 +21,41 @@ SkCompleter::~SkCompleter()
 
 }
 
-bool SkCompleter::event(QEvent *e)
-{
-    if (e->type() == QEvent::KeyPress) {
-        QKeyEvent *ke = static_cast<QKeyEvent *>(e);
+//bool SkCompleter::event(QEvent *e)
+//{
+//    if (e->type() == QEvent::KeyPress) {
+//        QKeyEvent *ke = static_cast<QKeyEvent *>(e);
 
-        if (ke->key() == Qt::Key_Return) {
-            return false;
-        }
-    }
+//        if (ke->key() == Qt::Key_Return) {
+//            return false;
+//        }
+//    }
 
-    return QCompleter::event(e);
-}
+//    return QCompleter::event(e);
+//}
 
-bool SkCompleter::eventFilter(QObject *obj, QEvent *event)
-{
-    if (event->type() == QEvent::KeyPress) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+//bool SkCompleter::eventFilter(QObject *obj, QEvent *event)
+//{
+//    if (event->type() == QEvent::KeyPress) {
+//        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
-        if (edit->isItemSelected() && keyEvent->key() == Qt::Key_Return)
-        {
-            qDebug("Ate key press %d", keyEvent->key());
-        } else
-        {
-            return QCompleter::eventFilter(obj, event);
-        }
-    } else {
-        // standard event processing
-        return QCompleter::eventFilter(obj, event);
-    }
-}
+//        if (edit->isItemSelected() && keyEvent->key() == Qt::Key_Return)
+//        {
+//            qDebug("Ate key press %d", keyEvent->key());
+//        } else
+//        {
+//            return QCompleter::eventFilter(obj, event);
+//        }
+//    }
+
+//    // standard event processing
+//    return QCompleter::eventFilter(obj, event);
+//}
 
 void SkCompleter::update(QString prefix)
 {
     model->clear();
-    QStringList tokens = prefix.split(" ", QString::SkipEmptyParts);
+    QStringList tokens = prefix.split(" ", Qt::SkipEmptyParts);
 
     foreach (QVariant v, itemList) {
         bool failed = false;

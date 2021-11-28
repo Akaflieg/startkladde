@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class QMutex;
+class QRecursiveMutex;
 class QTimer;
 
 /**
@@ -168,7 +168,7 @@ class DataStream: public QObject
 		virtual void streamConnectionBecameAvailable ();
 
 	private:
-		QMutex *_mutex;
+        QRecursiveMutex *_mutex;
 
 		State _state;
 		QString _errorMessage;

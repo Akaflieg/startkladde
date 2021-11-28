@@ -17,8 +17,8 @@
 // ******************
 
 FileDataStream::FileDataStream (QObject *parent): DataStream (parent),
-	_parameterMutex (new QMutex (QMutex::NonRecursive)),
-	_backEndMutex   (new QMutex (QMutex::NonRecursive)),
+    _parameterMutex (new QMutex ()),
+    _backEndMutex   (new QMutex ()),
 	_delayMs (0)
 {
 	// Create the file and the timer. _file and _timer will be deleted

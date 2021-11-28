@@ -13,7 +13,7 @@
 class DateInputDialog: public SkDialog<Ui::DateInputDialogClass>
 {
 	public:
-		DateInputDialog (QWidget *parent = 0, Qt::WindowFlags f=0);
+		DateInputDialog (QWidget *parent = 0, Qt::WindowFlags f={});
 		~DateInputDialog();
 
 		static bool editDate  (QDate *date ,              const QString &title, const QString &text, QWidget *parent);

@@ -3,6 +3,7 @@
 #include <QAbstractItemView>
 #include <QKeyEvent>
 #include <QPainter>
+#include <iostream>
 #include "qdebug.h"
 
 CompletionLineEdit::CompletionLineEdit(QWidget* parent) :
@@ -30,7 +31,7 @@ QVariant CompletionLineEdit::getSelectedItem() const
 
 void CompletionLineEdit::setSelectedItem(QVariant item)
 {
-    updateSelection(true, item);
+    updateSelection(false, item);
 }
 
 void CompletionLineEdit::setCompleter(SkCompleter* completer)
@@ -41,10 +42,10 @@ void CompletionLineEdit::setCompleter(SkCompleter* completer)
 
     c = completer;
 
-    if (c == NULL) return;
-
-    c->setWidget(this);
-    connect(completer, SIGNAL(selected(QVariant)), this, SLOT(insertCompletion(QVariant)));
+    if (c != NULL) {
+        c->setWidget(this);
+        connect(completer, SIGNAL(selected(QVariant)), this, SLOT(insertCompletion(QVariant)));
+    }
 }
 
 SkCompleter* CompletionLineEdit::completer() const
@@ -54,7 +55,7 @@ SkCompleter* CompletionLineEdit::completer() const
 
 void CompletionLineEdit::insertCompletion(QVariant sel)
 {
-    updateSelection(true, sel);
+    updateSelection(false, sel);
 }
 
 void CompletionLineEdit::adaptColor()
@@ -69,69 +70,46 @@ void CompletionLineEdit::adaptColor()
     setPalette(p);
 }
 
-void CompletionLineEdit::updateSelection(bool s, QVariant item)
+void CompletionLineEdit::updateSelection(bool dropSelection, QVariant item)
 {
-    if (!s) {
+    if (dropSelection) {
         setText("");
     } else {
         setText(c->itemToString(item));
     }
-    itemSelected = s;
-    selectedItem = item;
+    itemSelected = !dropSelection;
+    selectedItem = dropSelection ? QVariant() : item;
     adaptColor();
     emit selectionStateChanged();
 }
 
 void CompletionLineEdit::keyPressEvent(QKeyEvent *e)
 {
-    // qDebug() << "press " << e->key();
-    // qDebug() << (int) e->modifiers();
-
-    if (e->key() == Qt::Key_Enter) {
-        e->accept();
+    // If an item is already selected and enter is pressed, then ignore the enter
+    if (itemSelected && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter)) {
+        e->ignore();
         return;
     }
 
-    /*if (e->key() == Qt::Key_Alt) {
-        qDebug() << "ALT!";
-    }*/
-
+    // If an item is already selected and a key is pressed, remove the selection
     if (itemSelected &&
          e->key() != Qt::Key_Right &&
          e->key() != Qt::Key_Left &&
          e->key() != Qt::Key_Alt &&
          e->key() != Qt::Key_AltGr) {
-        updateSelection(false, QVariant());
+        updateSelection(true, QVariant());
     }
 
-    /*if (c && c->popup()->isVisible())
+    // Pass the keypress
+    QLineEdit::keyPressEvent(e);
+
+    // Show completer dropdown
+    if (c != NULL &&
+        e->key() != Qt::Key_Right &&
+        e->key() != Qt::Key_Left &&
+        e->key() != Qt::Key_Alt &&
+        e->key() != Qt::Key_AltGr)
     {
-        // The following keys are forwarded by the completer to the widget
-        switch (e->key())
-        {
-        case Qt::Key_Enter:
-        case Qt::Key_Return:
-        case Qt::Key_Escape:
-        case Qt::Key_Tab:
-        case Qt::Key_Backtab:
-            e->ignore();
-            return; // Let the completer do default behavior
-        }
-    }*/
-
-    //bool isShortcut = (e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_E;
-    //if (!isShortcut)
-    QLineEdit::keyPressEvent(e); // Don't send the shortcut (CTRL-E) to the text edit.
-
-    if (c != NULL && e->key() != Qt::Key_Alt && e->key() != Qt::Key_AltGr)
-    {
-        /*bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
-        if (!isShortcut && !ctrlOrShift && e->modifiers() != Qt::NoModifier)
-        {
-            c->popup()->hide();
-            return;
-        }*/
-
         c->update(text());
         c->popup()->setFont(this->font());
         c->popup()->setCurrentIndex(c->completionModel()->index(0, 0));

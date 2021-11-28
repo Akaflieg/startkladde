@@ -35,7 +35,7 @@
 
 void Cache::clearMultiTypeHashes ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		clubs.clear ();
 	}
@@ -48,7 +48,7 @@ void Cache::clearMultiTypeHashes ()
 
 template<> void Cache::clearHashes<Plane> ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		planeTypes.clear ();
 		planeRegistrations.clear ();
@@ -64,7 +64,7 @@ template<> void Cache::updateHashesObjectAdded<Plane> (const Plane &plane)
 	// updateHashesObjectDeleted method, if possible; otherwise, care must be
 	// taken not to insert a value multiple times if an object is deleted and
 	// re-added.
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		if (!isBlank (plane.type)) planeTypes.insert (plane.type);
 		planeRegistrations.insert (plane.registration);
@@ -75,13 +75,13 @@ template<> void Cache::updateHashesObjectAdded<Plane> (const Plane &plane)
         // The exact position is not too important (just defines the sort order in flight wizard),
         // so just add at the end. However it is important that the plane is added, because
         // otherwise a newly added plane will not appear before restart or full refresh in flight wizard.
-        planesSortedByUsage.prepend(plane);
+        planesSortedByUsage.prepend(WithSortkey<Plane, int>(plane, 0));
 	}
 }
 
 template<> void Cache::updateHashesObjectDeleted<Plane> (dbId id, const Plane *oldPlane)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		// Leave planeTypes
 		if (oldPlane)
@@ -97,7 +97,7 @@ template<> void Cache::updateHashesObjectDeleted<Plane> (dbId id, const Plane *o
 			planeIdsByFlarmId.remove (flarmId, id);
 
             for (int i = 0; i < planesSortedByUsage.size(); ) {
-                if (planesSortedByUsage.at(i).getId() == oldPlane->getId()) {
+                if (planesSortedByUsage.at(i).getThing().getId() == oldPlane->getId()) {
                     planesSortedByUsage.removeAt(i);
                 } else {
                     i++;
@@ -110,7 +110,7 @@ template<> void Cache::updateHashesObjectDeleted<Plane> (dbId id, const Plane *o
 
 template<> void Cache::updateHashesObjectUpdated<Plane> (const Plane &plane, const Plane *oldPlane)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		updateHashesObjectDeleted<Plane> (plane.getId (), oldPlane);
 		updateHashesObjectAdded (plane);
@@ -124,7 +124,7 @@ template<> void Cache::updateHashesObjectUpdated<Plane> (const Plane &plane, con
 
 template<> void Cache::clearHashes<Person> ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		personLastNames.clear ();
 		personFirstNames.clear ();
@@ -143,7 +143,7 @@ template<> void Cache::updateHashesObjectAdded<Person> (const Person &person)
 	// updateHashesObjectDeleted method, if possible; otherwise, care must be
 	// taken not to insert a value multiple times if an object is deleted and
 	// re-added.
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		const QString &last =person.lastName ; QString lastLower =last .toLower ();
 		const QString &first=person.firstName; QString firstLower=first.toLower ();
@@ -162,13 +162,13 @@ template<> void Cache::updateHashesObjectAdded<Person> (const Person &person)
         // The exact position is not too important (just defines the sort order in flight wizard),
         // so just add at the last positions. However it is important that the person is added, because
         // otherwise a newly added person will not appear before restart or full refresh in flight wizard.
-        peopleSortedByFrequency.prepend(person);
+        peopleSortedByFrequency.prepend(WithSortkey<Person, int>(person, 0));
 	}
 }
 
 template<> void Cache::updateHashesObjectDeleted<Person> (dbId id, const Person *oldPerson)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		// Leave personLastNames
 		// Leave personFirstNames
@@ -184,7 +184,7 @@ template<> void Cache::updateHashesObjectDeleted<Person> (dbId id, const Person 
 			if (oldPerson) personIdsByName.remove (QPair<QString, QString> (lastLower, firstLower), id);
 
             for (int i = 0; i < peopleSortedByFrequency.size(); ) {
-                if (peopleSortedByFrequency.at(i).getId() == oldPerson->getId()) {
+                if (peopleSortedByFrequency.at(i).getThing().getId() == oldPerson->getId()) {
                     peopleSortedByFrequency.removeAt(i);
                 } else {
                     i++;
@@ -197,7 +197,7 @@ template<> void Cache::updateHashesObjectDeleted<Person> (dbId id, const Person 
 
 template<> void Cache::updateHashesObjectUpdated<Person> (const Person &person, const Person *oldPerson)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		updateHashesObjectDeleted<Person> (person.getId (), oldPerson);
 		updateHashesObjectAdded (person);
@@ -211,7 +211,7 @@ template<> void Cache::updateHashesObjectUpdated<Person> (const Person &person, 
 
 template<> void Cache::clearHashes<LaunchMethod> ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		launchMethodIdsByType.clear ();
 	}
@@ -223,7 +223,7 @@ template<> void Cache::updateHashesObjectAdded<LaunchMethod> (const LaunchMethod
 	// updateHashesObjectDeleted method, if possible; otherwise, care must be
 	// taken not to insert a value multiple times if an object is deleted and
 	// re-added.
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		launchMethodIdsByType.insert (launchMethod.type, launchMethod.getId ());
 	}
@@ -231,7 +231,7 @@ template<> void Cache::updateHashesObjectAdded<LaunchMethod> (const LaunchMethod
 
 template<> void Cache::updateHashesObjectDeleted<LaunchMethod> (dbId id, const LaunchMethod *oldLaunchMethod)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		if (oldLaunchMethod) launchMethodIdsByType.remove (oldLaunchMethod->type, id);
 	}
@@ -239,7 +239,7 @@ template<> void Cache::updateHashesObjectDeleted<LaunchMethod> (dbId id, const L
 
 template<> void Cache::updateHashesObjectUpdated<LaunchMethod> (const LaunchMethod &launchMethod, const LaunchMethod *oldLaunchMethod)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		updateHashesObjectDeleted<LaunchMethod> (launchMethod.getId (), oldLaunchMethod);
 		updateHashesObjectAdded (launchMethod);
@@ -253,7 +253,7 @@ template<> void Cache::updateHashesObjectUpdated<LaunchMethod> (const LaunchMeth
 
 template<> void Cache::clearHashes<Flight> ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		locations.clear ();
 		accountingNotes.clear ();
@@ -266,7 +266,7 @@ template<> void Cache::updateHashesObjectAdded<Flight> (const Flight &flight)
 	// updateHashesObjectDeleted method, if possible; otherwise, care must be
 	// taken not to insert a value multiple times if an object is deleted and
 	// re-added.
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		if (!isBlank (flight.       getDepartureLocation ())) locations      .insert (flight.       getDepartureLocation ());
 		if (!isBlank (flight.         getLandingLocation ())) locations      .insert (flight.         getLandingLocation ());
@@ -277,7 +277,7 @@ template<> void Cache::updateHashesObjectAdded<Flight> (const Flight &flight)
 
 template<> void Cache::updateHashesObjectDeleted<Flight> (dbId id, const Flight *oldFlight)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		(void)id;
 		(void)oldFlight;
@@ -288,7 +288,7 @@ template<> void Cache::updateHashesObjectDeleted<Flight> (dbId id, const Flight 
 
 template<> void Cache::updateHashesObjectUpdated<Flight> (const Flight &flight, const Flight *oldFlight)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		updateHashesObjectDeleted<Flight> (flight.getId (), oldFlight);
 		updateHashesObjectAdded (flight);
@@ -300,7 +300,7 @@ template<> void Cache::updateHashesObjectUpdated<Flight> (const Flight &flight, 
 // ********************
 template<> void Cache::clearHashes<FlarmNetRecord> ()
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		flarmNetRecordIdsByFlarmId.clear ();
 	}
@@ -312,7 +312,7 @@ template<> void Cache::updateHashesObjectAdded<FlarmNetRecord> (const FlarmNetRe
 	// updateHashesObjectDeleted method, if possible; otherwise, care must be
 	// taken not to insert a value multiple times if an object is deleted and
 	// re-added.
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		dbId id=record.getId ();
 		QString flarmId = record.flarmId;
@@ -323,7 +323,7 @@ template<> void Cache::updateHashesObjectAdded<FlarmNetRecord> (const FlarmNetRe
 
 template<> void Cache::updateHashesObjectDeleted<FlarmNetRecord> (dbId id, const FlarmNetRecord *oldRecord)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		QString flarmId = oldRecord->flarmId;
 
@@ -334,7 +334,7 @@ template<> void Cache::updateHashesObjectDeleted<FlarmNetRecord> (dbId id, const
 
 template<> void Cache::updateHashesObjectUpdated<FlarmNetRecord> (const FlarmNetRecord &record, const FlarmNetRecord *oldRecord)
 {
-	synchronized (dataMutex)
+    synchronized (dataMutex)
 	{
 		updateHashesObjectDeleted<FlarmNetRecord> (record.getId (), oldRecord);
 		updateHashesObjectAdded (record);

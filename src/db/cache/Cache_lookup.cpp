@@ -41,7 +41,10 @@ EntityList<Plane> Cache::getPlanes ()
 
 QList<Plane> Cache::getPlanesSortedByUsage()
 {
-    synchronizedReturn (dataMutex, planesSortedByUsage);
+    QList<Plane> result;
+    std::transform(planesSortedByUsage.begin(), planesSortedByUsage.end(), std::back_inserter(result),
+                   [](WithSortkey<Plane, int> wk) -> Plane { return wk.getThing(); });
+    synchronizedReturn (dataMutex, result);
 }
 
 EntityList<Person> Cache::getPeople ()
@@ -51,7 +54,10 @@ EntityList<Person> Cache::getPeople ()
 
 QList<Person> Cache::getPeopleSortedByFrequency()
 {
-    synchronizedReturn (dataMutex, peopleSortedByFrequency);
+    QList<Person> result;
+    std::transform(peopleSortedByFrequency.begin(), peopleSortedByFrequency.end(), std::back_inserter(result),
+                   [](WithSortkey<Person, int> wk) -> Person { return wk.getThing(); });
+    synchronizedReturn (dataMutex, result);
 }
 
 EntityList<LaunchMethod> Cache::getLaunchMethods ()
@@ -61,7 +67,7 @@ EntityList<LaunchMethod> Cache::getLaunchMethods ()
 
 EntityList<FlarmNetRecord> Cache::getFlarmNetRecords ()
 {
-	synchronizedReturn (dataMutex, flarmNetRecords);
+    synchronizedReturn (dataMutex, flarmNetRecords);
 }
 
 

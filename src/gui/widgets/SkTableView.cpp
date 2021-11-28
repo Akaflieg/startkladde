@@ -177,6 +177,7 @@ void SkTableView::rowsInserted (const QModelIndex &parent, int start, int end)
 
 void SkTableView::dataChanged (const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
 {
+    (void) roles; // silence unused parameter warning
 	assert (isGuiThread ());
 
 	QTableView::dataChanged (topLeft, bottomRight);
