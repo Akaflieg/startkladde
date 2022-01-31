@@ -9,18 +9,22 @@ VereinsfliegerSyncWorker::VereinsfliegerSyncWorker(DbManager* _dbManager, QStrin
     dbManager = _dbManager;
     user = _user;
     pass = _pass;
-    vfsync = new VereinsfliegerSync(Network::getNetworkAccessManager(), this);
+    vfsync = nullptr;
     cancelled = false;
 }
 
 VereinsfliegerSyncWorker::~VereinsfliegerSyncWorker()
 {
-    delete vfsync;
+    if (vfsync != nullptr) {
+        delete vfsync;
+    }
 }
 
 void VereinsfliegerSyncWorker::cancel()
 {
-    vfsync->cancel();
+    if (vfsync != nullptr) { // just safety
+        vfsync->cancel();
+    }
     cancelled = true;
 }
 
@@ -28,16 +32,21 @@ void VereinsfliegerSyncWorker::sync()
 {
     errorItems.clear();
 
+    VfCredentials creds;
+    creds.user = user;
+    creds.pass = pass;
+
     Settings& settings = Settings::instance();
     QList<QString> cidStrList = settings.vfClubId.split(",", Qt::SkipEmptyParts);
-    QList<int> cidList;
 
-    foreach (QString cidStr, cidStrList)
-    {
+    foreach (QString cidStr, cidStrList) {
         bool ok = false;
         int cid = cidStr.toInt(&ok);
-        if (ok)
-            cidList.append(cid);
+        if (ok) {
+            creds.cidList.append(cid);
+        } else {
+            emit finished(true, tr("Invalid club id specified in the settings."), errorItems);
+        }
     }
 
     if (!settings.vfUploadEnabled) {
@@ -48,46 +57,39 @@ void VereinsfliegerSyncWorker::sync()
     if (settings.vfApiKey.isEmpty()) {
         emit finished(true, tr("No Vereinsflieger API key specified in the settings."), errorItems);
         return;
+    } else {
+        creds.appkey = settings.vfApiKey;
     }
 
-    if (cidList.isEmpty()) {
-        emit finished(true, tr("No valid club ids specified in the settings."), errorItems);
+    if (cancelled) {
+        emit finished(true, tr("Operation cancelled by user."), errorItems);
         return;
     }
 
-    if (vfsync->retrieveAccesstoken() != 0)
-    {
+    if (vfsync != nullptr) {
+        delete vfsync;
+    }
+    vfsync = new VereinsfliegerSync(Network::getNetworkAccessManager(), creds, this);
+
+    if (vfsync->retrieveAccesstoken() != 0) {
         emit finished(true, tr("Connection to Vereinsflieger could not be initiated."), errorItems);
         return;
     }
 
-    if (cancelled)
-    {
+    if (cancelled) {
         emit finished(true, tr("Operation cancelled by user."), errorItems);
         return;
     }
 
     emit progress(0, tr("Signing in..."));
+    bool signedIn = vfsync->signin();
 
-
-
-    bool signedIn = false;
-    foreach (int cid, cidList)
-    {
-        if (!signedIn)
-        {
-            signedIn = vfsync->signin(user, pass, cid, settings.vfApiKey) == 0;
-        }
-    }
-
-    if (!signedIn)
-    {
+    if (!signedIn) {
         emit finished(true, tr("Failed to sign in on Vereinsflieger."), errorItems);
         return;
     }
 
-    if (cancelled)
-    {
+    if (cancelled) {
         emit finished(true, tr("Operation cancelled by user."), errorItems);
         return;
     }
@@ -97,8 +99,7 @@ void VereinsfliegerSyncWorker::sync()
 
     int counter = 0;
     int successCounter = 0;
-    foreach(Flight flight, flights)
-    {
+    foreach(Flight flight, flights) {
         counter++;
         emit progress(((double) counter / (double) flights.size())*1000, QString(tr("Uploading flight %1 of %2...")).arg(counter).arg(flights.size()));
 
@@ -116,23 +117,14 @@ void VereinsfliegerSyncWorker::sync()
             item->setText(2, f.departuretime.toString("dd.MM.yyyy"));
             item->setText(3, f.departuretime.toString("HH:mm"));
             item->setText(4, f.arrivaltime.toString("HH:mm"));
-
-            QJsonDocument doc = QJsonDocument::fromJson(ex.replyString.toUtf8());
-
-            if (ex.cancelled) {
-                item->setText(5, tr("Connection cancelled!"));
-            } else {
-                item->setText(5, doc.object()[notr("error")].toString());
-            }
+            item->setText(5, ex.replyString);
 
             errorItems.append(item);
         }
 
-        if (cancelled)
-        {
+        if (cancelled) {
             break;
         }
-
     }
 
     emit progress(1000, tr("Signing out..."));
@@ -194,7 +186,8 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
 
             result.towtime = flight.getDepartureTime().msecsTo(flight.getTowflightLandingTime()) / 60000;
 
-            QRegExp rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
+            // Versuche, die Schlepphöhe aus dem Kommentartext herauszuholen
+            QRegExp rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe|ausklinkhoehe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
             if (rx.indexIn(flight.getComments().toLower()) != -1) {
                 result.towheight = rx.cap(2).toInt();
             } else {
@@ -217,8 +210,8 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
     result.comment = flight.getComments();
 
     // Abrechnungsmodus
-    // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
-
+    // 1=keine, 2=Pilot, 3=Begleiter,4=Gast, 5=Pilot+Begleiter, 7=Anderes Mitglied
+    // Anderes Mitglied kann mit 'uidcharge' angegeben werden
     switch (flight.getType())
     {
         case Flight::typeTraining1:     result.ftid = 8;    result.chargemode = 2; break;
@@ -226,19 +219,6 @@ VereinsfliegerFlight VereinsfliegerSyncWorker::convertFlight(Flight& flight)
         case Flight::typeGuestPrivate:  result.ftid = 14;   result.chargemode = 2; break;
         case Flight::typeGuestExternal: result.ftid = 13;   result.chargemode = 4; break;
         default:                        result.ftid = 10;   result.chargemode = 2;
-    }
-
-    // TODO
-    // Wenn Flugzeug CT und Pilot AFV -> Dann nicht abrechnen
-    if (flight.getPlaneId() != 0 && flight.getPilotId() != 0)
-    {
-        Plane plane = dbManager->getCache().getObject<Plane>(flight.getPlaneId());
-        Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
-
-        if (plane.registration.trimmed() == "D-1877" && pilot.club.trimmed() == "AFV")
-        {
-            result.chargemode = 1;
-        }
     }
 
     return result;

@@ -1,19 +1,16 @@
 #include "vereinsfliegersync.h"
 
-VereinsfliegerSync::VereinsfliegerSync(QNetworkAccessManager* man, QObject *parent) : QObject(parent)
+VereinsfliegerSync::VereinsfliegerSync(QNetworkAccessManager* man, VfCredentials creds, QObject *parent) :
+    QObject(parent), creds(creds)
 {
     baseUrl = "https://vereinsflieger.de/interface/rest/";
-
     manager = man;
-    accesstoken = QString();
-    signedIn = QString();
 }
 
 int VereinsfliegerSync::retrieveAccesstoken()
 {
     ReplyData reply = get("auth/accesstoken");
     accesstoken = reply.replyValues["accesstoken"].toString();
-    qDebug() << reply.replyString;
 
     if (reply.cancelled) {
         return 2;
@@ -24,27 +21,42 @@ int VereinsfliegerSync::retrieveAccesstoken()
     }
 }
 
-int VereinsfliegerSync::signin(QString user, QString pass, int cid, QString appkey)
+bool VereinsfliegerSync::signin() {
+    if (creds.cidList.isEmpty()) {
+        return signinWithCid({});
+    } else {
+        bool result = true;
+        foreach (int cid, creds.cidList) {
+            result = result && signinWithCid(cid);
+        }
+        return result;
+    }
+}
+
+bool VereinsfliegerSync::signinWithCid(std::optional<int> cid)
 {
+
     QMap<QString, QString> args;
-    args.insert("username", user);
-    args.insert("password", md5(pass));
-    args.insert("appkey", appkey);
-    args.insert("cid", QString("%1").arg(cid));
+    args.insert("username", creds.user);
+    args.insert("password", md5(creds.pass));
+    args.insert("appkey", creds.appkey);
+    if (cid.has_value()) {
+        args.insert("cid", QString("%1").arg(cid.value()));
+    }
     ReplyData reply = post("auth/signin", args);
-    qDebug() << reply.replyString;
 
     if (reply.cancelled) {
-        return 2;
+        return false;
     } else if (reply.httpStatus == 200) {
-        return 0;
+        return true;
     } else {
         //Already logged in
         if (reply.replyValues.value("error") == "Unknown Resource") {
-            return 0;
+            return true;
         }
-        return 1;
+        return false;
     }
+
 }
 
 void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
@@ -69,14 +81,16 @@ void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     args.insert("chargemode", flight.chargemode <= 0 ? "2" : QString::number(flight.chargemode));
 
     ReplyData reply = post("flight/add", args);
-    qDebug() << reply.replyString;
 
     if (reply.cancelled) {
-        throw VfSyncException(true, "", 0);
+        throw VfSyncException(tr("Connection lost."), 0);
     } else if (reply.httpStatus == 200) {
         flight.vfid = reply.replyValues.value("flid").toLongLong();
     } else {
-        throw VfSyncException(false, reply.replyString, reply.httpStatus);
+        QString errorMessage = reply.replyValues.keys().contains("0") && reply.replyValues.value("0").toMap().keys().contains("error") ?
+                    reply.replyValues.value("0").toMap().value("error").toString() :
+                    tr("Unknown error");
+        throw VfSyncException(errorMessage, reply.httpStatus);
     }
 }
 
@@ -84,7 +98,7 @@ int VereinsfliegerSync::signout()
 {
     QMap<QString,QString> args;
     ReplyData reply = del("auth/signout", args);
-    qDebug() << reply.replyString;
+
     if (reply.cancelled) {
         return 2;
     } else if (reply.httpStatus == 200) {
@@ -103,7 +117,7 @@ int VereinsfliegerSync::getuser()
 {
     QMap<QString,QString> args;
     ReplyData reply = post("auth/getuser", args);
-    qDebug() << reply.replyString;
+
     if (reply.cancelled) {
         return 2;
     } else if (reply.httpStatus == 200) {
@@ -136,7 +150,6 @@ ReplyData VereinsfliegerSync::get(QString service)
         result.replyString = reply->readAll();
         result.replyValues = extractReturnValues(result.replyString);
         result.httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        result.cancelled = false;
     } else {
         result.cancelled = true;
     }
@@ -178,7 +191,6 @@ ReplyData VereinsfliegerSync::post(QString service, QMap<QString,QString>& args)
         result.replyString = reply->readAll();
         result.replyValues = extractReturnValues(result.replyString);
         result.httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        result.cancelled = false;
     } else {
         result.cancelled = true;
     }
@@ -227,7 +239,6 @@ ReplyData VereinsfliegerSync::del(QString service, QMap<QString,QString>& args)
         result.replyString = reply->readAll();
         result.replyValues = extractReturnValues(result.replyString);
         result.httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        result.cancelled = false;
     } else {
         result.cancelled = true;
     }

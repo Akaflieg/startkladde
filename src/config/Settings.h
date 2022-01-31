@@ -60,6 +60,8 @@ class Settings: public QObject
         bool vfUploadEnabled;
         QString vfApiKey;
         QString vfClubId;
+        QString vfUser;
+        QString vfPass;
 		// Flarm
 		bool flarmEnabled;
 		Flarm::ConnectionType flarmConnectionType;

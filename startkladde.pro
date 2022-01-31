@@ -11,7 +11,7 @@
 VERSION = 2.3.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 # DEFINES +=QT_COMPAT
-CONFIG += c++14
+CONFIG += c++17
 
 #
 # Basic settings

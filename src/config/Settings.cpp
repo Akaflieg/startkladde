@@ -246,6 +246,8 @@ void Settings::readSettings ()
     vfUploadEnabled     =s.value (notr("vfUploadEnabled"),      false).toBool();
     vfApiKey            =s.value (notr("vfApiKey"),             "").toString();
     vfClubId            =s.value (notr("vfClubId"),             "").toString();
+    vfUser              =s.value (notr("vfUser"),               "").toString();
+    vfPass              =s.value (notr("vfPass"),               "").toString();
     s.endGroup();
 	// Flarm
 	flarmEnabled         =s.value (notr("flarmEnabled"),           true   ).toBool ();
@@ -346,6 +348,8 @@ void Settings::writeSettings ()
     s.setValue (notr("vfUploadEnabled"),    vfUploadEnabled);
     s.setValue (notr("vfApiKey"),           vfApiKey);
     s.setValue (notr("vfClubId"),           vfClubId);
+    s.setValue (notr("vfUser"),             vfUser);
+    s.setValue (notr("vfPass"),             vfPass);
     s.endGroup();
 	// Flarm
 	s.setValue (notr ("flarmEnabled"         ), flarmEnabled       );

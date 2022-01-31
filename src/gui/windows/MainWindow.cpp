@@ -1443,28 +1443,40 @@ void MainWindow::on_actionRefreshAll_triggered ()
 }
 
 void MainWindow::on_actionSync_triggered() {
-    LoginDialog* loginDialog = new LoginDialog(this);
-    loginDialog->exec();
 
-    if (loginDialog->result() == QDialog::Accepted)
-    {
-        QString user = loginDialog->getUsername();
-        QString pass = loginDialog->getPassword();
+    Settings& s = Settings::instance();
+
+    QString user, pass;
+    if (s.vfUser.isEmpty() || s.vfPass.isEmpty()) {
+        LoginDialog* loginDialog = new LoginDialog(this);
+        loginDialog->exec();
+
+        if (loginDialog->result() != QDialog::Accepted) {
+            delete loginDialog;
+            return;
+        }
+
+        user = loginDialog->getUsername();
+        pass = loginDialog->getPassword();
         delete loginDialog;
-
-        SyncDialog* syncDialog = new SyncDialog(this);
-        syncDialog->setCancelable(true);
-
-        VereinsfliegerSyncWorker* worker = new VereinsfliegerSyncWorker(&dbManager, user, pass, this);
-        syncDialog->open();
-
-        connect(worker, SIGNAL(finished(bool,QString,QList<QTreeWidgetItem*>)), syncDialog, SLOT(completed(bool,QString,QList<QTreeWidgetItem*>)));
-        connect(worker, SIGNAL(progress(int,QString)), syncDialog, SLOT(setProgress(int,QString)));
-        connect(syncDialog, SIGNAL(cancelled()), worker, SLOT(cancel()));
-
-        worker->sync();
-        worker->deleteLater();
+    } else {
+        user = s.vfUser;
+        pass = s.vfPass;
     }
+
+    SyncDialog* syncDialog = new SyncDialog(this);
+    syncDialog->setCancelable(true);
+
+    VereinsfliegerSyncWorker* worker = new VereinsfliegerSyncWorker(&dbManager, user, pass, this);
+    syncDialog->open();
+
+    connect(worker, SIGNAL(finished(bool,QString,QList<QTreeWidgetItem*>)), syncDialog, SLOT(completed(bool,QString,QList<QTreeWidgetItem*>)));
+    connect(worker, SIGNAL(progress(int,QString)), syncDialog, SLOT(setProgress(int,QString)));
+    connect(syncDialog, SIGNAL(cancelled()), worker, SLOT(cancel()));
+
+    worker->sync();
+    worker->deleteLater();
+
 }
 
 // **********
