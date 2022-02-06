@@ -10,7 +10,7 @@ Je nach Linux-Distribution sind die Headerdateien der Bibliotheken in einem extr
 
 ### Packages für Debian 11
 
-Unter Debian 11 _Bullseye_ müssen beispielsweise die folgenden Pakete installiert werden:   
+Unter Debian 11 _Bullseye_ müssen die folgenden Pakete installiert werden:   
 `build-essential qtbase5-dev libqt5serialport5-dev qtmultimedia5-dev qttools5-dev-tools ruby libmariadb-dev`
 
 ### Kommandos
