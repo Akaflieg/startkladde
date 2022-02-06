@@ -8,6 +8,8 @@ Darüber hinaus muss die **Ruby-Laufzeitumgebung** installiert sein, insbesonder
 
 Je nach Linux-Distribution sind die Headerdateien der Bibliotheken in einem extra Packet, sodass es beispielsweise nicht ausreicht `libmariadb` zu installieren, sondern zusätzlich `libmariadb-dev` oder ähnlich installiert werden muss.
 
+### Packages für Debian 11
+
 Unter Debian 11 _Bullseye_ müssen beispielsweise die folgenden Pakete installiert werden:
 `build-essential qtbase5-dev libqt5serialport5-dev qtmultimedia5-dev qttools5-dev-tools ruby libmariadb-dev`
 
