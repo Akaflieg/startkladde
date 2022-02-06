@@ -4,7 +4,7 @@ Für das Ausführen werden die MariaDB- oder MySQL-Laufzeitbibliotheken sowie di
 
 ### Packages für Debian 11
 
-Für Debian 11 _bullseye_ müssen die folgenden Packages installiert werden: `libqt5core5a libqt5multimedia5 libqt5serialport5 libqt5sql5-mysql libqt5printsupport5 libqt5xml5`.
+Für Debian 11 _Bullseye_ müssen die folgenden Packages installiert werden: `libqt5core5a libqt5multimedia5 libqt5serialport5 libqt5sql5-mysql libqt5printsupport5 libqt5xml5`.
 
 ### Kommandos
 
