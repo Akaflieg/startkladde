@@ -1,0 +1,7 @@
+Package: startkladde
+Version: x.x.x
+Architecture: amd64
+Maintainer: Julian Schick <julian.schick@posteo.de>
+Depends: libqt5sql5-mysql, libqt5multimedia5, libqt5serialport5, libqt5core5a, libqt5printsupport5, libqt5sql5, libqt5xml5
+Description: Starterfassungsprogramm 'Startkladde' der Akaflieg Karlsruhe.
+ Qt5-Fork der Akaflieg Berlin.
