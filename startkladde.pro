@@ -77,6 +77,11 @@ updateqm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += updateqm
 PRE_TARGETDEPS += compiler_updateqm_make_all
 
+# Debian Package
+debpack {
+    QMAKE_POST_LINK = $${PWD}/debian/make-debian-package.sh $${PWD} $${OUT_PWD} $${VERSION} amd64
+}
+
 
 #
 # Code, resource and translation files
