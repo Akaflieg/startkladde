@@ -15,6 +15,15 @@ Diese Version der Startkladde wurde weiter gepflegt, so dass sie auf einem aktue
 
 Siehe auch das [Changelog](CHANGELOG.md).
 
+## Installation als Debian-Package aus unserem Repository
+
+Hinzufügen des Repositories zu den Quellen:
+```
+$ curl -s "https://akaflieg.github.io/my_ppa/KEY.gpg" | sudo apt-key add -
+$ curl -s -o /etc/apt/sources.list.d/startkladde.list "https:/akaflieg.github.io/startkladde_ppa/startkladde.list"
+```
+Danach kann das Package mit `apt-get update` und `apt-get install startkladde` installiert werden. Ein MySQL- oder MariaDB-Datenbankserver muss gesondert installiert werden (`apt-get install mariadb-server`).
+
 ## Build
 
 Als präferierte Ziel- und Buildplattform ist aus Gründen der Einfachheit zur Zeit für diesen Fork Linux vorgesehen.
