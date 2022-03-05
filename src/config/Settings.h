@@ -62,6 +62,7 @@ class Settings: public QObject
         QString vfClubId;
         QString vfUser;
         QString vfPass;
+        QString vfProxyScript;
 		// Flarm
 		bool flarmEnabled;
 		Flarm::ConnectionType flarmConnectionType;

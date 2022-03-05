@@ -423,19 +423,19 @@ bool DbManager::connect (QWidget *parent)
 	catch (DbManager::ConnectCanceledException &)
 	{
 		showWarning (tr ("Connection canceled", "Title"),
-			tr ("Connection canceled", "Text"),
+            tr ("Connection cancelled", "Text"),
 			parent);
 	}
 	catch (OperationCanceledException &ex)
 	{
 		showWarning (tr ("Connection canceled", "Title"),
-			tr ("Connection canceled", "Text"),
+            tr ("Connection cancelled", "Text"),
 			parent);
 	}
 	catch (ConnectFailedException &ex)
 	{
 		showWarning (tr ("Connection failed"),
-			tr ("An error occured while connecting: %1").arg (ex.message),
+            tr ("An error occurred while connecting: %1").arg (ex.message),
 			parent);
 	}
 	catch (SqlException &ex)
@@ -443,7 +443,7 @@ bool DbManager::connect (QWidget *parent)
 		QSqlError error=ex.error;
 
 		QString text=tr (
-			"Beim Verbindungsaufbau ist ein Fehler aufgetreten: %1"
+            "An error occurred while connecting: %1"
         ).arg (error.text());
 		showWarning (tr ("Error while connecting"), text, parent);
 	}

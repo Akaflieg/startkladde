@@ -226,7 +226,7 @@ ReplyData VereinsfliegerSync::del(QString service, QMap<QString,QString>& args)
     buffer->open(QIODevice::ReadOnly);
     QNetworkReply *reply = NULL;
     //reply = manager->deleteResource(request);
-    reply = manager->sendCustomRequest(request, delStr.toLatin1(), buffer);
+    reply = manager->sendCustomRequest(request, delStr.toUtf8(), buffer);
 
     QEventLoop loop;
     connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));

@@ -248,6 +248,7 @@ void Settings::readSettings ()
     vfClubId            =s.value (notr("vfClubId"),             "").toString();
     vfUser              =s.value (notr("vfUser"),               "").toString();
     vfPass              =s.value (notr("vfPass"),               "").toString();
+    vfProxyScript       =s.value (notr("vfProxyScript"),        "").toString();
     s.endGroup();
 	// Flarm
 	flarmEnabled         =s.value (notr("flarmEnabled"),           true   ).toBool ();
@@ -350,6 +351,7 @@ void Settings::writeSettings ()
     s.setValue (notr("vfClubId"),           vfClubId);
     s.setValue (notr("vfUser"),             vfUser);
     s.setValue (notr("vfPass"),             vfPass);
+    s.setValue (notr("vfProxyScript"),      vfProxyScript);
     s.endGroup();
 	// Flarm
 	s.setValue (notr ("flarmEnabled"         ), flarmEnabled       );

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtNetwork>
 #include <optional>
+#include "vereinsfliegerflight.h"
 
 struct ReplyData
 {
@@ -11,27 +12,6 @@ struct ReplyData
     QMap<QString, QVariant> replyValues;
     int httpStatus = 0;
     bool cancelled = false;
-};
-
-struct VereinsfliegerFlight
-{
-    qlonglong vfid;
-    QString callsign;
-    QString pilotname;          // Nachname, Vorname
-    QString attendantname;      // Nachname, Vorname
-    QString starttype;          // E=Eigenstart, W=Windenstart, F=F-Schlepp
-    QDateTime departuretime;    // yyyy-mm-dd HH:MM
-    QString departurelocation;
-    QDateTime arrivaltime;      // yyyy-mm-dd HH:MM
-    QString arrivallocation;
-    int landingcount;
-    int chargemode;             // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
-    int ftid;                   // 10=Standard oder 8=Schulflug (mehr bei den Stammdaten/Flugarten)
-    QString comment;
-    int towtime;
-    int towheight;
-    QString towcallsign;
-    QString towpilotname;       // Nachname, Vorname
 };
 
 struct VfCredentials

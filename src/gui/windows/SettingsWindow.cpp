@@ -251,6 +251,7 @@ void SettingsWindow::readSettings ()
     ui.vfUserInput      ->setText       (s.vfUser);
     ui.vfPassInput      ->setText       (s.vfPass);
     ui.vfCIDInput       ->setText       (s.vfClubId);
+    ui.vfProxyScriptInput->setText      (s.vfProxyScript);
 	// Flarm
 	ui.flarmGroupBox              ->setChecked  (s.flarmEnabled);
 	ui.flarmConnectionTypeInput   ->setCurrentItemByItemData (
@@ -353,6 +354,7 @@ void SettingsWindow::writeSettings ()
     s.vfClubId          =ui.vfCIDInput      ->text();
     s.vfUser            =ui.vfUserInput     ->text();
     s.vfPass            =ui.vfPassInput     ->text();
+    s.vfProxyScript     =ui.vfProxyScriptInput->text();
 	// Flarm
 	s.flarmEnabled	     =ui.flarmGroupBox              ->isChecked ();
 	s.flarmConnectionType=(Flarm::ConnectionType)

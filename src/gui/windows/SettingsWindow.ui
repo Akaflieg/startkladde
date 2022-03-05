@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>582</width>
-    <height>624</height>
+    <height>682</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -533,7 +533,7 @@
           <item row="4" column="1">
            <widget class="QLineEdit" name="vfCIDInput">
             <property name="toolTip">
-             <string>Comma separated list of club ids</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Comma separated list of club ids. The given user will be logged in for all given club ids. You can also omit this value, the user will then be logged in for the default club or the last selected club.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="placeholderText">
              <string>Comma separated list of club ids</string>
@@ -571,6 +571,20 @@
             </property>
             <property name="wordWrap">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Proxy script</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="vfProxyScriptInput">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you specify a proxy script, the list flights to be uploaded is piped to the script in JSON format before upload. The STDOUT response of the script is read and used as data for upload. Note: The script is a bare metal program launch and does not take place within a shell. So specify '/usr/bin/python3 /usr/bin/myscript.py' rather than '/usr/bin/myscript.py'. It is highly recommended to use absolute paths only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
