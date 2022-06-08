@@ -130,6 +130,7 @@ void VereinsfliegerSyncWorker::sync()
             if (ex.cancelled) {
                 item->setText(5, tr("Connection cancelled!"));
             } else {
+                //API seems to have changed. Error strings are on top level of object
                 //item->setText(5, doc.object()["0"].toObject()[notr("error")].toString());
                 item->setText(5, doc.object()[notr("error")].toString());
             }
