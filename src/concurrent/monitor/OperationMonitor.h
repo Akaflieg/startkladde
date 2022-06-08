@@ -77,7 +77,7 @@ class OperationMonitor
 		OperationMonitorInterface theInterface;
 
 		bool canceled;
-		mutable QMutex mutex;
+		mutable QRecursiveMutex mutex;
 
 		// ** Operation feedback
 		virtual void setStatus (const QString &text)=0;

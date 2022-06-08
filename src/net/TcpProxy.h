@@ -69,7 +69,7 @@ class TcpProxy: public QObject
 		void doClose ();
 
 	private:
-		QMutex mutex;
+		QRecursiveMutex mutex;
 
 		QTcpServer *server;
 		QTcpSocket *serverSocket;

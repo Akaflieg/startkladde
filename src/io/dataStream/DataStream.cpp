@@ -1,7 +1,7 @@
 #include "DataStream.h"
 
 #include <QDebug>
-#include <QMutex>
+#include <QRecursiveMutex>
 #include <QMutexLocker>
 
 #include "src/i18n/notr.h"
@@ -37,7 +37,7 @@
  * Creates a new DataStream instance with the specified Qt parent
  */
 DataStream::DataStream (QObject *parent): QObject (parent),
-    _mutex (new QRecursiveMutex ()),
+	_mutex (new QRecursiveMutex ()),
 	_state (closedState)
 
 {

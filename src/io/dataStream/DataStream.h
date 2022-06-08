@@ -168,7 +168,7 @@ class DataStream: public QObject
 		virtual void streamConnectionBecameAvailable ();
 
 	private:
-        QRecursiveMutex *_mutex;
+		QRecursiveMutex *_mutex;
 
 		State _state;
 		QString _errorMessage;

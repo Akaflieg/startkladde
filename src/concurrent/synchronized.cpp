@@ -1,12 +1,7 @@
 #include "synchronized.h"
 
-Synchronizer::Synchronizer (QMutex *mutex):
-	QMutexLocker (mutex), done (false)
-{
-}
-
 Synchronizer::Synchronizer (QRecursiveMutex *mutex):
-    QMutexLocker (mutex), done (false)
+	QMutexLocker (mutex), done (false)
 {
 }
 
