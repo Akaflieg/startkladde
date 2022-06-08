@@ -24,8 +24,8 @@ class SkLabel: public QLabel
 
 	public:
 		// Construction
-        SkLabel (QWidget *parent=0, Qt::WindowFlags f={});
-        SkLabel (const QString &text, QWidget *parent=0, Qt::WindowFlags f={});
+		SkLabel (QWidget *parent=0, Qt::WindowFlags f=Qt::Widget);
+		SkLabel (const QString &text, QWidget *parent=0, Qt::WindowFlags f=Qt::Widget);
 		virtual ~SkLabel () {}
 
 		// Property access

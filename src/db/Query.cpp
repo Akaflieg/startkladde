@@ -94,7 +94,7 @@ QString Query::colorizedString () const
 
 	result += c.blue ();
 
-    QStringList words=toString ().split (notr (" "), Qt::SkipEmptyParts);
+	QStringList words=toString ().split (notr (" "), Qt::SkipEmptyParts);
 
 	bool first=true;
 	foreach (const QString &word, words)

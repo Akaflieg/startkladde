@@ -286,7 +286,8 @@ void FlightListWindow::exportToCSV(QString fileName) {
 void FlightListWindow::exportToPDF(QString fileName) {
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPageSize(QPageSize(QPageSize::A4));
+    QPageSize size (QPageSize::A4);
+    printer.setPageSize(size);
     printer.setPageOrientation(QPageLayout::Orientation::Landscape);
     printer.setPageMargins(QMargins(10, 10, 10, 10), QPageLayout::Unit::Millimeter);
     printer.setOutputFileName(fileName);
@@ -303,7 +304,8 @@ void FlightListWindow::exportToPDF(QString fileName) {
     QTextDocument doc;
 
     tab.generate(&doc);
-    doc.setPageSize(printer.pageRect(QPrinter::Point).size());
+    //doc.setPageSize(printer.pageRect().size());
+    doc.setPageSize(printer.pageLayout().paintRectPixels(printer.resolution()).size());
     doc.print(&printer);
 
     int numFlights=flightListModel->rowCount (QModelIndex ());

@@ -476,7 +476,7 @@ void FlightWindow::showEvent (QShowEvent *event)
 
 FlightWindow *FlightWindow::createFlight (QWidget *parent, DbManager &manager, QDate date, dbId preselectedLaunchMethod)
 {
-    FlightWindow *w=new FlightWindow (parent, modeCreate, manager, {});
+	FlightWindow *w=new FlightWindow (parent, modeCreate, manager, Qt::Widget);
 
 	w->ui.dateInput->setDate (date);
 	w->updateSetup ();
@@ -897,9 +897,10 @@ Flight FlightWindow::determineFlightBasic ()
 	Flight flight;
 
 	// Some of the data is taken from the stored data
-    flight.setId          (originalFlightId);
+	flight.setId          (originalFlightId);
 	flight.setFlarmId     (originalFlight.getFlarmId());
-    flight.setVfId        (originalFlight.getVfId());
+	flight.setVfId        (originalFlight.getVfId());
+	flight.setUploaded    (false);
 	flight.setPlaneId     (isRegistrationActive         ()?selectedPlane   :invalidId);
 	flight.setTowplaneId  (isTowplaneRegistrationActive ()?selectedTowplane:invalidId);
 	flight.setPilotId     (isPilotActive                ()?selectedPilot   :invalidId);

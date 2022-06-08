@@ -149,7 +149,7 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
 
 
 		// *** Construction
-        FlightWindow (QWidget *parent, FlightWindow::Mode mode, DbManager &manager, Qt::WindowFlags flags={});
+                FlightWindow (QWidget *parent, FlightWindow::Mode mode, DbManager &manager, Qt::WindowFlags flags=Qt::Widget);
 		~FlightWindow ();
 
 		// *** Setup
@@ -293,17 +293,17 @@ class FlightWindow: public SkDialog<Ui::FlightWindowClass>
                 Flight determineFlight (bool departNow) noexcept(false);
                 Flight determineFlightBasic ();
                 void determineFlightPlanes (Flight &flight) noexcept(false);
-        void determineFlightPeople (Flight &flight, const LaunchMethod *launchMethod);
-        dbId determinePlane (QString registration, QString description, QWidget *widget);
-        dbId determineAndEnterPlane (QString registration, QString description, SkComboBox *registrationInput, SkLabel *typeLabel);
-        dbId determinePerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, QWidget *widget);
-        dbId determineAndEnterPerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, SkComboBox *lastNameWidget, SkComboBox *firstNameWidget);
-        dbId createNewPerson (QString lastName, QString firstName);
-        void checkFlightPhase1 (const Flight &flight, bool departNow);
-        void checkFlightPhase2 (const Flight &flight, bool departNow, const Plane *plane, const Plane *towplane, const LaunchMethod *launchMethod);
-        void checkFlightPhase3 (const Flight &flight, bool departNow, const Plane *plane, const Person *pilot, const Person *copilot, const Person *towpilot);
+		void determineFlightPeople (Flight &flight, const LaunchMethod *launchMethod);
+		dbId determinePlane (QString registration, QString description, QWidget *widget);
+		dbId determineAndEnterPlane (QString registration, QString description, SkComboBox *registrationInput, SkLabel *typeLabel);
+		dbId determinePerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, QWidget *widget);
+		dbId determineAndEnterPerson (bool active, QString lastName, QString firstName, QString description, bool required, QString &incompleteLastName, QString &incompleteFirstName, dbId originalId, SkComboBox *lastNameWidget, SkComboBox *firstNameWidget);
+		dbId createNewPerson (QString lastName, QString firstName);
+		void checkFlightPhase1 (const Flight &flight, bool departNow);
+		void checkFlightPhase2 (const Flight &flight, bool departNow, const Plane *plane, const Plane *towplane, const LaunchMethod *launchMethod);
+		void checkFlightPhase3 (const Flight &flight, bool departNow, const Plane *plane, const Person *pilot, const Person *copilot, const Person *towpilot);
 		void checkMedical (const Person *person, const QString &ofThePersonText);
-        void errorCheck (const QString &problem, QWidget *widget);
+		void errorCheck (const QString &problem, QWidget *widget);
 
 		bool checkBuffer ();
 

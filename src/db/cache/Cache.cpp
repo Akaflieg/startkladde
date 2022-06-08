@@ -30,7 +30,6 @@
 
 #include <QSet>
 #include <QMap>
-#include <QMutex>
 
 #include "src/model/Flight.h"
 #include "src/model/LaunchMethod.h"
@@ -42,14 +41,14 @@
 #include "src/util/qString.h"
 #include "src/container/SortedSet_impl.h"
 #include "src/db/Query.h"
-#include "src/i18n/TranslationManager.h"
 
 // ******************
 // ** Construction **
 // ******************
 
 Cache::Cache (Database &db):
-    db (db), dataMutex ()
+	// db (db), dataMutex (QMutex::Recursive)
+	db (db), dataMutex ()
 {
 	connect (&db, SIGNAL (dbEvent (DbEvent)), this, SLOT (dbChanged (DbEvent)));
 }
@@ -155,12 +154,16 @@ void Cache::refreshPlanes (OperationMonitorInterface monitor)
 
     synchronized(dataMutex)
     {
-        planesSortedByUsage.clear();
-        for (int i = 0; i < planes.size(); i++) {
-            planesSortedByUsage.append(WithSortkey<Plane, int>(planes.at(i), roughNumberOfFlightsByPlaneIdLastYear.value(planes.at(i).getId(), 0)));
+        QMultiMap<int, Plane> sortMap;
+        for (int i = 0; i < planes.size(); i++)
+        {
+            sortMap.insert(
+                (-1)*roughNumberOfFlightsByPlaneIdLastYear.value(planes.at(i).getId(), 0),
+                planes.at(i)
+            );
         }
 
-        std::sort(planesSortedByUsage.begin(), planesSortedByUsage.end());
+        planesSortedByUsage = sortMap.values();
     }
 }
 
@@ -170,12 +173,16 @@ void Cache::refreshPeople (OperationMonitorInterface monitor)
 
     synchronized(dataMutex)
     {
-        peopleSortedByFrequency.clear();
-        for (int i = 0; i < people.size(); i++) {
-            peopleSortedByFrequency.append(WithSortkey<Person, int>(people.at(i), roughNumberOfFlightsByPersonIdLastYear.value(people.at(i).getId(), 0)));
+        QMultiMap<int, Person> sortMap;
+        for (int i = 0; i < people.size(); i++)
+        {
+            sortMap.insert(
+                (-1)*roughNumberOfFlightsByPersonIdLastYear.value(people.at(i).getId(), 0),
+                people.at(i)
+            );
         }
 
-        std::sort(peopleSortedByFrequency.begin(), peopleSortedByFrequency.end());
+        peopleSortedByFrequency = sortMap.values();
     }
 }
 
@@ -232,14 +239,16 @@ void Cache::refreshFlightsToday (OperationMonitorInterface monitor)
 void Cache::refreshFlightsOther (OperationMonitorInterface monitor)
 {
 	if (otherDate.isNull ()) return;
-    refreshFlightsOf (tr ("flights of %1").arg (TranslationManager::instance().locale().toString(otherDate, QLocale::ShortFormat)),
+	QLocale locale;
+	refreshFlightsOf (tr ("flights of %1").arg (locale.toString (otherDate, QLocale::ShortFormat)),
 		otherDate, flightsOther, NULL, monitor);
 }
 
 void Cache::fetchFlightsOther (QDate date, OperationMonitorInterface monitor)
 {
 	if (date.isNull ()) return;
-    refreshFlightsOf (tr ("flights of %1").arg (TranslationManager::instance().locale().toString(date, QLocale::ShortFormat)),
+	QLocale locale;
+	refreshFlightsOf (tr ("flights of %1").arg (locale.toString (date, QLocale::ShortFormat)),
 		date, flightsOther, &otherDate, monitor);
 }
 

@@ -43,12 +43,13 @@ class FlightBase
 		virtual dbId getId () const { return id; }
 		virtual void setId (dbId id) { this->id=id; } // TODO can we do without this?
 
-        flight_value_accessor (dbId, VfId, vfId);
+		flight_value_accessor (dbId, VfId, vfId);
+		flight_value_accessor (bool, Uploaded, uploaded);
 		flight_value_accessor (dbId, PlaneId, planeId);
 		flight_value_accessor (dbId, PilotId, pilotId);
 		flight_value_accessor (dbId, CopilotId, copilotId);
-        flight_value_accessor (int, NumCrew, numCrew)
-        flight_value_accessor (int, NumPax, numPax)
+		flight_value_accessor (int, NumCrew, numCrew)
+		flight_value_accessor (int, NumPax, numPax)
 		flight_value_accessor (Type, Type, type);
 		flight_value_accessor (Mode, Mode, mode);
 
@@ -116,7 +117,8 @@ class FlightBase
 		QString comments;
 		QString accountingNotes;
 		QString flarmId;
-        dbId vfId;
+		dbId vfId;
+		bool uploaded;
 };
 
 #undef flight_value_accessor

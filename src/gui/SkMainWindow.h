@@ -1,3 +1,4 @@
+
 #ifndef SKMAINWINDOW_H_
 #define SKMAINWINDOW_H_
 
@@ -42,7 +43,7 @@ template<class UiClass> class SkMainWindow: public QMainWindow
 		/**
 		 * Initializes the QMainWindow base class
 		 */
-		SkMainWindow (QWidget *parent=NULL, Qt::WindowFlags f={}):
+		SkMainWindow (QWidget *parent=NULL, Qt::WindowFlags f=Qt::Widget):
 			QMainWindow (parent, f)
 		{
 		}

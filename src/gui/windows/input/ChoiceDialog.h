@@ -29,12 +29,12 @@
 class ChoiceDialog: public SkDialog<Ui::ChoiceDialogClass>
 {
 	public:
-		ChoiceDialog (QWidget *parent = 0, Qt::WindowFlags f={});
+		ChoiceDialog (QWidget *parent = 0, Qt::WindowFlags f=Qt::Widget);
 		~ChoiceDialog();
 
 		static int choose (const QString &title, const QString &text,
 				const QStringList &options, int defaultIndex=0,
-                           QWidget *parent=NULL, Qt::WindowFlags flags={});
+				QWidget *parent=NULL, Qt::WindowFlags flags=Qt::Widget);
 
 		void setText (const QString &text);
 		void addOption (const QString &text);
