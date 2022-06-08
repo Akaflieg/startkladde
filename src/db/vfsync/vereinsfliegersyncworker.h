@@ -26,6 +26,7 @@ private:
     QString pass;
     QList<QTreeWidgetItem*> errorItems;
 
+    VereinsfliegerFlight convertFlight(Flight& flight);
 signals:
     void progress(int progress, QString message);
     void finished(bool errors, QString message, QList<QTreeWidgetItem*> errorItems);

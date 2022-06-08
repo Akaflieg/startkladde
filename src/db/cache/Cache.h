@@ -13,7 +13,6 @@
 #include <QList>
 #include <QMap>
 #include <QMutex>
-#include <QRecursiveMutex>
 #include <QHash>
 
 #include "src/db/dbId.h"
@@ -23,6 +22,7 @@
 #include "src/concurrent/monitor/OperationMonitorInterface.h"
 #include "src/container/SortedSet.h"
 #include "src/container/SkMultiHash.h"
+#include "src/util/WithSortkey.h"
 
 class Flight;
 class Person;
@@ -209,9 +209,9 @@ class Cache: public QObject
 		// Object lists - could also use AutomaticEntityList (but
 		// updating methods would have to be changed)
 		EntityList<Plane> planes;
-        QList<Plane> planesSortedByUsage;
+        QList<WithSortkey<Plane, int>> planesSortedByUsage;
 		EntityList<Person> people;
-        QList<Person> peopleSortedByFrequency;
+        QList<WithSortkey<Person, int>> peopleSortedByFrequency;
 		EntityList<LaunchMethod> launchMethods;
 		EntityList<FlarmNetRecord> flarmNetRecords;
 
@@ -274,10 +274,14 @@ class Cache: public QObject
         QHash<dbId, int> numberOfHoursByPersonIdLastHalfYear;
         QHash<dbId, int> numberOfFlightsByPersonIdLastHalfYear;
 
+        // Comparators
+        static bool lessThanByNumberOfFlightsForPerson(const Person&, const Person&);
+        static bool lessThanByNumberOfFlightsForPlane(const Plane&, const Plane&);
+
 		// Concurrency
 		// Improvement: use rw mutex and separate locks for flights, people...
 		/** Locks accesses to data of this Cache */
-		mutable QRecursiveMutex dataMutex;
+        mutable QRecursiveMutex dataMutex;
 
 };
 
