@@ -168,9 +168,9 @@ ReplyData VereinsfliegerSync::get(QString service)
     reply = manager->get(request);
 
     QEventLoop loop;
-    connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    connect(this,  &VereinsfliegerSync::cancelled, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished,       &loop, &QEventLoop::quit);
+    connect(reply, qOverload<QNetworkReply::NetworkError>(&QNetworkReply::errorOccurred), &loop, &QEventLoop::quit);
     loop.exec();
 
     ReplyData result;
@@ -211,9 +211,9 @@ ReplyData VereinsfliegerSync::post(QString service, QMap<QString,QString>& args)
     reply = manager->post(request, params.query().toUtf8());
 
     QEventLoop loop;
-    connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    connect(this,  &VereinsfliegerSync::cancelled, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished,       &loop, &QEventLoop::quit);
+    connect(reply, qOverload<QNetworkReply::NetworkError>(&QNetworkReply::errorOccurred), &loop, &QEventLoop::quit);
     loop.exec();
 
     ReplyData result;
@@ -254,9 +254,9 @@ ReplyData VereinsfliegerSync::put(QString service, QMap<QString,QString>& args)
     reply = manager->put(request, params.query().toUtf8());
 
     QEventLoop loop;
-    connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    connect(this,  &VereinsfliegerSync::cancelled, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished,       &loop, &QEventLoop::quit);
+    connect(reply, qOverload<QNetworkReply::NetworkError>(&QNetworkReply::errorOccurred), &loop, &QEventLoop::quit);
     loop.exec();
 
     ReplyData result;
@@ -303,9 +303,9 @@ ReplyData VereinsfliegerSync::del(QString service, QMap<QString,QString>& args)
     reply = manager->sendCustomRequest(request, delStr.toLatin1(), buffer);
 
     QEventLoop loop;
-    connect(this, SIGNAL(cancelled()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    connect(this,  &VereinsfliegerSync::cancelled, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished,       &loop, &QEventLoop::quit);
+    connect(reply, qOverload<QNetworkReply::NetworkError>(&QNetworkReply::errorOccurred), &loop, &QEventLoop::quit);
     loop.exec();
 
     ReplyData result;
