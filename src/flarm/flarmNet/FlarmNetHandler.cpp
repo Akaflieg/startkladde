@@ -13,7 +13,7 @@
 #include "src/gui/windows/MonitorDialog.h"
 #include "src/util/fileSystem.h"
 
-static const char *flarmNetFileUrl="http://www.flarmnet.org/files/data.fln";
+static const char *flarmNetFileUrl="https://www.flarmnet.org/static/files/wfn/data.fln";
 
 // ****************************
 // ** Construction/singleton **
