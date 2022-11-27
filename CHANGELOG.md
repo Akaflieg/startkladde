@@ -5,6 +5,7 @@
 * Bugfix: Einige Bugs im Zusammenhang mit der Enter-Taste im Schnelleingabedialog wurden gefixt.
 * Feature: Für den Vereinsflieger-Upload kann in den Einstellungen ein fester Account angegeben werden.
 * Feature: Proxy-Skript. Es kann in den Einstellungen ein Skript angegeben werden, mit dessen Hilfe die Daten für den Vereinsflieger-Upload vor dem Hochladen manipuliert werden können (im JSON-Format). Damit kann man flugplatzspezifische Hacks umsetzen.
+* Feature: Der Vereinsflieger-Upload kann nun auch nachträglich bearbeitete Flüge in Vereinsflieger aktualisieren
 
 ## [Version 2.2.0](https://github.com/Akaflieg/startkladde/releases/tag/v2.2.0) (Feb. 2020)
 
