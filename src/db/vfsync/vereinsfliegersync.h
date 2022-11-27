@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QtNetwork>
+#include <optional>
+#include "vereinsfliegerflight.h"
 
 struct ReplyData
 {
@@ -12,45 +14,31 @@ struct ReplyData
     bool cancelled;
 };
 
-struct VereinsfliegerFlight
+struct VfCredentials
 {
-    qlonglong vfid;
-    QString callsign;
-    QString pilotname;          // Nachname, Vorname
-    QString attendantname;      // Nachname, Vorname
-    QString starttype;          // E=Eigenstart, W=Windenstart, F=F-Schlepp
-    QDateTime departuretime;    // yyyy-mm-dd HH:MM
-    QString departurelocation;
-    QDateTime arrivaltime;      // yyyy-mm-dd HH:MM
-    QString arrivallocation;
-    int landingcount;
-    int chargemode;             // 1=Keine, 2=Pilot, 3=Begleiter, 4=Gast, 5=Pilot+Begleiter
-    int ftid;                   // Flugart als Zahl
-    QString comment;
-    int towtime;
-    int towheight;
-    QString towcallsign;
-    QString towpilotname;
+    QString appkey;
+    QString user;
+    QString pass;
+    QList<int> cidList;
 };
 
 struct VfSyncException
 {
-    bool cancelled;
     QString replyString;
     int httpStatus;
 
-    VfSyncException(bool cancelled, QString replyString, int httpStatus):
-        cancelled(cancelled), replyString(replyString), httpStatus(httpStatus) { }
+    VfSyncException(QString replyString, int httpStatus): replyString(replyString), httpStatus(httpStatus) { }
 };
 
 class VereinsfliegerSync : public QObject
 {
     Q_OBJECT
 public:
-    explicit VereinsfliegerSync(QNetworkAccessManager* man, QObject *parent = 0);
+    explicit VereinsfliegerSync(QNetworkAccessManager* man, VfCredentials creds, QObject *parent = 0);
 
     int retrieveAccesstoken();
-    int signin(QString user, QString pass, int cid, QString appkey);
+    bool signin();
+
     int signout();
 
     int getuser();
@@ -68,9 +56,10 @@ private:
 
     QMap<QString,QVariant> extractReturnValues(QByteArray&);
     QString md5(QString);
+    bool signinWithCid(std::optional<int> cid);
 
+    VfCredentials creds;
     QString accesstoken;
-    QString signedIn;
 
 signals:
     void cancelled();

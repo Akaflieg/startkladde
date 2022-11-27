@@ -48,14 +48,7 @@ void SkProcess::start(const QString &command, const QStringList &arguments) {
     connect (process, SIGNAL (readyReadStandardError ()), this, SLOT (errorOutputAvailable ()));
     connect (process, SIGNAL (finished (int, QProcess::ExitStatus)), this, SLOT (processFinished (int, QProcess::ExitStatus)));
 
-    /* eggert: start method without argument is not available in Qt 
-    if (arguments.isEmpty())
-        process->start(command, QIODevice::ReadOnly);
-    else
-        process->start (command, arguments, QIODevice::ReadOnly);
-    */
     process->start (command, arguments, QIODevice::ReadOnly);
-
     process->closeWriteChannel ();
 }
 
