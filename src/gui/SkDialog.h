@@ -15,7 +15,7 @@ template<class UiClass> class SkDialog: public QDialog
 		/**
 		 * Initializes the QDialog base class
 		 */
-    SkDialog (QWidget *parent=NULL, Qt::WindowFlags f={}):
+		SkDialog (QWidget *parent=NULL, Qt::WindowFlags f=Qt::Widget):
 			QDialog (parent, f)
 		{
 		}

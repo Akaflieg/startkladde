@@ -36,7 +36,7 @@ template<class T> class ObjectEditorWindow: public ObjectEditorWindowBase
 {
 	public:
 		// Construction
-        ObjectEditorWindow (Mode mode, DbManager &manager, QWidget *parent=0, Qt::WindowFlags flags={}, ObjectEditorPaneData *paneData=NULL);
+		ObjectEditorWindow (Mode mode, DbManager &manager, QWidget *parent=0, Qt::WindowFlags flags=0, ObjectEditorPaneData *paneData=NULL);
 		virtual ~ObjectEditorWindow ();
 
 		// Invocation
@@ -109,7 +109,7 @@ template<class T> dbId ObjectEditorWindow<T>::createObject (QWidget *parent, DbM
 {
 	// Note that we cannot use WA_DeleteOnClose here because we need to read the
 	// ID from w after it has been closed.
-    ObjectEditorWindow<T> w (modeCreate, manager, parent, {}, paneData);
+	ObjectEditorWindow<T> w (modeCreate, manager, parent, Qt::Widget, paneData);
 
 	if (w.exec ()==QDialog::Accepted)
 		return w.getId ();
@@ -121,7 +121,7 @@ template<class T> dbId ObjectEditorWindow<T>::createObject (QWidget *parent, DbM
 {
 	// Note that we cannot use WA_DeleteOnClose here because we need to read the
 	// ID from w after it has been closed.
-    ObjectEditorWindow<T> w (modeCreate, manager, parent, {}, paneData);
+	ObjectEditorWindow<T> w (modeCreate, manager, parent, Qt::Widget, paneData);
 
 	w.editorPane->setNameObject (nameObject);
 
@@ -135,7 +135,7 @@ template<class T> dbId ObjectEditorWindow<T>::createObjectPreset (QWidget *paren
 {
 	// Note that we cannot use WA_DeleteOnClose here because we need to read the
 	// ID from w after it has been closed.
-    ObjectEditorWindow<T> w (modeCreate, manager, parent, {}, paneData);
+	ObjectEditorWindow<T> w (modeCreate, manager, parent, Qt::Widget, paneData);
 
 	w.editorPane->setObject (preset);
 
@@ -162,7 +162,7 @@ template<class T> dbId ObjectEditorWindow<T>::createObjectPreset (QWidget *paren
 // TODO: this should probably take an ID instead of a T&
 template<class T> int ObjectEditorWindow<T>::editObject (QWidget *parent, DbManager &manager, const T &object, ObjectEditorPaneData *paneData)
 {
-    ObjectEditorWindow<T> *w=new ObjectEditorWindow<T> (modeEdit, manager, parent, {}, paneData);
+	ObjectEditorWindow<T> *w=new ObjectEditorWindow<T> (modeEdit, manager, parent, Qt::Widget, paneData);
 	w->setAttribute (Qt::WA_DeleteOnClose, true);
 	w->editorPane->setObject (object);
 	return w->exec ();

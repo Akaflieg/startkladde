@@ -16,8 +16,8 @@
 // ******************
 
 SerialDataStream::SerialDataStream (QObject *parent): DataStream (parent),
-    _parameterMutex (new QMutex ()),
-    _backEndMutex   (new QMutex ()),
+	_parameterMutex (new QMutex ()),
+	_backEndMutex   (new QMutex ()),
 	_baudRate (0)
 {
 

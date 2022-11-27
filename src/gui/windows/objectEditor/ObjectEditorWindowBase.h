@@ -31,7 +31,7 @@ class ObjectEditorWindowBase: public SkDialog<Ui::ObjectEditorWindowBaseClass>
 		// modeDisplay is not tested
 		enum Mode { modeCreate, modeEdit/*, modeDisplay*/ };
 
-        ObjectEditorWindowBase (DbManager &manager, QWidget *parent=NULL, Qt::WindowFlags flags={});
+		ObjectEditorWindowBase (DbManager &manager, QWidget *parent=NULL, Qt::WindowFlags flags=Qt::Widget);
 		virtual ~ObjectEditorWindowBase ();
 
 	public slots:

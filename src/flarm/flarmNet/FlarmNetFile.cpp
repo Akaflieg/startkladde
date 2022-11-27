@@ -110,7 +110,7 @@ QStringList FlarmNetFile::encodeLines (const QStringList &plainLines)
 QStringList FlarmNetFile::decodeFile (const QString &encodedFile)
 {
 	// Split the data into lines (also split on \r for robustness)
-    QStringList encodedLines=encodedFile.split (QRegExp ("[\r\n]"), Qt::SkipEmptyParts);
+	QStringList encodedLines=encodedFile.split (QRegExp ("[\r\n]"), Qt::SkipEmptyParts);
 
 	// Ignore the header line
 	encodedLines.removeFirst ();

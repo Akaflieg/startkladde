@@ -20,6 +20,7 @@
 #include "src/model/LaunchMethod.h"
 #include "src/model/Person.h"
 #include "src/model/Plane.h"
+#include "src/util/WithSortkey.h"
 #include "src/flarm/flarmNet/FlarmNetRecord.h"
 #include "src/text.h"
 

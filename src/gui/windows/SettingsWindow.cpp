@@ -248,10 +248,7 @@ void SettingsWindow::readSettings ()
     // Vereinsflieger
     ui.vfUploadEnabled  ->setChecked    (s.vfUploadEnabled);
     ui.vfApiKeyInput    ->setText       (s.vfApiKey);
-    ui.vfUserInput      ->setText       (s.vfUser);
-    ui.vfPassInput      ->setText       (s.vfPass);
     ui.vfCIDInput       ->setText       (s.vfClubId);
-    ui.vfProxyScriptInput->setText      (s.vfProxyScript);
 	// Flarm
 	ui.flarmGroupBox              ->setChecked  (s.flarmEnabled);
 	ui.flarmConnectionTypeInput   ->setCurrentItemByItemData (
@@ -352,9 +349,6 @@ void SettingsWindow::writeSettings ()
     s.vfUploadEnabled   =ui.vfUploadEnabled ->isChecked();
     s.vfApiKey          =ui.vfApiKeyInput   ->text();
     s.vfClubId          =ui.vfCIDInput      ->text();
-    s.vfUser            =ui.vfUserInput     ->text();
-    s.vfPass            =ui.vfPassInput     ->text();
-    s.vfProxyScript     =ui.vfProxyScriptInput->text();
 	// Flarm
 	s.flarmEnabled	     =ui.flarmGroupBox              ->isChecked ();
 	s.flarmConnectionType=(Flarm::ConnectionType)
@@ -444,7 +438,7 @@ void SettingsWindow::on_browseFlarmFileButton_clicked ()
 		existingParentDirectory (currentFileName, QDir ()).absolutePath (),
 		notr ("*.txt;;*"),
 		NULL,
-        {}
+		QFileDialog::ReadOnly
 		);
 
 	if (!fileName.isEmpty ())
@@ -660,7 +654,7 @@ void SettingsWindow::on_browseKmlFileButton_clicked ()
 		existingParentDirectory (currentFileName, QDir ()).absolutePath (),
 		notr ("*.kml"),
 		NULL,
-        {}
+		QFileDialog::ReadOnly
 		);
 
 	if (!fileName.isEmpty ())

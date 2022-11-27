@@ -90,7 +90,8 @@ void FlarmNetHandler::interactiveImport (const QByteArray &data)
 
 void FlarmNetHandler::interactiveImportFromFile ()
 {
-    QString fileName=QFileDialog::getOpenFileName (parent, tr ("Select .fln file"), ".", notr ("*.fln"), NULL, {});
+	QString fileName=QFileDialog::getOpenFileName (parent,
+		tr ("Select .fln file"), ".", notr ("*.fln"), NULL, QFileDialog::ReadOnly);
 
 	if (!fileName.isEmpty ())
 	{

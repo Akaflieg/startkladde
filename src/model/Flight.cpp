@@ -990,8 +990,9 @@ QString Flight::selectColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ23
 		",accounting_notes,comments" // 2 Σ25
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
-        ",flarm_id,vfid" // 2 Σ30
-        ",num_crew, num_pax" // 2 Σ32
+		",flarm_id,vfid" // 2 Σ30
+		",num_crew, num_pax" // 2 Σ32
+		",uploaded" // 1 Σ33
 		);
 }
 
@@ -1036,11 +1037,12 @@ Flight Flight::createFromResult (const Result &result)
 	f.setTowpilotFirstName  (result.value (27).toString   ());
 
 	f.setFlarmId (result.value (28).toString ());
-    f.setVfId    (result.value(29).toLongLong ());
+	f.setVfId    (result.value(29).toLongLong ());
 
-    f.setNumCrew(result.value(30).toInt());
-    f.setNumPax(result.value(31).toInt());
+	f.setNumCrew(result.value(30).toInt());
+	f.setNumPax(result.value(31).toInt());
 
+	f.setUploaded(result.value(32).toBool());
 	return f;
 }
 
@@ -1086,6 +1088,8 @@ Flight Flight::createFromDataMap(const QMap<QString,QString> map)
 
     f.setNumCrew(map["num_crew"].toInt());
     f.setNumPax(map["num_pax"].toInt());
+    
+    f.setUploaded(map["uploaded"].toInt());
 
     return f;
 }
@@ -1099,8 +1103,9 @@ QString Flight::insertColumnList ()
 		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ22
 		",accounting_notes,comments" // 2 Σ24
 		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ27
-        ",flarm_id,vfid" // 2 Σ29
-        ",num_crew,num_pax" // 2 Σ31
+		",flarm_id,vfid" // 2 Σ29
+		",num_crew,num_pax" // 2 Σ31
+		",uploaded" // 1 Σ32
 		);
 }
 
@@ -1113,8 +1118,9 @@ QString Flight::insertPlaceholderList ()
 		",?,?,?,?"
 		",?,?"
 		",?,?,?"
-        ",?,?"
-        ",?,?"
+		",?,?"
+		",?,?"
+		",?"
 		);
 }
 
@@ -1154,10 +1160,12 @@ void Flight::bindValues (Query &q) const
 	q.bind (getTowpilotFirstName ());
 
 	q.bind (getFlarmId ());
-    q.bind (getVfId ());
+	q.bind (getVfId ());
 
-    q.bind(getNumCrew());
-    q.bind(getNumPax());
+	q.bind(getNumCrew());
+	q.bind(getNumPax());
+
+	q.bind(getUploaded());
 }
 
 QList<Flight> Flight::createListFromResult (Result &result)

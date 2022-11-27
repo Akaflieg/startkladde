@@ -8,7 +8,7 @@
 class DateTimeInputDialog: public SkDialog<Ui::DateTimeInputDialogClass>
 {
 	public:
-		DateTimeInputDialog (QWidget *parent = 0, Qt::WindowFlags f={});
+		DateTimeInputDialog (QWidget *parent = NULL, Qt::WindowFlags f=Qt::Widget);
 		~DateTimeInputDialog();
 
 		static bool editDateTime (QWidget *parent, QDate *date, QTime *time, QString title);

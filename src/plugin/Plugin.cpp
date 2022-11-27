@@ -112,7 +112,7 @@ QString Plugin::browse (const QString &currentFile, const QString &filter, const
 		tr ("Select file"),
 		dir,
 		filter,
-		NULL,
-        {}
+		NULL
+		// 0
 		);
 }

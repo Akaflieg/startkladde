@@ -9,6 +9,7 @@
 #define SYNCHRONIZED_H_
 
 #include <QMutex>
+#include <QRecursiveMutex>
 #include <QMutexLocker>
 
 #define synchronized(mutex) for (Synchronizer _ ## mutex ## _sync_ (&(mutex)); !_ ## mutex ## _sync_.done; _ ## mutex ## _sync_.done=true)
@@ -45,8 +46,7 @@
 class Synchronizer: QMutexLocker
 {
 	public:
-        Synchronizer (QMutex *mutex);
-        Synchronizer (QRecursiveMutex *mutex);
+		Synchronizer (QRecursiveMutex *mutex);
 		virtual ~Synchronizer ();
 
 		bool done;

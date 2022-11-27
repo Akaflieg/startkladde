@@ -25,7 +25,7 @@ class IconLabel: public QWidget
 	public:
 		using QWidget::show;
 
-    IconLabel (QWidget *parent = NULL, Qt::WindowFlags f = { });
+		IconLabel (QWidget *parent = NULL, Qt::WindowFlags f = Qt::Widget);
 		~IconLabel();
 
 		void show (QStyle::StandardPixmap icon, const QString &text);

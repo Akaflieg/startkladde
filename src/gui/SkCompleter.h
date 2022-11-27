@@ -32,8 +32,8 @@ signals:
     void selected(QVariant);
 
 protected:
-    //bool event(QEvent *e);
-    //bool eventFilter(QObject *obj, QEvent *event);
+    bool event(QEvent *e);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     Cache& cache;

@@ -56,7 +56,7 @@ class NotificationWidget: public QWidget
 
 	public:
 		// Construction
-		explicit NotificationWidget (QWidget *parent, Qt::WindowFlags f={});
+		explicit NotificationWidget (QWidget *parent, Qt::WindowFlags f=Qt::Widget);
 		~NotificationWidget ();
 
 		// Contents
