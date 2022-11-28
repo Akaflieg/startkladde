@@ -46,7 +46,7 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
 VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbManager) {
     VereinsfliegerFlight& result = *this;
     result.id = flight.getId();
-    result.vfid = 0;
+    result.vfid = flight.getVfId();
 
     if (flight.getPlaneId() != 0)
     {

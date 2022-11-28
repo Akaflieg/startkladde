@@ -112,14 +112,18 @@ void VereinsfliegerSync::editflight (VereinsfliegerFlight& flight)
     if (flight.departuretime.isValid())     args.insert("departuretime", flight.departuretime.toString("yyyy-MM-dd HH:mm"));
     if (flight.arrivaltime.isValid())       args.insert("arrivaltime", flight.arrivaltime.toString("yyyy-MM-dd HH:mm"));
     args.insert("comment", flight.comment);
-    if (flight.towtime > 0)                 
+
+    if (flight.towtime > 0) {
         args.insert("towtime", QString::number(flight.towtime));
-    else
+    } else {
         args.insert("towtime", "0");
-    if (flight.towheight > 0)               
+    }
+
+    if (flight.towheight > 0) {
         args.insert("towheight", QString::number(flight.towheight));
-    else
+    } else {
         args.insert("towheight", "0");
+    }
     args.insert("towcallsign", flight.towcallsign);
     args.insert("towpilotname", flight.towpilotname);
     

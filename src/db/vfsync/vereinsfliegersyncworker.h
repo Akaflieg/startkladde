@@ -5,8 +5,6 @@
 #include <QTreeWidgetItem>
 #include "src/db/vfsync/vereinsfliegersync.h"
 #include "src/db/DbManager.h"
-#include "src/net/Network.h"
-#include "src/model/Flight.h"
 
 class VereinsfliegerSyncWorker : public QObject
 {
@@ -26,7 +24,6 @@ private:
     QString pass;
     QList<QTreeWidgetItem*> errorItems;
 
-    VereinsfliegerFlight convertFlight(Flight& flight);
 signals:
     void progress(int progress, QString message);
     void finished(bool errors, QString message, QList<QTreeWidgetItem*> errorItems);

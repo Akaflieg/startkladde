@@ -284,7 +284,7 @@ QList<Flight> Database::getFlightsDate (QDate date)
 
 QList<Flight> Database::getFlightsUnimportedVF()
 {
-    Query condition (notr ("((departure_time >= '2016-01-01' or departure_time is null) and (landing_time >= '2016-01-01' or landing_time is null)) and (vfid is null or vfid = 0 or !uploaded)"));
+    Query condition (notr ("((departure_time >= '2016-01-01' OR departure_time IS NULL) AND (landing_time >= '2016-01-01' OR landing_time IS NULL)) AND (vfid IS NULL OR vfid = 0 OR NOT uploaded)"));
     return getObjects<Flight> (condition);
 }
 
