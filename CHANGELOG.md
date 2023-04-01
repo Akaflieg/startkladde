@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 2.3.0 (Upcoming)
+## Version 2.3.1 (April 2023)
 * Build: Mit `qmake "CONFIG+=debpack"` kann unter Debian beim Build automatisch ein Debian-Paket erstellt und einem lokalen Repository in `$BUILD_DIR/../startkladde_ppa` hinzugefügt werden.
 * Bugfix: Einige Bugs im Zusammenhang mit der Enter-Taste im Schnelleingabedialog wurden gefixt.
 * Feature: Für den Vereinsflieger-Upload kann in den Einstellungen ein fester Account angegeben werden.
