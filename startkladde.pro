@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-VERSION = 2.4.0
+VERSION = 2.3.1
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 CONFIG += c++17
 
@@ -78,7 +78,7 @@ PRE_TARGETDEPS += compiler_updateqm_make_all
 
 # Debian Package
 debpack {
-    QMAKE_POST_LINK = $${PWD}/debian/make-debian-package.sh $${PWD} $${OUT_PWD} $${VERSION} amd64
+    QMAKE_POST_LINK = $${PWD}/debian/make-debian-package.sh $${PWD} $${OUT_PWD} $${PWD}/../startkladde_ppa amd64
 }
 
 

@@ -7,12 +7,7 @@ PPA_DIR=$3
 VERSION=$(cat $SOURCES_DIR/startkladde.pro | grep "VERSION =" | sed -nE "s/^VERSION = ([0-9]+\.[0-9]+\.[0-9]+).*$/\1/p")
 ARCH=amd64
 GITHUB_USERNAME="Akaflieg"
-
-# Make binary
-
-cd $BUILD_DIR
-cmake $SOURCES_DIR
-make
+REPO_NAME="startkladde_ppa"
 
 # Make package
 
@@ -46,7 +41,7 @@ dpkg-scanpackages --multiversion . > Packages
 gzip -k -f Packages
 
 apt-ftparchive release . > Release
-echo "deb https://${GITHUB_USERNAME}.github.io/startkladde_ppa ./" > startkladde.list
+echo "deb https://${GITHUB_USERNAME}.github.io/${REPO_NAME} ./" > startkladde.list
 
 echo "<<< DONE >>>"
 echo "Do not forget to sign the PPA files with GPG."
