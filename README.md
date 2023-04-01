@@ -36,3 +36,4 @@ Dennoch kann mit `qmake` oder dem QtCreator auch ein Build unter Windows durchge
 
 * [Deployment unter Linux](DEPLOYMENT_LINUX.md)
 * [Deployment unter Windows](DEPLOYMENT_WIN.md)
+* [Debian Packaging](debian/README.md)
