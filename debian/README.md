@@ -1,6 +1,6 @@
 # How to Update Debian Package
 
-On the build system do
+On the build system either build the application with the special profile 'debpack' (by issuing `qmake "CONFIG+=debpack"`) or do it manually:
 ```bash
 $ make_debian_package.sh <source-dir> <build-dir> <ppa-dir>
 ```
