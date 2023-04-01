@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version 2.3.0 (Upcoming)
-* Build: Mit `qmake "CONFIG+=debpack"` kann unter Debian beim Build automatisch ein Debian-Paket erstellt werden
+* Build: Mit `qmake "CONFIG+=debpack"` kann unter Debian beim Build automatisch ein Debian-Paket erstellt und einem lokalen Repository in `$BUILD_DIR/../startkladde_ppa` hinzugefügt werden.
 * Bugfix: Einige Bugs im Zusammenhang mit der Enter-Taste im Schnelleingabedialog wurden gefixt.
 * Feature: Für den Vereinsflieger-Upload kann in den Einstellungen ein fester Account angegeben werden.
 * Feature: Proxy-Skript. Es kann in den Einstellungen ein Skript angegeben werden, mit dessen Hilfe die Daten für den Vereinsflieger-Upload vor dem Hochladen manipuliert werden können (im JSON-Format). Damit kann man flugplatzspezifische Hacks umsetzen.
