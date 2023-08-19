@@ -41,6 +41,7 @@ class Person: public Entity
 		// *** Data
 		QString lastName;
 		QString firstName;
+        QString nickname;
 		QString club;
 		QString clubId;
 		bool checkMedical;
@@ -55,6 +56,8 @@ class Person: public Entity
 		// *** Formatting
 		virtual QString toString () const;
 		virtual QString fullName () const;
+        virtual QStringList nicknamesAsList () const;
+        virtual QString fullNameWithNick () const;
 		virtual QString formalName () const;
 		virtual QString formalNameWithClub () const;
 		virtual QString getDisplayName () const;

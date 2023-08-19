@@ -1211,6 +1211,7 @@ QString Flight::typeToDb (Type type)
 		case typeNormal        : return notr ("normal");
 		case typeTraining2     : return notr ("training_2");
 		case typeTraining1     : return notr ("training_1");
+        case typeAuffrischung  : return notr ("refresh_2");
 		case typeTow           : return notr ("tow");
 		case typeGuestPrivate  : return notr ("guest_private");
 		case typeGuestExternal : return notr ("guest_external");
@@ -1226,6 +1227,7 @@ Flight::Type Flight::typeFromDb (QString type)
 	if      (type==notr ("normal")        ) return typeNormal;
 	else if (type==notr ("training_2")    ) return typeTraining2;
 	else if (type==notr ("training_1")    ) return typeTraining1;
+    else if (type==notr ("refresh_2")     ) return typeAuffrischung;
 	else if (type==notr ("tow")           ) return typeTow;
 	else if (type==notr ("guest_private") ) return typeGuestPrivate;
 	else if (type==notr ("guest_external")) return typeGuestExternal;

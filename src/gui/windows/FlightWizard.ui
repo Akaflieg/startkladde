@@ -23,7 +23,7 @@
    <item>
     <widget class="QStackedWidget" name="stack">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -169,6 +169,33 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="flighttypeLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="chargeLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="margin">
+          <number>5</number>
          </property>
         </widget>
        </item>

@@ -71,8 +71,26 @@ QString Person::fullName () const
 	QString l=lastName ; if (l.isEmpty ()) l=notr ("?");
 	QString f=firstName; if (f.isEmpty ()) f=notr ("?");
 
-	// TODO use .arg
-	return f+notr (" ")+l;
+    return QString(notr("%1 %2")).arg(l).arg(f);
+}
+
+QString Person::fullNameWithNick() const {
+    QString l = lastName.isEmpty() ? notr("?") : lastName;
+    QString f = firstName.isEmpty() ? notr("?") : firstName;
+    QStringList nicks = nicknamesAsList();
+    if (nicks.size() > 0) {
+        return QString(notr("%1 \"%3\" %2")).arg(f, l, nicks[0]);
+    } else {
+        return QString(notr("%1 %2")).arg(f, l);
+    }
+}
+
+QStringList Person::nicknamesAsList() const {
+    QStringList nicks = nickname.split(",", Qt::SplitBehaviorFlags::SkipEmptyParts);
+    for (int i = 0; i < nicks.size(); i++) {
+        nicks[i] = nicks[i].trimmed();
+    }
+    return nicks;
 }
 
 QString Person::formalName () const
@@ -108,7 +126,7 @@ Person::DefaultObjectModel::DefaultObjectModel ():
 
 int Person::DefaultObjectModel::columnCount () const
 {
-	return 8;
+    return 9;
 }
 
 QVariant Person::DefaultObjectModel::displayHeaderData (int column) const
@@ -117,12 +135,13 @@ QVariant Person::DefaultObjectModel::displayHeaderData (int column) const
 	{
 		case 0: return qApp->translate ("Person::DefaultObjectModel", "Last name");
 		case 1: return qApp->translate ("Person::DefaultObjectModel", "First name");
-		case 2: return qApp->translate ("Person::DefaultObjectModel", "Club");
-		case 3: return qApp->translate ("Person::DefaultObjectModel", "Medical until");
-		case 4: return qApp->translate ("Person::DefaultObjectModel", "Check medical");
-		case 5: return qApp->translate ("Person::DefaultObjectModel", "Comments");
-		case 6: return qApp->translate ("Person::DefaultObjectModel", "Club ID");
-		case 7: return qApp->translate ("Person::DefaultObjectModel", "ID");
+        case 2: return qApp->translate ("Person::DefaultObjectModel", "Nicknames");
+        case 3: return qApp->translate ("Person::DefaultObjectModel", "Club");
+        case 4: return qApp->translate ("Person::DefaultObjectModel", "Medical until");
+        case 5: return qApp->translate ("Person::DefaultObjectModel", "Check medical");
+        case 6: return qApp->translate ("Person::DefaultObjectModel", "Comments");
+        case 7: return qApp->translate ("Person::DefaultObjectModel", "Club ID");
+        case 8: return qApp->translate ("Person::DefaultObjectModel", "ID");
 	}
 
 	assert (false);
@@ -134,17 +153,18 @@ QVariant Person::DefaultObjectModel::displayData (const Person &object, int colu
 	switch (column)
 	{
 		case 0: return object.lastName;
-		case 1: return object.firstName;
-		case 2: return object.club;
-		case 3: if      (!displayMedicalData)                return qApp->translate ("Person::DefaultObjectModel", "not displayed");
+        case 1: return object.firstName;
+        case 2: return object.nickname;
+        case 3: return object.club;
+        case 4: if      (!displayMedicalData)                return qApp->translate ("Person::DefaultObjectModel", "not displayed");
 		        else if (!object.medicalValidity.isValid ()) return qApp->translate ("Person::DefaultObjectModel", "unknown");
 		        else                                         return object.medicalValidity.toString (defaultNumericDateFormat ());
-		case 4: return object.checkMedical?
+        case 5: return object.checkMedical?
 				qApp->translate ("Person", "Yes"):
 				qApp->translate ("Person", "No");
-		case 5: return object.comments;
-		case 6: return object.clubId;
-		case 7: return object.id;
+        case 6: return object.comments;
+        case 7: return object.clubId;
+        case 8: return object.id;
 	}
 
 	assert (false);
@@ -175,7 +195,7 @@ QString Person::dbTableName ()
 
 QString Person::selectColumnList ()
 {
-	return notr ("id,last_name,first_name,club,club_id,comments,medical_validity,check_medical_validity");
+    return notr ("id,last_name,first_name,nickname,club,club_id,comments,medical_validity,check_medical_validity");
 }
 
 Person Person::createFromResult (const Result &result)
@@ -184,11 +204,12 @@ Person Person::createFromResult (const Result &result)
 
 	p.lastName            =result.value (1).toString ();
 	p.firstName           =result.value (2).toString ();
-	p.club                =result.value (3).toString ();
-	p.clubId              =result.value (4).toString ();
-	p.comments            =result.value (5).toString ();
-	p.medicalValidity     =result.value (6).toDate ();
-	p.checkMedical        =result.value (7).toBool ();
+    p.nickname            =result.value (3).toString ();
+    p.club                =result.value (4).toString ();
+    p.clubId              =result.value (5).toString ();
+    p.comments            =result.value (6).toString ();
+    p.medicalValidity     =result.value (7).toDate ();
+    p.checkMedical        =result.value (8).toBool ();
 
 	return p;
 }
@@ -199,6 +220,7 @@ Person Person::createFromDataMap(const QMap<QString,QString> map)
 
     p.lastName = map["last_name"];
     p.firstName = map["first_name"];
+    p.nickname = map["nickname"];
     p.club = map["club"];
     p.clubId = map["club_id"];
     p.comments = map["comments"];
@@ -210,18 +232,19 @@ Person Person::createFromDataMap(const QMap<QString,QString> map)
 
 QString Person::insertColumnList ()
 {
-	return notr ("last_name,first_name,club,club_id,comments,medical_validity,check_medical_validity");
+    return notr ("last_name,first_name,nickname,club,club_id,comments,medical_validity,check_medical_validity");
 }
 
 QString Person::insertPlaceholderList ()
 {
-	return notr ("?,?,?,?,?,?,?");
+    return notr ("?,?,?,?,?,?,?,?");
 }
 
 void Person::bindValues (Query &q) const
 {
 	q.bind (lastName);
 	q.bind (firstName);
+    q.bind (nickname);
 	q.bind (club);
 	q.bind (clubId);
 	q.bind (comments);

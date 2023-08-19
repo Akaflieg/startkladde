@@ -27,7 +27,7 @@ class FlightBase
 		enum Type {
 			typeNone,
 			typeNormal,
-			typeTraining2, typeTraining1,
+            typeTraining2, typeTraining1, typeAuffrischung,
 			typeGuestPrivate, typeGuestExternal,
 			typeTow
 		};

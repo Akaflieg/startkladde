@@ -1,6 +1,7 @@
 #ifndef FLIGHTWIZARD_H
 #define FLIGHTWIZARD_H
 
+#include <optional>
 #include <QDebug>
 #include <QDialog>
 #include <QPushButton>
@@ -48,6 +49,7 @@ private:
     void init_page1();
     void init_page2();
     void init_page3();
+    void showing_page3();
     void adaptButtons();
     void adaptVisibility();
     void adaptFocus();
@@ -58,10 +60,11 @@ private:
     Plane selectedPlane;
     Flight::Type selectedType;
 
-    static bool planeMatches(QVariant &v, QString str);
+    static std::optional<QString> planeMatches(QVariant &v, QString completionPrefix);
     static QString planeToString(QVariant &v);
-    static bool personMatches(QVariant &v, QString str);
-    static QString personToString(QVariant &v);
+    static QString planeToStringWhenSelected(QVariant &v);
+    static std::optional<QString> personMatches(QVariant &v, QString completionPrefix);
+    static QString personToStringWhenSelected(QVariant &v);
 
 
 

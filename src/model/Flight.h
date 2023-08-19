@@ -195,6 +195,7 @@ class Flight: public FlightBase
 		static QString typeCopilotDescription (Type type);
 		static bool typeIsGuest (Type type);
 		static bool typeIsTraining (Type type);
+        static QString flighttypeRemark (Type type);
 
 
 		// *** Mode methods

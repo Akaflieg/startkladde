@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-VERSION = 2.3.3
+VERSION = 2.3.4
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 CONFIG += c++17
 
@@ -19,6 +19,11 @@ CONFIG += c++17
 TEMPLATE = app
 TARGET = startkladde
 INCLUDEPATH += .
+
+#
+#
+#
+QMAKE_CXXFLAGS += -Wall -Wextra -Wno-overloaded-virtual
 
 
 #

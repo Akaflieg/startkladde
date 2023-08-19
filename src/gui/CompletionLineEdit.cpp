@@ -75,7 +75,7 @@ void CompletionLineEdit::updateSelection(bool dropSelection, QVariant item)
     if (dropSelection) {
         setText("");
     } else {
-        setText(c->itemToString(item));
+        setText(c->itemToStringWhenSelected(item));
     }
     itemSelected = !dropSelection;
     selectedItem = dropSelection ? QVariant() : item;

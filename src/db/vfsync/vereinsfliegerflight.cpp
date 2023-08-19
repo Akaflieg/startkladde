@@ -116,10 +116,13 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
     // Abrechnungsmodus
     // 1=keine, 2=Pilot, 3=Begleiter,4=Gast, 5=Pilot+Begleiter, 7=Anderes Mitglied
     // Anderes Mitglied kann mit 'uidcharge' angegeben werden
+    //
+    // Die ftid oder der chargemode kann gut in Firefox ermittelt werden: Flug bearbeiten, Web Developer Console öffnen, Speichern, Abgeschickte Formulardaten ansehen
     switch (flight.getType())
     {
         case Flight::typeTraining1:     result.ftid = 8;    result.chargemode = 2; break;
         case Flight::typeTraining2:     result.ftid = 8;    result.chargemode = 2; break;
+        case Flight::typeAuffrischung:  result.ftid = 12;   result.chargemode = 2; break;
         case Flight::typeGuestPrivate:  result.ftid = 14;   result.chargemode = 2; break;
         case Flight::typeGuestExternal: result.ftid = 13;   result.chargemode = 4; break;
         default:                        result.ftid = 10;   result.chargemode = 2;

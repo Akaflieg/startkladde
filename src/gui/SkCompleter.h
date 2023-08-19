@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QEvent>
 #include <QDebug>
+#include <optional>
 #include "src/model/Plane.h"
 
 class Cache;
@@ -20,20 +21,16 @@ class SkCompleter : public QCompleter
     Q_OBJECT
 
 public:
-    SkCompleter(CompletionLineEdit*, Cache&, QList<QVariant>, bool (*)(QVariant&, QString), QString (*)(QVariant&));
-    ~SkCompleter();
+    SkCompleter(CompletionLineEdit*, Cache&, QList<QVariant>, std::optional<QString> (*)(QVariant&, QString), QString (*)(QVariant&));
+    ~SkCompleter() { }
 
-    void update(QString word);
+    void update(QString completionPrefix);
 
-    bool (*itemMatches)(QVariant& p, QString str);
-    QString (*itemToString)(QVariant& p);
+    std::optional<QString> (*itemMatches)(QVariant& v, QString completionPrefix);
+    QString (*itemToStringWhenSelected)(QVariant& v);
 
 signals:
     void selected(QVariant);
-
-protected:
-    //bool event(QEvent *e);
-    //bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     Cache& cache;

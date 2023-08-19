@@ -144,6 +144,7 @@ void PersonEditorPane::objectToFields (const Person &person)
 {
 	ui.lastNameInput->setText (person.lastName);
 	ui.firstNameInput->setText (person.firstName);
+    ui.nicknameInput->setText (person.nickname);
 	ui.clubInput->setEditText (person.club);
 	ui.commentsInput->setText (person.comments);
 	ui.checkMedicalInput->setCurrentItemByItemData (person.checkMedical);
@@ -182,6 +183,7 @@ void PersonEditorPane::fieldsToObject (Person &person, bool performChecks)
 
 	person.lastName             =ui.lastNameInput       ->text ().simplified ();
 	person.firstName            =ui.firstNameInput      ->text ().simplified ();
+    person.nickname             =ui.nicknameInput       ->text ().simplified ();
 	person.club                 =ui.clubInput           ->currentText ().simplified ();
 	person.comments             =ui.commentsInput       ->text ().simplified ();
 	person.checkMedical         =ui.checkMedicalInput   ->currentItemData ().toBool ();

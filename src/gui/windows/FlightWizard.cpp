@@ -45,7 +45,7 @@ void FlightWizard::init_page1()
     foreach (Plane p, planeList)
         vPlaneList.append(QVariant::fromValue(p));
 
-    SkCompleter* completer = new SkCompleter(ui->planeEdit, cache, vPlaneList, &planeMatches, &planeToString);
+    SkCompleter* completer = new SkCompleter(ui->planeEdit, cache, vPlaneList, &planeMatches, &planeToStringWhenSelected);
     ui->planeEdit->setCompleter(completer);
 
     QList<Plane> planesByUsage = cache.getPlanesSortedByUsage();
@@ -112,8 +112,8 @@ void FlightWizard::init_page3()
     foreach (Person p, personList)
         vPersonList << QVariant::fromValue(p);
 
-    SkCompleter* pilotCompleter = new SkCompleter(ui->pilotEdit, cache, vPersonList, &personMatches, &personToString);
-    SkCompleter* copilotCompleter = new SkCompleter(ui->copilotEdit, cache, vPersonList, &personMatches, &personToString);
+    SkCompleter* pilotCompleter = new SkCompleter(ui->pilotEdit, cache, vPersonList, &personMatches, &personToStringWhenSelected);
+    SkCompleter* copilotCompleter = new SkCompleter(ui->copilotEdit, cache, vPersonList, &personMatches, &personToStringWhenSelected);
 
     ui->pilotEdit->setCompleter(pilotCompleter);
     ui->copilotEdit->setCompleter(copilotCompleter);
@@ -131,6 +131,19 @@ void FlightWizard::init_page3()
     dbId preselectedLaunchMethod = Settings::instance().preselectedLaunchMethod;
     if (idValid (preselectedLaunchMethod))
         ui->launchMethodComboBox->setCurrentItemByItemData(preselectedLaunchMethod);
+}
+
+void FlightWizard::showing_page3() {
+    QString flighttypeRemark = Flight::flighttypeRemark(selectedType);
+    if (!flighttypeRemark.isEmpty()) {
+        ui->chargeLabel->setText(flighttypeRemark);
+        ui->chargeLabel->setStyleSheet(notr("background-color: blue; color:white;"));
+        ui->chargeLabel->show();
+    } else {
+        ui->chargeLabel->hide();
+    }
+
+    ui->flighttypeLabel->setText(notr("<b>") + tr("Flight type: ") + notr("</b>") + Flight::typeText(selectedType, true));
 }
 
 void FlightWizard::accept()
@@ -183,6 +196,11 @@ void FlightWizard::nextButton_clicked()
     } else {
         ui->stack->setCurrentIndex(idx+1);
     }
+
+    if (ui->stack->currentIndex() == PilotsPage) {
+        showing_page3();
+    }
+
     adaptButtons();
     adaptFocus();
     adaptVisibility();
@@ -197,6 +215,11 @@ void FlightWizard::prevButton_clicked()
     } else {
         ui->stack->setCurrentIndex(idx-1);
     }
+
+    if (ui->stack->currentIndex() == PilotsPage) {
+        showing_page3();
+    }
+
     adaptButtons();
     adaptFocus();
     adaptVisibility();
@@ -263,46 +286,63 @@ void FlightWizard::updateNextButtonState()
     }
 }
 
-bool FlightWizard::planeMatches(QVariant &v, QString str)
-{
+std::optional<QString> FlightWizard::planeMatches(QVariant &v, QString completionPrefix) {
     Plane p = v.value<Plane>();
-    return p.registration.toLower().contains(str.toLower()) ||
-           p.callsign.toLower().contains(str.toLower()) ||
-           p.type.toLower().contains(str.toLower()) ||
-           p.club.toLower().contains(str.toLower());
-}
-
-QString FlightWizard::planeToString(QVariant &v)
-{
-    Plane p = v.value<Plane>();
-    QString str = p.callsign;
-    str = str.leftJustified(3, ' ');
-    str += p.registration;
-    str = str.leftJustified(12, ' ');
-    str += p.type;
-    str = str.leftJustified(30, ' ');
-    str += p.club;
-
-    return str;
-}
-
-
-bool FlightWizard::personMatches(QVariant &v, QString str)
-{
-    Person p = v.value<Person>();
-    QStringList tokens = str.toLower().split(" ");
-    foreach (QString tok, tokens)
-    {
-        if (!p.firstName.toLower().contains(tok) && !p.lastName.toLower().contains(tok))
-            return false;
+    foreach (QString token, completionPrefix.split(" ", Qt::SkipEmptyParts)) {
+        if (p.registration.contains(token, Qt::CaseInsensitive) ||
+            p.callsign.contains(token, Qt::CaseInsensitive) ||
+            p.type.contains(token, Qt::CaseInsensitive)) {
+            return planeToString(v);
+        }
     }
-
-    return true;
+    return {};
 }
 
-QString FlightWizard::personToString(QVariant &v)
+QString FlightWizard::planeToString(QVariant& v)
+{
+    Plane p = v.value<Plane>();
+    return QString(notr("%1 %2 %3 %4"))
+        .arg(p.callsign, -3)
+        .arg(p.registration, -7)
+        .arg(p.type, -20)
+        .arg(p.club);
+}
+
+QString FlightWizard::planeToStringWhenSelected(QVariant& v)
+{
+    Plane p = v.value<Plane>();
+    if (p.callsign.isEmpty()) {
+        return QString(notr("%1, %2, %3")).arg(p.registration, p.type, p.club);
+    } else {
+        return QString(notr("%2 (%1), %3, %4")).arg(p.callsign, p.registration, p.type, p.club);
+    }
+}
+
+
+std::optional<QString> FlightWizard::personMatches(QVariant &v, QString completionPrefix)
 {
     Person p = v.value<Person>();
-    QString str = p.fullName();
-    return str;
+
+    foreach (QString token, completionPrefix.split(" ", Qt::SkipEmptyParts)) {
+        if (p.firstName.contains(token, Qt::CaseInsensitive) ||
+            p.lastName.contains(token, Qt::CaseInsensitive) ||
+            p.nickname.contains(token, Qt::CaseInsensitive)) {
+
+            QStringList nicks = p.nicknamesAsList();
+            auto matchedNick = std::find_if(nicks.begin(), nicks.end(), [&](QString x) { return x.contains(token, Qt::CaseInsensitive);});
+
+            if (matchedNick == nicks.end()) {
+                return p.fullNameWithNick();
+            } else {
+                return QString(notr("%1 \"%3\" %2")).arg(p.firstName, p.lastName, *matchedNick);
+            }
+        }
+    }
+    return {};
+
+}
+
+QString FlightWizard::personToStringWhenSelected(QVariant &v)
+{
+    return v.value<Person>().fullNameWithNick();
 }
