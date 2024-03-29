@@ -81,7 +81,7 @@ bool Flight::typeCopilotRecorded (Flight::Type type)
 		case typeNone: return true;
 		case typeNormal: return true;
 		case typeTraining2: return true;
-		case typeTraining1: return false;
+        case typeTraining1: return false;
         case typeAuffrischung: return true;
 		case typeTow: return true;
 		case typeGuestPrivate: return false;
@@ -90,6 +90,11 @@ bool Flight::typeCopilotRecorded (Flight::Type type)
 
 	assert (false);
 	return false;
+}
+
+bool Flight::typeSupervisorRecorded (Flight::Type type)
+{
+    return type == typeTraining1;
 }
 
 bool Flight::typeAlwaysHasCopilot (Flight::Type type)
@@ -148,7 +153,7 @@ QString Flight::typeCopilotDescription (Flight::Type type)
 		case typeTow:
 			return qApp->translate ("Flight::Type", "copilot");
 		case typeTraining1:
-			return notr ("-");
+            return qApp->translate("Flight::Type", "supervising flight instructor");
 	}
 
 	assert (false);

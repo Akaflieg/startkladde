@@ -1,7 +1,5 @@
 #include "Flight.h"
 
-#include <iostream>
-
 #include "src/config/Settings.h"
 #include "src/db/cache/Cache.h"
 #include "src/model/Plane.h"
@@ -9,7 +7,6 @@
 #include "src/text.h"
 #include "src/db/Query.h"
 #include "src/db/result/Result.h"
-#include "src/util/qString.h"
 #include "src/util/time.h"
 #include "src/flightColor.h" // TODO remove after flightColor has been moved to Flight
 #include "src/db/event/DbEvent.h"
@@ -184,8 +181,10 @@ bool Flight::pilotSpecified () const
 
 bool Flight::copilotSpecified () const
 {
-	return idValid (getCopilotId ()) ||
-		!isNone (getCopilotLastName (), getCopilotFirstName ());
+    return !typeSupervisorRecorded(getType()) && (
+        idValid (getCopilotId ()) ||
+        !isNone (getCopilotLastName (), getCopilotFirstName ())
+    );
 }
 
 bool Flight::towpilotSpecified () const
@@ -674,14 +673,14 @@ QList<Flight::Error> Flight::getErrorsImpl (bool includeTowflightErrors, Cache &
 		pilotMissing, pilotFirstNameMissing, pilotLastNameMissing, pilotNotIdentified);
 
 	// Copilot (if recorded)
-	if (typeCopilotRecorded (getType ()))
+    if (typeCopilotRecorded (getType ()) || typeSupervisorRecorded(getType()))
 	{
 		checkPerson (errors, getCopilotId (), getCopilotLastName (), getCopilotFirstName (),
 			false,
 			noError, copilotFirstNameMissing, copilotLastNameMissing, copilotNotIdentified
 			);
 
-		if (idValid (getPilotId ()) && getPilotId ()==getCopilotId ())
+        if (idValid (getPilotId ()) && getPilotId ()==getCopilotId () && !typeSupervisorRecorded(getType()))
 			errors << pilotEqualsCopilot;
 
 		if (getType ()==typeTraining2 && !copilotSpecified ())
@@ -984,15 +983,15 @@ QString Flight::dbTableName ()
 QString Flight::selectColumnList ()
 {
 	return notr (
-		"id,pilot_id,copilot_id,plane_id,type,mode,departed,landed,towflight_landed" // 9
-		",launch_method_id,departure_location,landing_location,num_landings,departure_time,landing_time" // 6 Σ15
-		",pilot_last_name,pilot_first_name,copilot_last_name,copilot_first_name" // 4 Σ19
-		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ23
-		",accounting_notes,comments" // 2 Σ25
-		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
-		",flarm_id,vfid" // 2 Σ30
-		",num_crew, num_pax" // 2 Σ32
-		",uploaded" // 1 Σ33
+        "id,pilot_id,copilot_id,supervisor_id,plane_id,type,mode,departed,landed,towflight_landed" // 10
+        ",launch_method_id,departure_location,landing_location,num_landings,departure_time,landing_time" // 6 Σ16
+        ",pilot_last_name,pilot_first_name,copilot_last_name,copilot_first_name" // 4 Σ20
+        ",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ24
+        ",accounting_notes,comments" // 2 Σ26
+        ",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ29
+        ",flarm_id,vfid" // 2 Σ31
+        ",num_crew, num_pax" // 2 Σ33
+        ",uploaded" // 1 Σ34
 		);
 }
 
@@ -1002,47 +1001,48 @@ Flight Flight::createFromResult (const Result &result)
 
 	f.setPilotId          (result.value (1).toLongLong ());
 	f.setCopilotId        (result.value (2).toLongLong ());
-	f.setPlaneId          (result.value (3).toLongLong ());
+    f.setSupervisorId     (result.value (3).toLongLong());
+    f.setPlaneId          (result.value (4).toLongLong ());
 	f.setType             (typeFromDb (
-	                       result.value (4).toString   ()));
+                           result.value (5).toString   ()));
 	f.setMode             (modeFromDb (
-	                       result.value (5).toString   ()));
-	f.setDeparted         (result.value (6).toBool     ());
-	f.setLanded           (result.value (7).toBool     ());
-	f.setTowflightLanded  (result.value (8).toBool     ());
+                           result.value (6).toString   ()));
+    f.setDeparted         (result.value (7).toBool     ());
+    f.setLanded           (result.value (8).toBool     ());
+    f.setTowflightLanded  (result.value (9).toBool     ());
 
-	f.setLaunchMethodId    (result.value ( 9).toLongLong ());
-	f.setDepartureLocation (result.value (10).toString   ());
-	f.setLandingLocation   (result.value (11).toString   ());
-	f.setNumLandings       (result.value (12).toInt      ());
-	f.setDepartureTime     (result.value (13).toDateTime ()); f.refToDepartureTime ().setTimeSpec (Qt::UTC); // not toUTC
-	f.setLandingTime       (result.value (14).toDateTime ()); f.refToLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setLaunchMethodId    (result.value (10).toLongLong ());
+    f.setDepartureLocation (result.value (11).toString   ());
+    f.setLandingLocation   (result.value (12).toString   ());
+    f.setNumLandings       (result.value (13).toInt      ());
+    f.setDepartureTime     (result.value (14).toDateTime ()); f.refToDepartureTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setLandingTime       (result.value (15).toDateTime ()); f.refToLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
 
-	f.setPilotLastName    (result.value (15).toString ());
-	f.setPilotFirstName   (result.value (16).toString ());
-	f.setCopilotLastName  (result.value (17).toString ());
-	f.setCopilotFirstName (result.value (18).toString ());
+    f.setPilotLastName    (result.value (16).toString ());
+    f.setPilotFirstName   (result.value (17).toString ());
+    f.setCopilotLastName  (result.value (18).toString ());
+    f.setCopilotFirstName (result.value (19).toString ());
 
-	f.setTowflightLandingTime     (result.value (19).toDateTime ()); f.refToTowflightLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setTowflightLandingTime     (result.value (20).toDateTime ()); f.refToTowflightLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
 	f.setTowflightMode            (modeFromDb (
-	                               result.value (20).toString   ()));
-	f.setTowflightLandingLocation (result.value (21).toString   ());
-	f.setTowplaneId               (result.value (22).toLongLong ());
+                                   result.value (21).toString   ()));
+    f.setTowflightLandingLocation (result.value (22).toString   ());
+    f.setTowplaneId               (result.value (23).toLongLong ());
 
-	f.setAccountingNotes (result.value (23).toString ());
-	f.setComments        (result.value (24).toString ());
+    f.setAccountingNotes (result.value (24).toString ());
+    f.setComments        (result.value (25).toString ());
 
-	f.setTowpilotId         (result.value (25).toLongLong ());
-	f.setTowpilotLastName   (result.value (26).toString   ());
-	f.setTowpilotFirstName  (result.value (27).toString   ());
+    f.setTowpilotId         (result.value (26).toLongLong ());
+    f.setTowpilotLastName   (result.value (27).toString   ());
+    f.setTowpilotFirstName  (result.value (28).toString   ());
 
-	f.setFlarmId (result.value (28).toString ());
-	f.setVfId    (result.value(29).toLongLong ());
+    f.setFlarmId (result.value (29).toString ());
+    f.setVfId    (result.value(30).toLongLong ());
 
-	f.setNumCrew(result.value(30).toInt());
-	f.setNumPax(result.value(31).toInt());
+    f.setNumCrew(result.value(31).toInt());
+    f.setNumPax(result.value(32).toInt());
 
-	f.setUploaded(result.value(32).toBool());
+    f.setUploaded(result.value(33).toBool());
 	return f;
 }
 
@@ -1052,6 +1052,7 @@ Flight Flight::createFromDataMap(const QMap<QString,QString> map)
 
     f.setPilotId    (map["pilot_id"].toLongLong());
     f.setCopilotId  (map["copilot_id"].toLongLong());
+    f.setSupervisorId(map["supervisor_id"].toLongLong());
     f.setPlaneId    (map["plane_id"].toLongLong());
     f.setType       (typeFromDb(map["type"]));
     f.setMode       (modeFromDb(map["mode"]));
@@ -1097,22 +1098,22 @@ Flight Flight::createFromDataMap(const QMap<QString,QString> map)
 QString Flight::insertColumnList ()
 {
 	return notr (
-		"pilot_id,copilot_id,plane_id,type,mode,departed,landed,towflight_landed" // 8
-		",launch_method_id,departure_location,landing_location,num_landings,departure_time,landing_time" // 6 Σ14
-		",pilot_last_name,pilot_first_name,copilot_last_name,copilot_first_name" // 4 Σ18
-		",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ22
-		",accounting_notes,comments" // 2 Σ24
-		",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ27
-		",flarm_id,vfid" // 2 Σ29
-		",num_crew,num_pax" // 2 Σ31
-		",uploaded" // 1 Σ32
+        "pilot_id,copilot_id,supervisor_id,plane_id,type,mode,departed,landed,towflight_landed" // 9
+        ",launch_method_id,departure_location,landing_location,num_landings,departure_time,landing_time" // 6 Σ15
+        ",pilot_last_name,pilot_first_name,copilot_last_name,copilot_first_name" // 4 Σ19
+        ",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ23
+        ",accounting_notes,comments" // 2 Σ25
+        ",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ28
+        ",flarm_id,vfid" // 2 Σ30
+        ",num_crew,num_pax" // 2 Σ32
+        ",uploaded" // 1 Σ33
 		);
 }
 
 QString Flight::insertPlaceholderList ()
 {
 	return notr (
-		"?,?,?,?,?,?,?,?"
+        "?,?,?,?,?,?,?,?,?"
 		",?,?,?,?,?,?"
 		",?,?,?,?"
 		",?,?,?,?"
@@ -1128,6 +1129,7 @@ void Flight::bindValues (Query &q) const
 {
 	q.bind (getPilotId ());
 	q.bind (getCopilotId ());
+    q.bind (getSupervisorId());
 	q.bind (getPlaneId ());
 	q.bind (typeToDb (getType ()));
 	q.bind (modeToDb (getMode ()));

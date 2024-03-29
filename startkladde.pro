@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-VERSION = 2.3.4
+VERSION = 2.4.0
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 CONFIG += c++17
 
@@ -96,6 +96,7 @@ HEADERS += src/accessor.h \
            src/db/migrations/Migration_20191018135747_add_vfid.h \
            src/db/migrations/Migration_20200108164302_anonymous_columns.h \
            src/db/migrations/Migration_20220328172525_add_uploaded.h \
+           src/db/migrations/Migration_20240323192110_add_supervisor.h \
            src/db/vfsync/vereinsfliegerflight.h \
            src/flightColor.h \
            src/FlightReference.h \
@@ -395,6 +396,7 @@ SOURCES += src/flightColor.cpp \
            src/db/migrations/Migration_20191018135747_add_vfid.cpp \
            src/db/migrations/Migration_20200108164302_anonymous_columns.cpp \
            src/db/migrations/Migration_20220328172525_add_uploaded.cpp \
+           src/db/migrations/Migration_20240323192110_add_supervisor.cpp \
            src/db/vfsync/vereinsfliegerflight.cpp \
            src/startkladde.cpp \
            src/StorableException.cpp \

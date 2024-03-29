@@ -810,7 +810,11 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 	selectedPlane    = flight.getPlaneId ();
 	selectedTowplane = flight.getTowplaneId ();
 	selectedPilot    = flight.getPilotId ();
-	selectedCopilot  = flight.getCopilotId ();
+    if (flight.getType() == FlightBase::typeTraining1) {
+        selectedCopilot = flight.getSupervisorId();
+    } else {
+        selectedCopilot = flight.getCopilotId();
+    }
 	selectedTowpilot = flight.getTowpilotId ();
 
 	planeToFields (flight.getPlaneId (), ui.registrationInput, ui.planeTypeWidget);
@@ -820,8 +824,8 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 
     ui.numCrewInput->setValue(flight.getNumCrew());
     ui.numPaxInput->setValue(flight.getNumPax());
-	personToFields (flight.getPilotId   (), ui.pilotLastNameInput  , ui.pilotFirstNameInput  , flight.getPilotLastName ()  , flight.getPilotFirstName   ());
-	personToFields (flight.getCopilotId (), ui.copilotLastNameInput, ui.copilotFirstNameInput, flight.getCopilotLastName (), flight.getCopilotFirstName ());
+    personToFields (selectedPilot, ui.pilotLastNameInput  , ui.pilotFirstNameInput  , flight.getPilotLastName ()  , flight.getPilotFirstName   ());
+    personToFields (selectedCopilot, ui.copilotLastNameInput, ui.copilotFirstNameInput, flight.getCopilotLastName (), flight.getCopilotFirstName ());
 
 	// space
 
@@ -1229,10 +1233,15 @@ void FlightWindow::determineFlightPeople (Flight &flight, const LaunchMethod *la
 			copilotLastName, copilotFirstName,
 			selectedCopilot,
 			ui.copilotLastNameInput,
-			ui.copilotFirstNameInput);
-	flight.setCopilotId (selectedCopilot);
-	flight.setCopilotLastName (copilotLastName);
-	flight.setCopilotFirstName (copilotFirstName);
+            ui.copilotFirstNameInput);
+
+    if (flight.getType() == FlightBase::typeTraining1) {
+        flight.setSupervisorId(selectedCopilot);
+    } else {
+        flight.setCopilotId (selectedCopilot);
+        flight.setCopilotLastName (copilotLastName);
+        flight.setCopilotFirstName (copilotFirstName);
+    }
 
 	// Determine the towpilot
 	QString towpilotLastName=flight.getTowpilotLastName ();

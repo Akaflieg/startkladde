@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.4.0 (März 2024)
+* Feature: Spitznamen können angegeben werden und werden bei der Personensuche berücksichtigt.
+* Feature: Bei einsitzigen Schulungsflügen kann ein beauftragender Fluglehrer angegeben werden.
+
 ## Version 2.3.1 (April 2023)
 * Build: Mit `qmake "CONFIG+=debpack"` kann unter Debian beim Build automatisch ein Debian-Paket erstellt und einem lokalen Repository in `$BUILD_DIR/../startkladde_ppa` hinzugefügt werden.
 * Bugfix: Einige Bugs im Zusammenhang mit der Enter-Taste im Schnelleingabedialog wurden gefixt.
@@ -7,7 +11,7 @@
 * Feature: Proxy-Skript. Es kann in den Einstellungen ein Skript angegeben werden, mit dessen Hilfe die Daten für den Vereinsflieger-Upload vor dem Hochladen manipuliert werden können (im JSON-Format). Damit kann man flugplatzspezifische Hacks umsetzen.
 * Feature: Der Vereinsflieger-Upload kann nun auch nachträglich bearbeitete Flüge in Vereinsflieger aktualisieren
 
-## [Version 2.2.0](https://github.com/Akaflieg/startkladde/releases/tag/v2.2.0) (Feb. 2020)
+## [Version 2.2.0] (Feb. 2020)
 
 * Breaking Change: Unter Linux werden mit `make install` nun alle zusätzlichen Dateien unter `/usr/share/startkladde` abgelegt.
 * Feature: Flugupload zur Vereinsverwaltungplattform 'Vereinsflieger'

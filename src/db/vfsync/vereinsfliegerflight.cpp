@@ -28,6 +28,7 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->callsign = f.callsign;
     this->pilotname = f.pilotname;
     this->attendantname = f.attendantname;
+    this->supervisorname = f.supervisorname;
     this->starttype = f.starttype;
     this->departuretime = f.departuretime;
     this->departurelocation = f.departurelocation;
@@ -48,25 +49,27 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
     result.id = flight.getId();
     result.vfid = flight.getVfId();
 
-    if (flight.getPlaneId() != 0)
-    {
+    if (idValid(flight.getPlaneId())) {
         Plane plane = dbManager->getCache().getObject<Plane>(flight.getPlaneId());
         result.callsign = plane.registration.trimmed();
     }
 
-    if (flight.getPilotId() != 0)
-    {
+    if (idValid(flight.getPilotId())) {
         Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
         result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
     }
 
-    if (flight.getCopilotId() != 0)
-    {
+    if (idValid(flight.getCopilotId())) {
         Person copilot = dbManager->getCache().getObject<Person>(flight.getCopilotId());
         result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
     }
 
-    if (flight.getLaunchMethodId() != 0)
+    if (idValid(flight.getSupervisorId())) {
+        Person supervisor = dbManager->getCache().getObject<Person>(flight.getSupervisorId());
+        result.supervisorname = supervisor.lastName.trimmed() + ", " + supervisor.firstName.trimmed();
+    }
+
+    if (idValid(flight.getLaunchMethodId()))
     {
         LaunchMethod lm = dbManager->getCache().getObject<LaunchMethod>(flight.getLaunchMethodId());
         switch (lm.type)
@@ -135,6 +138,7 @@ void VereinsfliegerFlight::readJson(const QJsonObject &json) {
     callsign = json["callsign"].toString();
     pilotname = json["pilotname"].toString();
     attendantname = json["attendantname"].toString();
+    supervisorname = json["supervisorname"].toString();
     starttype = json["starttype"].toString();
     departuretime = QDateTime::fromString(json["departuretime"].toString(), Qt::ISODate);
     departurelocation = json["departurelocation"].toString();
@@ -156,6 +160,7 @@ void VereinsfliegerFlight::writeJson(QJsonObject &json) const {
     json["callsign"] = callsign;
     json["pilotname"] = pilotname;
     json["attendantname"] = attendantname;
+    json["supervisorname"] = supervisorname;
     json["starttype"] = starttype;
     json["departuretime"] = departuretime.toString(Qt::ISODate);
     json["departurelocation"] = departurelocation;

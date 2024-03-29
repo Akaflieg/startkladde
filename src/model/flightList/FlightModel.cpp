@@ -292,24 +292,20 @@ QVariant FlightModel::copilotData (const Flight &flight, int role) const
 {
 	(void)role;
 
-	try
-	{
-		if (Flight::typeCopilotRecorded (flight.getType ()))
-		{
+    try {
+        if (Flight::typeCopilotRecorded (flight.getType ())) {
 			Person copilot=cache.getObject<Person> (flight.getCopilotId ());
 			return copilot.formalNameWithClub ();
-		}
-		else if (Flight::typeIsGuest (flight.getType ()))
-		{
+        } else if (Flight::typeSupervisorRecorded(flight.getType())) {
+            Person supervisor=cache.getObject<Person> (flight.getSupervisorId ());
+            return QString("(%1: %2)").arg(qApp->translate("FlightModel", "Supervisor")).arg(supervisor.lastName);
+        } else if (Flight::typeIsGuest (flight.getType ())) {
 			return qApp->translate ("FlightModel", "(Passenger)");
-		}
-		else
-		{
+        } else {
 			return notr ("-");
 		}
-	}
-	catch (Cache::NotFoundException &)
-	{
+
+    } catch (Cache::NotFoundException &) {
 		return flight.incompleteCopilotName ();
 	}
 }

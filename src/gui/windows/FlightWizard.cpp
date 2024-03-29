@@ -1,4 +1,5 @@
 #include "FlightWizard.h"
+#include "src/text.h"
 #include "ui_FlightWizard.h"
 #include <QStandardItemModel>
 #include <QCompleter>
@@ -134,6 +135,8 @@ void FlightWizard::init_page3()
 }
 
 void FlightWizard::showing_page3() {
+    ui->copilotLabel->setText(firstToUpper(Flight::typeCopilotDescription(selectedType)));
+
     QString flighttypeRemark = Flight::flighttypeRemark(selectedType);
     if (!flighttypeRemark.isEmpty()) {
         ui->chargeLabel->setText(flighttypeRemark);
@@ -172,7 +175,11 @@ Flight FlightWizard::determineFlight()
     Flight flight;
     if (!Settings::instance().anonymousMode) {
         flight.setPilotId(ui->pilotEdit->getSelectedItem().value<Person>().getId());
-        flight.setCopilotId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+        if (selectedType == FlightBase::typeTraining1) {
+            flight.setSupervisorId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+        } else {
+            flight.setCopilotId(ui->copilotEdit->getSelectedItem().value<Person>().getId());
+        }
         flight.setNumCrew(1);
         flight.setNumPax(0);
         flight.setType(selectedType);
@@ -259,8 +266,8 @@ void FlightWizard::adaptButtons()
 
 void FlightWizard::adaptVisibility()
 {
-    ui->copilotLabel->setVisible(this->isCopilotActive());
-    ui->copilotEdit->setVisible(this->isCopilotActive());
+    ui->copilotLabel->setVisible(Flight::typeCopilotRecorded(selectedType) || Flight::typeSupervisorRecorded(selectedType));
+    ui->copilotEdit->setVisible(Flight::typeCopilotRecorded(selectedType) || Flight::typeSupervisorRecorded(selectedType));
 }
 
 void FlightWizard::updateNextButtonState()
@@ -274,7 +281,7 @@ void FlightWizard::updateNextButtonState()
     else if (index == PilotsPage)
     {
         bool e = ui->pilotEdit->isItemSelected() &&
-                (ui->copilotEdit->isItemSelected() || !isCopilotActive() || selectedType == Flight::typeNormal) &&
+                 (ui->copilotEdit->isItemSelected() || !Flight::typeAlwaysHasCopilot(selectedType)) &&
                 idValid(ui->launchMethodComboBox->currentItemData().toInt());
         ui->nextButton->setEnabled(e);
         ui->acceptAndTakeoffButton->setEnabled(e);

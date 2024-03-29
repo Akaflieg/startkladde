@@ -55,7 +55,6 @@ private:
     void adaptFocus();
 
     Flight determineFlight();
-    bool isCopilotActive() { return Flight::typeCopilotRecorded(selectedType); }
 
     Plane selectedPlane;
     Flight::Type selectedType;

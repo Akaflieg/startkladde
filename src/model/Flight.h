@@ -1,14 +1,11 @@
 #ifndef FLIGHT_H_
 #define FLIGHT_H_
 
-#include <cassert>
-
 #include <QApplication>
 #include <QMetaType>
 #include <QColor>
 #include <QList>
 
-#include "src/util/qString.h"
 #include "FlightBase.h"
 
 class DbEvent;
@@ -190,6 +187,7 @@ class Flight: public FlightBase
 		static QString typeText (Type type, bool withShortcut=false);
 		static QString shortTypeText (Type type);
 		static bool typeCopilotRecorded (Type type);
+        static bool typeSupervisorRecorded (Type type);
 		static bool typeAlwaysHasCopilot (Type type);
 		static QString typePilotDescription (Type type);
 		static QString typeCopilotDescription (Type type);
