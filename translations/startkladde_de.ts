@@ -3279,7 +3279,7 @@ Soll sie in die Datenbank aufgenommen werden?</translation>
     <message>
         <location filename="../src/gui/windows/FlightWizard.cpp" line="149"/>
         <source>Flight type: </source>
-        <translation>Flugtyp:</translation>
+        <translation>Flugtyp: </translation>
     </message>
     <message>
         <location filename="../src/gui/windows/FlightWizard.cpp" line="165"/>

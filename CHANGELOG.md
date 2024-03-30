@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.4.1 (März 2024)
+* Bugfix: Beauftragender Fluglehrer wird korrekt abgespeichert.
+
 ## Version 2.4.0 (März 2024)
 * Feature: Spitznamen können angegeben werden und werden bei der Personensuche berücksichtigt.
 * Feature: Bei einsitzigen Schulungsflügen kann ein beauftragender Fluglehrer angegeben werden.

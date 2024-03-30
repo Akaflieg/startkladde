@@ -23,6 +23,7 @@ void FlightBase::initialize (dbId id)
 	numLandings     =invalidId;
 	pilotId         =invalidId;
 	copilotId       =invalidId;
+    supervisorId    =invalidId;
 	towpilotId      =invalidId;
 	launchMethodId  =invalidId;
 	towplaneId      =invalidId;
