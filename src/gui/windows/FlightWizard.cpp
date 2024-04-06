@@ -281,7 +281,7 @@ void FlightWizard::updateNextButtonState()
     else if (index == PilotsPage)
     {
         bool e = ui->pilotEdit->isItemSelected() &&
-                 (ui->copilotEdit->isItemSelected() || !Flight::typeAlwaysHasCopilot(selectedType)) &&
+                 (ui->copilotEdit->isItemSelected() || !(Flight::typeAlwaysHasCopilot(selectedType) && Flight::typeCopilotRecorded(selectedType))) &&
                 idValid(ui->launchMethodComboBox->currentItemData().toInt());
         ui->nextButton->setEnabled(e);
         ui->acceptAndTakeoffButton->setEnabled(e);

@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.4.2 (April 2024)
+* Bugfix: Gastflüge können in der Schnelleingabe wieder angelegt werden.
+
 ## Version 2.4.1 (März 2024)
 * Bugfix: Beauftragender Fluglehrer wird korrekt abgespeichert.
 
