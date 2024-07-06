@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.4.3 (Mai 2024)
+* Bugfix: Copilot wird bei einsitzigen Schulungsflügen jetzt auf keinen Fall hochgeladen
+
 ## Version 2.4.2 (April 2024)
 * Bugfix: Gastflüge können in der Schnelleingabe wieder angelegt werden.
 

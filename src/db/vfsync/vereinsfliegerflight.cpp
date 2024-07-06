@@ -59,7 +59,7 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
         result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
     }
 
-    if (idValid(flight.getCopilotId())) {
+    if (idValid(flight.getCopilotId()) && flight.getType() != FlightBase::typeTraining1) {
         Person copilot = dbManager->getCache().getObject<Person>(flight.getCopilotId());
         result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
     }
