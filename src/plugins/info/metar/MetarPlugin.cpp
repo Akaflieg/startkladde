@@ -9,7 +9,7 @@
 
 //#include <QDebug>
 #include <QSettings>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -24,7 +24,7 @@
 REGISTER_PLUGIN (InfoPlugin, MetarPlugin)
 SK_PLUGIN_DEFINITION (
 	MetarPlugin,
-	notr ("{4a6c7218-42ae-475d-8fd9-a2a131c1aa90}"),
+    QUuid::fromString(notr ("{4a6c7218-42ae-475d-8fd9-a2a131c1aa90}")),
 	MetarPlugin::tr ("METAR"),
 	MetarPlugin::tr ("Displays METAR messages (internet connection required)"))
 
@@ -83,7 +83,7 @@ void MetarPlugin::refresh ()
 
 	if (icao.isEmpty ())
 		outputText (tr ("No airport specified"));
-	if (!airport.contains (QRegExp (notr ("^[A-Z]{4,4}$"))))
+    if (!airport.contains (QRegularExpression (notr ("^[A-Z]{4,4}$"))))
 		outputText (tr ("%1 is not a valid ICAO code").arg (airport));
 	else
 	{
@@ -97,7 +97,7 @@ QString MetarPlugin::extractMetar (QIODevice &reply)
 {
     // In order to remove the time and date line
 	QString re=qnotr ("^%1.*$").arg (airport.trimmed ().toUpper ());
-	return findInIoDevice (reply, QRegExp (re), 0);
+    return findInIoDeviceWithCapture(reply, QRegularExpression (re), 0);
 }
 
 void MetarPlugin::downloadSucceeded (int state, QNetworkReply *reply)

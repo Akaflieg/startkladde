@@ -31,7 +31,7 @@
 REGISTER_PLUGIN (InfoPlugin, ExternalInfoPlugin)
 SK_PLUGIN_DEFINITION (
 	ExternalInfoPlugin,
-	notr ("{2fbb91be-bde5-4fba-a3c7-69d7caf827a5}"),
+    QUuid::fromString(notr ("{2fbb91be-bde5-4fba-a3c7-69d7caf827a5}")),
 	ExternalInfoPlugin::tr ("External"),
 	ExternalInfoPlugin::tr ("Receives data from an external program"))
 

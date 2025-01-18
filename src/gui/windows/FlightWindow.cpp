@@ -6,7 +6,6 @@
 #include <QCompleter>
 #include <QShowEvent>
 #include <QPushButton>
-#include <QDesktopWidget>
 #include <QMenu>
 
 #include "src/util/color.h"
@@ -414,7 +413,7 @@ void FlightWindow::showEvent (QShowEvent *event)
 	// visible. However, this does not seem to work and the buttons may still
 	// be partly occluded by the task bar (but at least they are partially
     // visible).
-    int availableHeight=qApp->desktop ()->availableGeometry (this).height ();
+    int availableHeight=QGuiApplication::primaryScreen()->availableGeometry().height();
 	if (height ()>availableHeight-y ())
 		resize (width (), availableHeight-y ());
 
@@ -438,12 +437,12 @@ void FlightWindow::showEvent (QShowEvent *event)
 			if (verticalSpacing>0)
 				layout->setVerticalSpacing (verticalSpacing-1);
 
-			QMapIterator<QWidget *, SkLabel *> i (widgetLabelMap);
-			while (i.hasNext ())
+            QMultiMapIterator<QWidget *, SkLabel *> i (widgetLabelMap);
+            while (i.hasNext ())
 			{
 				i.next ();
 
-				QWidget *widget=i.key ();
+                QWidget *widget=i.key ();
 				SkLabel *label=i.value ();
 
 				// There may be multiple widgets associated with one label, for

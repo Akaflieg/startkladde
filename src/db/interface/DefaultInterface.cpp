@@ -337,7 +337,8 @@ QSharedPointer<Result> DefaultInterface::executeQueryResult (const Query &query,
 	QSqlQuery sqlQuery=executeQueryImpl (query, forwardOnly);
 
 	return QSharedPointer<Result> (
-		new DefaultResult (sqlQuery));
+        new DefaultResult(sqlQuery)
+    );
 }
 
 /**

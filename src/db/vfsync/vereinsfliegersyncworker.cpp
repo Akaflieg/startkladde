@@ -150,7 +150,8 @@ void VereinsfliegerSyncWorker::sync()
             QJsonDocument doc = QJsonDocument::fromJson(response);
 
             vfFlights.clear();
-            foreach(QJsonValue v, doc.array()) {
+            for (int i = 0; i < doc.array().size(); i++) {
+                QJsonValue v = doc.array().at(i);
                 VereinsfliegerFlight f;
                 f.readJson(v.toObject());
                 vfFlights.append(f);

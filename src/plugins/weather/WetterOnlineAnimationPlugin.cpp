@@ -8,7 +8,7 @@
 #include "WetterOnlineAnimationPlugin.h"
 
 #include <QMovie>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "src/plugin/factory/PluginFactory.h"
 #include "src/net/Downloader.h"
@@ -21,7 +21,7 @@
 REGISTER_PLUGIN (WeatherPlugin, WetterOnlineAnimationPlugin)
 SK_PLUGIN_DEFINITION (
 	WetterOnlineAnimationPlugin,
-	notr ("{f3b7c9b2-455f-459f-b636-02b2b9a78b7b}"),
+    QUuid::fromString(notr ("{f3b7c9b2-455f-459f-b636-02b2b9a78b7b}")),
 	WetterOnlineAnimationPlugin::tr ("Wetter Online (animation)"),
 	WetterOnlineAnimationPlugin::tr ("Displays a weather radar animation from wetteronline.de"))
 
@@ -56,7 +56,7 @@ void WetterOnlineAnimationPlugin::downloadSucceeded (int state, QNetworkReply *r
 	{
 		case stateNavigationPage:
 		{
-			QString radarPagePath=findInIoDevice (*reply, QRegExp (notr ("a href.*a href=\"\\/([^\"]*)\".*Loop 3 Stunden")), 1);
+            QString radarPagePath=findInIoDeviceWithCapture (*reply, QRegularExpression (notr ("a href.*a href=\"\\/([^\"]*)\".*Loop 3 Stunden")), 1);
 			if (isBlank (radarPagePath)) OUTPUT_AND_RETURN (tr ("Error: no animation link was found on the navigation page"));
 			QString radarPageUrl=qnotr ("http://www.wetteronline.de/%1").arg (radarPagePath);
 			downloader->startDownload (stateRadarPage, radarPageUrl);
@@ -64,7 +64,7 @@ void WetterOnlineAnimationPlugin::downloadSucceeded (int state, QNetworkReply *r
 		} break;
 		case stateRadarPage:
 		{
-			QString radarImagePath=findInIoDevice (*reply, QRegExp (notr ("(daten\\/radar[^\")]*)\"")), 1);
+            QString radarImagePath=findInIoDeviceWithCapture (*reply, QRegularExpression (notr ("(daten\\/radar[^\")]*)\"")), 1);
 			if (isBlank (radarImagePath)) OUTPUT_AND_RETURN (tr ("Error: no animation was found on the weather page"));
 			QString radarImageUrl=qnotr ("http://www.wetteronline.de/%1").arg (radarImagePath);
 			downloader->startDownload (stateRadarImage, radarImageUrl);

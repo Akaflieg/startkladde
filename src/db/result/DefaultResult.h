@@ -32,7 +32,7 @@ class DefaultResult: public Result
 		virtual ~DefaultResult ();
 
 		// *** Properties
-		QSqlQuery &getQuery ();
+        //QSqlQuery &getQuery ();
 
 		// *** Result methods
 		virtual int at () const;
@@ -54,7 +54,7 @@ class DefaultResult: public Result
 	private:
 		// Not a reference - make a copy of the query. The query will
 		// be destroyed after the query method returns.
-		QSqlQuery query;
+        QSqlQuery& query;
 };
 
 #endif

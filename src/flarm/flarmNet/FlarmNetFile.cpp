@@ -1,7 +1,7 @@
 #include <src/flarm/flarmNet/FlarmNetFile.h>
 
 #include <QDebug>
-#include <QRegExp>
+#include <QRegularExpression>
 
 // According to XCSoar's FlarmNetReader.cpp, FlarmNet files are "ISO-Latin-1,
 // which is kind of short-sighted". The number in the first line seems to be a
@@ -110,7 +110,7 @@ QStringList FlarmNetFile::encodeLines (const QStringList &plainLines)
 QStringList FlarmNetFile::decodeFile (const QString &encodedFile)
 {
 	// Split the data into lines (also split on \r for robustness)
-	QStringList encodedLines=encodedFile.split (QRegExp ("[\r\n]"), Qt::SkipEmptyParts);
+    QStringList encodedLines=encodedFile.split (QRegularExpression ("[\r\n]"), Qt::SkipEmptyParts);
 
 	// Ignore the header line
 	encodedLines.removeFirst ();

@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QLibraryInfo>
 #include <QLocale>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QDir>
 #include <QTranslator>
@@ -29,10 +29,10 @@ TranslationManager *TranslationManager::theInstance;
 TranslationManager::TranslationManager ()
 {
 	// Load Qt translations from the Qt translations directory.
-	translationPath << QLibraryInfo::location (QLibraryInfo::TranslationsPath);
+    translationPath << QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
     // For development builds (and possibly windows installations?)
-    translationPath << QCoreApplication::applicationDirPath() +notr ("/translations");
+    translationPath << QCoreApplication::applicationDirPath() +notr("/translations");
 
     // For productive installations on unix systems
     translationPath << QDir("/usr/share/startkladde");
@@ -75,9 +75,10 @@ void TranslationManager::install (QApplication *application)
  */
 QString TranslationManager::localeNameFromFilename (const QString &filename)
 {
-	QRegExp regexp (notr ("startkladde_(.*)\\.qm"));
-	if (regexp.exactMatch (filename))
-		return regexp.cap (1);
+    QRegularExpression regexp (QRegularExpression::anchoredPattern(notr ("startkladde_(.*)\\.qm")));
+    QRegularExpressionMatch match = regexp.match(filename);
+    if (match.hasMatch())
+        return match.captured (1);
 	else
 		return QString ();
 }

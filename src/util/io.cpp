@@ -7,10 +7,11 @@
 
 #include "io.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QIODevice>
 #include <QString>
 #include <QRect>
+#include <optional>
 
 #include "src/util/qString.h"
 #include "src/i18n/notr.h"
@@ -20,28 +21,27 @@ QString readLineUtf8 (QIODevice &device)
 	return QString::fromUtf8 (device.readLine ().constData ());
 }
 
-bool findInIoDevice (QIODevice &device, QRegExp &regexp)
+ std::optional<QRegularExpressionMatch> findInIoDevice (QIODevice &device, const QRegularExpression &regexp)
 {
 	while (!device.atEnd ())
 	{
 		QString line=readLineUtf8 (device);
-		if (line.trimmed ().contains (regexp))
-    		return true;
+        QRegularExpressionMatch m = regexp.match(line.trimmed());
+        if (m.hasMatch())
+            return m;
 	}
 
-	return false;
+    return {};
 }
 
-QString findInIoDevice (QIODevice &device, const QRegExp &regexp, int group)
+QString findInIoDeviceWithCapture (QIODevice &device, const QRegularExpression &regexp, int group)
 {
-	// Make a copy because apparenly we cannot capture in a const QRegExp (but
-	// we want to pass a const& so we can use an anonymous value in calls).
-	QRegExp re (regexp);
-
-	if (findInIoDevice (device, re))
-		return re.cap (group);
-	else
-		return QString ();
+    std::optional<QRegularExpressionMatch> maybe_match = findInIoDevice(device, regexp);
+    if (maybe_match.has_value()) {
+        return maybe_match.value().captured(group);
+    } else {
+        return QString();
+    }
 }
 
 std::ostream &operator<< (std::ostream &ostream, const QRect &rect)

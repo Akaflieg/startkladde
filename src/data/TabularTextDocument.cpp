@@ -35,7 +35,7 @@ QString TabularTextDocument::generateHtml() {
     for (int column=0; column<columns; ++column)
     {
         QString alignment = "text-align: left;";
-        if (rows > 1 && model.data(model.index(0, column)).type() == QVariant::Int) {
+        if (rows > 1 && static_cast<QMetaType::Type>(model.data(model.index(0, column)).typeId()) == QMetaType::Int) {
             alignment = "text-align: right;";
         }
 
@@ -53,7 +53,7 @@ QString TabularTextDocument::generateHtml() {
         for (int column=0; column<columns; ++column)
         {
             QString alignment = "text-align: left;";
-            if (model.data(model.index(row, column)).type() == QVariant::Int) {
+            if (static_cast<QMetaType::Type>(model.data(model.index(row, column)).typeId()) == QMetaType::Int) {
                 alignment = "text-align: right;";
             }
 

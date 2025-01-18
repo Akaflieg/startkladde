@@ -24,12 +24,12 @@ LanguageConfiguration::LanguageConfiguration (const QString &localeName):
 
 LanguageConfiguration::LanguageConfiguration (const QVariant &value)
 {
-	if ((QMetaType::Type)value.type ()==QMetaType::QString)
+    if (static_cast<QMetaType::Type>(value.typeId())==QMetaType::QString)
 	{
 		this->type=manualSelection;
 		this->localeName=value.toString ();
 	}
-	else if ((QMetaType::Type)value.type ()==QMetaType::Int)
+    else if (static_cast<QMetaType::Type>(value.typeId())==QMetaType::Int)
 	{
 		int type=value.toInt ();
 		switch (type)

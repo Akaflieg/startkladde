@@ -94,9 +94,12 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
             result.towtime = flight.getDepartureTime().msecsTo(flight.getTowflightLandingTime()) / 60000;
 
             // Versuche, die Schlepphöhe aus dem Kommentartext herauszuholen
-            QRegExp rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe|ausklinkhoehe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
-            if (rx.indexIn(flight.getComments().toLower()) != -1) {
-                result.towheight = rx.cap(2).toInt();
+            QRegularExpression rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe|ausklinkhoehe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
+            QRegularExpressionMatch match =
+                rx.match(flight.getComments().toLower());
+
+            if (match.hasMatch()) {
+                result.towheight = match.captured(2).toInt();
             } else {
                 result.towheight = 0;
             }

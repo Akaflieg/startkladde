@@ -43,7 +43,7 @@
  * executed, so the compiler may warn about control reaching the end of the
  * function.
  */
-class Synchronizer: QMutexLocker
+class Synchronizer: QMutexLocker<QRecursiveMutex>
 {
 	public:
 		Synchronizer (QRecursiveMutex *mutex);

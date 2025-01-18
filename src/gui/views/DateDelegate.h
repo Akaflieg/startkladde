@@ -13,7 +13,7 @@ public:
     DateDelegate(QObject* parent = nullptr) : QStyledItemDelegate(parent) { }
 
     QString displayText(const QVariant &value, const QLocale &locale) const {
-        if (value.type() == QVariant::Date) {
+        if (static_cast<QMetaType::Type>(value.typeId()) == QMetaType::QDate) {
             return value.toDate().toString(defaultNumericDateFormat());
         }
         return QStyledItemDelegate::displayText(value, locale);

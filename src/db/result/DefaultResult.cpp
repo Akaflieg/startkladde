@@ -9,7 +9,7 @@
 
 #include <QVariant>
 
-DefaultResult::DefaultResult (QSqlQuery &query): query (query) {}
+DefaultResult::DefaultResult (QSqlQuery& query): query (query) {}
 DefaultResult::~DefaultResult () {}
 
 int        DefaultResult::at              ()          const          { return query.at              ();                }
@@ -26,4 +26,4 @@ bool       DefaultResult::seek            (int index, bool relative) { return qu
 int        DefaultResult::size            ()          const          { return query.size            ();                }
 QVariant   DefaultResult::value           (int index) const          { return query.value           (index);           }
 
-QSqlQuery &DefaultResult::getQuery () { return query; }
+//QSqlQuery &DefaultResult::getQuery () { return query; }

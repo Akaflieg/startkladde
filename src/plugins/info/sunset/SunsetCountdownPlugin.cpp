@@ -21,7 +21,7 @@
 REGISTER_PLUGIN (InfoPlugin, SunsetCountdownPlugin)
 SK_PLUGIN_DEFINITION (
 	SunsetCountdownPlugin,
-	notr ("{9735dfd7-ddfd-476c-affd-edbf196e0279}"),
+    QUuid::fromString(notr ("{9735dfd7-ddfd-476c-affd-edbf196e0279}")),
 	SunsetCountdownPlugin::tr ("Sunset countdown"),
 	SunsetCountdownPlugin::tr ("Displays the time remaining until sunset"))
 
