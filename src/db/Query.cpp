@@ -1,7 +1,5 @@
 #include "Query.h"
 
-#include <iostream> // remove
-
 #include <QVariant>
 #include <QSqlQuery>
 #include <QStringList>
@@ -9,7 +7,6 @@
 
 #include "src/io/AnsiColors.h"
 #include "src/text.h"
-#include "src/util/qString.h" // remove
 #include "src/i18n/notr.h"
 
 // ******************

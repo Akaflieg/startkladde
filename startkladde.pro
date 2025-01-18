@@ -10,7 +10,7 @@
 
 VERSION = 2.4.3
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
-CONFIG += c++17
+CONFIG += c++20
 
 #
 # Basic settings
