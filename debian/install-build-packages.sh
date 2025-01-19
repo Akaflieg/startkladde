@@ -3,7 +3,7 @@
 # build dependencies of 'startkladde'
 # for debian bookworm as of 2025-01-19
 
-apt-get install \
+apt-get --assume-yes install \
 	build-essential \
 	make \
 	qt6-base-dev \
