@@ -11,7 +11,7 @@ The E-Mail is for signing the repository with a gpg key.
 
 This makes only sense if your build system is Debian.
 
-On the build system either build the application with the special profile 'debpack' (by issuing `qmake "CONFIG+=debpack"`) or do it manually:
+On the build system either build the application with the special profile 'debpack' (by issuing `qmake "CONFIG+=debpack"`) or build the package manually after building the application:
 ```bash
 $ make-debian-package.sh <source-dir> <build-dir> <ppa-dir>
 ```
