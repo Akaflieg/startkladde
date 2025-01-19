@@ -435,7 +435,7 @@ QDate Flight::getEffectiveDate (QTimeZone tz, QDate defaultDate) const
 {
 	// TODO this assumes that every flight at least departs or lands here.
     if (departsHere () && getDeparted ()) {
-        return getDepartureTime ().toTimeZone(tz).date ();
+        return getDepartureTime().toTimeZone(tz).date ();
     }
 
     if (landsHere () && getLanded ()) {
@@ -447,7 +447,7 @@ QDate Flight::getEffectiveDate (QTimeZone tz, QDate defaultDate) const
 
 bool Flight::isCurrent () const
 {
-    return getEffectiveDate (QTimeZone(QTimeZone::LocalTime), QDate()) == QDate::currentDate();
+    return getEffectiveDate (QTimeZone::systemTimeZone(), QDate()) == QDate::currentDate();
 }
 
 

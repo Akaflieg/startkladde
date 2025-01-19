@@ -1,0 +1,14 @@
+services:
+  skbuild-container:
+    image: skbuild-image
+    build: .
+    user: ${UID}:${GID}
+    volumes:
+      - '..:/startkladde:ro'
+      - '${PPA_DIR}:/ppa'
+    command: ["sh", "-c", "
+      cd /build &&
+      qmake6 /startkladde &&
+      make &&
+      /startkladde/debian/make-debian-package.sh /startkladde /build /ppa
+    "]

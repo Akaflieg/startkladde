@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-VERSION = 2.4.3
+VERSION = 2.4.4
 DEFINES += APPLICATION_VERSION=\\\"$$VERSION\\\"
 CONFIG += c++20
 
@@ -32,8 +32,8 @@ QMAKE_CXXFLAGS += -Wall -Wextra -Wno-overloaded-virtual
 
 QT += widgets sql network xml serialport multimedia printsupport
 
-# disables all the APIs deprecated before Qt 6.1.0
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x061000
+# disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 
 #
