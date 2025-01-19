@@ -172,7 +172,7 @@ PilotLog *PilotLog::createNew (const QList<Flight> &flights, Cache &cache, Fligh
 	}
 
     QList<dbId> personIds=personIdSet.values ();
-	personIds.removeAll (0);
+    personIds.removeAll ((quint32) 0);
 
 	// Make a list of the people and sort it
 	QList<Person> people;

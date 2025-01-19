@@ -424,28 +424,30 @@ bool Flight::landTowflightNow (const QString &location, bool force)
 // ***********
 
 // TODO remove
-QDate Flight::effdatum (Qt::TimeSpec spec) const
+QDate Flight::effdatum (QTimeZone tz) const
 {
 	// TODO this assumes that every flight at least departs or lands here.
-	return effectiveTime ().toTimeSpec (spec).date ();
+    return effectiveTime ().toTimeZone(tz).date();
 }
 
 // TODO is defaultDate used, or should we return an invalid date?
-QDate Flight::getEffectiveDate (Qt::TimeSpec spec, QDate defaultDate) const
+QDate Flight::getEffectiveDate (QTimeZone tz, QDate defaultDate) const
 {
 	// TODO this assumes that every flight at least departs or lands here.
-	if (departsHere () && getDeparted ())
-		return getDepartureTime ().toTimeSpec (spec).date ();
+    if (departsHere () && getDeparted ()) {
+        return getDepartureTime ().toTimeZone(tz).date ();
+    }
 
-	if (landsHere () && getLanded ())
-		return getLandingTime ().toTimeSpec (spec).date ();
+    if (landsHere () && getLanded ()) {
+        return getLandingTime().toTimeZone(tz).date();
+    }
 
 	return defaultDate;
 }
 
 bool Flight::isCurrent () const
 {
-	return getEffectiveDate (Qt::LocalTime, QDate ())==QDate::currentDate ();
+    return getEffectiveDate (QTimeZone(QTimeZone::LocalTime), QDate()) == QDate::currentDate();
 }
 
 
@@ -1015,15 +1017,15 @@ Flight Flight::createFromResult (const Result &result)
     f.setDepartureLocation (result.value (11).toString   ());
     f.setLandingLocation   (result.value (12).toString   ());
     f.setNumLandings       (result.value (13).toInt      ());
-    f.setDepartureTime     (result.value (14).toDateTime ()); f.refToDepartureTime ().setTimeSpec (Qt::UTC); // not toUTC
-    f.setLandingTime       (result.value (15).toDateTime ()); f.refToLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setDepartureTime     (result.value (14).toDateTime ()); f.refToDepartureTime().setTimeZone(QTimeZone::utc()); // not toUTC
+    f.setLandingTime       (result.value (15).toDateTime ()); f.refToLandingTime().setTimeZone(QTimeZone::utc()); // not toUTC
 
     f.setPilotLastName    (result.value (16).toString ());
     f.setPilotFirstName   (result.value (17).toString ());
     f.setCopilotLastName  (result.value (18).toString ());
     f.setCopilotFirstName (result.value (19).toString ());
 
-    f.setTowflightLandingTime     (result.value (20).toDateTime ()); f.refToTowflightLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setTowflightLandingTime     (result.value (20).toDateTime ()); f.refToTowflightLandingTime ().setTimeZone(QTimeZone::utc()); // not toUTC
 	f.setTowflightMode            (modeFromDb (
                                    result.value (21).toString   ()));
     f.setTowflightLandingLocation (result.value (22).toString   ());
@@ -1065,15 +1067,15 @@ Flight Flight::createFromDataMap(const QMap<QString,QString> map)
     f.setDepartureLocation (map["departure_location"]);
     f.setLandingLocation   (map["landing_location"]);
     f.setNumLandings       (map["num_landings"].toInt());
-    f.setDepartureTime     (QDateTime::fromString(map["departure_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToDepartureTime ().setTimeSpec (Qt::UTC); // not toUTC
-    f.setLandingTime       (QDateTime::fromString(map["landing_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setDepartureTime     (QDateTime::fromString(map["departure_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToDepartureTime ().setTimeZone(QTimeZone::utc()); // not toUTC
+    f.setLandingTime       (QDateTime::fromString(map["landing_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToLandingTime ().setTimeZone(QTimeZone::utc()); // not toUTC
 
     f.setPilotLastName    (map["pilot_last_name"]);
     f.setPilotFirstName   (map["pilot_first_name"]);
     f.setCopilotLastName  (map["copilot_last_name"]);
     f.setCopilotFirstName (map["copilot_first_name"]);
 
-    f.setTowflightLandingTime     (QDateTime::fromString(map["towflight_landing_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToTowflightLandingTime ().setTimeSpec (Qt::UTC); // not toUTC
+    f.setTowflightLandingTime     (QDateTime::fromString(map["towflight_landing_time"], notr("yyyy-MM-dd hh:mm:ss"))); f.refToTowflightLandingTime().setTimeZone(QTimeZone::utc()); // not toUTC
     f.setTowflightMode            (modeFromDb(map["towflight_mode"]));
     f.setTowflightLandingLocation (map["towflight_landing_location"]);
     f.setTowplaneId               (map["towplane_id"].toLongLong());

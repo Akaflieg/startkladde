@@ -889,7 +889,7 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 
 	if (!repeat) ui.commentInput->setText (flight.getComments ());
 	ui.accountingNoteInput->setEditText (flight.getAccountingNotes ());
-	ui.dateInput->setDate (flight.getEffectiveDate (Qt::UTC, QDate::currentDate ()));
+    ui.dateInput->setDate (flight.getEffectiveDate (QTimeZone::utc(), QDate::currentDate ()));
 
 #undef PLANE
 #undef PERSON
@@ -951,7 +951,7 @@ Flight FlightWindow::determineFlightBasic ()
 	// Setting the times requires combining the date and time fields
 	QDate date= (isDateActive()) ? (getCurrentDate ()) : QDate::currentDate ();
 	// TODO secs=0
-#define SET_TIME(active, setter, value) do { if (active) setter (QDateTime (date, value, Qt::UTC)); else setter (QDateTime ()); } while (0)
+#define SET_TIME(active, setter, value) do { if (active) setter (QDateTime (date, value, QTimeZone::utc())); else setter (QDateTime ()); } while (0)
 	SET_TIME (isDepartureTimeActive        (), flight.setDepartureTime,        getCurrentDepartureTime        ());
 	SET_TIME (isLandingTimeActive          (), flight.setLandingTime,          getCurrentLandingTime          ());
 	SET_TIME (isTowflightLandingTimeActive (), flight.setTowflightLandingTime, getCurrentTowflightLandingTime ());

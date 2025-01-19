@@ -268,7 +268,7 @@ PlaneLog *PlaneLog::createNew (const QList<Flight> &flights, Cache &cache)
 			planeIdSet.insert (flight.getPlaneId ());
 
     QList<dbId> planeIds=planeIdSet.values ();
-	planeIds.removeAll (0);
+    planeIds.removeAll((quint32) 0);
 
 	// Make a list of the planes and sort it
 	QList<Plane> planes;

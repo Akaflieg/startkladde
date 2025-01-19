@@ -143,20 +143,14 @@ bool TranslationManager::loadTranslation (QTranslator &translator, const QString
  *
  * @return true, indicating success (unloading cannot fail)
  */
-bool TranslationManager::unload (bool force)
-{
-	if (currentLocale!="" || force)
-	{
-		// Output a message
-//		std::cout << notr ("Unloading translation") << std::endl;
-
-		appTranslator.load ("");
-		qtTranslator .load ("");
-
-		currentLocale="";
-	}
-
-	return true;
+bool TranslationManager::unload (bool force) {
+    if (currentLocale != "" || force) {
+        bool success = appTranslator.load("") && qtTranslator.load("");
+        currentLocale = "";
+        return success;
+    } else {
+        return true;
+    }
 }
 
 /**
