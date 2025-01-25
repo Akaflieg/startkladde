@@ -67,7 +67,7 @@ void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     args.insert("callsign", flight.callsign);
     if (!flight.pilotname.isEmpty())        args.insert("pilotname", flight.pilotname);
     if (!flight.attendantname.isEmpty())    args.insert("attendantname", flight.attendantname);
-    if (!flight.supervisorname.isEmpty())   args.insert("finame", flight.supervisorname);
+    if (flight.supervisorid > 0)            args.insert("uidfi", QString::number(flight.supervisorid));
     if (!flight.starttype.isEmpty())        args.insert("starttype", flight.starttype);
     if (!flight.departurelocation.isEmpty())args.insert("departurelocation", flight.departurelocation);
     if (!flight.arrivallocation.isEmpty())  args.insert("arrivallocation", flight.arrivallocation);
@@ -106,7 +106,7 @@ void VereinsfliegerSync::editflight (VereinsfliegerFlight& flight)
     args.insert("callsign", flight.callsign);
     args.insert("pilotname", flight.pilotname);
     args.insert("attendantname", flight.attendantname);
-    args.insert("finame", flight.supervisorname);
+    args.insert("uidfi", QString::number(flight.supervisorid));
     args.insert("starttype", flight.starttype);
     args.insert("departurelocation", flight.departurelocation);
     args.insert("arrivallocation", flight.arrivallocation);

@@ -11,6 +11,7 @@ VereinsfliegerFlight::VereinsfliegerFlight()
     ftid = 0;
     towheight = 0;
     towtime = 0;
+    supervisorid = 0;
 }
 
 VereinsfliegerFlight::VereinsfliegerFlight(const VereinsfliegerFlight& f) {
@@ -28,7 +29,7 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->callsign = f.callsign;
     this->pilotname = f.pilotname;
     this->attendantname = f.attendantname;
-    this->supervisorname = f.supervisorname;
+    this->supervisorid = f.supervisorid;
     this->starttype = f.starttype;
     this->departuretime = f.departuretime;
     this->departurelocation = f.departurelocation;
@@ -66,7 +67,11 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
 
     if (idValid(flight.getSupervisorId())) {
         Person supervisor = dbManager->getCache().getObject<Person>(flight.getSupervisorId());
-        result.supervisorname = supervisor.lastName.trimmed() + ", " + supervisor.firstName.trimmed();
+
+        QRegularExpressionMatch m = QRegularExpression("^[0-9]+$").match(supervisor.clubId);
+        if (!supervisor.clubId.isEmpty() && m.hasMatch()) {
+            result.supervisorid = supervisor.clubId.toInt();
+        }
     }
 
     if (idValid(flight.getLaunchMethodId()))
@@ -141,7 +146,7 @@ void VereinsfliegerFlight::readJson(const QJsonObject &json) {
     callsign = json["callsign"].toString();
     pilotname = json["pilotname"].toString();
     attendantname = json["attendantname"].toString();
-    supervisorname = json["supervisorname"].toString();
+    supervisorid = json["supervisorid"].toInt();
     starttype = json["starttype"].toString();
     departuretime = QDateTime::fromString(json["departuretime"].toString(), Qt::ISODate);
     departurelocation = json["departurelocation"].toString();
@@ -163,7 +168,7 @@ void VereinsfliegerFlight::writeJson(QJsonObject &json) const {
     json["callsign"] = callsign;
     json["pilotname"] = pilotname;
     json["attendantname"] = attendantname;
-    json["supervisorname"] = supervisorname;
+    json["supervisorid"] = supervisorid;
     json["starttype"] = starttype;
     json["departuretime"] = departuretime.toString(Qt::ISODate);
     json["departurelocation"] = departurelocation;

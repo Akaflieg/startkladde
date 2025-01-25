@@ -25,7 +25,7 @@ public:
     QString callsign;
     QString pilotname;          // Nachname, Vorname
     QString attendantname;      // Nachname, Vorname
-    QString supervisorname;     // Nachname, Vorname
+    int supervisorid;           // ID des Flugauftraggebers
     QString starttype;          // E=Eigenstart, W=Windenstart, F=F-Schlepp
     QDateTime departuretime;    // yyyy-mm-dd HH:MM
     QString departurelocation;
