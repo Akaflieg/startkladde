@@ -11,7 +11,10 @@ VereinsfliegerFlight::VereinsfliegerFlight()
     ftid = 0;
     towheight = 0;
     towtime = 0;
-    supervisorid = 0;
+
+    pilotuid = 0;
+    attendantuid = 0;
+    supervisoruid = 0;
 }
 
 VereinsfliegerFlight::VereinsfliegerFlight(const VereinsfliegerFlight& f) {
@@ -28,8 +31,10 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->vfid = f.vfid;
     this->callsign = f.callsign;
     this->pilotname = f.pilotname;
+    this->pilotuid = f.pilotuid;
     this->attendantname = f.attendantname;
-    this->supervisorid = f.supervisorid;
+    this->attendantuid = f.attendantuid;
+    this->supervisoruid = f.supervisoruid;
     this->starttype = f.starttype;
     this->departuretime = f.departuretime;
     this->departurelocation = f.departurelocation;
@@ -57,20 +62,26 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
 
     if (idValid(flight.getPilotId())) {
         Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
-        result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
+        if (pilot.vfid > 0) {
+            result.pilotuid = pilot.vfid;
+        } else {
+            result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
+        }
     }
 
     if (idValid(flight.getCopilotId()) && flight.getType() != FlightBase::typeTraining1) {
         Person copilot = dbManager->getCache().getObject<Person>(flight.getCopilotId());
-        result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
+        if (copilot.vfid > 0) {
+            result.attendantuid = copilot.vfid;
+        } else {
+            result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
+        }
     }
 
     if (idValid(flight.getSupervisorId())) {
         Person supervisor = dbManager->getCache().getObject<Person>(flight.getSupervisorId());
-
-        QRegularExpressionMatch m = QRegularExpression("^[0-9]+$").match(supervisor.clubId);
-        if (!supervisor.clubId.isEmpty() && m.hasMatch()) {
-            result.supervisorid = supervisor.clubId.toInt();
+        if (supervisor.vfid > 0) {
+            result.supervisoruid = supervisor.vfid;
         }
     }
 
@@ -145,8 +156,10 @@ void VereinsfliegerFlight::readJson(const QJsonObject &json) {
     vfid = json["vfid"].toInt();
     callsign = json["callsign"].toString();
     pilotname = json["pilotname"].toString();
+    pilotuid = json["pilotuid"].toString().toULongLong();
     attendantname = json["attendantname"].toString();
-    supervisorid = json["supervisorid"].toInt();
+    attendantuid = json["attendantuid"].toString().toULongLong();
+    supervisoruid = json["supervisoruid"].toString().toULongLong();
     starttype = json["starttype"].toString();
     departuretime = QDateTime::fromString(json["departuretime"].toString(), Qt::ISODate);
     departurelocation = json["departurelocation"].toString();
@@ -167,8 +180,10 @@ void VereinsfliegerFlight::writeJson(QJsonObject &json) const {
     json["vfid"] = vfid;
     json["callsign"] = callsign;
     json["pilotname"] = pilotname;
+    json["pilotuid"] = QString::number(pilotuid);
     json["attendantname"] = attendantname;
-    json["supervisorid"] = supervisorid;
+    json["attendantuid"] = QString::number(attendantuid);
+    json["supervisoruid"] = QString::number(supervisoruid);
     json["starttype"] = starttype;
     json["departuretime"] = departuretime.toString(Qt::ISODate);
     json["departurelocation"] = departurelocation;

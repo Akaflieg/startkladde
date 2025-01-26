@@ -7,9 +7,7 @@
 #include "src/text.h"
 #include "src/db/Query.h"
 #include "src/db/result/Result.h"
-#include "src/util/bool.h"
 #include "src/util/qDate.h"
-#include "src/util/qString.h"
 #include "src/i18n/notr.h"
 
 
@@ -55,12 +53,13 @@ bool Person::operator< (const Person &o) const
 
 QString Person::toString () const
 {
-	return qnotr ("id=%1, lastName=%2, firstName=%3, club=%4, clubId=%5, medicalValidity=%6, checkMedical=%7")
+    return qnotr ("id=%1, lastName=%2, firstName=%3, club=%4, clubId=%5, vfid=%6, medicalValidity=%7, checkMedical=%8")
 		.arg (id)
 		.arg (lastName)
 		.arg (firstName)
 		.arg (club)
 		.arg (clubId)
+        .arg (vfid)
 		.arg (medicalValidity.toString ())
 		.arg (checkMedical)
 		;
@@ -141,7 +140,8 @@ QVariant Person::DefaultObjectModel::displayHeaderData (int column) const
         case 5: return qApp->translate ("Person::DefaultObjectModel", "Check medical");
         case 6: return qApp->translate ("Person::DefaultObjectModel", "Comments");
         case 7: return qApp->translate ("Person::DefaultObjectModel", "Club ID");
-        case 8: return qApp->translate ("Person::DefaultObjectModel", "ID");
+        case 8: return qApp->translate ("Person::DefaultObjectModel", "Vereinsflieger ID");
+        case 9: return qApp->translate ("Person::DefaultObjectModel", "ID");
 	}
 
 	assert (false);
@@ -164,7 +164,8 @@ QVariant Person::DefaultObjectModel::displayData (const Person &object, int colu
 				qApp->translate ("Person", "No");
         case 6: return object.comments;
         case 7: return object.clubId;
-        case 8: return object.id;
+        case 8: return object.vfid > 0 ? QString::number(object.vfid) : QString();
+        case 9: return object.id;
 	}
 
 	assert (false);
@@ -195,7 +196,7 @@ QString Person::dbTableName ()
 
 QString Person::selectColumnList ()
 {
-    return notr ("id,last_name,first_name,nickname,club,club_id,comments,medical_validity,check_medical_validity");
+    return notr ("id,last_name,first_name,nickname,club,club_id,vfid,comments,medical_validity,check_medical_validity");
 }
 
 Person Person::createFromResult (const Result &result)
@@ -207,9 +208,10 @@ Person Person::createFromResult (const Result &result)
     p.nickname            =result.value (3).toString ();
     p.club                =result.value (4).toString ();
     p.clubId              =result.value (5).toString ();
-    p.comments            =result.value (6).toString ();
-    p.medicalValidity     =result.value (7).toDate ();
-    p.checkMedical        =result.value (8).toBool ();
+    p.vfid                =result.value (6).toULongLong();
+    p.comments            =result.value (7).toString ();
+    p.medicalValidity     =result.value (8).toDate ();
+    p.checkMedical        =result.value (9).toBool ();
 
 	return p;
 }
@@ -223,6 +225,7 @@ Person Person::createFromDataMap(const QMap<QString,QString> map)
     p.nickname = map["nickname"];
     p.club = map["club"];
     p.clubId = map["club_id"];
+    p.vfid = map["vfid"].toInt();
     p.comments = map["comments"];
     p.medicalValidity = QDate::fromString(map["medical_validity"]);
     p.checkMedical = map["check_medical_validity"].toInt();
@@ -232,12 +235,12 @@ Person Person::createFromDataMap(const QMap<QString,QString> map)
 
 QString Person::insertColumnList ()
 {
-    return notr ("last_name,first_name,nickname,club,club_id,comments,medical_validity,check_medical_validity");
+    return notr ("last_name,first_name,nickname,club,club_id,vfid,comments,medical_validity,check_medical_validity");
 }
 
 QString Person::insertPlaceholderList ()
 {
-    return notr ("?,?,?,?,?,?,?,?");
+    return notr ("?,?,?,?,?,?,?,?,?");
 }
 
 void Person::bindValues (Query &q) const
@@ -247,6 +250,7 @@ void Person::bindValues (Query &q) const
     q.bind (nickname);
 	q.bind (club);
 	q.bind (clubId);
+    q.bind (vfid);
 	q.bind (comments);
 	q.bind (medicalValidity);
 	q.bind (checkMedical);

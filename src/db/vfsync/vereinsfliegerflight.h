@@ -24,8 +24,10 @@ public:
     qlonglong vfid;
     QString callsign;
     QString pilotname;          // Nachname, Vorname
+    qulonglong pilotuid;        // if > 0, this uid is preferred over name matching
     QString attendantname;      // Nachname, Vorname
-    int supervisorid;           // ID des Flugauftraggebers
+    qulonglong attendantuid;    // if > 0, this uid is preferred over name matching
+    qulonglong supervisoruid;   // ID des Flugauftraggebers
     QString starttype;          // E=Eigenstart, W=Windenstart, F=F-Schlepp
     QDateTime departuretime;    // yyyy-mm-dd HH:MM
     QString departurelocation;

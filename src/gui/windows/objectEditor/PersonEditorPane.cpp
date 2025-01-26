@@ -4,8 +4,6 @@
 #include "src/model/Person.h"
 #include "src/text.h"
 #include "src/config/Settings.h"
-#include "src/util/qString.h"
-#include "src/i18n/notr.h"
 #include "src/gui/PasswordPermission.h"
 
 /*
@@ -159,6 +157,7 @@ void PersonEditorPane::objectToFields (const Person &person)
 		ui.medicalValidityUnknownCheckbox->setChecked (true);
 	}
 	ui.clubIdInput->setText (person.clubId);
+    ui.vfidInput->setText(person.vfid > 0 ? QString::number(person.vfid) : QString());
 }
 
 QDate PersonEditorPane::getEffectiveMedicalValidity ()
@@ -181,6 +180,8 @@ void PersonEditorPane::fieldsToObject (Person &person, bool performChecks)
 		}
 	}
 
+    bool vfidOk;
+
 	person.lastName             =ui.lastNameInput       ->text ().simplified ();
 	person.firstName            =ui.firstNameInput      ->text ().simplified ();
     person.nickname             =ui.nicknameInput       ->text ().simplified ();
@@ -189,10 +190,16 @@ void PersonEditorPane::fieldsToObject (Person &person, bool performChecks)
 	person.checkMedical         =ui.checkMedicalInput   ->currentItemData ().toBool ();
 	person.medicalValidity      =getEffectiveMedicalValidity ();
 	person.clubId               =ui.clubIdInput         ->text ();
+    person.vfid                 =ui.vfidInput           ->text ().toULongLong(&vfidOk);
 
 	if (!performChecks) return;
 
 	// Error checks
+
+    if (!ui.vfidInput->text().isEmpty() && !vfidOk) {
+        errorCheck(tr ("Vereinsflieger ID invalid. Must be a positive integer."),
+            ui.vfidInput);
+    }
 
 	if (isNone (person.lastName))
 		errorCheck (tr ("Last name not specified."),

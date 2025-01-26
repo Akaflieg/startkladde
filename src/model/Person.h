@@ -44,6 +44,7 @@ class Person: public Entity
         QString nickname;
 		QString club;
 		QString clubId;
+        qulonglong vfid;
 		bool checkMedical;
 		QDate medicalValidity;
 

@@ -65,9 +65,17 @@ void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     QMap<QString, QString> args;
 
     args.insert("callsign", flight.callsign);
-    if (!flight.pilotname.isEmpty())        args.insert("pilotname", flight.pilotname);
-    if (!flight.attendantname.isEmpty())    args.insert("attendantname", flight.attendantname);
-    if (flight.supervisorid > 0)            args.insert("uidfi", QString::number(flight.supervisorid));
+    if (flight.pilotuid > 0) {
+        args.insert("uidpilot", QString::number(flight.pilotuid));
+    } else if (!flight.pilotname.isEmpty()) {
+        args.insert("pilotname", flight.pilotname);
+    }
+    if (flight.attendantuid > 0) {
+        args.insert("uidattendant", QString::number(flight.attendantuid));
+    } else if (!flight.attendantname.isEmpty()) {
+        args.insert("attendantname", flight.attendantname);
+    }
+    if (flight.supervisoruid > 0)            args.insert("uidfi", QString::number(flight.supervisoruid));
     if (!flight.starttype.isEmpty())        args.insert("starttype", flight.starttype);
     if (!flight.departurelocation.isEmpty())args.insert("departurelocation", flight.departurelocation);
     if (!flight.arrivallocation.isEmpty())  args.insert("arrivallocation", flight.arrivallocation);
@@ -104,9 +112,17 @@ void VereinsfliegerSync::editflight (VereinsfliegerFlight& flight)
     // when we edit flight, transfer all data to make sure all fields are overwritten
     // example: copilot has been removed
     args.insert("callsign", flight.callsign);
-    args.insert("pilotname", flight.pilotname);
-    args.insert("attendantname", flight.attendantname);
-    args.insert("uidfi", QString::number(flight.supervisorid));
+    if (flight.pilotuid > 0) {
+        args.insert("uidpilot", QString::number(flight.pilotuid));
+    } else if (!flight.pilotname.isEmpty()) {
+        args.insert("pilotname", flight.pilotname);
+    }
+    if (flight.attendantuid > 0) {
+        args.insert("uidattendant", QString::number(flight.attendantuid));
+    } else if (!flight.attendantname.isEmpty()) {
+        args.insert("attendantname", flight.attendantname);
+    }
+    args.insert("uidfi", QString::number(flight.supervisoruid));
     args.insert("starttype", flight.starttype);
     args.insert("departurelocation", flight.departurelocation);
     args.insert("arrivallocation", flight.arrivallocation);
