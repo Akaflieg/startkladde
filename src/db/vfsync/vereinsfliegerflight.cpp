@@ -5,6 +5,7 @@
 
 VereinsfliegerFlight::VereinsfliegerFlight()
 {
+    id = 0;
     vfid = 0;
     landingcount = 0;
     chargemode = 0;
@@ -50,7 +51,7 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->towpilotname = f.towpilotname;
 }
 
-VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbManager) {
+VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbManager) : VereinsfliegerFlight() {
     VereinsfliegerFlight& result = *this;
     result.id = flight.getId();
     result.vfid = flight.getVfId();

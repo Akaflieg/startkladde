@@ -168,7 +168,6 @@ int VereinsfliegerSync::signout()
 {
     QMap<QString,QString> args;
     ReplyData reply = del("auth/signout", args);
-    qDebug() << reply.replyString;
 
     if (reply.cancelled) {
         return 2;
@@ -249,6 +248,8 @@ ReplyData VereinsfliegerSync::post(QString service, QMap<QString,QString>& args)
             params.addQueryItem(key, args.value(key));
         }
     }
+
+    qDebug() << "POST" << service << "FORM" << params.toString();
 
     QNetworkReply *reply = NULL;
     reply = manager->post(request, params.query().toUtf8());
