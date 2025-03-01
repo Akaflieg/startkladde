@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.5.0 (März 2025)
+* Umstellung auf QT6
+* Feature: Die Vereinsflieger-ID von Personen kann angegeben werden. Beim Hochladen der Flüge zu Vereinsflieger wird dann die ID der Person verwendet und nicht das Matching über den Namen hergestellt.
+
 ## Version 2.4.3 (Mai 2024)
 * Bugfix: Copilot wird bei einsitzigen Schulungsflügen jetzt auf keinen Fall hochgeladen
 
