@@ -151,7 +151,7 @@ QList<InfoPlugin *> Settings::readInfoPlugins ()
 			s.setArrayIndex (i);
 
 			QString id=s.value (notr ("id")).toString ();
-			InfoPlugin *plugin=factory.createPlugin<InfoPlugin> (id);
+            InfoPlugin *plugin=factory.createPlugin<InfoPlugin> (QUuid::fromString(id));
 
 			// TODO better handling if not found
 			if (plugin)

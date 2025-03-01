@@ -28,7 +28,7 @@
 #include <QStatusBar>
 #include <QCloseEvent>
 #include <QScrollBar>
-#include <QSound>
+#include <QSoundEffect>
 #include <QWidget> // remove
 
 // TODO many dependencies - split
@@ -396,7 +396,7 @@ void MainWindow::setupPlugins ()
 
 	weatherPlugin=NULL; // Deleted in terminatePlugins
 	if (s.weatherPluginEnabled && !isBlank (s.weatherPluginId))
-		weatherPlugin=PluginFactory::getInstance ().createWeatherPlugin (s.weatherPluginId, s.weatherPluginCommand);
+        weatherPlugin=PluginFactory::getInstance ().createWeatherPlugin (QUuid::fromString(s.weatherPluginId), s.weatherPluginCommand);
 
 	ui.weatherFrame->setVisible (weatherPlugin!=NULL);
 	if (weatherPlugin)
@@ -1645,7 +1645,7 @@ void MainWindow::weatherWidget_doubleClicked ()
 		if (s.weatherWindowEnabled && !isBlank (s.weatherWindowPluginId))
 		{
 			// The plugin will be deleted by the weather dialog
-			WeatherPlugin *weatherDialogPlugin=PluginFactory::getInstance ().createWeatherPlugin (s.weatherWindowPluginId, s.weatherWindowCommand);
+            WeatherPlugin *weatherDialogPlugin=PluginFactory::getInstance ().createWeatherPlugin (QUuid::fromString(s.weatherWindowPluginId), s.weatherWindowCommand);
 
 			if (weatherDialogPlugin)
 			{
@@ -2897,10 +2897,14 @@ void MainWindow::on_encodeFlarmNetFileAction_triggered ()
 
 void MainWindow::playDepartedSound ()
 {
-    QSound::play(":/snd_takeoff");
+    QSoundEffect snd;
+    snd.setSource(QUrl::fromLocalFile(":/snd_takeoff"));
+    snd.play();
 }
 
 void MainWindow::playLandedSound ()
 {
-    QSound::play(":/snd_landing");
+    QSoundEffect snd;
+    snd.setSource(QUrl::fromLocalFile(":/snd_landing"));
+    snd.play();
 }

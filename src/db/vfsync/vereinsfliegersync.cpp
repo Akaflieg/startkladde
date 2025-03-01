@@ -65,9 +65,17 @@ void VereinsfliegerSync::addflight(VereinsfliegerFlight& flight)
     QMap<QString, QString> args;
 
     args.insert("callsign", flight.callsign);
-    if (!flight.pilotname.isEmpty())        args.insert("pilotname", flight.pilotname);
-    if (!flight.attendantname.isEmpty())    args.insert("attendantname", flight.attendantname);
-    if (!flight.supervisorname.isEmpty())   args.insert("finame", flight.supervisorname);
+    if (flight.pilotuid > 0) {
+        args.insert("uidpilot", QString::number(flight.pilotuid));
+    } else if (!flight.pilotname.isEmpty()) {
+        args.insert("pilotname", flight.pilotname);
+    }
+    if (flight.attendantuid > 0) {
+        args.insert("uidattendant", QString::number(flight.attendantuid));
+    } else if (!flight.attendantname.isEmpty()) {
+        args.insert("attendantname", flight.attendantname);
+    }
+    if (flight.supervisoruid > 0)            args.insert("uidfi", QString::number(flight.supervisoruid));
     if (!flight.starttype.isEmpty())        args.insert("starttype", flight.starttype);
     if (!flight.departurelocation.isEmpty())args.insert("departurelocation", flight.departurelocation);
     if (!flight.arrivallocation.isEmpty())  args.insert("arrivallocation", flight.arrivallocation);
@@ -104,9 +112,17 @@ void VereinsfliegerSync::editflight (VereinsfliegerFlight& flight)
     // when we edit flight, transfer all data to make sure all fields are overwritten
     // example: copilot has been removed
     args.insert("callsign", flight.callsign);
-    args.insert("pilotname", flight.pilotname);
-    args.insert("attendantname", flight.attendantname);
-    args.insert("finame", flight.supervisorname);
+    if (flight.pilotuid > 0) {
+        args.insert("uidpilot", QString::number(flight.pilotuid));
+    } else if (!flight.pilotname.isEmpty()) {
+        args.insert("pilotname", flight.pilotname);
+    }
+    if (flight.attendantuid > 0) {
+        args.insert("uidattendant", QString::number(flight.attendantuid));
+    } else if (!flight.attendantname.isEmpty()) {
+        args.insert("attendantname", flight.attendantname);
+    }
+    args.insert("uidfi", QString::number(flight.supervisoruid));
     args.insert("starttype", flight.starttype);
     args.insert("departurelocation", flight.departurelocation);
     args.insert("arrivallocation", flight.arrivallocation);
@@ -152,7 +168,6 @@ int VereinsfliegerSync::signout()
 {
     QMap<QString,QString> args;
     ReplyData reply = del("auth/signout", args);
-    qDebug() << reply.replyString;
 
     if (reply.cancelled) {
         return 2;
@@ -233,6 +248,8 @@ ReplyData VereinsfliegerSync::post(QString service, QMap<QString,QString>& args)
             params.addQueryItem(key, args.value(key));
         }
     }
+
+    qDebug() << "POST" << service << "FORM" << params.toString();
 
     QNetworkReply *reply = NULL;
     reply = manager->post(request, params.query().toUtf8());

@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # build dependencies of 'startkladde'
-# for debian bullseye as of 2022-02-11
+# for debian bookworm as of 2025-01-19
 
-apt-get install \
-build-essential \
-qtbase5-dev \
-libqt5serialport5-dev \
-qtmultimedia5-dev \
-qttools5-dev-tools \
-ruby \
-libmariadb-dev
+apt-get --assume-yes install \
+	build-essential \
+	make \
+	qt6-base-dev \
+	qt6-serialport-dev \
+	qt6-multimedia-dev \
+	qt6-l10n-tools \
+	ruby \
+	libmariadb-dev \
+	apt-utils
+

@@ -5,12 +5,17 @@
 
 VereinsfliegerFlight::VereinsfliegerFlight()
 {
+    id = 0;
     vfid = 0;
     landingcount = 0;
     chargemode = 0;
     ftid = 0;
     towheight = 0;
     towtime = 0;
+
+    pilotuid = 0;
+    attendantuid = 0;
+    supervisoruid = 0;
 }
 
 VereinsfliegerFlight::VereinsfliegerFlight(const VereinsfliegerFlight& f) {
@@ -27,8 +32,10 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->vfid = f.vfid;
     this->callsign = f.callsign;
     this->pilotname = f.pilotname;
+    this->pilotuid = f.pilotuid;
     this->attendantname = f.attendantname;
-    this->supervisorname = f.supervisorname;
+    this->attendantuid = f.attendantuid;
+    this->supervisoruid = f.supervisoruid;
     this->starttype = f.starttype;
     this->departuretime = f.departuretime;
     this->departurelocation = f.departurelocation;
@@ -44,7 +51,7 @@ void VereinsfliegerFlight::copyFrom(const VereinsfliegerFlight& f) {
     this->towpilotname = f.towpilotname;
 }
 
-VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbManager) {
+VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbManager) : VereinsfliegerFlight() {
     VereinsfliegerFlight& result = *this;
     result.id = flight.getId();
     result.vfid = flight.getVfId();
@@ -56,17 +63,27 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
 
     if (idValid(flight.getPilotId())) {
         Person pilot = dbManager->getCache().getObject<Person>(flight.getPilotId());
-        result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
+        if (pilot.vfid > 0) {
+            result.pilotuid = pilot.vfid;
+        } else {
+            result.pilotname = pilot.lastName.trimmed() + ", " + pilot.firstName.trimmed();
+        }
     }
 
     if (idValid(flight.getCopilotId()) && flight.getType() != FlightBase::typeTraining1) {
         Person copilot = dbManager->getCache().getObject<Person>(flight.getCopilotId());
-        result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
+        if (copilot.vfid > 0) {
+            result.attendantuid = copilot.vfid;
+        } else {
+            result.attendantname = copilot.lastName.trimmed() + ", " + copilot.firstName.trimmed();
+        }
     }
 
     if (idValid(flight.getSupervisorId())) {
         Person supervisor = dbManager->getCache().getObject<Person>(flight.getSupervisorId());
-        result.supervisorname = supervisor.lastName.trimmed() + ", " + supervisor.firstName.trimmed();
+        if (supervisor.vfid > 0) {
+            result.supervisoruid = supervisor.vfid;
+        }
     }
 
     if (idValid(flight.getLaunchMethodId()))
@@ -94,9 +111,12 @@ VereinsfliegerFlight::VereinsfliegerFlight(const Flight& flight, DbManager* dbMa
             result.towtime = flight.getDepartureTime().msecsTo(flight.getTowflightLandingTime()) / 60000;
 
             // Versuche, die Schlepphöhe aus dem Kommentartext herauszuholen
-            QRegExp rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe|ausklinkhoehe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
-            if (rx.indexIn(flight.getComments().toLower()) != -1) {
-                result.towheight = rx.cap(2).toInt();
+            QRegularExpression rx ("(schlepphöhe|schlepphoehe|hoehe|höhe|auf|ausklinkhöhe|ausklinkhoehe)?:?\\W*([0-9]+)\\W*(m|meter|mtr)");
+            QRegularExpressionMatch match =
+                rx.match(flight.getComments().toLower());
+
+            if (match.hasMatch()) {
+                result.towheight = match.captured(2).toInt();
             } else {
                 result.towheight = 0;
             }
@@ -137,8 +157,10 @@ void VereinsfliegerFlight::readJson(const QJsonObject &json) {
     vfid = json["vfid"].toInt();
     callsign = json["callsign"].toString();
     pilotname = json["pilotname"].toString();
+    pilotuid = json["pilotuid"].toString().toULongLong();
     attendantname = json["attendantname"].toString();
-    supervisorname = json["supervisorname"].toString();
+    attendantuid = json["attendantuid"].toString().toULongLong();
+    supervisoruid = json["supervisoruid"].toString().toULongLong();
     starttype = json["starttype"].toString();
     departuretime = QDateTime::fromString(json["departuretime"].toString(), Qt::ISODate);
     departurelocation = json["departurelocation"].toString();
@@ -159,8 +181,10 @@ void VereinsfliegerFlight::writeJson(QJsonObject &json) const {
     json["vfid"] = vfid;
     json["callsign"] = callsign;
     json["pilotname"] = pilotname;
+    json["pilotuid"] = QString::number(pilotuid);
     json["attendantname"] = attendantname;
-    json["supervisorname"] = supervisorname;
+    json["attendantuid"] = QString::number(attendantuid);
+    json["supervisoruid"] = QString::number(supervisoruid);
     json["starttype"] = starttype;
     json["departuretime"] = departuretime.toString(Qt::ISODate);
     json["departurelocation"] = departurelocation;

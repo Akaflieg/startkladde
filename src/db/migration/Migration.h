@@ -67,6 +67,7 @@ class Migration
     	static QString dataTypeDecimal   ();
     	static QString dataTypeFloat     ();
     	static QString dataTypeInteger   ();
+        static QString dataTypeLong      ();
     	static QString dataTypeString    ();
     	static QString dataTypeString16  (); // Non-rails
     	static QString dataTypeText      ();

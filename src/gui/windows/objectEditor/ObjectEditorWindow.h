@@ -36,7 +36,7 @@ template<class T> class ObjectEditorWindow: public ObjectEditorWindowBase
 {
 	public:
 		// Construction
-		ObjectEditorWindow (Mode mode, DbManager &manager, QWidget *parent=0, Qt::WindowFlags flags=0, ObjectEditorPaneData *paneData=NULL);
+        ObjectEditorWindow (Mode mode, DbManager &manager, QWidget *parent=0, Qt::WindowFlags flags={}, ObjectEditorPaneData *paneData=NULL);
 		virtual ~ObjectEditorWindow ();
 
 		// Invocation

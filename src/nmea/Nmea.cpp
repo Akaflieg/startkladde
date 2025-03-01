@@ -2,6 +2,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QTimeZone>
 
 /**
  * Private constructor, this class cannot be created
@@ -155,5 +156,5 @@ QTime Nmea::parseTime (const QString &value)
  */
 QDateTime Nmea::parseDateTime (const QString &dateValue, const QString &timeValue)
 {
-	return QDateTime (parseDate (dateValue), parseTime (timeValue), Qt::UTC);
+    return QDateTime (parseDate (dateValue), parseTime (timeValue), QTimeZone::utc());
 }

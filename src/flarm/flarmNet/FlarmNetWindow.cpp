@@ -91,7 +91,7 @@ void FlarmNetWindow::searchClear () {
 
 void FlarmNetWindow::searchTextChanged (const QString& search) {
         // qDebug () << "FlarmNetWindow::searchTextChanged: " << search << endl;
-        proxyModel->setFilterRegExp (QRegExp (search, Qt::CaseInsensitive, QRegExp::FixedString));
+        proxyModel->setFilterRegularExpression(QRegularExpression(QRegularExpression::escape(search), QRegularExpression::CaseInsensitiveOption));
         ui.clearButton->setVisible (!search.isEmpty());
 } 
 

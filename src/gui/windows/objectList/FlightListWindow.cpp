@@ -5,7 +5,6 @@
 #include <QSortFilterProxyModel>
 #include <QtAlgorithms>
 #include <QFileDialog>
-#include <QTextCodec>
 #include <QPrinter>
 #include <QTextDocument>
 
@@ -249,7 +248,6 @@ void FlightListWindow::exportToCSV(QString fileName) {
         return;
 
     // Get the settings from the dialog
-    const QTextCodec *codec=csvExportDialog.getSelectedCodec ();
     const QString &separator=csvExportDialog.getSeparator ();
 
     // Open the file
@@ -262,7 +260,7 @@ void FlightListWindow::exportToCSV(QString fileName) {
         Csv csv (*proxyModel, separator);
 
         // Convert and write the CSV
-        file.write (codec->fromUnicode (csv.toString ()));
+        file.write (csv.toString().toUtf8());
 
         // Close the file
         file.close ();

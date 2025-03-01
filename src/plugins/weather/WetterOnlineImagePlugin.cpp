@@ -8,7 +8,7 @@
 #include "WetterOnlineImagePlugin.h"
 
 #include <QImage>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "src/plugin/factory/PluginFactory.h"
 #include "src/net/Downloader.h"
@@ -20,7 +20,7 @@
 REGISTER_PLUGIN (WeatherPlugin, WetterOnlineImagePlugin)
 SK_PLUGIN_DEFINITION (
 	WetterOnlineImagePlugin,
-	notr ("{a00e31ec-6d3d-4221-91bd-751a2756937f}"),
+    QUuid::fromString(notr ("{a00e31ec-6d3d-4221-91bd-751a2756937f}")),
 	WetterOnlineImagePlugin::tr ("Wetter Online (image)"),
 	WetterOnlineImagePlugin::tr ("Displays a weather image from wetteronline.de"))
 
@@ -56,9 +56,9 @@ void WetterOnlineImagePlugin::downloadSucceeded (int state, QNetworkReply *reply
 		case stateIndexPage:
 		{
             QString s (reply->readAll());
-            QRegExp r ("src=\"(.{1,200})\" class=\"preloaded\"");
-            r.indexIn(s);
-            QString imagePath= r.cap(1);
+            QRegularExpression rx ("src=\"(.{1,200})\" class=\"preloaded\"");
+            auto rxm = rx.match(s);
+            QString imagePath= rxm.captured(1);
             if (isBlank (imagePath)) OUTPUT_AND_RETURN (tr ("Error: no radar image found"));
             QString imageUrl=qnotr ("http://www.wetteronline.de/%1").arg (imagePath);
             downloader->startDownload (stateImage, imageUrl);

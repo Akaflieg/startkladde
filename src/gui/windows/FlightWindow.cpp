@@ -6,7 +6,6 @@
 #include <QCompleter>
 #include <QShowEvent>
 #include <QPushButton>
-#include <QDesktopWidget>
 #include <QMenu>
 
 #include "src/util/color.h"
@@ -414,7 +413,7 @@ void FlightWindow::showEvent (QShowEvent *event)
 	// visible. However, this does not seem to work and the buttons may still
 	// be partly occluded by the task bar (but at least they are partially
     // visible).
-    int availableHeight=qApp->desktop ()->availableGeometry (this).height ();
+    int availableHeight=QGuiApplication::primaryScreen()->availableGeometry().height();
 	if (height ()>availableHeight-y ())
 		resize (width (), availableHeight-y ());
 
@@ -438,12 +437,12 @@ void FlightWindow::showEvent (QShowEvent *event)
 			if (verticalSpacing>0)
 				layout->setVerticalSpacing (verticalSpacing-1);
 
-			QMapIterator<QWidget *, SkLabel *> i (widgetLabelMap);
-			while (i.hasNext ())
+            QMultiMapIterator<QWidget *, SkLabel *> i (widgetLabelMap);
+            while (i.hasNext ())
 			{
 				i.next ();
 
-				QWidget *widget=i.key ();
+                QWidget *widget=i.key ();
 				SkLabel *label=i.value ();
 
 				// There may be multiple widgets associated with one label, for
@@ -890,7 +889,7 @@ void FlightWindow::flightToFields (const Flight &flight, bool repeat, dbId prese
 
 	if (!repeat) ui.commentInput->setText (flight.getComments ());
 	ui.accountingNoteInput->setEditText (flight.getAccountingNotes ());
-	ui.dateInput->setDate (flight.getEffectiveDate (Qt::UTC, QDate::currentDate ()));
+    ui.dateInput->setDate (flight.getEffectiveDate (QTimeZone::utc(), QDate::currentDate ()));
 
 #undef PLANE
 #undef PERSON
@@ -952,7 +951,7 @@ Flight FlightWindow::determineFlightBasic ()
 	// Setting the times requires combining the date and time fields
 	QDate date= (isDateActive()) ? (getCurrentDate ()) : QDate::currentDate ();
 	// TODO secs=0
-#define SET_TIME(active, setter, value) do { if (active) setter (QDateTime (date, value, Qt::UTC)); else setter (QDateTime ()); } while (0)
+#define SET_TIME(active, setter, value) do { if (active) setter (QDateTime (date, value, QTimeZone::utc())); else setter (QDateTime ()); } while (0)
 	SET_TIME (isDepartureTimeActive        (), flight.setDepartureTime,        getCurrentDepartureTime        ());
 	SET_TIME (isLandingTimeActive          (), flight.setLandingTime,          getCurrentLandingTime          ());
 	SET_TIME (isTowflightLandingTimeActive (), flight.setTowflightLandingTime, getCurrentTowflightLandingTime ());

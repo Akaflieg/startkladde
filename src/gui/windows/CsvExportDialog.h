@@ -13,18 +13,11 @@ class CsvExportDialog: public SkDialog<Ui::CsvExportDialogClass>
     	CsvExportDialog (QWidget *parent=0);
     	~CsvExportDialog ();
 
-    	int getSelectedMib ();
-    	QTextCodec *getSelectedCodec ();
     	QString getSeparator ();
 
     private slots:
     	void on_buttonBox_accepted ();
 
-
-	private:
-    	void addCodecEntry (int mib);
-
-    	int selectedMib;
 };
 
 #endif

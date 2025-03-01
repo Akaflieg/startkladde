@@ -169,18 +169,12 @@ Cunteenooe-a?]</translation>
         <translation type="unfinished">CSF oopshuns</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/CsvExportDialog.ui" line="32"/>
         <source>&amp;Encoding:</source>
-        <translation type="unfinished">&amp;Incudeeng:</translation>
+        <translation type="obsolete">&amp;Incudeeng:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/CsvExportDialog.ui" line="44"/>
+        <location filename="../src/gui/windows/CsvExportDialog.ui" line="34"/>
         <source>The column separator character. This is usually a comma, but other values, like semicolons, are also in use.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/windows/CsvExportDialog.ui" line="58"/>
-        <source>The encoding (character set) for the saved file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -775,13 +769,13 @@ Updete-a zee detebese-a noo?</translation>
         <translation type="unfinished">Prucess sterted</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/ExternalWeatherPlugin.cpp" line="94"/>
+        <location filename="../src/plugins/weather/ExternalWeatherPlugin.cpp" line="92"/>
         <source>Cannot load image:
 %1</source>
         <translation type="unfinished">Cunnut lued imege-a:%1</translation>
     </message>
     <message>
-        <location filename="../src/plugins/weather/ExternalWeatherPlugin.cpp" line="110"/>
+        <location filename="../src/plugins/weather/ExternalWeatherPlugin.cpp" line="107"/>
         <source>Cannot load animation:
 %1</source>
         <translation type="unfinished">Cunnut lued uneemeshun:%1</translation>
@@ -1456,282 +1450,282 @@ The file can be changed in the settings dialog.</source>
         <translation type="unfinished">Zee tooffleeght hes elreedy lunded.</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="514"/>
+        <location filename="../src/model/Flight.cpp" line="516"/>
         <source>No errors</source>
         <translation type="unfinished">Nu irrurs</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="516"/>
+        <location filename="../src/model/Flight.cpp" line="518"/>
         <source>Flight has no ID</source>
         <translation type="unfinished">Fleeght hes nu ID</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="518"/>
+        <location filename="../src/model/Flight.cpp" line="520"/>
         <source>No plane specified</source>
         <translation type="unfinished">Nu plune-a speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="522"/>
+        <location filename="../src/model/Flight.cpp" line="524"/>
         <source>The student&apos;s first name is missing</source>
         <translation type="unfinished">Zee stoodent&amp;epus;s furst neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="524"/>
+        <location filename="../src/model/Flight.cpp" line="526"/>
         <source>The pilot&apos;s first name is missing</source>
         <translation type="unfinished">Zee peelut&amp;epus;s furst neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="527"/>
+        <location filename="../src/model/Flight.cpp" line="529"/>
         <source>The student&apos;s last name is missing</source>
         <translation type="unfinished">Zee stoodent&amp;epus;s lest neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="529"/>
+        <location filename="../src/model/Flight.cpp" line="531"/>
         <source>The pilot&apos;s last name is missing</source>
         <translation type="unfinished">Zee peelut&amp;epus;s lest neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="532"/>
+        <location filename="../src/model/Flight.cpp" line="534"/>
         <source>The student is not identified</source>
         <translation type="unfinished">Zee stoodent is nut identeeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="534"/>
+        <location filename="../src/model/Flight.cpp" line="536"/>
         <source>The pilot is not identified</source>
         <translation type="unfinished">Zee peelut is nut identeeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="538"/>
+        <location filename="../src/model/Flight.cpp" line="540"/>
         <source>The flight instructor&apos;s first name is missing</source>
         <translation type="unfinished">Zee fleeght instrooctur&amp;epus;s furst neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="540"/>
+        <location filename="../src/model/Flight.cpp" line="542"/>
         <source>The copilot&apos;s first name is missing</source>
         <translation type="unfinished">Zee cupeelut&amp;epus;s furst neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="543"/>
+        <location filename="../src/model/Flight.cpp" line="545"/>
         <source>The flight instructor&apos;s last name is missing</source>
         <translation type="unfinished">Zee fleeght instrooctur&amp;epus;s lest neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="545"/>
+        <location filename="../src/model/Flight.cpp" line="547"/>
         <source>The copilot&apos;s last name is missing</source>
         <translation type="unfinished">Zee cupeelut&amp;epus;s lest neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="548"/>
+        <location filename="../src/model/Flight.cpp" line="550"/>
         <source>The flight instructor is not identified</source>
         <translation type="unfinished">Zee fleeght instrooctur is nut identeeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="550"/>
+        <location filename="../src/model/Flight.cpp" line="552"/>
         <source>The copilot is not identified</source>
         <translation type="unfinished">Zee cupeelut is nut identeeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="553"/>
+        <location filename="../src/model/Flight.cpp" line="555"/>
         <source>The towpilot&apos;s first name is missing</source>
         <translation type="unfinished">Zee toopeelut&amp;epus;s furst neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="555"/>
+        <location filename="../src/model/Flight.cpp" line="557"/>
         <source>The towpilot&apos;s last name is missing</source>
         <translation type="unfinished">Zee toopeelut&amp;epus;s lest neme-a is meessing</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="557"/>
+        <location filename="../src/model/Flight.cpp" line="559"/>
         <source>The towpilot is not identified</source>
         <translation type="unfinished">Zee toopeelut is nut identeeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="561"/>
+        <location filename="../src/model/Flight.cpp" line="563"/>
         <source>No student specified</source>
         <translation type="unfinished">Nu stoodent speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="563"/>
+        <location filename="../src/model/Flight.cpp" line="565"/>
         <source>No pilot specified</source>
         <translation type="unfinished">Nu peelut speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="567"/>
+        <location filename="../src/model/Flight.cpp" line="569"/>
         <source>Student and flight instructor are identical</source>
         <translation type="unfinished">Stoodent und fleeght instrooctur ere-a identeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="569"/>
+        <location filename="../src/model/Flight.cpp" line="571"/>
         <source>Pilot and copilot are identical</source>
         <translation type="unfinished">Peelut und cupeelut ere-a identeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="573"/>
+        <location filename="../src/model/Flight.cpp" line="575"/>
         <source>Student and towpilot are identical</source>
         <translation type="unfinished">Stoodent und toopeelut ere-a identeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="575"/>
+        <location filename="../src/model/Flight.cpp" line="577"/>
         <source>Pilot and towpilot are identical</source>
         <translation type="unfinished">Peelut und toopeelut ere-a identeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="577"/>
+        <location filename="../src/model/Flight.cpp" line="579"/>
         <source>Two-seated training without flight instructor</source>
         <translation type="unfinished">Tvu-seeted treeening veethuoot fleeght instrooctur</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="578"/>
+        <location filename="../src/model/Flight.cpp" line="580"/>
         <source>No copilot allowed</source>
         <translation type="unfinished">Nu cupeelut ellooed</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="579"/>
+        <location filename="../src/model/Flight.cpp" line="581"/>
         <source>Flight has landed but not departed</source>
         <translation type="unfinished">Fleeght hes lunded boot nut deperted</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="580"/>
+        <location filename="../src/model/Flight.cpp" line="582"/>
         <source>Landing before departure</source>
         <translation type="unfinished">Lundeeng beffure-a depertoore-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="581"/>
+        <location filename="../src/model/Flight.cpp" line="583"/>
         <source>No launch method specified</source>
         <translation type="unfinished">Nu loonch methud speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="582"/>
+        <location filename="../src/model/Flight.cpp" line="584"/>
         <source>No mode specified</source>
         <translation type="unfinished">Nu mude-a speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="583"/>
+        <location filename="../src/model/Flight.cpp" line="585"/>
         <source>No mode specified for towflight</source>
         <translation type="unfinished">Nu mude-a speceeffied fur tooffleeght</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="584"/>
+        <location filename="../src/model/Flight.cpp" line="586"/>
         <source>No flight type specified</source>
         <translation type="unfinished">Nu fleeght type-a speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="585"/>
+        <location filename="../src/model/Flight.cpp" line="587"/>
         <source>Negative number of landings</source>
         <translation type="unfinished">Negeteefe-a noomber ooff lundeengs</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="586"/>
+        <location filename="../src/model/Flight.cpp" line="588"/>
         <source>Flight has landed, but number of landings is zero</source>
         <translation type="unfinished">Fleeght hes lunded, boot noomber ooff lundeengs is zeru</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="587"/>
+        <location filename="../src/model/Flight.cpp" line="589"/>
         <source>Towflight has landed but not departed</source>
         <translation type="unfinished">Tooffleeght hes lunded boot nut deperted</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="588"/>
+        <location filename="../src/model/Flight.cpp" line="590"/>
         <source>Towflight landing before departure</source>
         <translation type="unfinished">Tooffleeght lundeeng beffure-a depertoore-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="589"/>
+        <location filename="../src/model/Flight.cpp" line="591"/>
         <source>Two-seated training in single-seater</source>
         <translation type="unfinished">Tvu-seeted treeening in seengle-a-seeter</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="590"/>
+        <location filename="../src/model/Flight.cpp" line="592"/>
         <source>No departure location specified</source>
         <translation type="unfinished">Nu depertoore-a luceshun speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="591"/>
+        <location filename="../src/model/Flight.cpp" line="593"/>
         <source>No landing location specified</source>
         <translation type="unfinished">Nu lundeeng luceshun speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="592"/>
+        <location filename="../src/model/Flight.cpp" line="594"/>
         <source>No landing location specified for towplane</source>
         <translation type="unfinished">Nu lundeeng luceshun speceeffied fur tooplune-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="593"/>
+        <location filename="../src/model/Flight.cpp" line="595"/>
         <source>Glider performs more than one landing</source>
         <translation type="unfinished">Gleeder perffurms mure-a thun oone-a lundeeng</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="594"/>
+        <location filename="../src/model/Flight.cpp" line="596"/>
         <source>Glider performs landing without landing time</source>
         <translation type="unfinished">Gleeder perffurms lundeeng veethuoot lundeeng teeme-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="595"/>
+        <location filename="../src/model/Flight.cpp" line="597"/>
         <source>Copilot in single-seater</source>
         <translation type="unfinished">Cupeelut in seengle-a-seeter</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="596"/>
+        <location filename="../src/model/Flight.cpp" line="598"/>
         <source>Passenger flight in single-seater</source>
         <translation type="unfinished">Pessenger fleeght in seengle-a-seeter</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="597"/>
+        <location filename="../src/model/Flight.cpp" line="599"/>
         <source>Glider performs self launch</source>
         <translation type="unfinished">Gleeder perffurms selff loonch</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="598"/>
+        <location filename="../src/model/Flight.cpp" line="600"/>
         <source>Number of landings is greater than zero without departure</source>
         <translation type="unfinished">Noomber ooff lundeengs is greeter thun zeru veethuoot depertoore-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="599"/>
+        <location filename="../src/model/Flight.cpp" line="601"/>
         <source>Landing location and departure location are identical</source>
         <translation type="unfinished">Lundeeng luceshun und depertoore-a luceshun ere-a identeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="600"/>
+        <location filename="../src/model/Flight.cpp" line="602"/>
         <source>Towplane not specified</source>
         <translation type="unfinished">Tooplune-a nut speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="601"/>
+        <location filename="../src/model/Flight.cpp" line="603"/>
         <source>Towplane is glider</source>
         <translation type="unfinished">Tooplune-a is gleeder</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="605"/>
+        <location filename="../src/model/Flight.cpp" line="607"/>
         <source>Unknown error</source>
         <translation type="unfinished">Unknoon irrur</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="904"/>
+        <location filename="../src/model/Flight.cpp" line="906"/>
         <source>Towflight for flight %1</source>
         <translation type="unfinished">Tooffleeght fur fleeght %1</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.cpp" line="905"/>
+        <location filename="../src/model/Flight.cpp" line="907"/>
         <source>(See glider flight)</source>
         <translation type="unfinished">(See-a gleeder fleeght)</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.h" line="95"/>
+        <location filename="../src/model/Flight.h" line="96"/>
         <source>Towpilot</source>
         <translation type="unfinished">Toopeelut</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.h" line="208"/>
+        <location filename="../src/model/Flight.h" line="209"/>
         <source>flight</source>
         <translation type="unfinished">fleeght</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.h" line="209"/>
+        <location filename="../src/model/Flight.h" line="210"/>
         <source>the flight</source>
         <translation type="unfinished">zee fleeght</translation>
     </message>
     <message>
-        <location filename="../src/model/Flight.h" line="210"/>
+        <location filename="../src/model/Flight.h" line="211"/>
         <source>flights</source>
         <translation type="unfinished">fleeghts</translation>
     </message>
@@ -1927,29 +1921,29 @@ The file can be changed in the settings dialog.</source>
 <context>
     <name>FlightListWindow</name>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="83"/>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="173"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="82"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="172"/>
         <source>Enter date</source>
         <translation type="unfinished">Inter dete-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="83"/>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="173"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="82"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="172"/>
         <source>Enter date:</source>
         <translation type="unfinished">Inter dete-a:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="137"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="136"/>
         <source> to </source>
         <translation type="unfinished"> tu </translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="140"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="139"/>
         <source>%1: no flights</source>
         <translation type="unfinished">%1: nu fleeghts</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="142"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="141"/>
         <source>%1: %n flight(s)</source>
         <translation type="unfinished">
             <numerusform>%1: %n fleeght</numerusform>
@@ -1957,36 +1951,36 @@ The file can be changed in the settings dialog.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="191"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="190"/>
         <source>FlightList_%1.csv</source>
         <comment>Filename</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="197"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="196"/>
         <source>FlightList_%1_%2.csv</source>
         <comment>Filename</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="201"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="200"/>
         <source>CSV files (*.csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="202"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="201"/>
         <source>PDF files (*.pdf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="204"/>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="273"/>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="313"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="203"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="271"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="311"/>
         <source>Export flight database</source>
         <translation type="unfinished">Ixpurt fleeght detebese-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="295"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="293"/>
         <source>Flight operations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1995,8 +1989,8 @@ The file can be changed in the settings dialog.</source>
         <translation type="obsolete">CSF feeles (*.csf);;Ell feeles (*)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="274"/>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="312"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="272"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="310"/>
         <source>%n flight(s) exported</source>
         <translation type="unfinished">
             <numerusform>%n fleeght ixpurted</numerusform>
@@ -2004,12 +1998,12 @@ The file can be changed in the settings dialog.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="280"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="278"/>
         <source>Exporting failed: %1</source>
         <translation type="unfinished">Ixpurteeng feeeled: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="282"/>
+        <location filename="../src/gui/windows/objectList/FlightListWindow.cpp" line="280"/>
         <source>Exporting failed</source>
         <translation type="unfinished">Ixpurteeng feeeled</translation>
     </message>
@@ -2332,237 +2326,237 @@ The file can be changed in the settings dialog.</source>
 <context>
     <name>FlightWindow</name>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="245"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="244"/>
         <source>Create flight</source>
         <translation type="unfinished">Creete-a fleeght</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="248"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="247"/>
         <source>Edit flight</source>
         <translation type="unfinished">Ideet fleeght</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="676"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="675"/>
         <source>None</source>
         <comment>Error list entries</comment>
         <translation type="unfinished">Nune-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="967"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="966"/>
         <source>Error</source>
         <translation type="unfinished">Irrur</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="982"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="981"/>
         <source>No launch method specified.</source>
         <translation type="unfinished">Nu loonch methud speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="986"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="985"/>
         <source>No departure location specified.</source>
         <translation type="unfinished">Nu depertoore-a luceshun speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="990"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="989"/>
         <source>No landing location specified.</source>
         <translation type="unfinished">Nu lundeeng luceshun speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="994"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="993"/>
         <source>Departure location and landing location are equal.</source>
         <translation type="unfinished">Depertoore-a luceshun und lundeeng luceshun ere-a iqooel.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="998"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="997"/>
         <source>Landing time before departure time.</source>
         <translation type="unfinished">Lundeeng teeme-a beffure-a depertoore-a teeme-a.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1002"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1001"/>
         <source>Landing time not specified, but departure time specified.</source>
         <translation type="unfinished">Lundeeng teeme-a nut speceeffied, boot depertoore-a teeme-a speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1006"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1005"/>
         <source>Landing time specified, but the number of landings is 0.</source>
         <translation type="unfinished">Lundeeng teeme-a speceeffied, boot zee noomber ooff lundeengs is 0.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1010"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1009"/>
         <source>Towplane landing location not specified.</source>
         <translation type="unfinished">Tooplune-a lundeeng luceshun nut speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1014"/>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1018"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1013"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1017"/>
         <source>Towflight landing time before departure time.</source>
         <translation type="unfinished">Tooffleeght lundeeng teeme-a beffure-a depertoore-a teeme-a.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1027"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1026"/>
         <source>Plane and towplane are identical.</source>
         <translation type="unfinished">Plune-a und tooplune-a ere-a identeecel.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1032"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1031"/>
         <source>According to the database, the plane %1 is a glider,
 but the number of landings is greater than one.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a gleeder,
 boot zee noomber ooff lundeengs is greeter thun oone-a.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1038"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1037"/>
         <source>According to the database, the plane %1 is a glider,
 but a landing was specified without landing time.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a gleeder,
 boot a lundeeng ves speceeffied veethuoot lundeeng teeme-a.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1044"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1043"/>
         <source>According to the database, the plane %1 is a glider,
 but the launch method is self launch.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a gleeder,
 boot zee loonch methud is selff loonch.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1050"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1049"/>
         <source>According to the database, the plane %1 is an airplane,
 but the launch method is not self launch.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is un eurplune-a,
 boot zee loonch methud is nut selff loonch.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1056"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1055"/>
         <source>According to the database, the plane %1 is a single seater,
 but the flight type is &quot;passenger flight&quot;.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a seengle-a seeter,
 boot zee fleeght type-a is &quot;pessenger fleeght&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1062"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1061"/>
         <source>According to the database, the plane %1 is a single seater,
 but the flight type is &quot;two-seated training&quot;.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a seengle-a seeter,
 boot zee fleeght type-a is &quot;tvu-seeted treeening&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1068"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1067"/>
         <source>According to the database, the towplane %1 (%2) is a glider.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee tooplune-a %1 (%2) is a gleeder.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1073"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1072"/>
         <source>According to the database, the plane %1 is still flying.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is steell flyeeng.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1078"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1077"/>
         <source>According to the database, the towplane %1 is still flying.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee tooplune-a %1 is steell flyeeng.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1112"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1111"/>
         <source>According to the database, the medical %1 expired on %2.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee medeecel %1 ixpured oon %2.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1118"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1117"/>
         <source>Medical check is activated, but the expiry date of the medical %1 is not known.</source>
         <translation type="unfinished">Medeecel check is ecteefeted, boot zee ixpury dete-a ooff zee medeecel %1 is nut knoon.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1129"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1128"/>
         <source>Pilot and copilot are identical.</source>
         <translation type="unfinished">Peelut und cupeelut ere-a identeecel.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1133"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1132"/>
         <source>Pilot and towpilot are identical.</source>
         <translation type="unfinished">Peelut und toopeelut ere-a identeecel.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1137"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1136"/>
         <source>Copilot and towpilot are identical.</source>
         <translation type="unfinished">Cupeelut und toopeelut ere-a identeecel.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1141"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1140"/>
         <source>Two-seated training without flight instructor.</source>
         <translation type="unfinished">Tvu-seeted treeening veethuoot fleeght instrooctur.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1145"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1144"/>
         <source>According to the database, the plane %1 is a single seater,
 but a copilot was specified.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee plune-a %1 is a seengle-a seeter,
 boot a cupeelut ves speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1151"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1150"/>
         <source>According to the database, the pilot %1 is still flying.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee peelut %1 is steell flyeeng.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1157"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1156"/>
         <source>According to the database, the copilot %1 is still flying.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee cupeelut %1 is steell flyeeng.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1163"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1162"/>
         <source>According to the database, the towpilot %1 is still flying.</source>
         <translation type="unfinished">Eccurdeeng tu zee detebese-a, zee toopeelut %1 is steell flyeeng.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1170"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1169"/>
         <source>of the student</source>
         <translation type="unfinished">ooff zee stoodent</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1170"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1169"/>
         <source>of the pilot</source>
         <translation type="unfinished">ooff zee peelut</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1175"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1174"/>
         <source>of the flight instructor</source>
         <translation type="unfinished">ooff zee fleeght instrooctur</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1183"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1182"/>
         <source>plane</source>
         <translation type="unfinished">plune-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1187"/>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1195"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1186"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1194"/>
         <source>towplane</source>
         <translation type="unfinished">tooplune-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1254"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1253"/>
         <source>towpilot</source>
         <translation type="unfinished">toopeelut</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1368"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1367"/>
         <source>No %1 specified</source>
         <translation type="unfinished">Nu %1 speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1369"/>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1545"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1368"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1544"/>
         <source>The %1 is not specified.</source>
         <translation type="unfinished">Zee %1 is nut speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1387"/>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1398"/>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1569"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1386"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1397"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1568"/>
         <source>%1 unknown</source>
         <translation type="unfinished">%1 unknoon</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1388"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1387"/>
         <source>The %1 %2 is unknown. However,
 there is a plane with the registration %3.
 Use this plane?</source>
@@ -2571,126 +2565,126 @@ zeere-a is a plune-a veet zee regeestreshun %3.
 Use-a thees plune-a?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1399"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1398"/>
         <source>The %1 %2 is unknown.
 Add it to the database?</source>
         <translation type="unfinished">Zee %1 %2 is unknoon.
 Edd it tu zee detebese-a?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1530"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1529"/>
         <source>Name is &quot;+1&quot;</source>
         <translation type="unfinished">Neme-a is &quot;+1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1531"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1530"/>
         <source>The name is &quot;+1&quot;. For passenger flights, the flight type &quot;passenger flight&quot; should be used instead.</source>
         <translation type="unfinished">Zee neme-a is &quot;+1&quot;. Fur pessenger fleeghts, zee fleeght type-a &quot;pessenger fleeght&quot; shuoold be-a used insteed.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1544"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1543"/>
         <source>%1 not specified</source>
         <translation type="unfinished">%1 nut speceeffied</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1570"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1569"/>
         <source>The person %1 %2 (%3) is unknown.
 Add it to the database?</source>
         <translation type="unfinished">Zee persun %1 %2 (%3) is unknoon.
 Edd it tu zee detebese-a?</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1587"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1586"/>
         <source>Person selection</source>
         <translation type="unfinished">Persun selecshun</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1591"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1590"/>
         <source>Different people are possible. Please select (%1):</source>
         <translation type="unfinished">Deefffferent peuple-a ere-a pusseeble-a. Pleese-a select (%1):</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1594"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1593"/>
         <source>Only the last name was specified. Please select (%1):</source>
         <translation type="unfinished">Oonly zee lest neme-a ves speceeffied. Pleese-a select (%1):</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1597"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1596"/>
         <source>Only the first name was specified. Please select (%1):</source>
         <translation type="unfinished">Oonly zee furst neme-a ves speceeffied. Pleese-a select (%1):</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1788"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1787"/>
         <source>Save error</source>
         <translation type="unfinished">Sefe-a irrur</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1789"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1788"/>
         <source>An error occured while writing the flight to the datbase</source>
         <translation type="unfinished">Un irrur ooccoored vheele-a vreeting zee fleeght tu zee detbese-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1986"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1985"/>
         <source>Au&amp;tomatic</source>
         <translation type="unfinished">Oo&amp;tumeteec</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1987"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1986"/>
         <source>&amp;Automatic</source>
         <translation type="unfinished">&amp;Ootumeteec</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1988"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1987"/>
         <source>A&amp;utomatic</source>
         <translation type="unfinished">A&amp;utumeteec</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1992"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1991"/>
         <source>Depar&amp;ted</source>
         <translation type="unfinished">Deper&amp;ted</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1993"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1992"/>
         <source>L&amp;anded</source>
         <translation type="unfinished">L&amp;unded</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1994"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1993"/>
         <source>Lande&amp;d</source>
         <translation type="unfinished">Lunde-a&amp;d</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1994"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1993"/>
         <source>Finishe&amp;d</source>
         <translation type="unfinished">Feenishe-a&amp;d</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1998"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1997"/>
         <source>Landing ti&amp;me towplane:</source>
         <translation type="unfinished">Lundeeng tee&amp;me-a tooplune-a:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="1998"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="1997"/>
         <source>Release ti&amp;me:</source>
         <translation type="unfinished">Releese-a tee&amp;me-a:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="2026"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="2025"/>
         <source>Depart n&amp;ow</source>
         <translation type="unfinished">Depert n&amp;oov</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="2027"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="2026"/>
         <source>Depart &amp;later</source>
         <translation type="unfinished">Depert &amp;leter</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="2031"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="2030"/>
         <source>Land n&amp;ow</source>
         <translation type="unfinished">Lund n&amp;oov</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/FlightWindow.cpp" line="2032"/>
+        <location filename="../src/gui/windows/FlightWindow.cpp" line="2031"/>
         <source>Land &amp;later</source>
         <translation type="unfinished">Lund &amp;leter</translation>
     </message>
@@ -4922,17 +4916,17 @@ Cunffeegooreshun: %2</translation>
         <translation type="unfinished">Nu</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.h" line="67"/>
+        <location filename="../src/model/Person.h" line="68"/>
         <source>person</source>
         <translation type="unfinished">persun</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.h" line="68"/>
+        <location filename="../src/model/Person.h" line="69"/>
         <source>the person</source>
         <translation type="unfinished">zee persun</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.h" line="69"/>
+        <location filename="../src/model/Person.h" line="70"/>
         <source>people</source>
         <translation type="unfinished">peuple-a</translation>
     </message>
@@ -4940,44 +4934,49 @@ Cunffeegooreshun: %2</translation>
 <context>
     <name>Person::DefaultObjectModel</name>
     <message>
-        <location filename="../src/model/Person.cpp" line="136"/>
+        <location filename="../src/model/Person.cpp" line="135"/>
         <source>Last name</source>
         <translation type="unfinished">Lest neme-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="137"/>
+        <location filename="../src/model/Person.cpp" line="136"/>
         <source>First name</source>
         <translation type="unfinished">Furst neme-a</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="138"/>
+        <location filename="../src/model/Person.cpp" line="137"/>
         <source>Nicknames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="139"/>
+        <location filename="../src/model/Person.cpp" line="138"/>
         <source>Club</source>
         <translation type="unfinished">Cloob</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="140"/>
+        <location filename="../src/model/Person.cpp" line="139"/>
         <source>Medical until</source>
         <translation type="unfinished">Medeecel unteel</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="141"/>
+        <location filename="../src/model/Person.cpp" line="140"/>
         <source>Check medical</source>
         <translation type="unfinished">Check medeecel</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="142"/>
+        <location filename="../src/model/Person.cpp" line="141"/>
         <source>Comments</source>
         <translation type="unfinished">Cumments</translation>
     </message>
     <message>
-        <location filename="../src/model/Person.cpp" line="143"/>
+        <location filename="../src/model/Person.cpp" line="142"/>
         <source>Club ID</source>
         <translation type="unfinished">Cloob ID</translation>
+    </message>
+    <message>
+        <location filename="../src/model/Person.cpp" line="143"/>
+        <source>Vereinsflieger ID</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/model/Person.cpp" line="144"/>
@@ -5002,24 +5001,29 @@ Cunffeegooreshun: %2</translation>
         <translation type="obsolete">Medeecel check is deesebled!</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="69"/>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="76"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="67"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="74"/>
         <source>Yes</source>
         <translation type="unfinished">Yes</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="70"/>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="77"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="68"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="75"/>
         <source>No</source>
         <translation type="unfinished">Nu</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="198"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="200"/>
+        <source>Vereinsflieger ID invalid. Must be a positive integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="205"/>
         <source>Last name not specified.</source>
         <translation type="unfinished">Lest neme-a nut speceeffied.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="202"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.cpp" line="209"/>
         <source>First name not specified.</source>
         <translation type="unfinished">Furst neme-a nut speceeffied.</translation>
     </message>
@@ -5032,62 +5036,67 @@ Cunffeegooreshun: %2</translation>
         <translation type="unfinished">PersunEdeeturPune-a</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="114"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="233"/>
         <source>&amp;Last name:</source>
         <translation type="unfinished">&amp;Lest neme-a:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="150"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="200"/>
         <source>&amp;First name:</source>
         <translation type="unfinished">&amp;Furst neme-a:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="229"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="124"/>
         <source>Nicknames:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="236"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="39"/>
         <source>Separate multiple nicknames by commas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="94"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="210"/>
         <source>Cl&amp;ub:</source>
         <translation type="unfinished">Cl&amp;ub:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="219"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="220"/>
         <source>Commen&amp;ts:</source>
         <translation type="unfinished">Cummee&amp;ts:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="84"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="29"/>
         <source>Medical &amp;valid until:</source>
         <translation type="unfinished">Medeecel &amp;feleed unteel:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="209"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="46"/>
         <source>Check &amp;medical:</source>
         <translation type="unfinished">Check &amp;medeecel:</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="166"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="160"/>
         <source>&lt;html&gt;Check this person&apos;s medical validity when creating a new flight&lt;html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="173"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="167"/>
         <source>&lt;html&gt;The global medical check option is disabled. For medicals to be checked, enable the option &quot;Check medicals&quot; in the program settings.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="51"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="243"/>
+        <source>Vereinsflieger ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="78"/>
         <source>&lt;html&gt;The last date that this person&apos;s medical is valid&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="202"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="193"/>
         <source>&lt;html&gt;This field can be used for a member ID or similar.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5106,7 +5115,7 @@ medeecels tu be-a checked, ineble-a zee oopshun
 &quot;Check medeecels&quot; in zee prugrem setteengs.</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="176"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="170"/>
         <source>Medical check is disabled!</source>
         <translation type="unfinished">Medeecel check is deesebled!</translation>
     </message>
@@ -5115,7 +5124,7 @@ medeecels tu be-a checked, ineble-a zee oopshun
         <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="38"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="65"/>
         <source>&amp;Unknown</source>
         <translation type="unfinished">&amp;Unknoon</translation>
     </message>
@@ -5124,17 +5133,17 @@ medeecels tu be-a checked, ineble-a zee oopshun
         <translation type="obsolete">Zee lest dete-a thet thees persun&amp;epus;s medeecel is feleed</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="54"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="81"/>
         <source>MM/dd/yyyy</source>
         <translation type="unfinished">MM/dd/yyyy</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="61"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="88"/>
         <source>&amp;Display</source>
         <translation type="unfinished">&amp;Deespley</translation>
     </message>
     <message>
-        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="104"/>
+        <location filename="../src/gui/windows/objectEditor/PersonEditorPane.ui" line="131"/>
         <source>Club &amp;ID:</source>
         <translation type="unfinished">Cloob &amp;ID:</translation>
     </message>
@@ -7137,7 +7146,7 @@ a refference-a lungeetoode-a is speceeffied in zee deta feele-a.</translation>
 <context>
     <name>Translation</name>
     <message>
-        <location filename="../src/i18n/TranslationManager.cpp" line="266"/>
+        <location filename="../src/i18n/TranslationManager.cpp" line="261"/>
         <source> </source>
         <comment>Replace with the name of the translation language, in that language</comment>
         <translation>Bork Bork Bork</translation>
@@ -7146,14 +7155,14 @@ a refference-a lungeetoode-a is speceeffied in zee deta feele-a.</translation>
 <context>
     <name>VereinsfliegerSync</name>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="89"/>
-        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="140"/>
+        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="97"/>
+        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="156"/>
         <source>Connection lost.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="95"/>
-        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="146"/>
+        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="103"/>
+        <location filename="../src/db/vfsync/vereinsfliegersync.cpp" line="162"/>
         <source>Unknown error</source>
         <translation type="unfinished">Unknoon irrur</translation>
     </message>
@@ -7228,27 +7237,27 @@ a refference-a lungeetoode-a is speceeffied in zee deta feele-a.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="168"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="169"/>
         <source>Uploading flight %1 of %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="170"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="171"/>
         <source>Updating flight %1 of %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="214"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="215"/>
         <source>Signing out...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="218"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="219"/>
         <source>%1 out of %2 flights could not be uploaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="220"/>
+        <location filename="../src/db/vfsync/vereinsfliegersyncworker.cpp" line="221"/>
         <source>Upload completed, %1 flights have been transmitted.</source>
         <translation type="unfinished"></translation>
     </message>

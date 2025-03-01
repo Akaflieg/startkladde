@@ -43,8 +43,8 @@ void SyncDialog::completed(bool errors, QString msg, QList<QTreeWidgetItem*> err
     // find error messages with html and make links clickable, if there are any
     for (int i = 0; i < ui->errorTreeWidget->topLevelItemCount(); i++) {
         QTreeWidgetItem* item = ui->errorTreeWidget->topLevelItem(i);
-        QRegExp re = QRegExp("<a href='(.*)'>");
-        if (re.indexIn(item->text(5)) != -1) {
+        QRegularExpression re ("<a href='(.*)'>");
+        if (item->text(5).contains(re)) {
             QString text = item->text(5);
             text = text.replace(re, "<a href='https://vereinsflieger.de/member/community/\\1'>");
             QLabel* linkLabel = new QLabel(ui->errorTreeWidget);

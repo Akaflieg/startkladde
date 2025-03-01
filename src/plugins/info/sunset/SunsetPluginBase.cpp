@@ -9,7 +9,7 @@
 
 #include <QDebug>
 #include <QSettings>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QFile>
 
 #include "SunsetPluginSettingsPane.h"
@@ -154,9 +154,9 @@ QString SunsetPluginBase::readSunsetString (const QString &filename)
 {
 	QString dateString=QDate::currentDate ().toString (notr ("MM-dd"));
 	// TODO does not escape dateString
-	QRegExp regexp (qnotr ("^%1\\s*(\\S*)").arg (dateString));
+    QRegularExpression regexp (qnotr ("^%1\\s*(\\S*)").arg (dateString));
 
-	return findInFile (filename, regexp, 1);
+    return findInFileWithCapture (filename, regexp, 1);
 }
 
 /**
@@ -176,7 +176,7 @@ QString SunsetPluginBase::readSunsetString (const QString &filename)
  */
 QString SunsetPluginBase::readReferenceLongitudeString (const QString &filename)
 {
-	return findInFile (filename, QRegExp (notr ("^ReferenceLongitude: (.*)")), 1);
+    return findInFileWithCapture(filename, QRegularExpression (notr ("^ReferenceLongitude: (.*)")), 1);
 }
 
 /**
@@ -194,9 +194,9 @@ QString SunsetPluginBase::readReferenceLongitudeString (const QString &filename)
  */
 QString SunsetPluginBase::readSource (const QString &filename)
 {
-	QRegExp regexp (notr ("^Source: (.*)"));
+    QRegularExpression regexp (notr ("^Source: (.*)"));
 
-	return findInFile (filename, regexp, 1);
+    return findInFileWithCapture(filename, regexp, 1);
 }
 
 

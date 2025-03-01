@@ -4,7 +4,7 @@
 #include <QImage>
 #include <QMovie>
 #include <QPainter>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QResizeEvent>
 
 #include "src/config/Settings.h" // TODO remove dependency, set from MainWindow

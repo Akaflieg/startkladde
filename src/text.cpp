@@ -3,6 +3,7 @@
 #include <QString>
 #include <QStringList>
 #include <QAbstractButton>
+#include <QRegularExpression>
 
 #include "src/config/Settings.h"
 #include "src/i18n/notr.h"
@@ -219,23 +220,25 @@ QString repeatString (const QString &string, unsigned int num, const QString &se
 bool stringNumericLessThan (const QString &s1, const QString &s2)
 {
 	// The pattern: an optional, arbitrary prefix and a numeric suffix.
-	static QRegExp re ("(.*)(\\d+)");
+    static QRegularExpression re (QRegularExpression::anchoredPattern("(.*)(\\d+)"));
 
 	// If the first string does not match the pattern, default to lexicographic
 	// ordering.
-	if (re.exactMatch (s1))
+    QRegularExpressionMatch s1_re = re.match(s1);
+    if (s1_re.hasMatch())
 	{
 		// Store the captured groups, we're going to re-use the regexp.
-		QString a1=re.cap (1);
-		int     b1=re.cap (2).toInt ();
+        QString a1=s1_re.captured (1);
+        int     b1=s1_re.captured (2).toInt ();
 
 		// If the second string does not match the pattern, default to
 		// lexicographic ordering.
-		if (re.exactMatch (s2))
+        QRegularExpressionMatch s2_re = re.match(s2);
+        if (s2_re.hasMatch())
 		{
 			// Store the captured groups
-			QString a2=re.cap (1);
-			int     b2=re.cap (2).toInt ();
+            QString a2=s2_re.captured (1);
+            int     b2=s2_re.captured (2).toInt ();
 
 			// If the prefixes are different, compare them lexicographically. If
 			// the prefixes are identical, continue by comparing the suffixes.

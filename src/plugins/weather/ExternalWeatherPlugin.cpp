@@ -9,7 +9,7 @@
 
 //#include <QDebug>
 #include <QFile>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QImage>
 #include <QMovie>
 
@@ -24,7 +24,7 @@
 REGISTER_PLUGIN (WeatherPlugin, ExternalWeatherPlugin)
 SK_PLUGIN_DEFINITION (
 	ExternalWeatherPlugin,
-	notr ("{01db73ff-1473-4aeb-b297-13398927005c}"),
+    QUuid::fromString(notr ("{01db73ff-1473-4aeb-b297-13398927005c}")),
 	ExternalWeatherPlugin::tr ("External"),
 	ExternalWeatherPlugin::tr ("External weather plugin"))
 
@@ -69,25 +69,23 @@ void ExternalWeatherPlugin::lineReceived (const QString &line)
 {
 	if (line.startsWith (notr ("[MSG]"), Qt::CaseInsensitive))
 	{
-		QRegExp rx (notr ("\\[MSG\\]\\s*\\[(.*)\\]") );
-		rx.indexIn (line);
-        if (rx.captureCount ()>0)
-		{
-			QString text=rx.cap (1);
+        QRegularExpression rx (notr ("\\[MSG\\]\\s*\\[(.*)\\]") );
+        auto rxm = rx.match(line);
+        if (rxm.hasMatch()) {
+            QString text=rxm.captured(1);
 			// An even number of backslashes, followed by a backslash and an n ==> newline
 			// (\\)*\n ==> newline
 			// Regexp escaping: (\\\\)*\\n ==> newline
 			// C escaping: (\\\\\\\\)*\\\\n ==> \n
-			outputText (text.replace (QRegExp (notr ("(\\\\\\\\)*\\\\n")), notr ("\n")).replace (notr ("\\\\"), notr ("\\")));
+            outputText (text.replace (QRegularExpression (notr ("(\\\\\\\\)*\\\\n")), notr ("\n")).replace (notr ("\\\\"), notr ("\\")));
 		}
 	}
 	else if (line.startsWith (notr ("[IMG]"), Qt::CaseInsensitive))
 	{
-		QRegExp rx (notr ("\\[IMG\\]\\s*\\[(.*)\\]") );
-		rx.indexIn (line);
-        if (rx.captureCount ()>0)
-		{
-			QString filename=rx.cap (1);
+        QRegularExpression rx (notr ("\\[IMG\\]\\s*\\[(.*)\\]") );
+        auto rxm = rx.match(line);
+        if (rxm.hasMatch()) {
+            QString filename=rxm.captured(1);
 			QImage image (filename);
 
 			if (image.isNull ())
@@ -98,11 +96,10 @@ void ExternalWeatherPlugin::lineReceived (const QString &line)
 	}
 	else if (line.startsWith (notr ("[MOV]"), Qt::CaseInsensitive))
 	{
-		QRegExp rx (notr ("\\[MOV\\]\\s*\\[(.*)\\]") );
-		rx.indexIn (line);
-        if (rx.captureCount ()>0)
-		{
-			QString filename=rx.cap (1);
+        QRegularExpression rx (notr ("\\[MOV\\]\\s*\\[(.*)\\]") );
+        auto rxm = rx.match(line);
+        if (rxm.hasMatch()) {
+            QString filename=rxm.captured(1);
 			SkMovie movie (filename);
 			if (movie.getMovie ()->isValid ())
 				outputMovie (movie);

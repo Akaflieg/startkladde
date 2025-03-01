@@ -1,8 +1,8 @@
 #include "time.h"
 
+#include <QTimeZone>
 #include <cstdlib>
 
-#include "src/Longitude.h"
 #include "src/i18n/notr.h"
 
 /**
@@ -21,13 +21,15 @@ QTime nullSeconds (const QTime &time)
  */
 QDateTime nullSeconds (const QDateTime &dateTime)
 {
-	if (!dateTime.isValid ())
+    if (!dateTime.isValid()) {
 		return QDateTime ();
+    }
 
-	return QDateTime (
-		dateTime.date (),
-		QTime (dateTime.time ().hour (), dateTime.time ().minute (), 0),
-		dateTime.timeSpec ());
+    return QDateTime(
+        dateTime.date(),
+        QTime(dateTime.time().hour(), dateTime.time().minute(), 0),
+        dateTime.timeZone()
+    );
 }
 
 /**
@@ -88,8 +90,8 @@ QString formatDuration (int seconds, bool includeSeconds)
 QTime utcToLocal (const QTime &time)
 {
 	// TODO: currentDate probably returns local date
-	QDateTime dateTime (QDate::currentDate (), time, Qt::UTC);
-	return dateTime.toLocalTime ().time ();
+    QDateTime dateTime (QDate::currentDate(), time, QTimeZone::utc());
+    return dateTime.toLocalTime().time();
 }
 
 // This function can be used, it's just not tested yet

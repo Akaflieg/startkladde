@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QLibraryInfo>
 #include <QLocale>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QDir>
 #include <QTranslator>
@@ -29,10 +29,10 @@ TranslationManager *TranslationManager::theInstance;
 TranslationManager::TranslationManager ()
 {
 	// Load Qt translations from the Qt translations directory.
-	translationPath << QLibraryInfo::location (QLibraryInfo::TranslationsPath);
+    translationPath << QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
     // For development builds (and possibly windows installations?)
-    translationPath << QCoreApplication::applicationDirPath() +notr ("/translations");
+    translationPath << QCoreApplication::applicationDirPath() +notr("/translations");
 
     // For productive installations on unix systems
     translationPath << QDir("/usr/share/startkladde");
@@ -75,9 +75,10 @@ void TranslationManager::install (QApplication *application)
  */
 QString TranslationManager::localeNameFromFilename (const QString &filename)
 {
-	QRegExp regexp (notr ("startkladde_(.*)\\.qm"));
-	if (regexp.exactMatch (filename))
-		return regexp.cap (1);
+    QRegularExpression regexp (QRegularExpression::anchoredPattern(notr ("startkladde_(.*)\\.qm")));
+    QRegularExpressionMatch match = regexp.match(filename);
+    if (match.hasMatch())
+        return match.captured (1);
 	else
 		return QString ();
 }
@@ -142,20 +143,14 @@ bool TranslationManager::loadTranslation (QTranslator &translator, const QString
  *
  * @return true, indicating success (unloading cannot fail)
  */
-bool TranslationManager::unload (bool force)
-{
-	if (currentLocale!="" || force)
-	{
-		// Output a message
-//		std::cout << notr ("Unloading translation") << std::endl;
-
-		appTranslator.load ("");
-		qtTranslator .load ("");
-
-		currentLocale="";
-	}
-
-	return true;
+bool TranslationManager::unload (bool force) {
+    if (currentLocale != "" || force) {
+        bool success = appTranslator.load("") && qtTranslator.load("");
+        currentLocale = "";
+        return success;
+    } else {
+        return true;
+    }
 }
 
 /**

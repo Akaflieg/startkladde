@@ -21,8 +21,8 @@ class FileOpenError
 		QString errorString;
 };
 
-bool findInFile (const QString &filename, QRegExp &regexp);
-QString findInFile (const QString &filename, const QRegExp &regexp, int group);
+std::optional<QRegularExpressionMatch> findInFile (const QString &filename, QRegularExpression &regexp);
+QString findInFileWithCapture (const QString &filename, const QRegularExpression &regexp, int group);
 
 
 #endif

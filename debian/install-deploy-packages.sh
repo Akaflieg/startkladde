@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # runtime dependencies of 'startkladde'
-# for debian bullseye as of 2022-02-11
+# for debian bookworm as of 2025-01-19
 
 apt-get install \
-libqt5sql5-mysql \
-libqt5multimedia5 \
-libt5serialport5 \
-libqt5core5a \
-libqt5printsupport5 \
-libqt5sql5 \
-libqt5xml5
+	libqt6sql6-mysql \
+	libqt6multimedia6 \
+	libt6serialport6 \
+	libqt6core6 \
+	libqt6printsupport6 \
+	libqt6sql6 \
+	libqt6xml6

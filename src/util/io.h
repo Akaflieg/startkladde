@@ -10,8 +10,8 @@ class QRegExp;
 class QRect;
 
 QString readLineUtf8 (QIODevice &device);
-bool findInIoDevice (QIODevice &device, QRegExp &regexp);
-QString findInIoDevice (QIODevice &device, const QRegExp &regexp, int group);
+std::optional<QRegularExpressionMatch> findInIoDevice (QIODevice &device, const QRegularExpression &regexp);
+QString findInIoDeviceWithCapture (QIODevice &device, const QRegularExpression &regexp, int group);
 
 std::ostream &operator<< (std::ostream &ostream, const QRect &rect);
 

@@ -5,6 +5,7 @@
 #include <QMetaType>
 #include <QColor>
 #include <QList>
+#include <QTimeZone>
 
 #include "FlightBase.h"
 
@@ -133,8 +134,8 @@ class Flight: public FlightBase
 		// *** Times
 		virtual QDateTime effectiveTime () const;
 		// TODO which one of these is right?
-		virtual QDate effdatum (Qt::TimeSpec spec=Qt::UTC) const;
-		virtual QDate getEffectiveDate (Qt::TimeSpec spec, QDate defaultDate) const;
+        virtual QDate effdatum (QTimeZone tz = QTimeZone::utc()) const;
+        virtual QDate getEffectiveDate (QTimeZone tz, QDate defaultDate) const;
 		virtual bool isCurrent () const;
 
 		virtual bool canHaveDepartureTime        () const { return departsHere (); }

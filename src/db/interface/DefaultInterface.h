@@ -44,7 +44,7 @@ class DefaultInterface: public QObject, public Interface
 	public:
 		// *** Construction
 		DefaultInterface (const DatabaseInfo &dbInfo, int readTimeout=0);
-		DefaultInterface (const DefaultInterface &iface);
+        //DefaultInterface (const DefaultInterface &iface);
 		virtual ~DefaultInterface ();
 
 		// *** AbstractInterface methods

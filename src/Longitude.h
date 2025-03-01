@@ -47,7 +47,7 @@ class Longitude
 
 	protected:
 		static Longitude parse (const QString &degrees, const QString &minutes, const QString &seconds, bool positive);
-		static Longitude parse (const QRegExp &re, int degreesCap, int minutesCap, int secondsCap, bool positive);
+        static Longitude parse (const QRegularExpressionMatch &m, int degreesCap, int minutesCap, int secondsCap, bool positive);
 
 
 	private:

@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <cmath>
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QDebug>
 
 #include "src/i18n/notr.h"
@@ -209,25 +209,31 @@ Longitude Longitude::parse (const QString &string)
 	QString s=string.trimmed ();
 	if (s.isEmpty ()) return invalid;
 
-	QRegExp re;
+    QRegularExpression re;
 
 	// dd mm ss
 	// dd° mm' ss"
-	re=QRegExp (qnotrUtf8 ("^(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?$"));
-	if (s.contains (re))
-		return parse (re, 1, 2, 3, true);
+    re=QRegularExpression (qnotrUtf8 ("^(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?$"));
+    QRegularExpressionMatch match1 = re.match(s);
+    if (s.contains (re)) {
+        return parse (match1, 1, 2, 3, true);
+    }
 
 	// +|- d m s
 	// +|- d° m' s"
-	re=QRegExp (qnotrUtf8 ("^([+-])\\s*(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?$"));
-	if (s.contains (re))
-		return parse (re, 2, 3, 4, re.cap (1)!=notr ("-"));
+    re=QRegularExpression (qnotrUtf8 ("^([+-])\\s*(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?$"));
+    QRegularExpressionMatch match2 = re.match(s);
+    if (match2.hasMatch()) {
+        return parse (match2, 2, 3, 4, match2.captured(1)!=notr ("-"));
+    }
 
 	// dd mm ss E|W
 	// dd° mm' ss" E|W
-	re=QRegExp (qnotrUtf8 ("^(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?\\s*([EW])$"), Qt::CaseInsensitive);
-	if (s.contains (re))
-		return parse (re, 1, 2, 3, re.cap (4)!=notr ("W") && re.cap (4)!=notr ("w"));
+    re=QRegularExpression (qnotrUtf8 ("^(\\d+)°?\\s+(\\d+)'?\\s+(\\d+)\"?\\s*([EW])$"), QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match3 = re.match(s);
+    if (match3.hasMatch()) {
+        return parse (match3, 1, 2, 3, match3.captured(4)!=notr ("W") && match3.captured(4)!=notr("w"));
+    }
 
 	return invalid;
 }
@@ -254,7 +260,7 @@ Longitude Longitude::parse (const QString &degrees, const QString &minutes, cons
  *
  * This is a helper method for the parse (const QString &) method.
  */
-Longitude Longitude::parse (const QRegExp &re, int degreesCap, int minutesCap, int secondsCap, bool positive)
+Longitude Longitude::parse (const QRegularExpressionMatch &match, int degreesCap, int minutesCap, int secondsCap, bool positive)
 {
-	return parse (re.cap (degreesCap), re.cap (minutesCap), re.cap (secondsCap), positive);
+    return parse (match.captured (degreesCap), match.captured (minutesCap), match.captured (secondsCap), positive);
 }
