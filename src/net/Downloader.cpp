@@ -69,12 +69,12 @@ void Downloader::startDownload (int state, const QUrl &url)
 	reply=manager->get (request);
 
 	QObject::connect (
-		reply, SIGNAL (     finished ()),
-		this , SLOT   (replyFinished ())
+        reply, &QNetworkReply::finished,
+        this , &Downloader::replyFinished
 		);
 	QObject::connect (
-		reply, SIGNAL (     error (QNetworkReply::NetworkError)),
-		this , SLOT   (replyError (QNetworkReply::NetworkError))
+        reply, &QNetworkReply::errorOccurred,
+        this , &Downloader::replyError
 		);
 
 	// Set the state

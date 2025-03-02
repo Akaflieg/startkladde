@@ -87,7 +87,7 @@ DefaultInterface::DefaultInterface (const DatabaseInfo &dbInfo, int readTimeout)
 
 	QString name=qnotr ("startkladde_defaultInterface_%1").arg (getFreeNumber ());
 
-	db=QSqlDatabase::addDatabase (notr ("QMYSQL"), name);
+    db=QSqlDatabase::addDatabase (notr ("QMARIADB"), name);
 	threadId=QThread::currentThreadId ();
 	std::cout << notr ("DefaultInterface created on thread ") << QThread::currentThreadId () << std::endl;
 }

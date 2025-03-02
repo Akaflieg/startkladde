@@ -204,8 +204,8 @@ void TcpProxy::newConnection ()
 	connect (serverSocket, SIGNAL (disconnected ()), this, SLOT (serverClosed ()));
 	connect (clientSocket, SIGNAL (disconnected ()), this, SLOT (clientClosed ()));
 
-	connect (serverSocket, SIGNAL (error (QAbstractSocket::SocketError)), this, SLOT (serverError ()));
-	connect (clientSocket, SIGNAL (error (QAbstractSocket::SocketError)), this, SLOT (clientError ()));
+    connect (serverSocket, &QTcpSocket::errorOccurred, this, &TcpProxy::serverError);
+    connect (clientSocket, &QTcpSocket::errorOccurred, this, &TcpProxy::clientError);
 
 	resetTimer ();
 }
