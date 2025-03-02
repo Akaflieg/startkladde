@@ -401,6 +401,13 @@ int main (int argc, char **argv)
 	qRegisterMetaType<Query> (notr ("Query"));
 	qRegisterMetaType<DatabaseInfo> (notr ("DatabaseInfo"));
 	qRegisterMetaType<DataStream::State> (notr ("DataStream::State"));
+    qRegisterMetaType<Returner<void>*>(notr("Returner<void>*"));
+    qRegisterMetaType<Returner<bool>*>(notr("Returner<bool>*"));
+    qRegisterMetaType<Returner<int>*>(notr("Returner<int>*"));
+    qRegisterMetaType<Returner<quint16>*>(notr("Returner<quint16>*"));
+    qRegisterMetaType<Returner<dbId>*>(notr("Returner<dbId>*"));
+    qRegisterMetaType<Returner<QSharedPointer<Result>>*>(notr("Returner<QSharedPointer<Result>>*"));
+    qRegisterMetaType<OperationMonitor*>(notr("OperationMonitor*"));
 
 	// For QSettings
 	QCoreApplication::setOrganizationName (notr ("startkladde"));
