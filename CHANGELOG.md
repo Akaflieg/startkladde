@@ -1,7 +1,10 @@
 # Changelog
 
+## Version 2.5.1 (März 2025)
+* Bugfix: QT6 auch auf Debian 12 nutzbar machen.
+
 ## Version 2.5.0 (März 2025)
-* Umstellung auf QT6
+* Umstellung auf QT6.
 * Feature: Die Vereinsflieger-ID von Personen kann angegeben werden. Beim Hochladen der Flüge zu Vereinsflieger wird dann die ID der Person verwendet und nicht das Matching über den Namen hergestellt.
 
 ## Version 2.4.3 (Mai 2024)
