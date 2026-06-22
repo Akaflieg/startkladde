@@ -105,7 +105,7 @@ class ThreadSafeInterface: public QObject, public Interface
 		int keepaliveInterval; // milliseconds
 		QTimer keepaliveTimer;
 		QThread thread;
-		AbstractInterface *interface;
+        AbstractInterface *interface;
 		bool isOpen;
 };
 

@@ -986,9 +986,9 @@ QString Flight::selectColumnList ()
 {
 	return notr (
         "id,pilot_id,copilot_id,supervisor_id,plane_id,type,mode,departed,landed,towflight_landed" // 10
-        ",launch_method_id,departure_location,landing_location,num_landings,departure_time,landing_time" // 6 Σ16
+        ",launch_method_id,departure_location,landing_location,num_landings,CAST(departure_time AS CHAR),CAST(landing_time AS CHAR)" // 6 Σ16
         ",pilot_last_name,pilot_first_name,copilot_last_name,copilot_first_name" // 4 Σ20
-        ",towflight_landing_time,towflight_mode,towflight_landing_location,towplane_id" // 4 Σ24
+        ",CAST(towflight_landing_time AS CHAR),towflight_mode,towflight_landing_location,towplane_id" // 4 Σ24
         ",accounting_notes,comments" // 2 Σ26
         ",towpilot_id,towpilot_last_name,towpilot_first_name" // 3 Σ29
         ",flarm_id,vfid" // 2 Σ31

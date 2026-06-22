@@ -196,7 +196,7 @@ QString Person::dbTableName ()
 
 QString Person::selectColumnList ()
 {
-    return notr ("id,last_name,first_name,nickname,club,club_id,vfid,comments,medical_validity,check_medical_validity");
+    return notr ("id,last_name,first_name,nickname,club,club_id,vfid,comments,CAST(medical_validity AS CHAR),check_medical_validity");
 }
 
 Person Person::createFromResult (const Result &result)
